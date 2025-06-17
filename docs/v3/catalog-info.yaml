@@ -41,6 +41,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/tree/main/docs/v3/
+    backstage.io/techdocs-ref: dir:.
 spec:
   type: library
   lifecycle: production
@@ -62,6 +63,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/tree/main/src/generated/
+    backstage.io/techdocs-ref: dir:.
 spec:
   type: library
   lifecycle: production
@@ -87,6 +89,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/assembled/components/CognitiveBaseline.schema.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/assembled/components/CognitiveBaseline.schema.json
     familiar.dev/schema-id: https://familiar.dev/schemas/components/CognitiveBaseline.v1.schema.json
 spec:
@@ -113,6 +116,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/assembled/components/ThreadIdentity.schema.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/assembled/components/ThreadIdentity.schema.json
     familiar.dev/schema-id: https://familiar.dev/schemas/components/ThreadIdentity.v1.schema.json
 spec:
@@ -138,6 +142,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/_base/BaseAgentOutput.schema.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/_base/BaseAgentOutput.schema.json
     familiar.dev/schema-id: https://familiar.dev/schemas/base/AgentOutput.v1.schema.json
 spec:
@@ -160,6 +165,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/_base/BaseAgentPersona.schema.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/_base/BaseAgentPersona.schema.json
     familiar.dev/schema-id: https://familiar.dev/schemas/base/AgentPersona.v1.schema.json
 spec:
@@ -182,6 +188,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/_base/BaseApiEndpoint.schema.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/_base/BaseApiEndpoint.schema.json
     familiar.dev/schema-id: https://familiar.dev/schemas/base/ApiEndpoint.v1.schema.json
 spec:
@@ -204,6 +211,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/_base/BaseComponent.schema.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/_base/BaseComponent.schema.json
     familiar.dev/schema-id: https://familiar.dev/schemas/base/Component.v1.schema.json
 spec:
@@ -227,6 +235,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/_base/BaseConstantsFile.schema.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/_base/BaseConstantsFile.schema.json
     familiar.dev/schema-id: https://familiar.dev/schemas/base/ConstantsFile.v1.schema.json
 spec:
@@ -252,6 +261,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/_base/BaseEntity.schema.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/_base/BaseEntity.schema.json
     familiar.dev/schema-id: https://familiar.dev/schemas/base/Entity.v1.schema.json
 spec:
@@ -274,6 +284,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/_base/BaseEvent.schema.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/_base/BaseEvent.schema.json
     familiar.dev/schema-id: https://familiar.dev/schemas/base/Event.v1.schema.json
 spec:
@@ -297,6 +308,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/_base/BaseField.schema.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/_base/BaseField.schema.json
     familiar.dev/schema-id: https://familiar.dev/schemas/base/Field.v1.schema.json
 spec:
@@ -321,6 +333,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/_base/BaseLaw.schema.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/_base/BaseLaw.schema.json
     familiar.dev/schema-id: https://familiar.dev/schemas/base/Law.v1.schema.json
 spec:
@@ -345,6 +358,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/_base/BaseMetadata.schema.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/_base/BaseMetadata.schema.json
     familiar.dev/schema-id: https://familiar.dev/schemas/base/Metadata.v1.schema.json
 spec:
@@ -367,6 +381,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/_base/BasePayload.schema.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/_base/BasePayload.schema.json
     familiar.dev/schema-id: https://familiar.dev/schemas/base/Payload.v1.schema.json
 spec:
@@ -390,6 +405,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/_base/BasePhysics.schema.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/_base/BasePhysics.schema.json
     familiar.dev/schema-id: https://familiar.dev/schemas/base/PhysicsProperties.v1.schema.json
 spec:
@@ -413,6 +429,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/_base/BasePhysicsProfile.schema.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/_base/BasePhysicsProfile.schema.json
     familiar.dev/schema-id: https://familiar.dev/schemas/base/PhysicsProfile.v1.schema.json
 spec:
@@ -434,6 +451,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/_base/BaseTable.schema.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/_base/BaseTable.schema.json
     familiar.dev/schema-id: https://familiar.dev/schemas/base/Table.v1.schema.json
 spec:
@@ -456,6 +474,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/_base/BaseTaxonomyLevel.schema.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/_base/BaseTaxonomyLevel.schema.json
     familiar.dev/schema-id: https://familiar.dev/schemas/base/TaxonomyLevel.v1.schema.json
 spec:
@@ -478,6 +497,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/_base/BaseTaxonomyNode.schema.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/_base/BaseTaxonomyNode.schema.json
     familiar.dev/schema-id: https://familiar.dev/schemas/base/TaxonomyNode.v1.schema.json
 spec:
@@ -500,6 +520,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/_base/BaseTool.schema.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/_base/BaseTool.schema.json
     familiar.dev/schema-id: https://familiar.dev/schemas/base/Tool.v1.schema.json
 spec:
@@ -523,6 +544,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/_base/BaseTypeSystem.schema.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/_base/BaseTypeSystem.schema.json
     familiar.dev/schema-id: https://familiar.dev/schemas/base/TypeSystem.v1.schema.json
 spec:
@@ -544,6 +566,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/_base/BaseWorkflow.schema.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/_base/BaseWorkflow.schema.json
     familiar.dev/schema-id: https://familiar.dev/schemas/base/Workflow.v1.schema.json
 spec:
@@ -569,6 +592,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/components/BondTensionComponent.schema.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/components/BondTensionComponent.schema.json
     familiar.dev/schema-id: https://familiar.dev/schemas/components/BondTensionComponent.v1.schema.json
 spec:
@@ -597,6 +621,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/components/FilamentContent.schema.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/components/FilamentContent.schema.json
     familiar.dev/schema-id: https://familiar.dev/schemas/components/FilamentContent.v1.schema.json
 spec:
@@ -625,6 +650,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/components/MemoryManifoldPosition.schema.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/components/MemoryManifoldPosition.schema.json
     familiar.dev/schema-id: https://familiar.dev/schemas/components/MemoryManifoldPosition.v1.schema.json
 spec:
@@ -652,6 +678,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/components/MomentContent.schema.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/components/MomentContent.schema.json
     familiar.dev/schema-id: https://familiar.dev/schemas/components/MomentContent.v1.schema.json
 spec:
@@ -680,6 +707,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/components/MotifContent.schema.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/components/MotifContent.schema.json
     familiar.dev/schema-id: https://familiar.dev/schemas/components/MotifContent.v1.schema.json
 spec:
@@ -706,6 +734,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/components/TenantConfig.schema.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/components/TenantConfig.schema.json
     familiar.dev/schema-id: https://familiar.dev/schemas/components/TenantConfig.v1.schema.json
 spec:
@@ -733,6 +762,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/components/TenantIdentity.schema.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/components/TenantIdentity.schema.json
     familiar.dev/schema-id: https://familiar.dev/schemas/components/TenantIdentity.v1.schema.json
 spec:
@@ -759,6 +789,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/components/TenantMembers.schema.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/components/TenantMembers.schema.json
     familiar.dev/schema-id: https://familiar.dev/schemas/components/TenantMembers.v1.schema.json
 spec:
@@ -786,6 +817,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/components/ThreadContent.schema.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/components/ThreadContent.schema.json
     familiar.dev/schema-id: https://familiar.dev/schemas/components/ThreadContent.v1.schema.json
 spec:
@@ -813,6 +845,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/components/UniversalPhysicsState.schema.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/components/UniversalPhysicsState.schema.json
     familiar.dev/schema-id: https://familiar.dev/schemas/components/UniversalPhysicsState.v1.schema.json
 spec:
@@ -842,6 +875,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/entities/_base/BaseCognitiveEntity.schema.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/entities/_base/BaseCognitiveEntity.schema.json
     familiar.dev/schema-id: https://familiar.dev/schemas/entities/BaseCognitiveEntity.v1.schema.json
 spec:
@@ -872,6 +906,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/entities/_base/BaseSystemEntity.schema.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/entities/_base/BaseSystemEntity.schema.json
     familiar.dev/schema-id: https://familiar.dev/schemas/entities/BaseSystemEntity.v1.schema.json
 spec:
@@ -899,6 +934,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/entities/GenericThread.schema.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/entities/GenericThread.schema.json
     familiar.dev/schema-id: https://familiar.dev/schemas/entities/GenericThread.v1.schema.json
 spec:
@@ -926,6 +962,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/entities/PersonThread.schema.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/entities/PersonThread.schema.json
     familiar.dev/schema-id: https://familiar.dev/schemas/entities/PersonThread.v1.schema.json
 spec:
@@ -955,6 +992,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/entities/tenant.schema.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/entities/tenant.schema.json
     familiar.dev/schema-id: https://familiar.dev/schemas/entities/tenant.v1.schema.json
 spec:
@@ -982,6 +1020,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/entities/thread.schema.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/entities/thread.schema.json
     familiar.dev/schema-id: https://familiar.dev/schemas/entities/thread.v3.schema.json
 spec:
@@ -1007,6 +1046,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/_base/SharedDefinitions.schema.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/_base/SharedDefinitions.schema.json
     familiar.dev/schema-id: https://familiar.dev/schemas/base/SharedDefinitions.v1.schema.json
 spec:
@@ -1029,6 +1069,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/fields/Aliases.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/snippets/fields/Aliases.json
 spec:
   type: library
@@ -1050,6 +1091,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/types/primitives/AnyValue.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/snippets/types/primitives/AnyValue.json
     familiar.dev/schema-id: https://familiar.dev/schemas/types/AnyValue.v1.json
 spec:
@@ -1074,6 +1116,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/fields/CognitiveBaseline.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/snippets/fields/CognitiveBaseline.json
 spec:
   type: library
@@ -1097,6 +1140,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/types/physics/CognitivePerspective.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/snippets/types/physics/CognitivePerspective.json
     familiar.dev/schema-id: https://familiar.dev/schemas/types/physics/CognitivePerspective.v1.json
 spec:
@@ -1121,6 +1165,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/types/database/ColumnDefinition.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/snippets/types/database/ColumnDefinition.json
     familiar.dev/schema-id: https://familiar.dev/schemas/types/database/ColumnDefinition.v1.json
 spec:
@@ -1146,6 +1191,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/fields/ConsolidationRate.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/snippets/fields/ConsolidationRate.json
     familiar.dev/schema-id: https://familiar.dev/schemas/snippets/fields/ConsolidationRate.v1.json
 spec:
@@ -1167,6 +1213,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/types/validation/ConstraintDefinition.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/snippets/types/validation/ConstraintDefinition.json
     familiar.dev/schema-id: https://familiar.dev/schemas/types/validation/ConstraintDefinition.v1.json
 spec:
@@ -1188,6 +1235,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/fields/CreatedAt.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/snippets/fields/CreatedAt.json
 spec:
   type: library
@@ -1212,6 +1260,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/fields/DecayRate.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/snippets/fields/DecayRate.json
 spec:
   type: library
@@ -1233,6 +1282,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/fields/Description.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/snippets/fields/Description.json
 spec:
   type: library
@@ -1255,6 +1305,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/fields/Energy.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/snippets/fields/Energy.json
 spec:
   type: library
@@ -1277,6 +1328,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/fields/EntanglementStrength.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/snippets/fields/EntanglementStrength.json
 spec:
   type: library
@@ -1298,6 +1350,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/fields/EntityId.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/snippets/fields/EntityId.json
 spec:
   type: library
@@ -1320,6 +1373,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/types/config/FeatureFlagMap.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/snippets/types/config/FeatureFlagMap.json
     familiar.dev/schema-id: https://familiar.dev/schemas/types/config/FeatureFlagMap.v1.json
 spec:
@@ -1343,6 +1397,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/types/security/Member.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/snippets/types/security/Member.json
     familiar.dev/schema-id: https://familiar.dev/schemas/types/security/Member.v1.json
 spec:
@@ -1367,6 +1422,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/fields/Name.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/snippets/fields/Name.json
 spec:
   type: library
@@ -1388,6 +1444,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/types/physics/PhysicsConstants.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/snippets/types/physics/PhysicsConstants.json
     familiar.dev/schema-id: https://familiar.dev/schemas/types/physics/PhysicsConstants.v1.json
 spec:
@@ -1412,6 +1469,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/fields/QuantumCoherence.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/snippets/fields/QuantumCoherence.json
 spec:
   type: library
@@ -1433,6 +1491,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/types/security/Role.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/snippets/types/security/Role.json
     familiar.dev/schema-id: https://familiar.dev/schemas/types/security/Role.v1.json
 spec:
@@ -1455,6 +1514,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/types/primitives/StringValueMap.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/snippets/types/primitives/StringValueMap.json
     familiar.dev/schema-id: https://familiar.dev/schemas/types/StringValueMap.v1.json
 spec:
@@ -1479,6 +1539,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/types/workflow/TaskDefinition.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/snippets/types/workflow/TaskDefinition.json
     familiar.dev/schema-id: https://familiar.dev/schemas/types/workflow/TaskDefinition.v1.json
 spec:
@@ -1500,6 +1561,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/types/primitives/TaskList.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/snippets/types/primitives/TaskList.json
     familiar.dev/schema-id: https://familiar.dev/schemas/types/TaskList.v1.json
 spec:
@@ -1522,6 +1584,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/fields/TenantId.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/snippets/fields/TenantId.json
 spec:
   type: library
@@ -1543,6 +1606,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/fields/ThreadType.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/snippets/fields/ThreadType.json
 spec:
   type: library
@@ -1565,6 +1629,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/types/physics/Vec3.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/snippets/types/physics/Vec3.json
     familiar.dev/schema-id: https://familiar.dev/schemas/types/physics/Vec3.v1.json
 spec:
@@ -1588,6 +1653,7 @@ metadata:
   annotations:
     github.com/project-slug: phaiel/familiar-schema
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/types/physics/Vec6.json
+    backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/snippets/types/physics/Vec6.json
     familiar.dev/schema-id: https://familiar.dev/schemas/types/physics/Vec6.v1.json
 spec:

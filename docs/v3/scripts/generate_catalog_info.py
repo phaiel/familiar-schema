@@ -278,6 +278,7 @@ class SchemaCatalogGenerator:
                 'annotations': {
                     'github.com/project-slug': 'phaiel/familiar-schema',
                     'backstage.io/source-location': f'url:https://github.com/phaiel/familiar-schema/blob/main/{file_path}',
+                    'backstage.io/techdocs-ref': 'dir:.',
                     'familiar.dev/schema-file': file_path
                 }
             },
@@ -347,7 +348,8 @@ class SchemaCatalogGenerator:
                     'tags': ['schema', 'pipeline', 'code-generation', 'json-schema', 'makefile', 'quicktype'],
                     'annotations': {
                         'github.com/project-slug': 'phaiel/familiar-schema',
-                        'backstage.io/source-location': 'url:https://github.com/phaiel/familiar-schema/tree/main/docs/v3/'
+                        'backstage.io/source-location': 'url:https://github.com/phaiel/familiar-schema/tree/main/docs/v3/',
+                        'backstage.io/techdocs-ref': 'dir:.'
                     }
                 },
                 'spec': {
@@ -369,7 +371,8 @@ class SchemaCatalogGenerator:
                     'tags': ['rust', 'generated', 'types', 'code-generation', 'quicktype'],
                     'annotations': {
                         'github.com/project-slug': 'phaiel/familiar-schema',
-                        'backstage.io/source-location': 'url:https://github.com/phaiel/familiar-schema/tree/main/src/generated/'
+                        'backstage.io/source-location': 'url:https://github.com/phaiel/familiar-schema/tree/main/src/generated/',
+                        'backstage.io/techdocs-ref': 'dir:.'
                     }
                 },
                 'spec': {
