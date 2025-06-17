@@ -293,10 +293,10 @@ class SchemaCatalogGenerator:
         if schema_id:
             entry['metadata']['annotations']['familiar.dev/schema-id'] = schema_id
         
-        # Add subcomponentOf relationship if applicable
-        subcomponent_of = self.get_subcomponent_relationships(component_name, schema)
-        if subcomponent_of:
-            entry['spec']['subcomponentOf'] = subcomponent_of
+        # Add partOf relationship for hierarchical components (Backstage standard)
+        part_of = self.get_subcomponent_relationships(component_name, schema)
+        if part_of:
+            entry['spec']['partOf'] = part_of
         
         # Add dependencies if any
         deps = self.dependencies.get(component_name, set())
