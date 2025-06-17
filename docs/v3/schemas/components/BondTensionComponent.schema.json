@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://familiar.dev/schemas/components/BondTensionComponent.v1.schema.json",
+  "allOf": [{ "$ref": "../_base/BaseComponent.schema.json" }],
+
+  "title": "Bond Tension Component",
+  "description": "Models the classical physics of a relationship Bond, including its strength, tension, and resonance properties. This is managed by the Particular engine.",
+  "schema_version": "1.0.0",
+
+  "physics_properties": {
+    "engine": "classical",
+    "is_quantum": false,
+    "collapse_sensitive": false
+  },
+  "fields": {
+    "bond_strength": {
+      "description": "The overall strength or health of the bond.",
+      "type": "f64",
+      "constraints": { "minimum": 0.0, "maximum": 1.0 },
+      "default": 0.5
+    },
+    "torsional_stress": {
+      "description": "The cognitive dissonance or strain on the bond. Can be positive (creative tension) or negative (draining conflict).",
+      "type": "f64",
+      "default": 0.0
+    },
+    "spring_constant": {
+      "description": "The 'stiffness' of the bond, representing its resistance to change.",
+      "type": "f64",
+      "default": 10.0
+    },
+    "damping_coefficient": {
+      "description": "The 'inertia' of the bond, representing how quickly it returns to equilibrium after a perturbation.",
+      "type": "f64",
+      "default": 0.5
+    },
+    "resonance_phase": {
+      "description": "The phase angle for resonance calculations with other bonds.",
+      "type": "f64",
+      "default": 0.0
+    }
+  }
+}

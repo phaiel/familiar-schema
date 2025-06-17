@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://familiar.dev/schemas/base/Payload.v1.schema.json",
+  "title": "Base Event Payload",
+  "description": "The base schema for all event payloads, ensuring they contain essential context.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "./BaseMetadata.schema.json"
+    }
+  ],
+  "required": [ "user_context", "data" ],
+  "properties": {
+    "data": {
+      "description": "The specific data for this payload, defined by the event type.",
+      "type": "object"
+    },
+    "user_context": {
+      "type": "object",
+      "required": [ "user_id" ],
+      "properties": {
+        "session_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "user_id": {
+          "type": "string",
+          "format": "uuid"
+        }
+      }
+    }
+  }
+}

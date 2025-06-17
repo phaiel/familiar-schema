@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://familiar.dev/schemas/entities/GenericThread.v1.schema.json",
+  "title": "Generic Thread",
+  "description": "A Thread representing a Place, Concept, or GenericObject, which MUST NOT have a CognitiveBaseline.",
+  "type": "object",
+  "allOf": [{ "$ref": "../_base/BaseEntity.schema.json" }],
+  "properties": {
+    "identity": {
+      "$ref": "../components/ThreadIdentity.schema.json",
+      "properties": {
+        "thread_type": { "enum": ["Place", "Concept", "GenericObject"] }
+      }
+    },
+    "physics_state": {
+      "type": "object",
+      "properties": {
+        "universal": { "$ref": "../components/UniversalPhysicsState.schema.json" }
+      },
+      "required": ["universal"]
+    }
+  },
+  "required": ["identity", "physics_state"]
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://familiar.dev/schemas/components/UniversalPhysicsState.v1.schema.json",
+  "allOf": [{ "$ref": "../_base/BaseComponent.schema.json" }],
+  "title": "Universal Physics State Component",
+  "description": "The transient, mutable physics state of an entity.",
+  "schema_version": "3.0.0",
+  "type": "object",
+  "properties": {
+    "energy": { "$ref": "../_base/SharedDefinitions.schema.json#/$defs/fields/Energy" },
+    "momentum": { "$ref": "../_base/SharedDefinitions.schema.json#/$defs/types/Vec6" },
+    "cognitive_perspective": { "$ref": "../_base/SharedDefinitions.schema.json#/$defs/types/CognitivePerspective" },
+    "decay_rate": { "$ref": "../_base/SharedDefinitions.schema.json#/$defs/fields/DecayRate" },
+    "consolidation_rate": { "$ref": "../_base/SharedDefinitions.schema.json#/$defs/fields/ConsolidationRate" },
+    "quantum_coherence": { "$ref": "../_base/SharedDefinitions.schema.json#/$defs/fields/QuantumCoherence" },
+    "entanglement_strength": { "$ref": "../_base/SharedDefinitions.schema.json#/$defs/fields/EntanglementStrength" }
+  },
+  "required": [
+    "energy",
+    "momentum",
+    "cognitive_perspective",
+    "decay_rate",
+    "consolidation_rate",
+    "quantum_coherence",
+    "entanglement_strength"
+  ]
+}

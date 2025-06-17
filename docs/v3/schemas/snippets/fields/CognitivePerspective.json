@@ -1,0 +1,10 @@
+{
+  "$id": "https://familiar.dev/schemas/fields/CognitivePerspective.v1.schema.json",
+  "title": "Cognitive Perspective Field",
+
+  "description": "The intrinsic 'spin' or 'flavor' of the entity, which generates cognitive dissonance (torsion).",
+  "type": {
+    "$ref": "../types/physics/CognitivePerspective.json"
+  },
+  "ui_label": "Cognitive Perspective"
+}

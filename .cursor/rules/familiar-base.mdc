@@ -1,0 +1,102 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Familiar Project - Cursor Rules
+
+## Project Structure & Navigation
+
+### Core Directories
+- `/src/` - Rust source code (main application)
+- `/docs/v3/` - Schema-to-code generation pipeline
+- `/tests/` - All testing (unit, integration, visual, sandbox)
+- `/target/` - Rust build artifacts (auto-generated)
+
+### Schema Pipeline (`/docs/v3/`)
+- `schemas/` - Source JSON schemas (hand-written)
+- `dist/bundled_schemas/` - Generated bundled schemas (auto-generated)
+- `dist/visual/` - Generated visualization files (auto-generated)
+- `Makefile` - Pipeline commands (validate, bundle, generate-types, visualize)
+
+### Generated Code Locations
+- `/src/generated/types/` - Pure data structs from quicktype
+- `/src/generated/logic/` - Complex logic from Copier templates (future)
+
+## Tool Usage Patterns
+
+### Schema Development Workflow
+1. User can edit schemas in `docs/v3/schemas/`  (you can only view)
+2. Run `make validate` to check schema validity
+3. Run `make generate-types` to update Rust structs
+4. Run `make visualize` for JSON Crack visualization
+
+### Key Tools & Commands
+- `jsonschema` - Schema validation and linting
+- `quicktype` - Generate pure Rust data structs
+- `json-dereference-cli` - Bundle schemas (resolve $refs)
+- `jq` - Format JSON for visualization tools
+- `pkg-search` - Find correct npm package names
+
+### Testing Approach
+- Use `/tests/integration/` for schema validation test data
+- Use `/tests/sandbox/` for experimental/development scripts
+- Use `/tests/visual/` for visualization helper scripts
+- Pipeline validation is handled by Makefile targets
+
+## Code Generation Philosophy
+
+### Hybrid Generation Strategy
+- **Pure Data**: Use quicktype for simple structs with Serde
+- **Complex Logic**: Use Copier/Jinja2 for traits, implementations, ECS components
+- **Separation**: Keep generated types and logic in separate directories
+
+### Schema Dependencies
+- Base schemas in `_base/` directories are foundations
+- Specific schemas reference base schemas via `$ref`
+- Bundle step resolves all references into self-contained files
+
+## File Editing Guidelines
+
+### When Working with Schemas
+- Always assist with validation after user makes edits by: `make validate`
+- Regenerate types after schema changes: `make generate-types`
+- Use semantic search to find schema usage patterns
+- Check bundled output in `dist/bundled_schemas/` if generation fails
+
+### When Working with Rust Code
+- Generated files are in `/src/generated/` - never edit directly
+- Hand-written code goes in `/src/` (outside generated directories) - extremely rare
+- Use `cargo check` and `cargo clippy` for Rust validation
+
+## Common Workflows
+
+### Adding New Schema
+1. User creates in appropriate `docs/v3/schemas/` subdirectory (you do not have edit access)
+2. References base schemas using `$ref` patterns
+3. Run `make validate` to check syntax
+4. Run `make generate-types` to update Rust structs
+
+### Debugging Schema Issues
+1. Check `make validate` output for syntax errors
+2. Use `make visualize` then paste into JSON Crack for visual debugging
+3. Check bundled output in `dist/bundled_schemas/` for reference resolution
+4. Use test data in `/tests/integration/` for validation testing
+
+### Package Management
+- Use `pkg-search <name>` to find correct npm package names
+- Avoid assuming package names (many don't have `-cli` suffixes)
+- Check both npm and system package managers for tools
+
+## Directory Conventions
+
+### Don't Create
+- Duplicate test directories (use root `/tests/` only)
+- Manual bundled schemas (use `make bundle`)
+- Documentation files unless explicitly requested
+
+### Always Use
+- Makefile targets instead of direct tool commands
+- Root `/tests/` for all testing needs
+- Generated directories for output only (don't edit)
+- Semantic search before creating new patterns 

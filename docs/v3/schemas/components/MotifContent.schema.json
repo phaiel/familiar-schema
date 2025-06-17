@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://familiar.dev/schemas/components/MotifContent.v1.schema.json",
+  "allOf": [{ "$ref": "../_base/BaseComponent.schema.json" }],
+
+  "title": "Motif Content Component",
+  "description": "Defines the emergent pattern content of a Motif entity. This is a quantum component.",
+  "schema_version": "1.0.0",
+
+  "physics_properties": {
+    "engine": "quantum",
+    "is_quantum": true,
+    "collapse_sensitive": true
+  },
+  "fields": {
+    "pattern_description": {
+      "description": "A human-readable description of the recurring pattern.",
+      "type": "string"
+    },
+    "pattern_type": {
+      "description": "The classification of the pattern.",
+      "type": "string",
+      "constraints": {
+        "enum": ["Behavioral", "Emotional", "Situational", "Temporal"]
+      }
+    },
+    "source_moments": {
+      "description": "A list of Moment entity IDs whose consolidation formed this Motif.",
+      "type": "array",
+      "items": { "type": "uuid" }
+    },
+    "density_matrix": {
+      "description": "The quantum density matrix representing the Motif's superposition of states.",
+      "type": { "$ref": "../types/DensityMatrix.schema.json" }
+    }
+  }
+}

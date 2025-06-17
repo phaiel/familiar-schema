@@ -1,0 +1,12 @@
+{
+  "description": "Defines the innate 'personality' or temperament of a Thread, modulating its physics interactions.",
+  "type": "object",
+  "properties": {
+    "emotional_volatility": { "type": "number", "minimum": 0.5, "maximum": 2.0, "description": "How strongly emotional events affect this person. (UI Label: Emotional Reactivity)" },
+    "social_energy_factor": { "type": "number", "minimum": 0.8, "maximum": 1.2, "description": "How energized they are by social interactions. (UI Label: Social Energy)" },
+    "consolidation_rate_modifier": { "type": "number", "minimum": 0.8, "maximum": 1.5, "description": "How quickly their memories become stable. (UI Label: Memory Consolidation)" },
+    "bond_damping_factor": { "type": "number", "minimum": 0.5, "maximum": 2.0, "description": "How resistant their bonds are to change. (UI Label: Relationship Stability)" },
+    "exploration_bias": { "type": "number", "minimum": 0.7, "maximum": 1.3, "description": "Tendency for creative, associative thinking. (UI Label: Openness to Experience)" }
+  },
+  "required": ["emotional_volatility", "social_energy_factor", "consolidation_rate_modifier", "bond_damping_factor", "exploration_bias"]
+}

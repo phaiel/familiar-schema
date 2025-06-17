@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://familiar.dev/schemas/entities/BaseCognitiveEntity.v1.schema.json",
+  "title": "Base Cognitive Entity",
+  "description": "The base for all 7 cognitive entities. Inherits from BaseEntity and adds mandatory physics and manifold components (Rules 7 & 8).",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "../../_base/BaseEntity.schema.json"
+    }
+  ],
+  "required": [ "entity_type", "components" ],
+  "properties": {
+    "components": {
+      "type": "object",
+      "description": "Component references temporarily disabled for pipeline testing",
+      "properties": {
+        "_comment": {
+          "type": "string",
+          "description": "TODO: Re-enable component references when component schemas are available"
+        }
+      }
+    },
+    "entity_type": {
+      "description": "The canonical type of the cognitive entity.",
+      "enum": [
+        "Focus",
+        "Filament",
+        "Motif",
+        "Intent",
+        "Moment",
+        "Bond",
+        "Thread"
+      ]
+    }
+  }
+}

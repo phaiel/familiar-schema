@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://familiar.dev/schemas/components/{{ component_name }}.v1.schema.json",
+  "allOf": [{ "$ref": "../_base/BaseComponent.schema.json" }],
+
+  "title": "{{ metadata.title }}",
+  "description": "{{ metadata.description }}",
+  "schema_version": "{{ metadata.schema_version }}",
+
+  "physics_properties": {{ physics_properties | tojson(indent=2) }},
+
+  "fields": {
+    {% for field_name, field_def in fields.items() %}
+      "{{ field_name }}": {{ field_def | tojson(indent=4) }}{% if not loop.last %},{% endif %}
+    {% endfor %}
+  }
+}

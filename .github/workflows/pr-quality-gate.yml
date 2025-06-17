@@ -1,0 +1,56 @@
+# This workflow runs on every Pull Request to the 'main' branch.
+# It validates the schemas, builds the code, and runs the SonarQube scan.
+name: "V3 PR Quality Gate"
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  quality-assurance:
+    name: "Schema, Build & SonarQube Scan"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Checkout Code"
+        uses: actions/checkout@v4
+        with:
+          # SonarQube needs the full git history to track new code vs. old.
+          fetch-depth: 0
+
+      - name: "Setup Node.js for Schema Tooling"
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: "Install Schema & Dev Tools"
+        run: |
+          npm install -g @sourcemeta/jsonschema-cli
+          npm install -g quicktype-cli
+          npm install -g json-dereference-cli
+
+      - name: "Setup Rust, Clippy & Caching"
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          components: clippy
+      - uses: Swatinem/rust-cache@v2
+
+      - name: "Setup SonarQube Scanner"
+        uses: SonarSource/sonarqube-scan-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+      - name: "Run Local Validation & Build Pipeline"
+        # This runs all the local checks defined in the Makefile.
+        # If any of these fail, the entire workflow stops here.
+        run: make -C docs/v3 ci
+
+      - name: "Run SonarQube Scan"
+        # This command executes the SonarScanner, which reads the sonar-project.properties
+        # file and sends the analysis report to SonarCloud.
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: sonar-scanner 

@@ -1,0 +1,6 @@
+{
+  "$id": "https://familiar.dev/schemas/types/physics/CognitivePerspective.v1.json",
+  "title": "Cognitive Perspective Vector",
+  "description": "A 3D vector representing the 'spin' or perspective on a cognitive entity, orthogonal to its manifold position.",
+  "allOf": [{ "$ref": "./Vec3.json" }]
+}

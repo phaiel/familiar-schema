@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://familiar.dev/schemas/base/Event.v1.schema.json",
+  "title": "Base Event",
+  "description": "The base schema for all events published to the Redpanda streaming platform.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "./BaseMetadata.schema.json"
+    }
+  ],
+  "required": [
+    "event_id",
+    "trace_id",
+    "timestamp",
+    "source_service",
+    "payload"
+  ],
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "payload": {
+      "description": "The event-specific data payload. The schema for this payload should be defined by the specific event type.",
+      "type": "object"
+    },
+    "source_service": {
+      "description": "The service that published the event.",
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "trace_id": {
+      "description": "Identifier for the entire workflow trace (e.g., Windmill DAG run ID).",
+      "type": "string",
+      "format": "uuid"
+    }
+  }
+}

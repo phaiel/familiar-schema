@@ -1,0 +1,9 @@
+{
+  "$id": "https://familiar.dev/schemas/types/TaskList.v1.json",
+  "title": "Task List",
+  "description": "A list of task definitions for a Windmill workflow.",
+  "type": "array",
+  "items": {
+    "$ref": "../workflow/TaskDefinition.json"
+  }
+}

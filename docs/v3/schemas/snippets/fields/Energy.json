@@ -1,0 +1,5 @@
+{
+  "description": "The current energy level of an entity.",
+  "type": "f64",
+  "default": 0.1
+}

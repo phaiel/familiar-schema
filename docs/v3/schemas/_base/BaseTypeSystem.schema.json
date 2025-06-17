@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://familiar.dev/schemas/base/TypeSystem.v1.schema.json",
+  "title": "Base Type System",
+  "description": "The canonical list of all valid primitive and complex data types used within the Familiar engine. A type can be a primitive string or a reference to a complex type schema.",
+  "oneOf": [
+    {
+      "description": "A primitive type, represented as a string from a controlled vocabulary.",
+      "type": "string",
+      "enum": [
+        "string",
+        "boolean",
+        "integer",
+        "number",
+        "f32",
+        "f64",
+        "i32",
+        "i64",
+        "u32",
+        "u64",
+        "uuid",
+        "date-time",
+        "duration",
+        "object",
+        "array"
+      ]
+    },
+    {
+      "description": "A complex, contrived meta-type, represented by a reference to its canonical schema file.",
+      "type": "object",
+      "properties": {
+        "$ref": {
+          "type": "string",
+          "format": "uri-reference",
+          "pattern": "^\\.\\./types/.*\\.schema\\.json$"
+        }
+      },
+      "required": ["$ref"],
+      "additionalProperties": false
+    }
+  ]
+}

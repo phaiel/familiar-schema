@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://familiar.dev/schemas/base/Field.v1.schema.json",
+  "title": "Base Field",
+  "description": "Defines the structure for a single, inline field definition within a component.",
+  "type": "object",
+  "properties": {
+    "description": { "type": "string" },
+    "type": { "$ref": "./BaseTypeSystem.schema.json" },
+    "default": { "$ref": "../snippets/types/primitives/AnyValue.json" },
+    "constraints": { "$ref": "../snippets/types/validation/ConstraintDefinition.json" },
+    "ui_label": { "type": "string" }
+  },
+  "required": ["description", "type"]
+}

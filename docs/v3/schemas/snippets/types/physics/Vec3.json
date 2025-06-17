@@ -1,0 +1,9 @@
+{
+  "$id": "https://familiar.dev/schemas/types/physics/Vec3.v1.json",
+  "title": "3D Physics Vector",
+  "description": "A reusable data type for a vector of three f64 numbers, representing a physical property like position or velocity.",
+  "type": "array",
+  "items": { "type": "number" },
+  "minItems": 3,
+  "maxItems": 3
+}

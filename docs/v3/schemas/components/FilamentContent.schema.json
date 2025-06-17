@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://familiar.dev/schemas/components/FilamentContent.v1.schema.json",
+  "allOf": [{ "$ref": "../_base/BaseComponent.schema.json" }],
+
+  "title": "Filament Content Component",
+  "description": "Defines the high-level narrative or belief content of a Filament entity. This is a quantum component.",
+  "schema_version": "1.0.0",
+
+  "physics_properties": {
+    "engine": "quantum",
+    "is_quantum": true,
+    "collapse_sensitive": true
+  },
+  "fields": {
+    "narrative_description": {
+      "description": "A human-readable summary of the narrative or belief.",
+      "type": "string"
+    },
+    "filament_type": {
+      "description": "The classification of the narrative.",
+      "type": "string",
+      "constraints": {
+        "enum": ["PersonalityTrait", "Worldview", "Relationship_Pattern", "Life_Theme"]
+      }
+    },
+    "abstraction_level": {
+      "description": "The level of abstraction for this narrative.",
+      "type": "string",
+      "constraints": {
+        "enum": ["Low", "Medium", "High"]
+      }
+    },
+    "source_threads_and_bonds": {
+      "description": "A list of Thread and Bond entity IDs that are the source of this narrative.",
+      "type": "array",
+      "items": { "type": "uuid" }
+    }
+  }
+}

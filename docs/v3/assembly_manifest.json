@@ -1,0 +1,58 @@
+{
+  "components": {
+    "ThreadIdentity": {
+      "template": "components/component.jinja",
+      "metadata": {
+        "title": "Thread Identity Component",
+        "description": "The core, immutable identity of a Thread entity.",
+        "schema_version": "1.0.0"
+      },
+      "physics_properties": { 
+        "engine": "classical", 
+        "is_quantum": false 
+      },
+      "fields": {
+        "name": { "$snippet": "fields/Name.json" },
+        "description": { "$snippet": "fields/Description.json" },
+        "aliases": { "$snippet": "fields/Aliases.json" },
+        "thread_type": { "$snippet": "fields/ThreadType.json" }
+      }
+    },
+    "CognitiveBaseline": {
+      "template": "components/component.jinja",
+      "metadata": {
+        "title": "Cognitive Baseline Component",
+        "description": "Defines the innate 'personality' or temperament of a Thread.",
+        "schema_version": "1.0.0"
+      },
+      "physics_properties": { 
+        "engine": "classical", 
+        "is_quantum": false 
+      },
+      "fields": {
+        "baseline": { "$snippet": "fields/CognitiveBaseline.json" }
+      }
+    },
+    "UniversalPhysicsState": {
+      "template": "components/component.jinja",
+      "metadata": {
+        "title": "Universal Physics State Component",
+        "description": "The transient, mutable physics state of an entity, required by all cognitive entities (Rule 7).",
+        "schema_version": "3.1.0"
+      },
+      "physics_properties": {
+        "engine": "hybrid",
+        "is_quantum": true
+      },
+      "fields": {
+        "energy": { "$snippet": "fields/Energy.json" },
+        "momentum": { "$snippet": "types/physics/Vec6.json" },
+        "cognitive_perspective": { "$snippet": "fields/CognitivePerspective.json" },
+        "decay_rate": { "$snippet": "fields/DecayRate.json" },
+        "consolidation_rate": { "$snippet": "fields/ConsolidationRate.json" },
+        "quantum_coherence": { "$snippet": "fields/QuantumCoherence.json" },
+        "entanglement_strength": { "$snippet": "fields/EntanglementStrength.json" }
+      }
+    }
+  }
+} 

@@ -1,0 +1,12 @@
+{
+  "$id": "https://familiar.dev/schemas/types/StringValueMap.v1.json",
+  "title": "String Value Map",
+  "description": "A generic key-value map where keys are strings and values can be any JSON type. Used for flexible data structures like parameters or metadata.",
+  "type": "object",
+  "patternProperties": {
+    "^[a-zA-Z0-9_]+$": {
+      "$ref": "./AnyValue.json"
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,6 @@
+{
+  "title": "Description Field",
+  "description": "A detailed description of the entity.",
+  "type": "string",
+  "default": ""
+} 

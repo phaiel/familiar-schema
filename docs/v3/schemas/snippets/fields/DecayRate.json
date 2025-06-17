@@ -1,0 +1,5 @@
+{
+  "description": "The base rate of energy or coherence decay for an entity, before multipliers are applied.",
+  "type": "number",
+  "default": 0.01
+}

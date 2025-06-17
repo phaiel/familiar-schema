@@ -1,0 +1,6 @@
+{
+  "$id": "https://familiar.dev/schemas/types/AnyValue.v1.json",
+  "title": "Any Value",
+  "description": "Represents any valid JSON value. Used for fields with dynamic or unknown types, like 'default' values.",
+  "type": ["string", "number", "integer", "boolean", "object", "array", "null"]
+}

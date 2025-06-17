@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://familiar.dev/schemas/entities/PersonThread.v1.schema.json",
+  "title": "Person Thread",
+  "description": "A Thread representing a person, which MUST have a CognitiveBaseline.",
+  "type": "object",
+  "allOf": [{ "$ref": "../_base/BaseEntity.schema.json" }],
+  "properties": {
+    "identity": {
+      "$ref": "../components/ThreadIdentity.schema.json",
+      "properties": {
+        "thread_type": { "const": "Person" }
+      }
+    },
+    "components": {
+      "type": "object",
+      "properties": {
+        "cognitive_baseline": { "$ref": "../components/CognitiveBaseline.schema.json" }
+      },
+      "required": ["cognitive_baseline"]
+    },
+    "physics_state": {
+      "type": "object",
+      "properties": {
+        "universal": { "$ref": "../components/UniversalPhysicsState.schema.json" }
+      },
+      "required": ["universal"]
+    }
+  },
+  "required": ["identity", "components", "physics_state"]
+}

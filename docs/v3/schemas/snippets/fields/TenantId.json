@@ -1,0 +1,6 @@
+{
+  "title": "Tenant ID Field",
+  "description": "A reusable definition for the user tenant identifier.",
+  "type": "string",
+  "format": "uuid"
+}

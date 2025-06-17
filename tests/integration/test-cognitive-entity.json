@@ -1,0 +1,42 @@
+{
+  "title": "Test Cognitive Entity",
+  "description": "A test instance of a cognitive entity for validation testing",
+  "schema_version": "1.0.0",
+  "entity_id": "550e8400-e29b-41d4-a716-446655440000",
+  "tenant_id": "550e8400-e29b-41d4-a716-446655440001",
+  "created_at": "2024-06-14T20:00:00Z",
+  "entity_type": "Focus",
+  "components": {
+    "universal_physics_state": {
+      "component_type": "UniversalPhysicsState",
+      "physics_properties": {
+        "engine": "hybrid",
+        "is_quantum": true
+      },
+      "fields": {
+        "energy": 0.5,
+        "momentum": [0.1, 0.2, 0.0, 0.0, 0.0, 0.0],
+        "decay_rate": 0.01,
+        "consolidation_rate": 0.05,
+        "quantum_coherence": 0.8,
+        "entanglement_strength": 0.3
+      }
+    },
+    "manifold_position": {
+      "component_type": "MemoryManifoldPosition", 
+      "physics_properties": {
+        "engine": "classical",
+        "is_quantum": false
+      },
+      "fields": {
+        "temporal_coordinate": -1.5,
+        "semantic_coordinate": 2,
+        "emotional_coordinate": 1,
+        "salience_coordinate": 3,
+        "coherence_coordinate": 2,
+        "episodic_coordinate": 1,
+        "autobiographical_coordinate": 0
+      }
+    }
+  }
+} 

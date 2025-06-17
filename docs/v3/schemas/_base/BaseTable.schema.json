@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://familiar.dev/schemas/base/Table.v1.schema.json",
+  "title": "Base Database Table",
+  "description": "The base schema for defining a database table.",
+  "type": "object",
+  "allOf": [{ "$ref": "./BaseMetadata.schema.json" }],
+  "properties": {
+    "tableName": {
+      "description": "The physical name of the table in the database.",
+      "type": "string",
+      "pattern": "^[a-z_]+$"
+    },
+    "columns": {
+      "description": "A map of column names to their definitions.",
+      "type": "object",
+      "patternProperties": {
+        "^[a-z_]+$": {
+          "$ref": "../snippets/types/database/ColumnDefinition.json"
+        }
+      }
+    }
+  },
+  "required": ["tableName", "columns"]
+}

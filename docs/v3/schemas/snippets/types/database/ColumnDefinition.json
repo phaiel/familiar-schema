@@ -1,0 +1,14 @@
+{
+  "$id": "https://familiar.dev/schemas/types/database/ColumnDefinition.v1.json",
+  "title": "Column Definition",
+  "description": "Schema for defining a database table column.",
+  "type": "object",
+  "properties": {
+    "name": { "type": "string" },
+    "type": { "type": "string", "enum": ["string", "integer", "boolean", "timestamp", "uuid"] },
+    "nullable": { "type": "boolean", "default": false },
+    "primary_key": { "type": "boolean", "default": false },
+    "unique": { "type": "boolean", "default": false }
+  },
+  "required": ["name", "type"]
+}

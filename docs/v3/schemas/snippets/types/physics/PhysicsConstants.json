@@ -1,0 +1,12 @@
+{
+  "$id": "https://familiar.dev/schemas/types/physics/PhysicsConstants.v1.json",
+  "title": "Physics Constants Definition",
+  "description": "A structured definition for a set of physics constants.",
+  "type": "object",
+  "properties": {
+    "decay_rate": { "type": "number" },
+    "spring_constant": { "type": "number" },
+    "max_tension": { "type": "number" }
+  },
+  "additionalProperties": true
+}

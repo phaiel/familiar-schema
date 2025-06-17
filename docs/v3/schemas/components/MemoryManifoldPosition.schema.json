@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://familiar.dev/schemas/components/MemoryManifoldPosition.v1.schema.json",
+  "allOf": [{ "$ref": "../_base/BaseComponent.schema.json" }],
+  "title": "Memory Manifold Position Component",
+  "description": "The entity's position in the 7D cognitive manifold, enforcing quantized spatial coordinates (Rule 8).",
+  "schema_version": "1.0.0",
+  "physics_properties": { "engine": "classical", "is_quantum": false },
+  "fields": {
+    "temporal_coordinate": { "description": "Continuous time coordinate (t <= 0).", "type": "number", "maximum": 0 },
+    "semantic_coordinate": { "description": "Quantized coordinate for Abstract <-> Concrete.", "type": "integer" },
+    "emotional_coordinate": { "description": "Quantized coordinate for Negative <-> Positive.", "type": "integer" },
+    "salience_coordinate": { "description": "Quantized coordinate for Background <-> Foreground.", "type": "integer" },
+    "coherence_coordinate": { "description": "Quantized coordinate for Fragmented <-> Unified.", "type": "integer" },
+    "episodic_coordinate": { "description": "Quantized coordinate for General <-> Specific.", "type": "integer" },
+    "autobiographical_coordinate": { "description": "Quantized coordinate for External <-> Self-related.", "type": "integer" }
+  }
+} 

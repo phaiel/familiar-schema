@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://familiar.dev/schemas/base/Component.v1.schema.json",
+  "title": "Base Component",
+  "description": "The base schema for all ECS components.",
+  "type": "object",
+  "allOf": [{ "$ref": "./BaseMetadata.schema.json" }],
+  "properties": {
+    "physics_properties": { "$ref": "./BasePhysics.schema.json" },
+    "fields": {
+      "description": "A map of field names to their definitions. Each field can be defined inline or by referencing a shared definition.",
+      "type": "object",
+      "patternProperties": {
+        "^[a-z_][a-z0-9_]*$": {
+          "oneOf": [
+            {
+              "description": "A direct reference to a shared definition in SharedDefinitions.schema.json.",
+              "type": "object",
+              "properties": {
+                "$ref": {
+                  "type": "string",
+                  "pattern": "^\\.\\./_base/SharedDefinitions\\.schema\\.json#\\/\\$defs\\/"
+                }
+              },
+              "required": ["$ref"],
+              "additionalProperties": false
+            },
+            {
+              "description": "An inline field definition, which must conform to the BaseField contract.",
+              "$ref": "./BaseField.schema.json"
+            }
+          ]
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "required": ["physics_properties", "fields"]
+}

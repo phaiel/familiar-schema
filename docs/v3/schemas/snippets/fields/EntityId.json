@@ -1,0 +1,6 @@
+{
+  "title": "Entity ID Field",
+  "description": "A reusable definition for a unique entity identifier.",
+  "type": "string",
+  "format": "uuid"
+}
