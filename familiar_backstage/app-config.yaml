@@ -89,6 +89,27 @@ scaffolder:
 
 catalog:
   providers:
+    github:
+      # GitHub discovery provider for familiar-schema repository
+      familiarSchemaProvider:
+        organization: 'phaiel' # Your GitHub username
+        catalogPath: '/catalog-info.yaml' # Look for catalog-info.yaml files
+        filters:
+          branch: 'main' # Only scan main branch
+          repository: 'familiar-schema' # Only scan your familiar-schema repo
+        schedule: # Refresh every 30 minutes
+          frequency: { minutes: 30 }
+          timeout: { minutes: 3 }
+      # Alternative provider to scan multiple paths
+      familiarSchemaMultiPath:
+        organization: 'phaiel'
+        catalogPath: '/**/catalog-info.yaml' # Wildcard to find catalog files in any subdirectory
+        filters:
+          branch: 'main'
+          repository: 'familiar-schema'
+        schedule:
+          frequency: { minutes: 30 }
+          timeout: { minutes: 3 }
   import:
     entityFilename: catalog-info.yaml
     pullRequestBranchName: backstage-integration
@@ -111,42 +132,7 @@ catalog:
       rules:
         - allow: [User, Group]
 
-    # Familiar Schema System - Main catalog entry
-    - type: url
-      target: https://github.com/phaiel/familiar-schema/blob/main/catalog-info.yaml
-      rules:
-        - allow: [Component, System, API, Resource]
 
-    # Familiar Schema System - Component catalogs
-    - type: url
-      target: https://github.com/phaiel/familiar-schema/blob/main/docs/v3/schemas/_base/catalog-info.yaml
-      rules:
-        - allow: [Component]
-    
-    - type: url
-      target: https://github.com/phaiel/familiar-schema/blob/main/docs/v3/schemas/components/catalog-info.yaml
-      rules:
-        - allow: [Component]
-    
-    - type: url
-      target: https://github.com/phaiel/familiar-schema/blob/main/docs/v3/schemas/entities/catalog-info.yaml
-      rules:
-        - allow: [Component]
-    
-    - type: url
-      target: https://github.com/phaiel/familiar-schema/blob/main/docs/v3/catalog-info.yaml
-      rules:
-        - allow: [Component]
-    
-    - type: url
-      target: https://github.com/phaiel/familiar-schema/blob/main/src/generated/catalog-info.yaml
-      rules:
-        - allow: [Component]
-    
-    - type: url
-      target: https://github.com/phaiel/familiar-schema/blob/main/familiar_backstage/catalog-info.yaml
-      rules:
-        - allow: [Component]
 
     ## Uncomment these lines to add more example data
     # - type: url
