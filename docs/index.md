@@ -2,7 +2,7 @@
 
 Auto-generated documentation for the Familiar Schema System.
 
-*Generated on 2025-06-17 17:47:11*
+*Generated on 2025-06-17 17:50:00*
 
 ## Overview
 

@@ -14,7 +14,7 @@ from datetime import datetime
 class SchemaDocGenerator:
     """Generates documentation from JSON schemas."""
     
-    def __init__(self, schemas_dir: str = "schemas", docs_dir: str = "../docs"):
+    def __init__(self, schemas_dir: str = "schemas", docs_dir: str = "../.."):
         self.schemas_dir = Path(schemas_dir)
         self.docs_dir = Path(docs_dir)
         self.schemas: Dict[str, Dict] = {}
@@ -42,7 +42,7 @@ class SchemaDocGenerator:
         """Generate documentation."""
         print("\nGenerating documentation...")
         
-        # Create docs directory
+        # Create docs directory  
         docs_root = self.docs_dir / 'docs'
         docs_root.mkdir(exist_ok=True)
         
