@@ -17,7 +17,7 @@ from urllib.parse import urlparse
 
 
 class SchemaCatalogGenerator:
-    def __init__(self, schemas_dir: str = "docs/v3/schemas"):
+    def __init__(self, schemas_dir: str = "schemas"):
         self.schemas_dir = Path(schemas_dir)
         self.schemas: Dict[str, Dict] = {}
         self.schema_files: Dict[str, str] = {}  # component_name -> file_path
@@ -99,31 +99,48 @@ class SchemaCatalogGenerator:
     
     def ref_to_component_name(self, ref: str, current_component: str) -> Optional[str]:
         """Convert a $ref path to a component name."""
-        # Handle relative refs like "./BaseMetadata.schema.json"
-        if ref.startswith('./'):
-            ref_file = ref[2:]  # Remove ./
-            if ref_file.endswith('.json'):
-                ref_file = ref_file[:-5]  # Remove .json
-            if ref_file.endswith('.schema'):
-                ref_file = ref_file[:-7]  # Remove .schema
+        # Strip URL fragment if present
+        if '#/' in ref:
+            ref = ref.split('#/')[0]
+        
+        # Handle relative refs like "./BaseMetadata.schema.json" or "../_base/BaseComponent.schema.json"
+        if ref.startswith('./') or ref.startswith('../'):
+            # Normalize the path and extract filename
+            ref_path = Path(ref)
+            filename = ref_path.name
+            
+            # Remove .schema.json extension
+            if filename.endswith('.schema.json'):
+                schema_name = filename[:-12]  # Remove .schema.json
+            elif filename.endswith('.json'):
+                schema_name = filename[:-5]  # Remove .json
+            else:
+                schema_name = filename
             
             # Convert to component name format
-            ref_component = re.sub(r'([a-z0-9])([A-Z])', r'\1-\2', ref_file).lower()
+            ref_component = re.sub(r'([a-z0-9])([A-Z])', r'\1-\2', schema_name).lower()
             
-            # If current component has directory prefix, apply same logic
-            if '-' in current_component and not current_component.startswith('base-'):
-                current_dir = current_component.split('-')[0]
-                # For relative refs, assume same directory unless it's a base schema
+            # Determine directory context from the path
+            parent_dir = ref_path.parent.name if ref_path.parent.name != '.' else None
+            
+            if parent_dir == '_base':
+                # Base schemas: if already starts with 'base-', don't add another prefix
                 if ref_component.startswith('base-'):
                     return ref_component
                 else:
+                    return f"base-{ref_component}"
+            elif parent_dir and parent_dir != '.':
+                # Other directory schemas get directory prefix
+                return f"{parent_dir}-{ref_component}"
+            else:
+                # Same directory or no directory context
+                if current_component.startswith('base-'):
+                    return f"base-{ref_component}"
+                elif '-' in current_component:
+                    current_dir = current_component.split('-')[0]
                     return f"{current_dir}-{ref_component}"
-            
-            return ref_component
-        
-        # Handle absolute refs with URL fragments
-        if '#/' in ref:
-            ref = ref.split('#/')[0]
+                else:
+                    return ref_component
         
         # Handle URL-based refs
         if ref.startswith('http'):
@@ -196,6 +213,49 @@ class SchemaCatalogGenerator:
         
         return sorted(list(set(tags)))
     
+    def get_subcomponent_relationships(self, component_name: str, schema: Dict) -> Optional[str]:
+        """Determine if this schema should be a subcomponent of another."""
+        file_path = self.schema_files[component_name]
+        
+        # Rule 1: Non-base schemas that extend base schemas should be subcomponents
+        if not component_name.startswith('base-'):
+            deps = self.dependencies.get(component_name, set())
+            
+            # Find the most specific base dependency, but prioritize direct inheritance
+            base_deps = [dep for dep in deps if dep.startswith('base-')]
+            if base_deps:
+                # For components, prefer base-component if present
+                if 'components/' in file_path and 'base-component' in base_deps:
+                    return 'component:default/base-component'
+                # For entities, prefer base-entity or more specific entity bases
+                elif 'entities/' in file_path:
+                    entity_bases = [dep for dep in base_deps if 'entity' in dep]
+                    if entity_bases:
+                        # Sort by specificity (longer names are more specific)
+                        entity_bases.sort(key=len, reverse=True)
+                        return f'component:default/{entity_bases[0]}'
+                # Otherwise, use the most specific base
+                base_deps.sort(key=len, reverse=True)
+                return f'component:default/{base_deps[0]}'
+        
+        # Rule 2: Entity schemas that inherit from other entity schemas
+        if 'entities/' in file_path and not component_name.startswith('base-'):
+            # Check for inheritance patterns in allOf
+            all_of = schema.get('allOf', [])
+            for item in all_of:
+                if '$ref' in item:
+                    ref_comp = self.ref_to_component_name(item['$ref'], component_name)
+                    if ref_comp and ref_comp != component_name and ref_comp in self.schemas:
+                        return f'component:default/{ref_comp}'
+        
+        # Rule 3: Component schemas that extend BaseComponent
+        if 'components/' in file_path and not component_name.startswith('base-'):
+            deps = self.dependencies.get(component_name, set())
+            if 'base-component' in deps:
+                return 'component:default/base-component'
+        
+        return None
+
     def generate_component_entry(self, component_name: str) -> Dict:
         """Generate a Backstage component entry for a schema."""
         schema = self.schemas[component_name]
@@ -232,6 +292,11 @@ class SchemaCatalogGenerator:
         # Add schema ID annotation if present
         if schema_id:
             entry['metadata']['annotations']['familiar.dev/schema-id'] = schema_id
+        
+        # Add subcomponentOf relationship if applicable
+        subcomponent_of = self.get_subcomponent_relationships(component_name, schema)
+        if subcomponent_of:
+            entry['spec']['subcomponentOf'] = subcomponent_of
         
         # Add dependencies if any
         deps = self.dependencies.get(component_name, set())

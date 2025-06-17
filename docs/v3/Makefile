@@ -54,7 +54,8 @@ generate-types: assemble
 # Step 4: Generate Backstage catalog from schemas
 generate-catalog: validate
 	@echo "📋 Generating Backstage catalog from schemas..."
-	@cd ../.. && python3 docs/v3/scripts/generate_catalog_info.py
+	@python3 scripts/generate_catalog_info.py
+	@cp catalog-info.yaml ../../catalog-info.yaml
 	@echo "✅ Backstage catalog generated."
 
 # Step 5: Optional bundling for external tool compatibility
