@@ -38,6 +38,35 @@ class SchemaDocGenerator:
         
         print(f"Loaded {len(self.schemas)} schemas")
     
+    def get_friendly_title(self, schema: Dict, schema_path: str) -> str:
+        """Generate a friendly title from schema or file path."""
+        # If schema has a title, use it
+        if 'title' in schema:
+            return schema['title']
+        
+        # Extract filename without extension
+        path_obj = Path(schema_path)
+        filename = path_obj.stem
+        
+        # Remove .schema suffix if present
+        if filename.endswith('.schema'):
+            filename = filename[:-7]
+        
+        # Convert CamelCase to Title Case with spaces
+        # ThreadType -> Thread Type
+        # FeatureFlagMap -> Feature Flag Map
+        import re
+        title = re.sub(r'([a-z0-9])([A-Z])', r'\1 \2', filename)
+        
+        # Handle special cases for snippets
+        if 'snippets' in schema_path:
+            if 'fields' in schema_path:
+                title += ' Field'
+            elif 'types' in schema_path:
+                title += ' Type'
+        
+        return title
+    
     def generate_docs(self):
         """Generate documentation."""
         print("\nGenerating documentation...")
@@ -80,7 +109,7 @@ The Familiar Schema System contains **{len(self.schemas)} schemas** organized ac
         for category, schemas in sorted(categories.items()):
             home_content += f"\n### {category} ({len(schemas)} schemas)\n\n"
             for schema_path, schema in sorted(schemas):
-                title = schema.get('title', schema_path)
+                title = self.get_friendly_title(schema, schema_path)
                 description = schema.get('description', 'No description available')
                 # Truncate long descriptions
                 if len(description) > 100:

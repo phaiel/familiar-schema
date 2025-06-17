@@ -2,7 +2,7 @@
 
 Auto-generated documentation for the Familiar Schema System.
 
-*Generated on 2025-06-17 17:50:00*
+*Generated on 2025-06-17 17:53:13*
 
 ## Overview
 
@@ -83,20 +83,20 @@ The Familiar Schema System contains **90 schemas** organized across 4 categories
 
 ### Snippets (27 schemas)
 
-- **snippets/fields/Aliases.json**: A list of alternative names for this Thread (e.g., nicknames).
-- **snippets/fields/CognitiveBaseline.json**: Defines the innate 'personality' or temperament of a Thread, modulating its physics interactions.
+- **Aliases Field**: A list of alternative names for this Thread (e.g., nicknames).
+- **Cognitive Baseline Field**: Defines the innate 'personality' or temperament of a Thread, modulating its physics interactions.
 - **Cognitive Perspective Field**: The intrinsic 'spin' or 'flavor' of the entity, which generates cognitive dissonance (torsion).
 - **Consolidation Rate Field**: The base rate of memory consolidation for an entity, before multipliers are applied. Represents h...
 - **Created At Field**: A reusable definition for an immutable creation timestamp.
-- **snippets/fields/DecayRate.json**: The base rate of energy or coherence decay for an entity, before multipliers are applied.
+- **Decay Rate Field**: The base rate of energy or coherence decay for an entity, before multipliers are applied.
 - **Description Field**: A detailed description of the entity.
-- **snippets/fields/Energy.json**: The current energy level of an entity.
-- **snippets/fields/EntanglementStrength.json**: The overall entanglement strength of this entity with others. Null for classical entities.
+- **Energy Field**: The current energy level of an entity.
+- **Entanglement Strength Field**: The overall entanglement strength of this entity with others. Null for classical entities.
 - **Entity ID Field**: A reusable definition for a unique entity identifier.
 - **Name Field**: The primary, human-readable name of an entity.
-- **snippets/fields/QuantumCoherence.json**: The quantum coherence level of the entity, representing its degree of superposition. Null for cla...
+- **Quantum Coherence Field**: The quantum coherence level of the entity, representing its degree of superposition. Null for cla...
 - **Tenant ID Field**: A reusable definition for the user tenant identifier.
-- **snippets/fields/ThreadType.json**: The Platonic Form of the Thread, enforcing abstract relationships.
+- **Thread Type Field**: The Platonic Form of the Thread, enforcing abstract relationships.
 - **Feature Flag Map**: A key-value map of feature flags and their enabled status for a specific scope (e.g., a tenant).
 - **Column Definition**: Schema for defining a database table column.
 - **Cognitive Perspective Vector**: A 3D vector representing the 'spin' or perspective on a cognitive entity, orthogonal to its manif...
