@@ -12,10 +12,10 @@ VISUAL_DIR := ./dist/visual
 ASSEMBLED_SCHEMAS := $(shell find $(ASSEMBLED_DIR) -name "*.schema.json" 2>/dev/null)
 
 # --- Primary Targets ---
-.PHONY: all assemble validate bundle generate-types visualize ci clean list-assembled
+.PHONY: all assemble validate bundle generate-types generate-catalog visualize ci clean list-assembled
 
-# The full pipeline: assemble, validate, then generate code
-all: assemble validate generate-types
+# The full pipeline: assemble, validate, then generate code and catalog
+all: assemble validate generate-types generate-catalog
 
 # The CI pipeline runs the same full flow
 ci: all
@@ -51,7 +51,13 @@ generate-types: assemble
 	@quicktype --src-lang schema --lang rust --src $(ASSEMBLED_SCHEMAS) -o ../../src/generated/types/familiar_types.rs
 	@echo "✅ Rust code generated."
 
-# Step 4: Optional bundling for external tool compatibility
+# Step 4: Generate Backstage catalog from schemas
+generate-catalog: validate
+	@echo "📋 Generating Backstage catalog from schemas..."
+	@cd ../.. && python3 docs/v3/scripts/generate_catalog_info.py
+	@echo "✅ Backstage catalog generated."
+
+# Step 5: Optional bundling for external tool compatibility
 bundle: assemble
 	@echo "📦 Creating bundled schemas for external tools..."
 	@mkdir -p $(BUNDLED_DIR)
@@ -65,7 +71,7 @@ bundle: assemble
 	done
 	@echo "✅ Schema bundling complete."
 
-# Step 5: Generate visualization files for JSON Crack
+# Step 6: Generate visualization files for JSON Crack
 visualize: assemble
 	@echo "🎨 Generating visualization files..."
 	@mkdir -p $(VISUAL_DIR)
