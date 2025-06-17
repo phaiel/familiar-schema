@@ -111,6 +111,43 @@ catalog:
       rules:
         - allow: [User, Group]
 
+    # Familiar Schema System - Main catalog entry
+    - type: url
+      target: https://github.com/phaiel/familiar-schema/blob/main/catalog-info.yaml
+      rules:
+        - allow: [Component, System, API, Resource]
+
+    # Familiar Schema System - Component catalogs
+    - type: url
+      target: https://github.com/phaiel/familiar-schema/blob/main/docs/v3/schemas/_base/catalog-info.yaml
+      rules:
+        - allow: [Component]
+    
+    - type: url
+      target: https://github.com/phaiel/familiar-schema/blob/main/docs/v3/schemas/components/catalog-info.yaml
+      rules:
+        - allow: [Component]
+    
+    - type: url
+      target: https://github.com/phaiel/familiar-schema/blob/main/docs/v3/schemas/entities/catalog-info.yaml
+      rules:
+        - allow: [Component]
+    
+    - type: url
+      target: https://github.com/phaiel/familiar-schema/blob/main/docs/v3/catalog-info.yaml
+      rules:
+        - allow: [Component]
+    
+    - type: url
+      target: https://github.com/phaiel/familiar-schema/blob/main/src/generated/catalog-info.yaml
+      rules:
+        - allow: [Component]
+    
+    - type: url
+      target: https://github.com/phaiel/familiar-schema/blob/main/familiar_backstage/catalog-info.yaml
+      rules:
+        - allow: [Component]
+
     ## Uncomment these lines to add more example data
     # - type: url
     #   target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/all.yaml

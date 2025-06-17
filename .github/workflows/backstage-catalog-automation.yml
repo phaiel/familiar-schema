@@ -1,205 +1,94 @@
-name: Backstage Catalog Automation
+name: Generate Backstage Catalog Info
 
 on:
   push:
-    branches: [main]
-    paths: 
-      - 'docs/v3/schemas/**'
-      - 'src/generated/**'
-      - 'familiar_backstage/**'
+    branches: [ main ]
   pull_request:
-    branches: [main]
-    paths:
-      - 'docs/v3/schemas/**'
-      - 'src/generated/**'
-      - 'familiar_backstage/**'
+    branches: [ main ]
   workflow_dispatch:
 
 jobs:
-  update-catalog:
+  generate-catalog-info:
     runs-on: ubuntu-latest
-    name: Update Backstage Catalog
-    
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        
-      - name: Run Schema Pipeline
-        run: |
-          cd docs/v3
-          # Install dependencies if needed
-          python -c "import jsonschema" 2>/dev/null || pip install jsonschema
-          
-          # Run the full pipeline to ensure everything is up to date
-          make validate
-          make assemble
-          make generate-types
-          
-      - name: Generate Main Catalog Entry
-        run: |
-          cat > catalog-info.yaml << 'EOF'
-          apiVersion: backstage.io/v1alpha1
-          kind: Component
-          metadata:
-            name: familiar-schema-system
-            description: Sophisticated schema-to-code generation pipeline for cognitive entity systems
-            annotations:
-              github.com/project-slug: phaiel/familiar-schema
-              backstage.io/source-location: url:https://github.com/phaiel/familiar-schema
-            tags:
-              - schema
-              - code-generation
-              - rust
-              - json-schema
-              - ecs
-              - cognitive-entities
-          spec:
-            type: library
-            lifecycle: production
-            owner: platform-team
-            system: familiar-schema-system
-            providesApis:
-              - familiar-schema-api
-          EOF
-          
-      - name: Generate Schema Base Catalog
-        run: |
-          mkdir -p docs/v3/schemas/_base
-          cat > docs/v3/schemas/_base/catalog-info.yaml << 'EOF'
-          apiVersion: backstage.io/v1alpha1
-          kind: Component
-          metadata:
-            name: familiar-base-schemas
-            description: Foundation schemas for entity inheritance and component architecture
-            annotations:
-              github.com/project-slug: phaiel/familiar-schema
-            tags:
-              - schema
-              - base
-              - inheritance
-          spec:
-            type: library
-            lifecycle: production
-            owner: platform-team
-            system: familiar-schema-system
-          EOF
-          
-      - name: Generate Component Schemas Catalog
-        run: |
-          mkdir -p docs/v3/schemas/components
-          cat > docs/v3/schemas/components/catalog-info.yaml << 'EOF'
-          apiVersion: backstage.io/v1alpha1
-          kind: Component
-          metadata:
-            name: familiar-component-schemas
-            description: ECS-style component definitions with physics modeling
-            annotations:
-              github.com/project-slug: phaiel/familiar-schema
-            tags:
-              - schema
-              - ecs
-              - components
-              - physics
-          spec:
-            type: library
-            lifecycle: production
-            owner: platform-team
-            system: familiar-schema-system
-          EOF
-          
-      - name: Generate Entity Schemas Catalog
-        run: |
-          mkdir -p docs/v3/schemas/entities
-          cat > docs/v3/schemas/entities/catalog-info.yaml << 'EOF'
-          apiVersion: backstage.io/v1alpha1
-          kind: Component
-          metadata:
-            name: familiar-entity-schemas
-            description: Polymorphic entity definitions with complex validation rules
-            annotations:
-              github.com/project-slug: phaiel/familiar-schema
-            tags:
-              - schema
-              - entities
-              - polymorphic
-              - validation
-          spec:
-            type: library
-            lifecycle: production
-            owner: platform-team
-            system: familiar-schema-system
-          EOF
-          
-      - name: Generate Assembly Pipeline Catalog
-        run: |
-          mkdir -p docs/v3
-          cat > docs/v3/catalog-info.yaml << 'EOF'
-          apiVersion: backstage.io/v1alpha1
-          kind: Component
-          metadata:
-            name: familiar-assembly-pipeline
-            description: Schema assembly and code generation pipeline
-            annotations:
-              github.com/project-slug: phaiel/familiar-schema
-            tags:
-              - pipeline
-              - assembly
-              - code-generation
-              - makefile
-          spec:
-            type: service
-            lifecycle: production
-            owner: platform-team
-            system: familiar-schema-system
-          EOF
-          
-      - name: Generate Generated Code Catalog
-        run: |
-          mkdir -p src/generated
-          cat > src/generated/catalog-info.yaml << 'EOF'
-          apiVersion: backstage.io/v1alpha1
-          kind: Component
-          metadata:
-            name: familiar-generated-types
-            description: Auto-generated Rust types from JSON schemas
-            annotations:
-              github.com/project-slug: phaiel/familiar-schema
-            tags:
-              - rust
-              - generated
-              - types
-              - quicktype
-          spec:
-            type: library
-            lifecycle: production
-            owner: platform-team
-            system: familiar-schema-system
-          EOF
-          
-      - name: Update Backstage Integration Catalog
-        run: |
-          cat > familiar_backstage/catalog-info.yaml << 'EOF'
-          apiVersion: backstage.io/v1alpha1
-          kind: Component
-          metadata:
-            name: familiar-backstage-portal
-            description: Developer portal for schema discovery and documentation
-            annotations:
-              github.com/project-slug: phaiel/familiar-schema
-            tags:
-              - backstage
-              - portal
-              - documentation
-              - developer-experience
-          spec:
-            type: website
-            lifecycle: production
-            owner: platform-team
-            system: familiar-schema-system
-          EOF
-          
-      - name: Commit catalog updates
-        if: github.event_name == 'push'
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Generate root catalog-info.yaml
+        uses: cds-snc/backstage-catalog-info-helper-action@main
+        with:
+          component-id: familiar-schema-system
+          description: "Complete JSON schema system with assembly pipeline and code generation"
+          component-type: system
+          component-lifecycle: production
+          component-owner: team:platform
+          github-org: phaiel
+          github-repo: familiar-schema
+          path: ./
+
+      - name: Generate schema assembly pipeline catalog-info.yaml
+        uses: cds-snc/backstage-catalog-info-helper-action@main
+        with:
+          component-id: schema-assembly-pipeline
+          description: "JSON schema assembly and code generation pipeline"
+          component-type: library
+          component-lifecycle: production
+          component-owner: team:platform
+          github-org: phaiel
+          github-repo: familiar-schema
+          path: ./docs/v3/
+
+      - name: Generate base schemas catalog-info.yaml
+        uses: cds-snc/backstage-catalog-info-helper-action@main
+        with:
+          component-id: base-schemas
+          description: "Foundation JSON schemas that define core data structures"
+          component-type: library
+          component-lifecycle: production
+          component-owner: team:platform
+          github-org: phaiel
+          github-repo: familiar-schema
+          path: ./docs/v3/schemas/_base/
+
+      - name: Generate component schemas catalog-info.yaml
+        uses: cds-snc/backstage-catalog-info-helper-action@main
+        with:
+          component-id: component-schemas
+          description: "ECS component schemas for physics simulation and memory management"
+          component-type: library
+          component-lifecycle: production
+          component-owner: team:platform
+          github-org: phaiel
+          github-repo: familiar-schema
+          path: ./docs/v3/schemas/components/
+
+      - name: Generate entity schemas catalog-info.yaml
+        uses: cds-snc/backstage-catalog-info-helper-action@main
+        with:
+          component-id: entity-schemas
+          description: "Entity schemas defining cognitive threads and system entities"
+          component-type: library
+          component-lifecycle: production
+          component-owner: team:platform
+          github-org: phaiel
+          github-repo: familiar-schema
+          path: ./docs/v3/schemas/entities/
+
+      - name: Generate generated code catalog-info.yaml
+        uses: cds-snc/backstage-catalog-info-helper-action@main
+        with:
+          component-id: generated-code
+          description: "Auto-generated Rust types from JSON schemas"
+          component-type: library
+          component-lifecycle: production
+          component-owner: team:platform
+          github-org: phaiel
+          github-repo: familiar-schema
+          path: ./src/generated/
+
+      - name: Commit and push changes
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
@@ -207,10 +96,5 @@ jobs:
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "Auto-update Backstage catalog entries
-
-            - Updated catalog-info.yaml files for schema components
-            - Synchronized with latest schema changes
-            - Generated by automated workflow"
-            git push
-          fi 
+            git commit -m "Auto-generate Backstage catalog-info.yaml files"
+            git push 

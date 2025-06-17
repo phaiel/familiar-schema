@@ -1,0 +1,20 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: familiar-schema-system
+  description: Sophisticated schema-to-code generation pipeline for cognitive entity systems
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema
+  tags:
+    - schema
+    - code-generation
+    - rust
+    - json-schema
+    - ecs
+    - cognitive-entities
+spec:
+  type: library
+  lifecycle: production
+  owner: platform-team
+  system: familiar-schema-system 
