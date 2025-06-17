@@ -221,4 +221,4 @@ See `familiar_backstage/` directory for configuration.
 
 ---
 
-**Familiar Schema System** - Powering cognitive entity systems through sophisticated schema-driven development. 
+**Familiar Schema System** - Powering cognitive entity systems through sophisticated schema-driven development.
