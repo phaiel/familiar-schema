@@ -1,0 +1,44 @@
+site_name: 'Familiar Schema System'
+site_description: 'Sophisticated JSON schema system with physics simulation, cognitive modeling, and ECS components'
+
+nav:
+  - Home: index.md
+  - Getting Started: getting-started.md
+  - Schema System:
+    - Overview: schema-system/overview.md
+    - Base Schemas: schema-system/base-schemas.md
+    - Components: schema-system/components.md
+    - Entities: schema-system/entities.md
+    - Snippets: schema-system/snippets.md
+  - Pipeline:
+    - Assembly Pipeline: pipeline/assembly.md
+    - Code Generation: pipeline/code-generation.md
+    - Validation: pipeline/validation.md
+  - Integration:
+    - Backstage Setup: integration/backstage.md
+    - SonarQube: integration/sonarqube.md
+  - API Reference: api-reference.md
+
+plugins:
+  - techdocs-core
+
+theme:
+  name: material
+  palette:
+    primary: 'blue'
+    accent: 'blue'
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.highlight
+    - search.share
+
+markdown_extensions:
+  - admonition
+  - codehilite
+  - pymdownx.superfences
+  - pymdownx.tabbed
+  - toc:
+      permalink: true 

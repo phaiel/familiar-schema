@@ -12,10 +12,10 @@ VISUAL_DIR := ./dist/visual
 ASSEMBLED_SCHEMAS := $(shell find $(ASSEMBLED_DIR) -name "*.schema.json" 2>/dev/null)
 
 # --- Primary Targets ---
-.PHONY: all assemble validate bundle generate-types generate-catalog visualize ci clean list-assembled
+.PHONY: all assemble validate bundle generate-types generate-catalog generate-docs visualize ci clean list-assembled
 
-# The full pipeline: assemble, validate, then generate code and catalog
-all: assemble validate generate-types generate-catalog
+# The full pipeline: assemble, validate, then generate code, catalog, and docs
+all: assemble validate generate-types generate-catalog generate-docs
 
 # The CI pipeline runs the same full flow
 ci: all
@@ -57,6 +57,12 @@ generate-catalog: validate
 	@python3 scripts/generate_catalog_info.py
 	@cp catalog-info.yaml ../../catalog-info.yaml
 	@echo "✅ Backstage catalog generated."
+
+# Step 5: Generate comprehensive documentation
+generate-docs: validate
+	@echo "📚 Generating comprehensive documentation from schemas..."
+	@python3 scripts/generate_docs.py
+	@echo "✅ Documentation generated."
 
 # Step 5: Optional bundling for external tool compatibility
 bundle: assemble
