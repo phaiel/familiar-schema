@@ -93,28 +93,18 @@ catalog:
       # GitHub discovery provider for familiar-schema repository
       familiarSchemaProvider:
         organization: 'phaiel' # Your GitHub username
-        catalogPath: '/catalog-info.yaml' # Look for catalog-info.yaml files
+        catalogPath: '/catalog-info.yaml' # Only look for the root catalog file
         filters:
           branch: 'main' # Only scan main branch
           repository: 'familiar-schema' # Only scan your familiar-schema repo
         schedule: # Refresh every 30 minutes
           frequency: { minutes: 30 }
           timeout: { minutes: 3 }
-      # Alternative provider to scan multiple paths
-      familiarSchemaMultiPath:
-        organization: 'phaiel'
-        catalogPath: '/**/catalog-info.yaml' # Wildcard to find catalog files in any subdirectory
-        filters:
-          branch: 'main'
-          repository: 'familiar-schema'
-        schedule:
-          frequency: { minutes: 30 }
-          timeout: { minutes: 3 }
   import:
     entityFilename: catalog-info.yaml
     pullRequestBranchName: backstage-integration
   rules:
-    - allow: [Component, System, API, Resource, Location]
+    - allow: [Component, System, API, Resource, Location, User, Group, Domain]
   locations:
     # Local example data, file locations are relative to the backend process, typically `packages/backend`
     - type: file

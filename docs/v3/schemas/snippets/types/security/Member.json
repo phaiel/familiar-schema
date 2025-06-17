@@ -1,0 +1,19 @@
+{
+  "$id": "https://familiar.dev/schemas/types/security/Member.v1.json",
+  "title": "Tenant Member",
+  "description": "Represents a single user within a tenant, including their role and join date.",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "description": "The global unique identifier for the user.",
+      "$ref": "../primitives/UUID.schema.json"
+    },
+    "role": {
+      "$ref": "./Role.json"
+    },
+    "joined_at": {
+      "$ref": "../primitives/Timestamp.schema.json"
+    }
+  },
+  "required": ["user_id", "role", "joined_at"]
+}

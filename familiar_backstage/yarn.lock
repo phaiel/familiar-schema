@@ -3943,6 +3943,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@backstage/plugin-catalog-backend-module-logs@npm:^0.1.11":
+  version: 0.1.11
+  resolution: "@backstage/plugin-catalog-backend-module-logs@npm:0.1.11"
+  dependencies:
+    "@backstage/backend-plugin-api": "npm:^1.4.0"
+    "@backstage/plugin-catalog-backend": "npm:^2.1.0"
+    "@backstage/plugin-events-node": "npm:^0.4.12"
+  checksum: 10c0/cba40c79de40e5ade387c4ff99acca3259458a27ee59f8084ee63e8f43fdda281c9711f6409bf55f4c2293283ddac133f2fe335a65b36ce18aca43a0f587e253
+  languageName: node
+  linkType: hard
+
 "@backstage/plugin-catalog-backend-module-scaffolder-entity-model@npm:^0.2.8":
   version: 0.2.8
   resolution: "@backstage/plugin-catalog-backend-module-scaffolder-entity-model@npm:0.2.8"
@@ -28700,6 +28711,7 @@ __metadata:
     "@backstage/cli": "npm:^0.32.1"
     "@backstage/e2e-test-utils": "npm:^0.1.1"
     "@backstage/plugin-catalog-backend-module-github": "npm:^0.10.0"
+    "@backstage/plugin-catalog-backend-module-logs": "npm:^0.1.11"
     "@playwright/test": "npm:^1.32.3"
     node-gyp: "npm:^10.0.0"
     prettier: "npm:^2.3.2"

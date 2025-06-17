@@ -2,20 +2,20 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://familiar.dev/schemas/entities/BaseSystemEntity.v1.schema.json",
   "title": "Base System Entity",
-  "description": "The base for system-level entities (e.g., Stitch) that manage workflows. Inherits from BaseEntity and enforces the absence of physics components (Rules 17 & 18).",
+  "description": "The base for system-level entities (e.g., Stitch, Tenant) that manage workflows. Inherits from BaseEntity and enforces the absence of physics components (Rules 17 & 18).",
   "type": "object",
   "allOf": [{ "$ref": "../../_base/BaseEntity.schema.json" }],
   "properties": {
     "entity_type": {
       "description": "The canonical type of the system entity.",
-      "enum": ["Stitch", "WorkflowTask"]
+      "enum": ["Stitch", "WorkflowTask", "Tenant"]
     },
     "workflow_state": {
       "description": "The current state of the entity's workflow.",
       "$ref": "../../_base/SharedDefinitions.schema.json#/$defs/types/WorkflowState"
     }
   },
-  "required": ["entity_type", "workflow_state"],
+  "required": ["entity_type"],
   "not": {
     "description": "Rule 17.2: System entities MUST NOT have physics components.",
     "properties": {
