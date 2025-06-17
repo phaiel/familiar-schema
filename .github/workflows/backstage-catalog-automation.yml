@@ -16,85 +16,21 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Generate root catalog-info.yaml
+      - name: Generate catalog-info.yaml
         uses: cds-snc/backstage-catalog-info-helper-action@main
         with:
-          component-id: familiar-schema-system
-          description: "Complete JSON schema system with assembly pipeline and code generation"
-          component-type: system
-          component-lifecycle: production
-          component-owner: team:platform
-          github-org: phaiel
-          github-repo: familiar-schema
-          path: ./
+          github_app_id: ${{ secrets.BACKSTAGE_GITHUB_APP_ID }}
+          github_app_private_key: ${{ secrets.BACKSTAGE_GITHUB_APP_PRIVATE_KEY }}
+          github_organization: phaiel
 
-      - name: Generate schema assembly pipeline catalog-info.yaml
-        uses: cds-snc/backstage-catalog-info-helper-action@main
-        with:
-          component-id: schema-assembly-pipeline
-          description: "JSON schema assembly and code generation pipeline"
-          component-type: library
-          component-lifecycle: production
-          component-owner: team:platform
-          github-org: phaiel
-          github-repo: familiar-schema
-          path: ./docs/v3/
-
-      - name: Generate base schemas catalog-info.yaml
-        uses: cds-snc/backstage-catalog-info-helper-action@main
-        with:
-          component-id: base-schemas
-          description: "Foundation JSON schemas that define core data structures"
-          component-type: library
-          component-lifecycle: production
-          component-owner: team:platform
-          github-org: phaiel
-          github-repo: familiar-schema
-          path: ./docs/v3/schemas/_base/
-
-      - name: Generate component schemas catalog-info.yaml
-        uses: cds-snc/backstage-catalog-info-helper-action@main
-        with:
-          component-id: component-schemas
-          description: "ECS component schemas for physics simulation and memory management"
-          component-type: library
-          component-lifecycle: production
-          component-owner: team:platform
-          github-org: phaiel
-          github-repo: familiar-schema
-          path: ./docs/v3/schemas/components/
-
-      - name: Generate entity schemas catalog-info.yaml
-        uses: cds-snc/backstage-catalog-info-helper-action@main
-        with:
-          component-id: entity-schemas
-          description: "Entity schemas defining cognitive threads and system entities"
-          component-type: library
-          component-lifecycle: production
-          component-owner: team:platform
-          github-org: phaiel
-          github-repo: familiar-schema
-          path: ./docs/v3/schemas/entities/
-
-      - name: Generate generated code catalog-info.yaml
-        uses: cds-snc/backstage-catalog-info-helper-action@main
-        with:
-          component-id: generated-code
-          description: "Auto-generated Rust types from JSON schemas"
-          component-type: library
-          component-lifecycle: production
-          component-owner: team:platform
-          github-org: phaiel
-          github-repo: familiar-schema
-          path: ./src/generated/
-
-      - name: Commit and push changes
+      - name: Commit and push catalog files
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add -A
+          git add .
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "Auto-generate Backstage catalog-info.yaml files"
-            git push 
+            git commit -m "Auto-generate catalog-info.yaml files"
+            git push
+          fi 
