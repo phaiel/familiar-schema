@@ -16,7 +16,7 @@ metadata:
 spec:
   owner: user:default/phaiel
   domain: platform
-
+---
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
@@ -40,7 +40,7 @@ spec:
   system: familiar-schema-system
   dependsOn:
     - component:default/base-schemas
-
+---
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
@@ -60,7 +60,7 @@ spec:
   lifecycle: production
   owner: user:default/phaiel
   system: familiar-schema-system
-
+---
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
@@ -84,7 +84,7 @@ spec:
   system: familiar-schema-system
   dependsOn:
     - component:default/base-schemas
-
+---
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
@@ -107,7 +107,7 @@ spec:
   system: familiar-schema-system
   dependsOn:
     - component:default/base-schemas
-
+---
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
@@ -130,7 +130,7 @@ spec:
   system: familiar-schema-system
   dependsOn:
     - component:default/schema-assembly-pipeline
-
+---
 apiVersion: backstage.io/v1alpha1
 kind: User
 metadata:
@@ -140,7 +140,7 @@ spec:
   profile:
     displayName: phaiel
   memberOf: []
-
+---
 apiVersion: backstage.io/v1alpha1
 kind: Domain
 metadata:
