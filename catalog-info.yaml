@@ -1,20 +1,151 @@
 apiVersion: backstage.io/v1alpha1
-kind: Component
+kind: System
 metadata:
   name: familiar-schema-system
-  description: Sophisticated schema-to-code generation pipeline for cognitive entity systems
-  annotations:
-    github.com/project-slug: phaiel/familiar-schema
-    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema
+  title: Familiar Schema System
+  description: Complete JSON schema system with assembly pipeline and code generation
   tags:
     - schema
-    - code-generation
-    - rust
+    - system
     - json-schema
-    - ecs
-    - cognitive-entities
+    - rust
+    - code-generation
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/tree/main/
+spec:
+  owner: user:default/phaiel
+  domain: platform
+
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: schema-assembly-pipeline
+  title: Schema Assembly Pipeline
+  description: JSON schema assembly and code generation pipeline using Make, quicktype, and bundling tools
+  tags:
+    - schema
+    - pipeline
+    - code-generation
+    - json-schema
+    - makefile
+    - quicktype
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/tree/main/docs/v3/
 spec:
   type: library
   lifecycle: production
-  owner: platform-team
-  system: familiar-schema-system 
+  owner: user:default/phaiel
+  system: familiar-schema-system
+  dependsOn:
+    - component:default/base-schemas
+
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: base-schemas
+  title: Base Schemas
+  description: Foundation JSON schemas that define core data structures for entities, components, and physics
+  tags:
+    - schema
+    - base
+    - foundation
+    - json-schema
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/tree/main/docs/v3/schemas/_base/
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: component-schemas
+  title: Component Schemas
+  description: ECS component schemas for physics simulation and memory management
+  tags:
+    - schema
+    - components
+    - ecs
+    - physics
+    - memory
+    - json-schema
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/tree/main/docs/v3/schemas/components/
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+  dependsOn:
+    - component:default/base-schemas
+
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: entity-schemas
+  title: Entity Schemas
+  description: Entity definitions for threads, cognitive entities, and system entities
+  tags:
+    - schema
+    - entities
+    - threads
+    - cognitive
+    - json-schema
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/tree/main/docs/v3/schemas/entities/
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+  dependsOn:
+    - component:default/base-schemas
+
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: generated-rust-types
+  title: Generated Rust Types
+  description: Auto-generated Rust data structures from JSON schemas using quicktype
+  tags:
+    - rust
+    - generated
+    - types
+    - code-generation
+    - quicktype
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/tree/main/src/generated/
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+  dependsOn:
+    - component:default/schema-assembly-pipeline
+
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: phaiel
+  title: Schema System Owner
+spec:
+  profile:
+    displayName: phaiel
+  memberOf: []
+
+apiVersion: backstage.io/v1alpha1
+kind: Domain
+metadata:
+  name: platform
+  title: Platform Domain
+  description: Platform infrastructure and development tools
+spec:
+  owner: user:default/phaiel 
