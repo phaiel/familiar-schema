@@ -12,8 +12,9 @@ import os
 import re
 import yaml
 from pathlib import Path
-from typing import Dict, List, Set, Optional
+from typing import Dict, List, Set, Optional, Any
 from urllib.parse import urlparse
+import argparse
 
 
 class SchemaCatalogGenerator:
@@ -22,6 +23,58 @@ class SchemaCatalogGenerator:
         self.schemas: Dict[str, Dict] = {}
         self.schema_files: Dict[str, str] = {}  # component_name -> file_path
         self.dependencies: Dict[str, Set[str]] = {}  # component_name -> set of dependencies
+        self.system_mapping = {
+            'api': {
+                'system': 'familiar-physics-engine',
+                'owner': 'team-platform-infrastructure',
+                'dependsOn': ['component:default/physics-api-gateway']
+            },
+            'event': {
+                'system': 'familiar-physics-engine',
+                'owner': 'team-platform-infrastructure',
+                'dependsOn': ['resource:default/redpanda-cluster']
+            },
+            'payload': {
+                'system': 'familiar-physics-engine',
+                'owner': 'team-cognitive-modeling',
+                'dependsOn': []
+            },
+            'entity': {
+                'system': 'familiar-physics-engine',
+                'owner': 'team-cognitive-modeling',
+                'dependsOn': ['resource:default/timescaledb-physics-db']
+            },
+            'component': {
+                'system': 'familiar-physics-engine',
+                'owner': 'team-physics-core',
+                'dependsOn': ['component:default/physics-engine-core']
+            },
+            'law': {
+                'system': 'familiar-physics-engine',
+                'owner': 'team-physics-core',
+                'dependsOn': ['component:default/classical-physics-service']
+            },
+            'table': {
+                'system': 'familiar-schema-system',
+                'owner': 'team-platform-infrastructure',
+                'dependsOn': ['resource:default/timescaledb-physics-db']
+            },
+            'foundation': {
+                'system': 'familiar-schema-system',
+                'owner': 'team-system-architecture',
+                'dependsOn': []
+            },
+            'snippet': {
+                'system': 'familiar-schema-system',
+                'owner': 'team-system-architecture',
+                'dependsOn': []
+            },
+            'default': {
+                'system': 'familiar-schema-system',
+                'owner': 'team-system-architecture',
+                'dependsOn': []
+            }
+        }
         
     def load_all_schemas(self):
         """Load all JSON schema files from the schemas directory."""
@@ -54,21 +107,28 @@ class SchemaCatalogGenerator:
     
     def file_path_to_component_name(self, file_path: Path) -> str:
         """Convert a file path to a Backstage component name."""
-        # Remove .schema.json extension and convert to kebab-case
-        name = file_path.stem
-        if name.endswith('.schema'):
-            name = name[:-7]  # Remove .schema
+        # Remove .schema.json or other extensions and convert to kebab-case
+        name = file_path.name.split('.')[0]
+        
+        # Replace underscores with hyphens for consistency
+        name = name.replace('_', '-')
         
         # Convert CamelCase to kebab-case
         name = re.sub(r'([a-z0-9])([A-Z])', r'\1-\2', name).lower()
         
         # Add directory context for disambiguation
         relative_path = file_path.relative_to(self.schemas_dir)
+        # Find the top-level directory inside schemas/
         if len(relative_path.parts) > 1:
             directory = relative_path.parts[0]
-            if directory != "_base":  # _base is implied as foundational
+            if directory not in ["_base", "assembled"]:  # _base is foundational, assembled is a dist dir
+                # Prepend directory to avoid name clashes, e.g., entities-bond vs components-bond
                 name = f"{directory}-{name}"
         
+        # Ensure 'base' prefix for schemas in the _base directory for clarity
+        if '_base/' in str(relative_path) and not name.startswith('base-'):
+            name = f'base-{name}'
+
         return name
     
     def extract_ref_dependencies(self, schema: Dict, component_name: str) -> Set[str]:
@@ -183,8 +243,29 @@ class SchemaCatalogGenerator:
             return 'event'
         elif 'laws/' in file_path:
             return 'law'
+        elif 'payloads/' in file_path:
+            return 'payload'
+        elif 'tables/' in file_path:
+            return 'table'
         else:
             return 'schema'
+    
+    def get_system_info(self, category: str) -> Dict[str, Any]:
+        """Get system, owner, and dependency info based on schema category."""
+        return self.system_mapping.get(category, self.system_mapping['default'])
+    
+    def get_lifecycle(self, schema: Dict) -> str:
+        """Determine the lifecycle stage of a schema based on its content."""
+        # Look for a lifecycle hint in the schema itself, e.g., "lifecycle": "experimental"
+        lifecycle = schema.get('lifecycle', schema.get('status', 'production')).lower()
+        
+        if lifecycle in ['experimental', 'dev', 'development']:
+            return 'experimental'
+        if lifecycle == 'deprecated':
+            return 'deprecated'
+        
+        # Default to production if no other clear stage is specified
+        return 'production'
     
     def get_tags_for_schema(self, schema: Dict, file_path: str) -> List[str]:
         """Generate appropriate tags for a schema."""
@@ -257,194 +338,139 @@ class SchemaCatalogGenerator:
         return None
 
     def generate_component_entry(self, component_name: str) -> Dict:
-        """Generate a Backstage component entry for a schema."""
+        """Generate a single Backstage component entry for a schema."""
         schema = self.schemas[component_name]
         file_path = self.schema_files[component_name]
-        
-        # Extract metadata from schema
-        title = schema.get('title', component_name.replace('-', ' ').title())
-        description = schema.get('description', f'JSON schema: {title}')
-        schema_id = schema.get('$id', '')
-        
-        # Build component entry
-        entry = {
-            'apiVersion': 'backstage.io/v1alpha1',
-            'kind': 'Component',
-            'metadata': {
-                'name': component_name,
-                'title': title,
-                'description': description,
-                'tags': self.get_tags_for_schema(schema, file_path),
-                'annotations': {
-                    'github.com/project-slug': 'phaiel/familiar-schema',
-                    'backstage.io/source-location': f'url:https://github.com/phaiel/familiar-schema/blob/main/{file_path}',
-                    'backstage.io/techdocs-ref': 'dir:.',
-                    'familiar.dev/schema-file': file_path
-                }
-            },
-            'spec': {
-                'type': 'library',
-                'lifecycle': 'production',
-                'owner': 'user:default/phaiel',
-                'system': 'familiar-schema-system'
-            }
+        repo_url = "https://github.com/phaiel/familiar"
+
+        # Basic spec
+        spec = {
+            "type": "schema",
+            "lifecycle": self.get_lifecycle(schema),
         }
+
+        # Add system, owner, and dependencies from mapping
+        category = self.get_schema_category(file_path)
+        system_info = self.get_system_info(category)
+        spec['owner'] = system_info['owner']
+        spec['system'] = system_info['system']
+
+        # Combine dependencies from $refs and system mapping
+        internal_deps = self.dependencies.get(component_name, set())
+        formatted_internal_deps = [f"component:default/{dep}" for dep in sorted(internal_deps)]
         
-        # Add schema ID annotation if present
-        if schema_id:
-            entry['metadata']['annotations']['familiar.dev/schema-id'] = schema_id
+        external_deps = system_info.get('dependsOn', [])
         
-        # Add partOf relationship for hierarchical components (Backstage standard)
-        part_of = self.get_subcomponent_relationships(component_name, schema)
+        all_deps = sorted(list(set(formatted_internal_deps + external_deps)))
+        if all_deps:
+            spec['dependsOn'] = all_deps
+
+        # Subcomponent relationships
+        subcomponent_of = self.get_subcomponent_relationships(component_name, schema)
+        if subcomponent_of:
+            spec['subcomponentOf'] = subcomponent_of
+            
+        # Part-of relationships (for domain/system grouping)
+        # This is an example; adjust as needed
+        part_of = []
+        if 'entities' in file_path or 'components' in file_path:
+            part_of.append('domain:default/cognitive-systems')
+        
         if part_of:
-            entry['spec']['partOf'] = part_of
-        
-        # Add dependencies if any
-        deps = self.dependencies.get(component_name, set())
-        if deps:
-            # Convert to proper component references
-            dep_refs = [f'component:default/{dep}' for dep in sorted(deps) 
-                       if dep in self.schemas]  # Only include deps that exist
-            if dep_refs:
-                entry['spec']['dependsOn'] = dep_refs
-        
-        return entry
-    
-    def generate_catalog_info(self) -> Dict:
-        """Generate the complete catalog-info.yaml structure."""
-        print("\nGenerating catalog entries...")
-        
-        # Start with existing system-level components
-        catalog_entries = [
-            # System
+            spec['partOf'] = part_of
+
+        # Annotations
+        annotations = {
+            "backstage.io/managed-by-location": f"url:{repo_url}/blob/main/docs/v3/scripts/generate_catalog_info.py",
+            "backstage.io/source-location": f"url:{repo_url}/blob/main/{file_path}",
+            "backstage.io/techdocs-ref": f"url:{repo_url}/blob/main/{file_path}",
+            "familiar.ai/schema-category": category,
+            "familiar.ai/schema-title": schema.get("title", "N/A"),
+        }
+
+        # Links
+        links = [
             {
-                'apiVersion': 'backstage.io/v1alpha1',
-                'kind': 'System',
-                'metadata': {
-                    'name': 'familiar-schema-system',
-                    'title': 'Familiar Schema System',
-                    'description': 'Sophisticated JSON schema system with physics simulation, cognitive modeling, ECS components, assembly pipeline, and Rust code generation',
-                    'tags': ['schema', 'system', 'json-schema', 'rust', 'code-generation', 'physics', 'cognitive', 'ecs', 'quantum', 'assembly'],
-                    'annotations': {
-                        'github.com/project-slug': 'phaiel/familiar-schema',
-                        'backstage.io/source-location': 'url:https://github.com/phaiel/familiar-schema/tree/main/',
-                        'backstage.io/techdocs-ref': 'dir:.'
-                    }
-                },
-                'spec': {
-                    'owner': 'user:default/phaiel',
-                    'domain': 'platform'
-                }
+                "title": "View Schema Source",
+                "url": f"{repo_url}/blob/main/{file_path}",
+                "icon": "source"
             },
-            
-            # Assembly Pipeline
             {
-                'apiVersion': 'backstage.io/v1alpha1',
-                'kind': 'Component',
-                'metadata': {
-                    'name': 'schema-assembly-pipeline',
-                    'title': 'Schema Assembly Pipeline',
-                    'description': 'JSON schema assembly and code generation pipeline using Make, quicktype, and bundling tools',
-                    'tags': ['schema', 'pipeline', 'code-generation', 'json-schema', 'makefile', 'quicktype'],
-                    'annotations': {
-                        'github.com/project-slug': 'phaiel/familiar-schema',
-                        'backstage.io/source-location': 'url:https://github.com/phaiel/familiar-schema/tree/main/docs/v3/',
-                        'backstage.io/techdocs-ref': 'dir:.'
-                    }
-                },
-                'spec': {
-                    'type': 'library',
-                    'lifecycle': 'production',
-                    'owner': 'user:default/phaiel',
-                    'system': 'familiar-schema-system'
-                }
-            },
-            
-            # Generated Rust Types
-            {
-                'apiVersion': 'backstage.io/v1alpha1',
-                'kind': 'Component',
-                'metadata': {
-                    'name': 'generated-rust-types',
-                    'title': 'Generated Rust Types',
-                    'description': 'Auto-generated Rust data structures from JSON schemas using quicktype',
-                    'tags': ['rust', 'generated', 'types', 'code-generation', 'quicktype'],
-                    'annotations': {
-                        'github.com/project-slug': 'phaiel/familiar-schema',
-                        'backstage.io/source-location': 'url:https://github.com/phaiel/familiar-schema/tree/main/src/generated/',
-                        'backstage.io/techdocs-ref': 'dir:.'
-                    }
-                },
-                'spec': {
-                    'type': 'library',
-                    'lifecycle': 'production',
-                    'owner': 'user:default/phaiel',
-                    'system': 'familiar-schema-system',
-                    'dependsOn': ['component:default/schema-assembly-pipeline']
-                }
+                "title": "View in JSON Crack",
+                "url": f"https://jsoncrack.com/editor?json={repo_url}/blob/main/{file_path}",
+                "icon": "visibility"
             }
         ]
+
+        # Final Entry
+        entry = {
+            "apiVersion": "backstage.io/v1alpha1",
+            "kind": "Component",
+            "metadata": {
+                "name": component_name,
+                "title": schema.get("title", component_name.replace('-', ' ').title()),
+                "description": schema.get("description", "No description provided."),
+                "tags": self.get_tags_for_schema(schema, file_path),
+                "annotations": annotations,
+                "links": links
+            },
+            "spec": spec
+        }
         
-        # Add individual schema components
+        return entry
+
+    def generate_catalog_info(self) -> List[Dict]:
+        """Generate a list of all catalog component entries."""
+        print("\nGenerating catalog entries...")
+        
+        all_components = []
         for component_name in sorted(self.schemas.keys()):
             entry = self.generate_component_entry(component_name)
-            catalog_entries.append(entry)
-            print(f"  Generated: {component_name}")
-        
-        # Add user and domain
-        catalog_entries.extend([
-            {
-                'apiVersion': 'backstage.io/v1alpha1',
-                'kind': 'User',
-                'metadata': {
-                    'name': 'phaiel',
-                    'title': 'Schema System Owner'
-                },
-                'spec': {
-                    'profile': {'displayName': 'phaiel'},
-                    'memberOf': []
-                }
-            },
-            {
-                'apiVersion': 'backstage.io/v1alpha1',
-                'kind': 'Domain',
-                'metadata': {
-                    'name': 'platform',
-                    'title': 'Platform Domain',
-                    'description': 'Platform infrastructure and development tools'
-                },
-                'spec': {
-                    'owner': 'user:default/phaiel'
-                }
-            }
-        ])
-        
-        return catalog_entries
-    
+            all_components.append(entry)
+            
+            print(f"  Generated entry for: {component_name}")
+            
+        return all_components
+
     def write_catalog_info(self, output_file: str = "catalog-info.yaml"):
-        """Write the generated catalog to a YAML file."""
-        catalog_entries = self.generate_catalog_info()
+        """Write the generated catalog entries to a YAML file."""
+        catalog_items = self.generate_catalog_info()
         
-        print(f"\nWriting catalog to {output_file}")
-        print(f"Generated {len(catalog_entries)} catalog entries")
-        
-        with open(output_file, 'w') as f:
-            for i, entry in enumerate(catalog_entries):
-                if i > 0:
-                    f.write('---\n')
-                yaml.dump(entry, f, default_flow_style=False, sort_keys=False)
-        
-        print(f"Catalog successfully written to {output_file}")
-    
-    def run(self):
-        """Run the complete catalog generation process."""
+        # We need to write a multi-document YAML file
+        print(f"\nWriting {len(catalog_items)} components to {output_file}...")
+        try:
+            with open(output_file, 'w') as f:
+                # Write each component as a separate YAML document
+                for i, item in enumerate(catalog_items):
+                    yaml.dump(item, f, sort_keys=False, default_flow_style=False, indent=2)
+                    if i < len(catalog_items) - 1:
+                        f.write('---\n')
+            print("Successfully wrote catalog file.")
+        except Exception as e:
+            print(f"Error writing to {output_file}: {e}")
+
+    def run(self, output_file: str):
+        """Execute the full catalog generation process."""
         print("=== Familiar Schema Catalog Generator ===")
         self.load_all_schemas()
         self.analyze_dependencies()
-        self.write_catalog_info()
-        print("\n=== Generation Complete ===")
+        self.write_catalog_info(output_file)
+        print("=======================================")
 
 
 if __name__ == "__main__":
-    generator = SchemaCatalogGenerator()
-    generator.run() 
+    parser = argparse.ArgumentParser(description="Generate Backstage catalog-info.yaml from JSON schemas.")
+    parser.add_argument(
+        "--schemas-dir",
+        default="docs/v3/schemas",
+        help="Path to the directory containing JSON schemas."
+    )
+    parser.add_argument(
+        "--output",
+        default="catalog-info.yaml",
+        help="Path to the output catalog-info.yaml file."
+    )
+    args = parser.parse_args()
+    
+    generator = SchemaCatalogGenerator(schemas_dir=args.schemas_dir)
+    generator.run(output_file=args.output) 
