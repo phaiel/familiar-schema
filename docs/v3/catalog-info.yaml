@@ -723,6 +723,32 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
+  name: components-consolidation-state
+  title: Consolidation State Component
+  description: Tracks the temporal consolidation state of a Motif or Filament.
+  tags:
+  - auto-generated
+  - component
+  - ecs
+  - schema
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/components/ConsolidationState.schema.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/components/ConsolidationState.schema.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/components/ConsolidationState.v1.schema.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+  partOf: component:default/base-component
+  dependsOn:
+  - component:default/base-component
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
   name: components-cross-tenant-link
   title: Cross-Tenant Link Component
   description: Manages a link to a Thread in another tenant, enabling federated relationships.
@@ -921,10 +947,41 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: components-motif-content
-  title: Motif Content Component
-  description: Defines the emergent pattern content of a Motif entity. This is a quantum
-    component.
+  name: components-motif
+  title: Motif Entity
+  description: A quantum entity representing a recurring pattern of subjective experiences,
+    derived from the consolidation of EntanglementState entities.
+  tags:
+  - auto-generated
+  - component
+  - entity
+  - physics
+  - schema
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/components/Motif.schema.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/components/Motif.schema.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/entities/Motif.v1.schema.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+  partOf: component:default/base-cognitive-entity
+  dependsOn:
+  - component:default/components-consolidation-state
+  - component:default/components-gdprdependency
+  - component:default/components-quantum-state
+  - component:default/components-universal-physics-state
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: components-quantum-state
+  title: Quantum State Component
+  description: Manages the quantum properties of an entity, including its superposition
+    and entanglement.
   tags:
   - auto-generated
   - component
@@ -934,10 +991,10 @@ metadata:
   - schema
   annotations:
     github.com/project-slug: phaiel/familiar-schema
-    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/components/MotifContent.schema.json
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/components/QuantumState.schema.json
     backstage.io/techdocs-ref: dir:.
-    familiar.dev/schema-file: schemas/components/MotifContent.schema.json
-    familiar.dev/schema-id: https://familiar.dev/schemas/components/MotifContent.v1.schema.json
+    familiar.dev/schema-file: schemas/components/QuantumState.schema.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/components/QuantumState.v1.schema.json
 spec:
   type: library
   lifecycle: production
@@ -1205,6 +1262,37 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
+  name: entities-filament
+  title: Filament Entity
+  description: A quantum entity representing a high-level, emergent narrative, belief,
+    or worldview, derived from the analysis of Threads and Bonds.
+  tags:
+  - auto-generated
+  - entity
+  - physics
+  - schema
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/entities/Filament.schema.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/entities/Filament.schema.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/entities/Filament.v1.schema.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+  partOf: component:default/base-cognitive-entity
+  dependsOn:
+  - component:default/components-consolidation-state
+  - component:default/components-filament-content
+  - component:default/components-gdprdependency
+  - component:default/components-quantum-state
+  - component:default/components-universal-physics-state
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
   name: entities-generic-thread
   title: Generic Thread
   description: A Thread representing a Place, Concept, or GenericObject, which MUST
@@ -1304,9 +1392,9 @@ metadata:
   - tenant
   annotations:
     github.com/project-slug: phaiel/familiar-schema
-    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/entities/tenant.schema.json
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/entities/Tenant.schema.json
     backstage.io/techdocs-ref: dir:.
-    familiar.dev/schema-file: schemas/entities/tenant.schema.json
+    familiar.dev/schema-file: schemas/entities/Tenant.schema.json
     familiar.dev/schema-id: https://familiar.dev/schemas/entities/tenant.v1.schema.json
 spec:
   type: library
@@ -1332,9 +1420,9 @@ metadata:
   - schema
   annotations:
     github.com/project-slug: phaiel/familiar-schema
-    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/entities/thread.schema.json
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/entities/Thread.schema.json
     backstage.io/techdocs-ref: dir:.
-    familiar.dev/schema-file: schemas/entities/thread.schema.json
+    familiar.dev/schema-file: schemas/entities/Thread.schema.json
     familiar.dev/schema-id: https://familiar.dev/schemas/entities/thread.v3.schema.json
 spec:
   type: library
@@ -2040,9 +2128,9 @@ metadata:
   - schema
   annotations:
     github.com/project-slug: phaiel/familiar-schema
-    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/tables/bond_state_log.table.schema.json
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/tables/Bond_state_log.table.schema.json
     backstage.io/techdocs-ref: dir:.
-    familiar.dev/schema-file: schemas/tables/bond_state_log.table.schema.json
+    familiar.dev/schema-file: schemas/tables/Bond_state_log.table.schema.json
     familiar.dev/schema-id: https://familiar.dev/schemas/tables/bond_state_log.v1.schema.json
 spec:
   type: library
@@ -2067,9 +2155,9 @@ metadata:
   - schema
   annotations:
     github.com/project-slug: phaiel/familiar-schema
-    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/tables/thread_state_log.schema.json
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/tables/Thread_state_log.schema.json
     backstage.io/techdocs-ref: dir:.
-    familiar.dev/schema-file: schemas/tables/thread_state_log.schema.json
+    familiar.dev/schema-file: schemas/tables/Thread_state_log.schema.json
     familiar.dev/schema-id: https://familiar.dev/schemas/tables/thread_state_log.v1.schema.json
 spec:
   type: library

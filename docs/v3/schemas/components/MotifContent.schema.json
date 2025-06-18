@@ -4,7 +4,7 @@
   "title": "Motif Content Component",
   "description": "Defines the emergent pattern content of a Motif entity. This is a quantum component.",
   "allOf": [{ "$ref": "../_base/BaseComponent.schema.json" }],
-  "schema_version": "1.1.0", // Version bumped to reflect change
+  "schema_version": "1.1.0",
   "physics_properties": { "engine": "quantum", "is_quantum": true },
   "fields": {
     "pattern_description": {
