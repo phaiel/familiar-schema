@@ -86,6 +86,18 @@ class SchemaDocGenerator:
                 category = 'Entities'
             elif 'snippets' in schema_path:
                 category = 'Snippets'
+            elif 'events' in schema_path:
+                category = 'Events'
+            elif 'tables' in schema_path:
+                category = 'Tables'
+            elif 'payloads' in schema_path:
+                category = 'Payloads'
+            elif 'workflows' in schema_path:
+                category = 'Workflows'
+            elif 'laws' in schema_path:
+                category = 'Laws'
+            elif 'api' in schema_path:
+                category = 'API'
             else:
                 category = 'Other'
             

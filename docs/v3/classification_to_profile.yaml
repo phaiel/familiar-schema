@@ -1,0 +1,127 @@
+# Classification to Physics Profile Mapping
+# Maps hierarchical moment classifications to appropriate physics profiles
+# Format: classification.path -> physics_profile_name
+
+# Sleep-related moments
+simple.individual.immediate.sleep.nap:
+  physics_profile: "low_energy_classical"
+  description: "Short rest periods with minimal cognitive activity"
+  
+simple.individual.immediate.sleep.deep:
+  physics_profile: "minimal_energy_classical"
+  description: "Deep sleep with very low energy states"
+  
+simple.individual.immediate.sleep.rem:
+  physics_profile: "moderate_energy_hybrid"
+  description: "REM sleep with increased quantum coherence for memory consolidation"
+
+# Daily activity moments
+simple.individual.immediate.activity.eating:
+  physics_profile: "moderate_energy_classical"
+  description: "Routine eating activities with standard energy levels"
+  
+simple.individual.immediate.activity.playing:
+  physics_profile: "high_energy_hybrid"
+  description: "Play activities with elevated energy and quantum entanglement"
+  
+simple.individual.immediate.activity.learning:
+  physics_profile: "high_energy_quantum"
+  description: "Learning moments requiring high quantum coherence for memory formation"
+
+# Social interaction moments
+simple.social.immediate.interaction.conversation:
+  physics_profile: "moderate_energy_hybrid"
+  description: "Social conversations with moderate entanglement between participants"
+  
+simple.social.immediate.interaction.conflict:
+  physics_profile: "high_energy_quantum"
+  description: "Conflict situations with high emotional energy and strong entanglement"
+  
+simple.social.immediate.interaction.bonding:
+  physics_profile: "high_energy_quantum"
+  description: "Bonding moments with strong quantum entanglement formation"
+
+# Emotional moments
+simple.individual.immediate.emotion.joy:
+  physics_profile: "high_energy_hybrid"
+  description: "Joyful moments with elevated energy and positive quantum states"
+  
+simple.individual.immediate.emotion.sadness:
+  physics_profile: "low_energy_quantum"
+  description: "Sad moments with reduced energy but maintained quantum coherence"
+  
+simple.individual.immediate.emotion.fear:
+  physics_profile: "high_energy_classical"
+  description: "Fear responses with high classical energy but reduced quantum coherence"
+
+# Complex moments
+complex.multi_participant.extended.milestone.birthday:
+  physics_profile: "very_high_energy_quantum"
+  description: "Significant milestone events with maximum entanglement and energy"
+  
+complex.multi_participant.extended.transition.school_start:
+  physics_profile: "high_energy_quantum"
+  description: "Major life transitions requiring high quantum coherence for adaptation"
+  
+complex.individual.extended.achievement.first_steps:
+  physics_profile: "very_high_energy_quantum"
+  description: "Major developmental achievements with peak energy and quantum effects"
+
+# Routine moments
+routine.individual.immediate.hygiene.brushing_teeth:
+  physics_profile: "low_energy_classical"
+  description: "Routine hygiene activities with minimal energy requirements"
+  
+routine.individual.immediate.transport.car_ride:
+  physics_profile: "low_energy_classical"
+  description: "Passive transport moments with low energy states"
+
+# Physics Profile Definitions
+physics_profiles:
+  minimal_energy_classical:
+    energy_range: [0.0, 0.2]
+    quantum_coherence_range: [0.0, 0.1]
+    entanglement_strength_range: [0.0, 0.1]
+    engine: "classical"
+    
+  low_energy_classical:
+    energy_range: [0.1, 0.4]
+    quantum_coherence_range: [0.0, 0.2]
+    entanglement_strength_range: [0.0, 0.2]
+    engine: "classical"
+    
+  moderate_energy_classical:
+    energy_range: [0.3, 0.6]
+    quantum_coherence_range: [0.0, 0.3]
+    entanglement_strength_range: [0.0, 0.3]
+    engine: "classical"
+    
+  moderate_energy_hybrid:
+    energy_range: [0.4, 0.7]
+    quantum_coherence_range: [0.3, 0.6]
+    entanglement_strength_range: [0.2, 0.5]
+    engine: "hybrid"
+    
+  high_energy_classical:
+    energy_range: [0.6, 0.9]
+    quantum_coherence_range: [0.0, 0.4]
+    entanglement_strength_range: [0.0, 0.4]
+    engine: "classical"
+    
+  high_energy_hybrid:
+    energy_range: [0.7, 0.9]
+    quantum_coherence_range: [0.5, 0.8]
+    entanglement_strength_range: [0.4, 0.7]
+    engine: "hybrid"
+    
+  high_energy_quantum:
+    energy_range: [0.7, 1.0]
+    quantum_coherence_range: [0.6, 0.9]
+    entanglement_strength_range: [0.5, 0.8]
+    engine: "quantum"
+    
+  very_high_energy_quantum:
+    energy_range: [0.8, 1.0]
+    quantum_coherence_range: [0.8, 1.0]
+    entanglement_strength_range: [0.7, 1.0]
+    engine: "quantum" 

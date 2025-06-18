@@ -53,6 +53,120 @@
         "quantum_coherence": { "$snippet": "fields/QuantumCoherence.json" },
         "entanglement_strength": { "$snippet": "fields/EntanglementStrength.json" }
       }
+    },
+    "MomentContent": {
+      "template": "components/component.jinja",
+      "metadata": {
+        "title": "Moment Content Component",
+        "description": "Defines the objective, factual content of a Moment entity, representing a specific event in time.",
+        "schema_version": "1.0.0"
+      },
+      "physics_properties": {
+        "engine": "classical",
+        "is_quantum": false,
+        "collapse_sensitive": false
+      },
+      "fields": {
+        "description": {
+          "description": "A human-readable description of what happened in the Moment.",
+          "type": "string"
+        },
+        "moment_type": {
+          "description": "The classification of the event.",
+          "type": "string",
+          "constraints": {
+            "enum": ["Event", "Experience", "Observation", "Interaction"]
+          }
+        },
+        "participants": {
+          "description": "A list of Thread entities that were involved in this Moment.",
+          "type": "array",
+          "items": { "type": "uuid" }
+        },
+        "objective_facts": {
+          "description": "A key-value map of objective, verifiable facts about the Moment.",
+          "type": "hashmap_string_string"
+        }
+      }
+    },
+    "EntanglementState": {
+      "template": "components/component.jinja",
+      "metadata": {
+        "title": "Entanglement State Component",
+        "description": "Captures the subjective experience of a Moment by a specific Thread, linking them with quantum properties.",
+        "schema_version": "1.0.0"
+      },
+      "physics_properties": {
+        "engine": "hybrid",
+        "is_quantum": true
+      },
+      "fields": {
+        "thread_id": { "$snippet": "fields/EntityId.json" },
+        "moment_id": { "$snippet": "fields/EntityId.json" },
+        "perspective_superposition": {
+          "description": "Quantum state representing the Thread's subjective perspective of the Moment.",
+          "type": { "$ref": "../_base/SharedDefinitions.schema.json#/$defs/types/DensityMatrix" }
+        },
+        "instance_details": {
+          "description": "Specific instance details of any objects involved in the experience.",
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    },
+    "TemporalAnchor": {
+      "template": "components/component.jinja",
+      "metadata": {
+        "title": "Temporal Anchor Component",
+        "description": "Provides an immutable, fixed position in time for a Moment entity, anchoring it to the Growing Block Universe.",
+        "schema_version": "1.0.0"
+      },
+      "physics_properties": {
+        "engine": "classical",
+        "is_quantum": false
+      },
+      "fields": {
+        "event_timestamp": {
+          "description": "The precise, immutable timestamp when the objective event occurred.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "duration_seconds": {
+          "description": "The duration of the event in seconds, if applicable.",
+          "type": "number",
+          "minimum": 0,
+          "default": 0
+        }
+      }
+    },
+    "InstanceComponent": {
+      "template": "components/component.jinja",
+      "metadata": {
+        "title": "Instance Component",
+        "description": "Captures the specific attributes of a generic object within the context of a single event (Entanglement).",
+        "schema_version": "1.0.0"
+      },
+      "physics_properties": {
+        "engine": "classical",
+        "is_quantum": false
+      },
+      "fields": {
+        "generic_thread_id": {
+          "description": "The ID of the canonical GenericObject Thread (e.g., 'obj_pacifier').",
+          "$snippet": "fields/EntityId.json"
+        },
+        "specific_attributes": {
+          "description": "Key-value pairs describing the specific instance (e.g., {'state': 'favorite', 'color': 'blue'}).",
+          "$snippet": "types/primitives/StringValueMap.json"
+        },
+        "significance_score": {
+          "description": "The significance of this specific instance in the event, used by BondModulationLaw.",
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "default": 0.5
+        }
+      }
     }
   }
 } 

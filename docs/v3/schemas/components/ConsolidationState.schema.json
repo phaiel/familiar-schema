@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://familiar.dev/schemas/components/ConsolidationState.v1.schema.json",
+  "title": "Consolidation State Component",
+  "description": "Tracks the temporal consolidation state of a Motif or Filament.",
+  "allOf": [{ "$ref": "../_base/BaseComponent.schema.json" }],
+  "schema_version": "1.0.0",
+  "physics_properties": { "engine": "classical", "is_quantum": false },
+  "fields": {
+    "consolidation_level": {
+      "description": "The current level of temporal consolidation.",
+      "type": "string",
+      "enum": ["Daily", "Weekly", "Monthly", "Yearly", "Archived"]
+    },
+    "last_consolidated_at": {
+      "description": "The timestamp of the last consolidation event.",
+      "type": "date-time"
+    },
+    "next_consolidation_due": {
+      "description": "The timestamp when this entity is eligible for the next level of consolidation.",
+      "type": "date-time"
+    },
+    "source_entity_count": {
+      "description": "The number of lower-level entities that were consolidated into this one.",
+      "type": "integer",
+      "minimum": 1
+    }
+  }
+}

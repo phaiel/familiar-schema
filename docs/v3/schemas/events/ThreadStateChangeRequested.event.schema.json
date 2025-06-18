@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://familiar.dev/schemas/events/ThreadStateChangeRequested.v1.schema.json",
+  "title": "Thread State Change Requested Event",
+  "description": "An event published to request a change in a Thread's lifecycle state. This event is consumed by a service that writes to the thread_state_log table.",
+  "allOf": [{ "$ref": "../_base/BaseEvent.schema.json" }],
+  "schema_version": "1.0.0",
+  "payload": {
+    "type": "object",
+    "properties": {
+      "thread_id": { "$ref": "../snippets/fields/EntityId.json" },
+      "new_state": {
+        "description": "The new state of the Thread.",
+        "type": "string",
+        "enum": ["Active", "Inactive", "Fading", "Archived"]
+      },
+      "reason": {
+        "description": "The machine-readable reason for the state change.",
+        "type": "string",
+        "enum": ["UserMarkedInactive", "UserMarkedDeceased", "SystemDetectedInactivity", "LifecycleCompleted"]
+      },
+      "source": {
+        "description": "Indicates whether the change was initiated by a user or the system.",
+        "type": "string",
+        "enum": ["User", "System"]
+      }
+    },
+    "required": ["thread_id", "new_state", "source"]
+  }
+}

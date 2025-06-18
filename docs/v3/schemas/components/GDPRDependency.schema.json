@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://familiar.dev/schemas/components/GDPRDependency.v1.schema.json",
+  "title": "GDPR Dependency Component",
+  "description": "Tracks data provenance to enable compliant cascading deletions for GDPR's Right to Erasure.",
+  "allOf": [{ "$ref": "../_base/BaseComponent.schema.json" }],
+  "schema_version": "1.0.0",
+  "physics_properties": { "engine": "classical", "is_quantum": false },
+  "fields": {
+    "contributing_users": {
+      "description": "A set of User IDs whose data contributed to this entity's existence or state.",
+      "type": "array",
+      "items": { "type": "uuid" },
+      "uniqueItems": true
+    },
+    "upstream_dependencies": {
+      "description": "A list of source entity IDs (e.g., Moments) that this entity (e.g., a Motif) depends on.",
+      "type": "array",
+      "items": { "type": "uuid" }
+    },
+    "user_evidence_weights": {
+      "description": "A map of User ID to an evidence weight (0.0-1.0), used to decide if an entity should be deleted or just recomputed upon user erasure.",
+      "type": "object",
+      "patternProperties": {
+        "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$": {
+          "type": "number", "minimum": 0.0, "maximum": 1.0
+        }
+      }
+    }
+  }
+}

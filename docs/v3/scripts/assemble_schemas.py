@@ -207,6 +207,71 @@ def resolve_schema_references(obj, assembled_dir):
     else:
         return obj
 
+def copy_entity_base_schemas(schemas_dir, assembled_dir, snippets):
+    """Copy entity base schemas to assembled directory."""
+    entity_base_dir = schemas_dir / 'entities' / '_base'
+    assembled_base_dir = assembled_dir / '_base'
+    
+    # Ensure the assembled base directory exists
+    assembled_base_dir.mkdir(parents=True, exist_ok=True)
+    
+    # Copy all entity base schema files, resolving snippet references
+    if entity_base_dir.exists():
+        for schema_file in entity_base_dir.glob('*.schema.json'):
+            # Load the schema
+            schema_data = load_json_file(schema_file)
+            if schema_data:
+                # Resolve $ref references to snippets
+                resolved_schema = resolve_ref_references(schema_data, snippets, schemas_dir)
+                
+                # Write the processed schema
+                dest_file = assembled_base_dir / schema_file.name
+                with open(dest_file, 'w', encoding='utf-8') as f:
+                    json.dump(resolved_schema, f, indent=2, ensure_ascii=False)
+                print(f"✓ Copied entity base schema {schema_file.name}")
+            else:
+                # If loading failed, just copy the file as-is
+                dest_file = assembled_base_dir / schema_file.name
+                shutil.copy2(schema_file, dest_file)
+                print(f"✓ Copied entity base schema {schema_file.name} (no processing)")
+
+def copy_static_component_schemas(schemas_dir, assembled_dir, snippets, manifest):
+    """Copy static component schemas that aren't generated from templates."""
+    components_dir = schemas_dir / 'components'
+    assembled_components_dir = assembled_dir / 'components'
+    
+    # Ensure the assembled components directory exists
+    assembled_components_dir.mkdir(parents=True, exist_ok=True)
+    
+    # Get list of components that are generated from manifest
+    manifest_components = set()
+    if 'components' in manifest:
+        manifest_components = set(f"{name}.schema.json" for name in manifest['components'].keys())
+    
+    # Copy all static component schema files, resolving snippet references
+    if components_dir.exists():
+        for schema_file in components_dir.glob('*.schema.json'):
+            # Skip if this component is generated from the manifest
+            if schema_file.name in manifest_components:
+                continue
+                
+            # Load the schema
+            schema_data = load_json_file(schema_file)
+            if schema_data:
+                # Resolve $ref references to snippets
+                resolved_schema = resolve_ref_references(schema_data, snippets, schemas_dir)
+                
+                # Write the processed schema
+                dest_file = assembled_components_dir / schema_file.name
+                with open(dest_file, 'w', encoding='utf-8') as f:
+                    json.dump(resolved_schema, f, indent=2, ensure_ascii=False)
+                print(f"✓ Copied static component {schema_file.name}")
+            else:
+                # If loading failed, just copy the file as-is
+                dest_file = assembled_components_dir / schema_file.name
+                shutil.copy2(schema_file, dest_file)
+                print(f"✓ Copied static component {schema_file.name} (no processing)")
+
 def copy_entity_schemas(schemas_dir, assembled_dir, snippets):
     """Copy and process entity schemas to assembled directory with full dereferencing."""
     entities_dir = schemas_dir / 'entities'
@@ -237,6 +302,40 @@ def copy_entity_schemas(schemas_dir, assembled_dir, snippets):
                 dest_file = assembled_entities_dir / schema_file.name
                 shutil.copy2(schema_file, dest_file)
                 print(f"✓ Copied entity {schema_file.name} (no processing)")
+
+def copy_schema_directory(schemas_dir, assembled_dir, snippets, dir_name, full_dereference=False):
+    """Generic function to copy and process schemas from any directory."""
+    source_dir = schemas_dir / dir_name
+    assembled_target_dir = assembled_dir / dir_name
+    
+    # Ensure the assembled target directory exists
+    assembled_target_dir.mkdir(parents=True, exist_ok=True)
+    
+    # Copy all schema files, resolving references
+    if source_dir.exists():
+        for schema_file in source_dir.glob('*.schema.json'):
+            # Load the schema
+            schema_data = load_json_file(schema_file)
+            if schema_data:
+                # First resolve snippet references
+                resolved_schema = resolve_ref_references(schema_data, snippets, schemas_dir)
+                
+                # Optionally resolve schema references by inlining (for entities)
+                if full_dereference:
+                    resolved_schema = resolve_schema_references(resolved_schema, assembled_dir)
+                
+                # Write the processed schema
+                dest_file = assembled_target_dir / schema_file.name
+                with open(dest_file, 'w', encoding='utf-8') as f:
+                    json.dump(resolved_schema, f, indent=2, ensure_ascii=False)
+                
+                status = "fully dereferenced" if full_dereference else "processed"
+                print(f"✅ Assembled {dir_name}/{schema_file.name} ({status})")
+            else:
+                # If loading failed, just copy the file as-is
+                dest_file = assembled_target_dir / schema_file.name
+                shutil.copy2(schema_file, dest_file)
+                print(f"✓ Copied {dir_name}/{schema_file.name} (no processing)")
 
 def assemble_schemas_from_manifest(manifest, templates_dir, snippets, snippets_dir, assembled_dir):
     """Assemble schemas based on the manifest configuration."""
@@ -309,11 +408,22 @@ def main():
     # Copy base schemas (now with snippet resolution)
     copy_base_schemas(schemas_dir, assembled_dir, snippets)
     
-    # Assemble schemas from manifest (creates components)
+    # Copy entity base schemas
+    copy_entity_base_schemas(schemas_dir, assembled_dir, snippets)
+    
+    # Assemble schemas from manifest (creates components from templates)
     assemble_schemas_from_manifest(manifest, templates_dir, snippets, snippets_dir, assembled_dir)
+    
+    # Copy static component schemas (not generated from templates)
+    copy_static_component_schemas(schemas_dir, assembled_dir, snippets, manifest)
     
     # Copy and process entity schemas (AFTER components are assembled)
     copy_entity_schemas(schemas_dir, assembled_dir, snippets)
+    
+    # Copy and process all other schema directories
+    schema_directories = ['payloads', 'workflows', 'tables', 'events', 'laws', 'api']
+    for dir_name in schema_directories:
+        copy_schema_directory(schemas_dir, assembled_dir, snippets, dir_name, full_dereference=False)
     
     print("✅ Schema assembly complete.")
     return 0

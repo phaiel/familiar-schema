@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://familiar.dev/schemas/events/BondStateChangeRequested.v1.schema.json",
+  "title": "Bond State Change Requested Event",
+  "description": "An event published to request a change in a Bond's lifecycle state.",
+  "allOf": [{ "$ref": "../_base/BaseEvent.schema.json" }],
+  "schema_version": "1.0.0",
+  "payload": {
+    "type": "object",
+    "properties": {
+      "bond_id": { "$ref": "../snippets/fields/EntityId.json" },
+      "new_state": {
+        "type": "string",
+        "enum": ["Active", "Strained", "Dissolved", "Rekindled"]
+      },
+      "reason": {
+        "type": "string",
+        "enum": ["UserInitiated", "SystemDetectedStrain", "PartnerAccountErased", "RelationshipEnded"]
+      }
+    },
+    "required": ["bond_id", "new_state"]
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://familiar.dev/schemas/tables/thread_state_log.v1.schema.json",
+  "title": "Thread State Log Table",
+  "description": "Defines the schema for the 'thread_state_log' database table, which stores an append-only history of a Thread's lifecycle state.",
+  "allOf": [{ "$ref": "../_base/BaseTable.schema.json" }],
+  "schema_version": "1.0.0",
+  
+  "tableName": "thread_state_log",
+  
+  "columns": {
+    "thread_id": {
+      "type": "uuid",
+      "description": "The ID of the Thread whose state is being logged. Foreign key to the 'entities' table.",
+      "primary_key": true
+    },
+    "effective_at": {
+      "type": "date-time",
+      "description": "The immutable timestamp at which this state became effective. Part of the composite primary key.",
+      "primary_key": true
+    },
+    "state": {
+      "type": "string",
+      "description": "The new state of the Thread.",
+      "enum": ["Active", "Inactive", "Fading", "Archived"]
+    },
+    "reason": {
+      "type": "string",
+      "description": "The machine-readable reason for the state change.",
+      "enum": ["UserMarkedInactive", "UserMarkedDeceased", "SystemDetectedInactivity", "LifecycleCompleted"],
+      "nullable": true
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional JSONB context for the state change, such as the event ID that triggered it.",
+      "nullable": true
+    }
+  },
+  
+  "indexes": [
+    {
+      "name": "idx_thread_state_log_latest",
+      "columns": ["thread_id", "effective_at DESC"],
+      "description": "Optimizes queries for finding the most recent state of a thread."
+    }
+  ],
+  
+  "timescale": {
+    "is_hypertable": true,
+    "time_column_name": "effective_at"
+  }
+}

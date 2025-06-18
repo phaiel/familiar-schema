@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://familiar.dev/schemas/components/QuantumState.v1.schema.json",
+  "title": "Quantum State Component",
+  "description": "Manages the quantum properties of an entity, including its superposition and entanglement.",
+  "allOf": [{ "$ref": "../_base/BaseComponent.schema.json" }],
+  "schema_version": "1.0.0",
+  "physics_properties": { "engine": "quantum", "is_quantum": true },
+  "fields": {
+    "density_matrix": {
+      "description": "The quantum density matrix representing the entity's superposition of states.",
+      "$ref": "../_base/SharedDefinitions.schema.json#/$defs/types/DensityMatrix"
+    },
+    "coherence_score": {
+      "description": "The purity of the quantum state (0.0 = maximally mixed, 1.0 = pure).",
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0
+    },
+    "entanglement_network": {
+      "description": "A map of entangled entity IDs to their entanglement strength.",
+      "type": "object",
+      "patternProperties": {
+        "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$": {
+          "type": "number", "minimum": 0.0, "maximum": 1.0
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://familiar.dev/schemas/components/TemporalAnchor.v1.schema.json",
+  "title": "Temporal Anchor Component",
+  "description": "Provides an immutable, fixed position in time for a Moment entity, anchoring it to the Growing Block Universe.",
+  "allOf": [{ "$ref": "../_base/BaseComponent.schema.json" }],
+  "schema_version": "1.0.0",
+  "physics_properties": { "engine": "classical", "is_quantum": false },
+  "fields": {
+    "event_timestamp": {
+      "description": "The precise, immutable timestamp when the objective event occurred.",
+      "type": "date-time"
+    },
+    "duration_seconds": {
+      "description": "The duration of the event in seconds, if applicable.",
+      "type": "number",
+      "minimum": 0,
+      "default": 0
+    }
+  }
+}
