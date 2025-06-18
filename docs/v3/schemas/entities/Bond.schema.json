@@ -21,7 +21,7 @@
       "type": "object",
       "properties": {
         "universal": { "$ref": "../components/UniversalPhysicsState.schema.json" },
-        "tension": { "$ref": "../components/BondTensionComponent.schema.json" }
+        "tension": { "$ref": "../components/BondTension.schema.json" }
       },
       "required": ["universal", "tension"]
     }

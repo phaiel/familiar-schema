@@ -2,43 +2,31 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://familiar.dev/schemas/base/TaxonomyNode.v1.schema.json",
   "title": "Base Taxonomy Node",
-  "description": "Defines the structure for a node in the 4-level universal classification taxonomy. Used to build the complete classification path.",
+  "description": "Defines the structure for a single node within any given taxonomy.",
   "type": "object",
   "required": [ "id", "level", "label", "description" ],
   "properties": {
     "id": {
-      "description": "The unique ID for this node (e.g., 'simple', 'individual', 'sleep').",
+      "description": "The unique ID for this node within its level (e.g., 'simple', 'individual', 'sleep').",
       "type": "string"
     },
-    "description": {
-      "description": "Explanation of what this classification means.",
+    "level": {
+      "description": "The name of the taxonomy level this node belongs to (e.g., 'cognitive_complexity').",
       "type": "string"
     },
     "label": {
       "description": "The human-readable label (e.g., 'Simple', 'Individual', 'Sleep').",
       "type": "string"
     },
-    "level": {
-      "enum": [
-        "cognitive_complexity",
-        "social_scope",
-        "temporal_frame",
-        "domain_context"
-      ]
-    },
-    "physics_profile_multiplier": {
-      "description": "A reference to a physics profile multiplier that modifies base constants.",
+    "description": { "type": "string" },
+    "embedding_context": {
+      "description": "OPTIONAL: Rich text fed into a Sentence Transformer to generate the canonical embedding for this concept. Omit for rule-based classifications.",
       "type": "string"
     },
-    "search_method_affinity": {
-      "description": "The preferred search method for entities with this classification.",
-      "enum": [
-        "GraphQL",
-        "TimescaleDB",
-        "PgVectorScale",
-        "MemoryManifold",
-        "HybridMultiModal"
-      ]
+    "metadata": {
+      "description": "Optional key-value metadata for this node, such as a physics profile affinity or rule-based triggers.",
+      "type": "object",
+      "additionalProperties": true
     }
   }
 }

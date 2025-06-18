@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://familiar.dev/schemas/components/BondTensionComponent.v1.schema.json",
+  "$id": "https://familiar.dev/schemas/components/BondTension.v1.schema.json",
   "allOf": [{ "$ref": "../_base/BaseComponent.schema.json" }],
 
   "title": "Bond Tension Component",

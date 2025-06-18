@@ -1,0 +1,6 @@
+{
+  "$id": "https://familiar.dev/schemas/fields/Theme.v1.json",
+  "title": "Theme Field",
+  "description": "A concise statement of a focus, goal, or pattern.",
+  "type": "string"
+}

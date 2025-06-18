@@ -98,9 +98,6 @@ spec:
   lifecycle: production
   owner: user:default/phaiel
   system: familiar-schema-system
-  partOf: component:default/base-entity
-  dependsOn:
-  - component:default/base-entity
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
@@ -130,8 +127,6 @@ spec:
   owner: user:default/phaiel
   system: familiar-schema-system
   partOf: component:default/base-shared-definitions
-  dependsOn:
-  - component:default/base-entity
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
@@ -158,9 +153,6 @@ spec:
   lifecycle: production
   owner: user:default/phaiel
   system: familiar-schema-system
-  partOf: component:default/base-component
-  dependsOn:
-  - component:default/base-component
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
@@ -185,9 +177,6 @@ spec:
   lifecycle: production
   owner: user:default/phaiel
   system: familiar-schema-system
-  partOf: component:default/base-component
-  dependsOn:
-  - component:default/base-component
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
@@ -524,6 +513,30 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
+  name: base-taxonomy
+  title: Base Taxonomy
+  description: Defines the structure for a complete, named classification taxonomy,
+    such as for physics profiles or emotional valence.
+  tags:
+  - auto-generated
+  - foundation
+  - physics
+  - schema
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/_base/BaseTaxonomy.schema.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/_base/BaseTaxonomy.schema.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/base/Taxonomy.v1.schema.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
   name: base-taxonomy-level
   title: Base Taxonomy Level
   description: The base schema for a file that defines a single level of the universal
@@ -549,8 +562,7 @@ kind: Component
 metadata:
   name: base-taxonomy-node
   title: Base Taxonomy Node
-  description: Defines the structure for a node in the 4-level universal classification
-    taxonomy. Used to build the complete classification path.
+  description: Defines the structure for a single node within any given taxonomy.
   tags:
   - auto-generated
   - foundation
@@ -639,7 +651,33 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: components-bond-permissions-component
+  name: components-bond-content
+  title: Bond Content Component
+  description: Defines the descriptive content and history of a relationship Bond.
+  tags:
+  - auto-generated
+  - component
+  - ecs
+  - schema
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/components/BondContent.schema.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/components/BondContent.schema.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/components/BondContent.v1.schema.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+  partOf: component:default/base-component
+  dependsOn:
+  - component:default/base-component
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: components-bond-permissions
   title: Bond Permissions Component
   description: Defines the access control and privacy rules for a Bond and its associated
     Moments.
@@ -650,9 +688,9 @@ metadata:
   - schema
   annotations:
     github.com/project-slug: phaiel/familiar-schema
-    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/components/BondPermissionsComponent.schema.json
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/components/BondPermissions.schema.json
     backstage.io/techdocs-ref: dir:.
-    familiar.dev/schema-file: schemas/components/BondPermissionsComponent.schema.json
+    familiar.dev/schema-file: schemas/components/BondPermissions.schema.json
     familiar.dev/schema-id: https://familiar.dev/schemas/components/BondPermissions.v1.schema.json
 spec:
   type: library
@@ -694,7 +732,7 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: components-bond-tension-component
+  name: components-bond-tension
   title: Bond Tension Component
   description: Models the classical physics of a relationship Bond, including its
     strength, tension, and resonance properties. This is managed by the Particular
@@ -707,10 +745,10 @@ metadata:
   - schema
   annotations:
     github.com/project-slug: phaiel/familiar-schema
-    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/components/BondTensionComponent.schema.json
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/components/BondTension.schema.json
     backstage.io/techdocs-ref: dir:.
-    familiar.dev/schema-file: schemas/components/BondTensionComponent.schema.json
-    familiar.dev/schema-id: https://familiar.dev/schemas/components/BondTensionComponent.v1.schema.json
+    familiar.dev/schema-file: schemas/components/BondTension.schema.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/components/BondTension.v1.schema.json
 spec:
   type: library
   lifecycle: production
@@ -836,6 +874,32 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
+  name: components-focus-content
+  title: Focus Content Component
+  description: Defines the content and scope of a thematic goal or focus.
+  tags:
+  - auto-generated
+  - component
+  - ecs
+  - schema
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/components/FocusContent.schema.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/components/FocusContent.schema.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/components/FocusContent.v1.schema.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+  partOf: component:default/base-component
+  dependsOn:
+  - component:default/base-component
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
   name: components-gdprdependency
   title: GDPR Dependency Component
   description: Tracks data provenance to enable compliant cascading deletions for
@@ -878,6 +942,32 @@ metadata:
     backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/components/InstanceComponent.schema.json
     familiar.dev/schema-id: https://familiar.dev/schemas/components/InstanceComponent.v1.schema.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+  partOf: component:default/base-component
+  dependsOn:
+  - component:default/base-component
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: components-intent-content
+  title: Intent Content Component
+  description: Defines the content of a specific task or intention.
+  tags:
+  - auto-generated
+  - component
+  - ecs
+  - schema
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/components/IntentContent.schema.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/components/IntentContent.schema.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/components/IntentContent.v1.schema.json
 spec:
   type: library
   lifecycle: production
@@ -947,33 +1037,31 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: components-motif
-  title: Motif Entity
-  description: A quantum entity representing a recurring pattern of subjective experiences,
-    derived from the consolidation of EntanglementState entities.
+  name: components-motif-content
+  title: Motif Content Component
+  description: Defines the emergent pattern content of a Motif entity. This is a quantum
+    component.
   tags:
   - auto-generated
   - component
+  - ecs
   - entity
   - physics
   - schema
   annotations:
     github.com/project-slug: phaiel/familiar-schema
-    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/components/Motif.schema.json
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/components/MotifContent.schema.json
     backstage.io/techdocs-ref: dir:.
-    familiar.dev/schema-file: schemas/components/Motif.schema.json
-    familiar.dev/schema-id: https://familiar.dev/schemas/entities/Motif.v1.schema.json
+    familiar.dev/schema-file: schemas/components/MotifContent.schema.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/components/MotifContent.v1.schema.json
 spec:
   type: library
   lifecycle: production
   owner: user:default/phaiel
   system: familiar-schema-system
-  partOf: component:default/base-cognitive-entity
+  partOf: component:default/base-component
   dependsOn:
-  - component:default/components-consolidation-state
-  - component:default/components-gdprdependency
-  - component:default/components-quantum-state
-  - component:default/components-universal-physics-state
+  - component:default/base-component
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
@@ -995,6 +1083,32 @@ metadata:
     backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/components/QuantumState.schema.json
     familiar.dev/schema-id: https://familiar.dev/schemas/components/QuantumState.v1.schema.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+  partOf: component:default/base-component
+  dependsOn:
+  - component:default/base-component
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: components-task-status
+  title: Task Status Component
+  description: Tracks the completion status of an Intent.
+  tags:
+  - auto-generated
+  - component
+  - ecs
+  - schema
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/components/TaskStatus.schema.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/components/TaskStatus.schema.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/components/TaskStatus.v1.schema.json
 spec:
   type: library
   lifecycle: production
@@ -1255,8 +1369,10 @@ spec:
   system: familiar-schema-system
   partOf: component:default/base-cognitive-entity
   dependsOn:
+  - component:default/components-bond-content
+  - component:default/components-bond-permissions
   - component:default/components-bond-physics-config
-  - component:default/components-bond-tension-component
+  - component:default/components-bond-tension
   - component:default/components-universal-physics-state
 ---
 apiVersion: backstage.io/v1alpha1
@@ -1293,6 +1409,36 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
+  name: entities-focus
+  title: Focus Entity
+  description: A quantum entity representing a high-level, user-declared thematic
+    goal or life chapter.
+  tags:
+  - auto-generated
+  - entity
+  - physics
+  - schema
+  - tenant
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/entities/Focus.schema.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/entities/Focus.schema.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/entities/Focus.v1.schema.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+  partOf: component:default/base-cognitive-entity
+  dependsOn:
+  - component:default/components-focus-content
+  - component:default/components-quantum-state
+  - component:default/components-universal-physics-state
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
   name: entities-generic-thread
   title: Generic Thread
   description: A Thread representing a Place, Concept, or GenericObject, which MUST
@@ -1322,6 +1468,36 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
+  name: entities-intent
+  title: Intent Entity
+  description: A classical entity representing a specific, user-declared future action
+    or task.
+  tags:
+  - auto-generated
+  - entity
+  - schema
+  - tenant
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/entities/Intent.schema.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/entities/Intent.schema.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/entities/Intent.v1.schema.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+  partOf: component:default/base-cognitive-entity
+  dependsOn:
+  - component:default/components-intent-content
+  - component:default/components-memory-manifold-position
+  - component:default/components-task-status
+  - component:default/components-universal-physics-state
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
   name: entities-moment
   title: Moment Entity
   description: A classical entity representing a specific, objective event in the
@@ -1346,6 +1522,37 @@ spec:
   dependsOn:
   - component:default/components-memory-manifold-position
   - component:default/components-moment-content
+  - component:default/components-universal-physics-state
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: entities-motif
+  title: Motif Entity
+  description: A quantum entity representing a recurring pattern of subjective experiences,
+    derived from the consolidation of EntanglementState entities.
+  tags:
+  - auto-generated
+  - entity
+  - physics
+  - schema
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/entities/Motif.schema.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/entities/Motif.schema.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/entities/Motif.v1.schema.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+  partOf: component:default/base-cognitive-entity
+  dependsOn:
+  - component:default/components-consolidation-state
+  - component:default/components-gdprdependency
+  - component:default/components-motif-content
+  - component:default/components-quantum-state
   - component:default/components-universal-physics-state
 ---
 apiVersion: backstage.io/v1alpha1
@@ -1556,6 +1763,28 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
+  name: snippets-bond-event
+  title: Bond Event Type
+  description: Represents a significant event that impacted a bond's strength or state.
+  tags:
+  - auto-generated
+  - schema
+  - snippet
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/types/social/BondEvent.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/snippets/types/social/BondEvent.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/types/social/BondEvent.v1.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
   name: snippets-cognitive-baseline
   title: Snippets Cognitive Baseline
   description: Defines the innate 'personality' or temperament of a Thread, modulating
@@ -1621,6 +1850,28 @@ metadata:
     backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/snippets/types/database/ColumnDefinition.json
     familiar.dev/schema-id: https://familiar.dev/schemas/types/database/ColumnDefinition.v1.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: snippets-completed-at
+  title: Completed At Field
+  description: The timestamp when a task or process was marked as completed.
+  tags:
+  - auto-generated
+  - schema
+  - snippet
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/fields/CompletedAt.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/snippets/fields/CompletedAt.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/fields/CompletedAt.v1.json
 spec:
   type: library
   lifecycle: production
@@ -1737,6 +1988,51 @@ metadata:
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/fields/Description.json
     backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/snippets/fields/Description.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: snippets-due-date
+  title: Due Date Field
+  description: An optional due date for a task or goal.
+  tags:
+  - auto-generated
+  - schema
+  - snippet
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/fields/DueDate.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/snippets/fields/DueDate.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/fields/DueDate.v1.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: snippets-end-date
+  title: End Date Field
+  description: The timestamp when an event, task, or focus is scheduled to end or
+    be reviewed.
+  tags:
+  - auto-generated
+  - schema
+  - snippet
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/fields/EndDate.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/snippets/fields/EndDate.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/fields/EndDate.v1.json
 spec:
   type: library
   lifecycle: production
@@ -1909,6 +2205,29 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
+  name: snippets-priority
+  title: Priority Field
+  description: The user-assigned priority level.
+  tags:
+  - auto-generated
+  - schema
+  - snippet
+  - tenant
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/fields/Priority.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/snippets/fields/Priority.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/fields/Priority.v1.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
   name: snippets-quantum-coherence
   title: Snippets Quantum Coherence
   description: The quantum coherence level of the entity, representing its degree
@@ -1933,6 +2252,29 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
+  name: snippets-relationship-type
+  title: Relationship Type
+  description: A canonical enum of all possible relationship types between Threads.
+  tags:
+  - auto-generated
+  - entity
+  - schema
+  - snippet
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/types/social/RelationshipType.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/snippets/types/social/RelationshipType.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/types/social/RelationshipType.v1.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
   name: snippets-role
   title: Tenant Member Role
   description: Defines the roles a user can have within a tenant.
@@ -1947,6 +2289,50 @@ metadata:
     backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/snippets/types/security/Role.json
     familiar.dev/schema-id: https://familiar.dev/schemas/types/security/Role.v1.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: snippets-start-date
+  title: Start Date Field
+  description: The timestamp when an event, task, or focus becomes active.
+  tags:
+  - auto-generated
+  - schema
+  - snippet
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/fields/StartDate.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/snippets/fields/StartDate.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/fields/StartDate.v1.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: snippets-status
+  title: Status Field
+  description: The current status of a task or process.
+  tags:
+  - auto-generated
+  - schema
+  - snippet
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/fields/Status.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/snippets/fields/Status.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/fields/Status.v1.json
 spec:
   type: library
   lifecycle: production
@@ -2026,6 +2412,29 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
+  name: snippets-temporal-scope
+  title: Temporal Scope Field
+  description: The temporal scope or duration of an entity or process.
+  tags:
+  - auto-generated
+  - entity
+  - schema
+  - snippet
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/fields/TemporalScope.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/snippets/fields/TemporalScope.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/fields/TemporalScope.v1.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
   name: snippets-tenant-id
   title: Tenant ID Field
   description: A reusable definition for the user tenant identifier.
@@ -2048,6 +2457,28 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
+  name: snippets-theme
+  title: Theme Field
+  description: A concise statement of a focus, goal, or pattern.
+  tags:
+  - auto-generated
+  - schema
+  - snippet
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/fields/Theme.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/snippets/fields/Theme.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/fields/Theme.v1.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
   name: snippets-thread-type
   title: Snippets Thread Type
   description: The Platonic Form of the Thread, enforcing abstract relationships.
@@ -2061,6 +2492,50 @@ metadata:
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/fields/ThreadType.json
     backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/snippets/fields/ThreadType.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: snippets-timestamp
+  title: Timestamp
+  description: A canonical definition for an ISO 8601 timestamp with timezone.
+  tags:
+  - auto-generated
+  - schema
+  - snippet
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/types/primitives/Timestamp.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/snippets/types/primitives/Timestamp.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/types/primitives/Timestamp.v1.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: snippets-uuid
+  title: UUID
+  description: A canonical definition for a Universally Unique Identifier (UUID).
+  tags:
+  - auto-generated
+  - schema
+  - snippet
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/types/primitives/UUID.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/snippets/types/primitives/UUID.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/types/primitives/UUID.v1.json
 spec:
   type: library
   lifecycle: production
@@ -2167,6 +2642,74 @@ spec:
   partOf: component:default/base-table
   dependsOn:
   - component:default/base-table
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: taxonomy-emotional-valence
+  title: Emotional Valence Taxonomy
+  description: A 2-level classification for emotional content based on a simplified
+    valence-arousal model.
+  tags:
+  - auto-generated
+  - foundation
+  - schema
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/taxonomy/EmotionalValence.schema.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/taxonomy/EmotionalValence.schema.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: taxonomy-physics-profile
+  title: Physics Profile Taxonomy
+  description: The 4-level classification system for assigning a physics profile to
+    a cognitive entity based on its semantic content.
+  tags:
+  - auto-generated
+  - cognitive
+  - entity
+  - foundation
+  - physics
+  - schema
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/taxonomy/PhysicsProfile.schema.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/taxonomy/PhysicsProfile.schema.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: taxonomy-weave-type
+  title: Weave Type Taxonomy
+  description: Classifies the source format of a user's input 'Weave'.
+  tags:
+  - auto-generated
+  - schema
+  - tenant
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/taxonomy/WeaveType.schema.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/taxonomy/WeaveType.schema.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
 ---
 apiVersion: backstage.io/v1alpha1
 kind: User

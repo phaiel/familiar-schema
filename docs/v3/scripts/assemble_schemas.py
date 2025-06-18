@@ -207,6 +207,98 @@ def resolve_schema_references(obj, assembled_dir):
     else:
         return obj
 
+def _resolve_allof(schema: dict, assembled_dir: Path) -> dict:
+    """
+    Recursively resolves and inlines `$ref`s within an `allOf` array and other schema references.
+    This ensures schemas are fully dereferenced for quicktype.
+    """
+    # First handle allOf references
+    if 'allOf' in schema:
+        new_properties = {}
+        new_required = set()
+        
+        # Keep track of original properties to merge them last
+        original_properties = schema.get('properties', {})
+        original_required = set(schema.get('required', []))
+
+        for item in schema['allOf']:
+            if '$ref' in item:
+                ref_path_str = item['$ref']
+                # Construct the full path to the referenced schema in the assembled dir
+                # Handle both ./_base/ and ../_base/ patterns
+                if ref_path_str.startswith('../_base/'):
+                    # Convert ../_base/ to _base/
+                    ref_path_str = ref_path_str[3:]  # Remove '../'
+                elif ref_path_str.startswith('./_base/'):
+                    # Convert ./_base/ to _base/
+                    ref_path_str = ref_path_str[2:]  # Remove './'
+                elif ref_path_str.startswith('../'):
+                    ref_path_str = ref_path_str[3:]  # Remove '../'
+                elif ref_path_str.startswith('./'):
+                    ref_path_str = ref_path_str[2:]  # Remove './'
+                
+                ref_path = (assembled_dir / ref_path_str).resolve()
+
+                if ref_path.exists():
+                    ref_schema = load_json_file(ref_path)
+                    if ref_schema:
+                        # Recursively resolve the referenced schema first
+                        resolved_ref = _resolve_allof(ref_schema, assembled_dir)
+                        
+                        # Merge properties and required fields
+                        new_properties.update(resolved_ref.get('properties', {}))
+                        new_required.update(resolved_ref.get('required', []))
+                else:
+                    print(f"⚠️  Warning: `allOf` reference not found: {ref_path}")
+        
+        # Merge the resolved properties with the original properties
+        # Original properties take precedence in case of conflict
+        new_properties.update(original_properties)
+        schema['properties'] = new_properties
+        
+        # Merge required fields
+        new_required.update(original_required)
+        if new_required:
+            schema['required'] = sorted(list(new_required))
+
+        # Remove the allOf key as it has been processed
+        del schema['allOf']
+    
+    # Also recursively resolve any other $ref patterns in the schema
+    def resolve_refs_recursive(obj):
+        if isinstance(obj, dict):
+            if '$ref' in obj and len(obj) == 1:  # Only $ref, no other properties
+                ref_path_str = obj['$ref']
+                # Only resolve schema references, not snippet references
+                if isinstance(ref_path_str, str) and ref_path_str.endswith('.schema.json'):
+                    # Handle path resolution
+                    if ref_path_str.startswith('./'):
+                        ref_path_str = '_base/' + ref_path_str[2:]
+                    elif ref_path_str.startswith('../_base/'):
+                        ref_path_str = ref_path_str[3:]
+                    
+                    ref_path = (assembled_dir / ref_path_str).resolve()
+                    if ref_path.exists():
+                        ref_schema = load_json_file(ref_path)
+                        if ref_schema:
+                            resolved_ref = _resolve_allof(ref_schema, assembled_dir)
+                            # Remove schema metadata to avoid conflicts
+                            if '$id' in resolved_ref:
+                                resolved_ref.pop('$id')
+                            if '$schema' in resolved_ref:
+                                resolved_ref.pop('$schema')
+                            return resolved_ref
+                return obj
+            else:
+                return {k: resolve_refs_recursive(v) for k, v in obj.items()}
+        elif isinstance(obj, list):
+            return [resolve_refs_recursive(item) for item in obj]
+        else:
+            return obj
+    
+    schema = resolve_refs_recursive(schema)
+    return schema
+
 def copy_entity_base_schemas(schemas_dir, assembled_dir, snippets):
     """Copy entity base schemas to assembled directory."""
     entity_base_dir = schemas_dir / 'entities' / '_base'
@@ -425,7 +517,31 @@ def main():
     for dir_name in schema_directories:
         copy_schema_directory(schemas_dir, assembled_dir, snippets, dir_name, full_dereference=False)
     
-    print("✅ Schema assembly complete.")
+    # Second Pass: Resolve allOf inheritance for full dereferencing
+    print("\n🔄 Resolving `allOf` inheritance for quicktype compatibility...")
+    
+    all_assembled_schemas = list(assembled_dir.rglob("*.schema.json"))
+    
+    # Loop multiple times to handle nested inheritance
+    for i in range(5):  # Up to 5 passes for deep inheritance
+        print(f"  -> Dereferencing Pass {i+1}...")
+        resolved_count = 0
+        for schema_file in all_assembled_schemas:
+            schema_data = load_json_file(schema_file)
+            if schema_data and 'allOf' in schema_data:
+                # Resolve the `allOf` references by inlining
+                resolved_schema = _resolve_allof(schema_data, assembled_dir)
+                
+                # Write the fully resolved schema back to the same file
+                with open(schema_file, 'w', encoding='utf-8') as f:
+                    json.dump(resolved_schema, f, indent=2, ensure_ascii=False)
+                resolved_count += 1
+        
+        if resolved_count == 0:
+            print("  -> No more `allOf` references to resolve.")
+            break  # Exit loop if no changes were made
+    
+    print("✅ Schema assembly and dereferencing complete.")
     return 0
 
 if __name__ == "__main__":

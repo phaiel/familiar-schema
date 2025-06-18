@@ -1,0 +1,7 @@
+{
+  "$id": "https://familiar.dev/schemas/fields/TemporalScope.v1.json",
+  "title": "Temporal Scope Field",
+  "description": "The temporal scope or duration of an entity or process.",
+  "type": "string",
+  "enum": ["Daily", "Weekly", "Monthly", "Quarterly", "Yearly", "Ongoing"]
+}

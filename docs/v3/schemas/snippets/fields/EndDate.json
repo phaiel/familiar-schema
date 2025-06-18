@@ -1,0 +1,7 @@
+{
+  "$id": "https://familiar.dev/schemas/fields/EndDate.v1.json",
+  "title": "End Date Field",
+  "description": "The timestamp when an event, task, or focus is scheduled to end or be reviewed.",
+  "type": "date-time",
+  "nullable": true
+}

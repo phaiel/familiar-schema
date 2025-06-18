@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://familiar.dev/schemas/components/TaskStatus.v1.schema.json",
+  "title": "Task Status Component",
+  "description": "Tracks the completion status of an Intent.",
+  "allOf": [{ "$ref": "../_base/BaseComponent.schema.json" }],
+  "schema_version": "1.1.0",
+  "physics_properties": { "engine": "classical", "is_quantum": false },
+  "fields": {
+    "status": { "$ref": "../snippets/fields/Status.json" },
+    "completed_at": {
+      "description": "The timestamp when the task was marked as completed. This triggers its consumption into a Moment.",
+      "type": "date-time",
+      "nullable": true
+    }
+  }
+}

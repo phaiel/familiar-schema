@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://familiar.dev/schemas/components/FocusContent.v1.schema.json",
+  "title": "Focus Content Component",
+  "description": "Defines the content and scope of a thematic goal or focus.",
+  "allOf": [{ "$ref": "../_base/BaseComponent.schema.json" }],
+  "schema_version": "1.1.0",
+  "physics_properties": { "engine": "quantum", "is_quantum": true },
+  "fields": {
+    "theme": { "$ref": "../snippets/fields/Theme.json" },
+    "scope": { "$ref": "../snippets/fields/TemporalScope.json" },
+    "start_date": {
+      "description": "When this focus becomes active.",
+      "type": "date-time"
+    },
+    "end_date": {
+      "description": "When this focus is scheduled to end or be reviewed.",
+      "type": "date-time",
+      "nullable": true
+    }
+  }
+}

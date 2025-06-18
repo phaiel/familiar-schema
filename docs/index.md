@@ -2,27 +2,33 @@
 
 Auto-generated documentation for the Familiar Schema System.
 
-*Generated on 2025-06-17 20:15:59*
+*Generated on 2025-06-17 22:31:24*
 
 ## Overview
 
-The Familiar Schema System contains **127 schemas** organized across 6 categories:
+The Familiar Schema System contains **165 schemas** organized across 7 categories:
 
 
-### Components (36 schemas)
+### Components (49 schemas)
 
+- **Bond Content Component**: Defines the descriptive content and history of a relationship Bond.
 - **Bond Permissions Component**: Defines the access control and privacy rules for a Bond and its associated Moments.
 - **Bond Physics Config Component**: Configuration that defines the physics model for a Bond (Dynamic or Static).
 - **Bond Tension Component**: Models the classical physics of a relationship Bond, including its strength, tension, and resonan...
 - **Cognitive Baseline Component**: Defines the innate 'personality' or temperament of a Thread.
+- **Consolidation State Component**: Tracks the temporal consolidation state of a Motif or Filament.
 - **Cross-Tenant Link Component**: Manages a link to a Thread in another tenant, enabling federated relationships.
 - **Entanglement State Component**: Captures the subjective experience of a Moment by a specific Thread, linking them with quantum pr...
 - **Filament Content Component**: Defines the high-level narrative or belief content of a Filament entity. This is a quantum compon...
+- **Focus Content Component**: Defines the content and scope of a thematic goal or focus.
 - **GDPR Dependency Component**: Tracks data provenance to enable compliant cascading deletions for GDPR's Right to Erasure.
 - **Instance Component**: Captures the specific attributes of a generic object within the context of a single event (Entang...
+- **Intent Content Component**: Defines the content of a specific task or intention.
 - **Memory Manifold Position Component**: The entity's position in the 7D cognitive manifold, enforcing quantized spatial coordinates (Rule...
 - **Moment Content Component**: Defines the objective, factual content of a Moment entity, representing a specific event in time.
 - **Motif Content Component**: Defines the emergent pattern content of a Motif entity. This is a quantum component.
+- **Quantum State Component**: Manages the quantum properties of an entity, including its superposition and entanglement.
+- **Task Status Component**: Tracks the completion status of an Intent.
 - **Temporal Anchor Component**: Provides an immutable, fixed position in time for a Moment entity, anchoring it to the Growing Bl...
 - **Tenant Configuration Component**: Stores tenant-specific settings and feature flag overrides.
 - **Tenant Identity Component**: Defines the core identity and metadata for a Tenant.
@@ -30,17 +36,24 @@ The Familiar Schema System contains **127 schemas** organized across 6 categorie
 - **Thread Content Component**: Defines the core, immutable content of a Thread entity, such as its name and type.
 - **Thread Identity Component**: The core, immutable identity of a Thread entity.
 - **Universal Physics State Component**: The transient, mutable physics state of an entity, required by all cognitive entities (Rule 7).
+- **Bond Content Component**: Defines the descriptive content and history of a relationship Bond.
+- **Bond Permissions Component**: Defines the access control and privacy rules for a Bond and its associated Moments.
 - **Bond Permissions Component**: Defines the access control and privacy rules for a Bond and its associated Moments.
 - **Bond Physics Config Component**: Configuration that defines the physics model for a Bond (Dynamic or Static).
 - **Bond Tension Component**: Models the classical physics of a relationship Bond, including its strength, tension, and resonan...
+- **Consolidation State Component**: Tracks the temporal consolidation state of a Motif or Filament.
 - **Cross-Tenant Link Component**: Manages a link to a Thread in another tenant, enabling federated relationships.
 - **Entanglement State Component**: Captures the subjective experience of a Moment by a specific Thread, linking them with quantum pr...
 - **Filament Content Component**: Defines the high-level narrative or belief content of a Filament entity. This is a quantum compon...
+- **Focus Content Component**: Defines the content and scope of a thematic goal or focus.
 - **GDPR Dependency Component**: Tracks data provenance to enable compliant cascading deletions for GDPR's Right to Erasure.
 - **Instance Component**: Captures the specific attributes of a generic object within the context of a single event (Entang...
+- **Intent Content Component**: Defines the content of a specific task or intention.
 - **Memory Manifold Position Component**: The entity's position in the 7D cognitive manifold, enforcing quantized spatial coordinates (Rule...
 - **Moment Content Component**: Defines the objective, factual content of a Moment entity, representing a specific event in time.
 - **Motif Content Component**: Defines the emergent pattern content of a Motif entity. This is a quantum component.
+- **Quantum State Component**: Manages the quantum properties of an entity, including its superposition and entanglement.
+- **Task Status Component**: Tracks the completion status of an Intent.
 - **Temporal Anchor Component**: Provides an immutable, fixed position in time for a Moment entity, anchoring it to the Growing Bl...
 - **Tenant Configuration Component**: Stores tenant-specific settings and feature flag overrides.
 - **Tenant Identity Component**: Defines the core identity and metadata for a Tenant.
@@ -48,17 +61,25 @@ The Familiar Schema System contains **127 schemas** organized across 6 categorie
 - **Thread Content Component**: Defines the core, immutable content of a Thread entity, such as its name and type.
 - **Universal Physics State Component**: The transient, mutable physics state of an entity.
 
-### Entities (12 schemas)
+### Entities (20 schemas)
 
 - **Bond Entity**: A classical entity representing a persistent relationship between two Thread entities.
+- **Filament Entity**: A quantum entity representing a high-level, emergent narrative, belief, or worldview, derived fro...
+- **Focus Entity**: A quantum entity representing a high-level, user-declared thematic goal or life chapter.
 - **Generic Thread**: A Thread representing a Place, Concept, or GenericObject, which MUST NOT have a CognitiveBaseline.
+- **Intent Entity**: A classical entity representing a specific, user-declared future action or task.
 - **Moment Entity**: A classical entity representing a specific, objective event in the past. This is the atomic unit ...
+- **Motif Entity**: A quantum entity representing a recurring pattern of subjective experiences, derived from the con...
 - **Person Thread**: A Thread representing a person, which MUST have a CognitiveBaseline.
 - **Tenant Entity**: Canonical schema for a Tenant, the root container for all user data and configuration. This is a ...
 - **Thread**: A polymorphic Thread entity that can be either a PersonThread or a GenericThread.
 - **Bond Entity**: A classical entity representing a persistent relationship between two Thread entities.
+- **Filament Entity**: A quantum entity representing a high-level, emergent narrative, belief, or worldview, derived fro...
+- **Focus Entity**: A quantum entity representing a high-level, user-declared thematic goal or life chapter.
 - **Generic Thread**: A Thread representing a Place, Concept, or GenericObject, which MUST NOT have a CognitiveBaseline.
+- **Intent Entity**: A classical entity representing a specific, user-declared future action or task.
 - **Moment Entity**: A classical entity representing a specific, objective event in the past. This is the atomic unit ...
+- **Motif Entity**: A quantum entity representing a recurring pattern of subjective experiences, derived from the con...
 - **Person Thread**: A Thread representing a person, which MUST have a CognitiveBaseline.
 - **Tenant Entity**: Canonical schema for a Tenant, the root container for all user data and configuration. This is a ...
 - **Thread**: A polymorphic Thread entity that can be either a PersonThread or a GenericThread.
@@ -70,7 +91,7 @@ The Familiar Schema System contains **127 schemas** organized across 6 categorie
 - **Bond State Change Requested Event**: An event published to request a change in a Bond's lifecycle state.
 - **Thread State Change Requested Event**: An event published to request a change in a Thread's lifecycle state. This event is consumed by a...
 
-### Foundation (44 schemas)
+### Foundation (46 schemas)
 
 - **Base Agent Output**: Defines the structured output an agent must produce. Enforces Rule 3 by separating deterministic ...
 - **Base Agent Persona**: The base schema for defining an agent persona, including its role, system prompt, and associated ...
@@ -86,8 +107,9 @@ The Familiar Schema System contains **127 schemas** organized across 6 categorie
 - **Base Physics Properties**: Defines the common physics-related properties for components and laws.
 - **Base Physics Profile**: Defines the structure for a single physics profile, which contains multipliers that modify base c...
 - **Base Database Table**: The base schema for defining a database table.
+- **Base Taxonomy**: Defines the structure for a complete, named classification taxonomy, such as for physics profiles...
 - **Base Taxonomy Level**: The base schema for a file that defines a single level of the universal classification taxonomy. ...
-- **Base Taxonomy Node**: Defines the structure for a node in the 4-level universal classification taxonomy. Used to build ...
+- **Base Taxonomy Node**: Defines the structure for a single node within any given taxonomy.
 - **Base Agent Tool**: The base schema for a tool that can be used by a LlamaIndex agent, defining its input and output ...
 - **Base Type System**: The canonical list of all valid primitive and complex data types used within the Familiar engine....
 - **Base Workflow (DAG)**: The base schema for defining a Windmill DAG.
@@ -108,8 +130,9 @@ The Familiar Schema System contains **127 schemas** organized across 6 categorie
 - **Base Physics Profile**: Defines the structure for a single physics profile, which contains multipliers that modify base c...
 - **Base System Entity**: The base for system-level entities (e.g., Stitch, Tenant) that manage workflows. Inherits from Ba...
 - **Base Database Table**: The base schema for defining a database table.
+- **Base Taxonomy**: Defines the structure for a complete, named classification taxonomy, such as for physics profiles...
 - **Base Taxonomy Level**: The base schema for a file that defines a single level of the universal classification taxonomy. ...
-- **Base Taxonomy Node**: Defines the structure for a node in the 4-level universal classification taxonomy. Used to build ...
+- **Base Taxonomy Node**: Defines the structure for a single node within any given taxonomy.
 - **Base Agent Tool**: The base schema for a tool that can be used by a LlamaIndex agent, defining its input and output ...
 - **Base Type System**: The canonical list of all valid primitive and complex data types used within the Familiar engine....
 - **Base Workflow (DAG)**: The base schema for defining a Windmill DAG.
@@ -117,21 +140,35 @@ The Familiar Schema System contains **127 schemas** organized across 6 categorie
 - **Base Cognitive Entity**: The base for all 7 cognitive entities. Inherits from BaseEntity and adds mandatory physics and ma...
 - **Base System Entity**: The base for system-level entities (e.g., Stitch, Tenant) that manage workflows. Inherits from Ba...
 
-### Snippets (27 schemas)
+### Other (3 schemas)
+
+- **Emotional Valence Taxonomy**: A 2-level classification for emotional content based on a simplified valence-arousal model.
+- **Physics Profile Taxonomy**: The 4-level classification system for assigning a physics profile to a cognitive entity based on ...
+- **Weave Type Taxonomy**: Classifies the source format of a user's input 'Weave'.
+
+### Snippets (39 schemas)
 
 - **Aliases Field**: A list of alternative names for this Thread (e.g., nicknames).
 - **Cognitive Baseline Field**: Defines the innate 'personality' or temperament of a Thread, modulating its physics interactions.
 - **Cognitive Perspective Field**: The intrinsic 'spin' or 'flavor' of the entity, which generates cognitive dissonance (torsion).
+- **Completed At Field**: The timestamp when a task or process was marked as completed.
 - **Consolidation Rate Field**: The base rate of memory consolidation for an entity, before multipliers are applied. Represents h...
 - **Created At Field**: A reusable definition for an immutable creation timestamp.
 - **Decay Rate Field**: The base rate of energy or coherence decay for an entity, before multipliers are applied.
 - **Description Field**: A detailed description of the entity.
+- **Due Date Field**: An optional due date for a task or goal.
+- **End Date Field**: The timestamp when an event, task, or focus is scheduled to end or be reviewed.
 - **Energy Field**: The current energy level of an entity.
 - **Entanglement Strength Field**: The overall entanglement strength of this entity with others. Null for classical entities.
 - **Entity ID Field**: A reusable definition for a unique entity identifier.
 - **Name Field**: The primary, human-readable name of an entity.
+- **Priority Field**: The user-assigned priority level.
 - **Quantum Coherence Field**: The quantum coherence level of the entity, representing its degree of superposition. Null for cla...
+- **Start Date Field**: The timestamp when an event, task, or focus becomes active.
+- **Status Field**: The current status of a task or process.
+- **Temporal Scope Field**: The temporal scope or duration of an entity or process.
 - **Tenant ID Field**: A reusable definition for the user tenant identifier.
+- **Theme Field**: A concise statement of a focus, goal, or pattern.
 - **Thread Type Field**: The Platonic Form of the Thread, enforcing abstract relationships.
 - **Feature Flag Map**: A key-value map of feature flags and their enabled status for a specific scope (e.g., a tenant).
 - **Column Definition**: Schema for defining a database table column.
@@ -142,8 +179,12 @@ The Familiar Schema System contains **127 schemas** organized across 6 categorie
 - **Any Value**: Represents any valid JSON value. Used for fields with dynamic or unknown types, like 'default' va...
 - **String Value Map**: A generic key-value map where keys are strings and values can be any JSON type. Used for flexible...
 - **Task List**: A list of task definitions for a Windmill workflow.
+- **Timestamp**: A canonical definition for an ISO 8601 timestamp with timezone.
+- **UUID**: A canonical definition for a Universally Unique Identifier (UUID).
 - **Tenant Member**: Represents a single user within a tenant, including their role and join date.
 - **Tenant Member Role**: Defines the roles a user can have within a tenant.
+- **Bond Event Type**: Represents a significant event that impacted a bond's strength or state.
+- **Relationship Type**: A canonical enum of all possible relationship types between Threads.
 - **Constraint Definition**: A canonical definition for field validation constraints.
 - **Task Definition**: A canonical definition for a single task within a Windmill workflow (DAG).
 

@@ -1,0 +1,8 @@
+{
+  "$id": "https://familiar.dev/schemas/fields/Status.v1.json",
+  "title": "Status Field",
+  "description": "The current status of a task or process.",
+  "type": "string",
+  "enum": ["Pending", "InProgress", "Completed", "Cancelled"],
+  "default": "Pending"
+}

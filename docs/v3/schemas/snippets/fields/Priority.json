@@ -1,0 +1,8 @@
+{
+  "$id": "https://familiar.dev/schemas/fields/Priority.v1.json",
+  "title": "Priority Field",
+  "description": "The user-assigned priority level.",
+  "type": "string",
+  "enum": ["Low", "Medium", "High", "Urgent"],
+  "default": "Medium"
+}
