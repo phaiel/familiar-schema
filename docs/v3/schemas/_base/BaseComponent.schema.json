@@ -19,7 +19,7 @@
               "properties": {
                 "$ref": {
                   "type": "string",
-                  "pattern": "^\\.\\./_base/SharedDefinitions\\.schema\\.json#\\/\\$defs\\/"
+                  "pattern": "^\\.\\./snippets/.*\\.json$"
                 }
               },
               "required": ["$ref"],

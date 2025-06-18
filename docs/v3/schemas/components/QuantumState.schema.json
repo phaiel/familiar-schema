@@ -9,7 +9,7 @@
   "fields": {
     "density_matrix": {
       "description": "The quantum density matrix representing the entity's superposition of states.",
-      "$ref": "../_base/SharedDefinitions.schema.json#/$defs/types/DensityMatrix"
+      "$ref": "../snippets/types/physics/DensityMatrix.json"
     },
     "coherence_score": {
       "description": "The purity of the quantum state (0.0 = maximally mixed, 1.0 = pure).",
@@ -19,12 +19,7 @@
     },
     "entanglement_network": {
       "description": "A map of entangled entity IDs to their entanglement strength.",
-      "type": "object",
-      "patternProperties": {
-        "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$": {
-          "type": "number", "minimum": 0.0, "maximum": 1.0
-        }
-      }
+      "$ref": "../snippets/types/physics/EntanglementMap.json"
     }
   }
 }

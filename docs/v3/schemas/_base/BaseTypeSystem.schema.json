@@ -32,7 +32,7 @@
         "$ref": {
           "type": "string",
           "format": "uri-reference",
-          "pattern": "^\\.\\./types/.*\\.schema\\.json$"
+          "pattern": "^\\.\\./snippets/types/.*\\.json$"
         }
       },
       "required": ["$ref"],

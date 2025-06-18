@@ -4,14 +4,19 @@
   "description": "Represents a significant event that impacted a bond's strength or state.",
   "type": "object",
   "properties": {
-    "moment_id": { "$ref": "../../fields/EntityId.json" },
+  "moment_id": {
+    "type": "string",
+    "format": "uuid"
+    },
     "impact": {
       "description": "How much this event affected the bond, from -1.0 (negative) to 1.0 (positive).",
       "type": "number",
       "minimum": -1.0,
       "maximum": 1.0
     },
-    "timestamp": { "type": "date-time" }
+    "timestamp": {
+      "$ref": "../primitives/Timestamp.json"
+    }
   },
   "required": ["moment_id", "impact", "timestamp"]
 }

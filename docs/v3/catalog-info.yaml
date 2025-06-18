@@ -126,7 +126,6 @@ spec:
   lifecycle: production
   owner: user:default/phaiel
   system: familiar-schema-system
-  partOf: component:default/base-shared-definitions
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
@@ -1668,10 +1667,37 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
+  name: events-moment-accessed
+  title: Moment Accessed Event
+  description: Published when a Moment entity is accessed, triggering the MemoryConsolidation
+    law.
+  tags:
+  - auto-generated
+  - cognitive
+  - entity
+  - event
+  - schema
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/events/MomentAccessed.schema.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/events/MomentAccessed.schema.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/events/MomentAccessed.v1.schema.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+  partOf: component:default/base-event
+  dependsOn:
+  - component:default/base-event
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
   name: events-thread-state-change-requested.event
   title: Thread State Change Requested Event
   description: An event published to request a change in a Thread's lifecycle state.
-    This event is consumed by a service that writes to the thread_state_log table.
   tags:
   - auto-generated
   - entity
@@ -1695,20 +1721,320 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: shared-definitions
-  title: Shared Definitions
-  description: A central dictionary of all reusable, canonical fields and types for
-    the Familiar system.
+  name: laws-bond-tension-dynamics
+  title: Bond Tension Dynamics Law
+  description: Applies classical spring-damper physics to a Bond, simulating the tension
+    and resilience of a relationship based on the distance between the connected Threads.
   tags:
   - auto-generated
+  - entity
   - foundation
+  - law
+  - physics
   - schema
   annotations:
     github.com/project-slug: phaiel/familiar-schema
-    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/_base/SharedDefinitions.schema.json
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/laws/BondTensionDynamics.schema.json
     backstage.io/techdocs-ref: dir:.
-    familiar.dev/schema-file: schemas/_base/SharedDefinitions.schema.json
-    familiar.dev/schema-id: https://familiar.dev/schemas/base/SharedDefinitions.v1.schema.json
+    familiar.dev/schema-file: schemas/laws/BondTensionDynamics.schema.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/laws/BondTensionDynamics.v1.schema.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+  partOf: component:default/base-law
+  dependsOn:
+  - component:default/base-law
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: laws-memory-consolidation
+  title: Memory Consolidation Law
+  description: Strengthens the stability of a Moment entity based on access frequency
+    and its relationship to other coherent patterns, modeling the process of memory
+    consolidation.
+  tags:
+  - auto-generated
+  - cognitive
+  - entity
+  - foundation
+  - law
+  - schema
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/laws/MemoryConsolidation.schema.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/laws/MemoryConsolidation.schema.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/laws/MemoryConsolidation.v1.schema.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+  partOf: component:default/base-law
+  dependsOn:
+  - component:default/base-law
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: laws-motif-collapse
+  title: Motif Collapse Law
+  description: Performs a quantum measurement on a Motif entity, collapsing its superposition
+    into a single classical state. This is a high-priority, user-responsive law.
+  tags:
+  - auto-generated
+  - entity
+  - law
+  - physics
+  - schema
+  - tenant
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/laws/MotifCollapse.schema.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/laws/MotifCollapse.schema.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/laws/MotifCollapse.v1.schema.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+  partOf: component:default/base-law
+  dependsOn:
+  - component:default/base-law
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: laws-thread-energy-decay
+  title: Thread Energy Decay Law
+  description: Applies a natural, exponential decay to the energy level of all Thread
+    entities over time, representing the natural settling of cognitive activation.
+  tags:
+  - auto-generated
+  - cognitive
+  - entity
+  - law
+  - physics
+  - schema
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/laws/ThreadEnergyDecay.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/laws/ThreadEnergyDecay.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/laws/ThreadEnergyDecay.v1.schema.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: payloads-course-payload
+  title: Course Payload
+  description: Represents a high-level, long-running cognitive analysis task or workflow.
+  tags:
+  - auto-generated
+  - cognitive
+  - schema
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/payloads/CoursePayload.schema.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/payloads/CoursePayload.schema.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/payloads/CoursePayload.v1.schema.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+  partOf: component:default/base-payload
+  dependsOn:
+  - component:default/base-payload
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: payloads-draft-payload
+  title: Entity Draft Payload
+  description: A fully specified but not-yet-created cognitive entity, ready for the
+    Decima agent to commit to the ECS.
+  tags:
+  - auto-generated
+  - cognitive
+  - ecs
+  - entity
+  - schema
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/payloads/DraftPayload.schema.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/payloads/DraftPayload.schema.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/payloads/DraftPayload.v1.schema.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+  partOf: component:default/base-payload
+  dependsOn:
+  - component:default/base-payload
+  - component:default/entities-bond
+  - component:default/entities-filament
+  - component:default/entities-focus
+  - component:default/entities-intent
+  - component:default/entities-moment
+  - component:default/entities-motif
+  - component:default/entities-thread
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: payloads-reconciliation-result-payload
+  title: Reconciliation Result Payload
+  description: The structured output from a single Heddle reconciliation task.
+  tags:
+  - auto-generated
+  - schema
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/payloads/ReconciliationResultPayload.schema.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/payloads/ReconciliationResultPayload.schema.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/payloads/ReconciliationResultPayload.v1.schema.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+  partOf: component:default/base-payload
+  dependsOn:
+  - component:default/base-payload
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: payloads-shuttle-payload
+  title: Ingestion Shuttle Payload
+  description: The state object that carries a WeaveUnit through the Heddle reconciliation
+    pipeline.
+  tags:
+  - auto-generated
+  - schema
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/payloads/ShuttlePayload.schema.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/payloads/ShuttlePayload.schema.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/payloads/ShuttlePayload.v1.schema.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+  partOf: component:default/base-payload
+  dependsOn:
+  - component:default/base-payload
+  - component:default/payloads-reconciliation-result-payload
+  - component:default/payloads-weave-unit-payload
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: payloads-weave-payload
+  title: Weave Payload
+  description: Represents a complete, raw text input from a user, ready for ingestion.
+  tags:
+  - auto-generated
+  - schema
+  - tenant
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/payloads/WeavePayload.schema.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/payloads/WeavePayload.schema.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/payloads/WeavePayload.v1.schema.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+  partOf: component:default/base-payload
+  dependsOn:
+  - component:default/base-payload
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: payloads-weave-unit-payload
+  title: Weave Unit Payload
+  description: A single, logical strand of information deconstructed from a Weave,
+    enhanced with an entity type hint.
+  tags:
+  - auto-generated
+  - entity
+  - schema
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/payloads/WeaveUnitPayload.schema.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/payloads/WeaveUnitPayload.schema.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/payloads/WeaveUnitPayload.v1.schema.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+  partOf: component:default/base-payload
+  dependsOn:
+  - component:default/base-payload
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: snippets-abstraction-level
+  title: Abstraction Level
+  description: A canonical enum for the level of abstraction of a cognitive entity.
+  tags:
+  - auto-generated
+  - cognitive
+  - entity
+  - schema
+  - snippet
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/types/physics/AbstractionLevel.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/snippets/types/physics/AbstractionLevel.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/types/physics/AbstractionLevel.v1.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: snippets-access-type
+  title: Access Type Field
+  description: Describes the method or reason for an entity access event.
+  tags:
+  - auto-generated
+  - entity
+  - schema
+  - snippet
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/fields/AccessType.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/snippets/fields/AccessType.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/fields/AccessType.v1.json
 spec:
   type: library
   lifecycle: production
@@ -1776,6 +2102,73 @@ metadata:
     backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/snippets/types/social/BondEvent.json
     familiar.dev/schema-id: https://familiar.dev/schemas/types/social/BondEvent.v1.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: snippets-bond-permissions
+  title: Bond Permission
+  description: A canonical enum of permissions related to a Bond.
+  tags:
+  - auto-generated
+  - schema
+  - snippet
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/types/security/BondPermissions.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/snippets/types/security/BondPermissions.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/types/security/BondPermission.v1.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: snippets-bond-state
+  title: Bond State
+  description: A canonical enum of all possible lifecycle states for a Bond entity.
+  tags:
+  - auto-generated
+  - entity
+  - schema
+  - snippet
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/types/lifecycles/BondState.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/snippets/types/lifecycles/BondState.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/types/lifecycles/BondState.v1.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: snippets-bond-state-reason
+  title: Bond State Reason
+  description: A canonical enum of the machine-readable reasons for a Bond state change.
+  tags:
+  - auto-generated
+  - schema
+  - snippet
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/types/lifecycles/BondStateReason.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/snippets/types/lifecycles/BondStateReason.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/types/lifecycles/BondStateReason.v1.json
 spec:
   type: library
   lifecycle: production
@@ -1881,6 +2274,51 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
+  name: snippets-complex-number
+  title: Complex Number
+  description: Represents a complex number with real and imaginary parts.
+  tags:
+  - auto-generated
+  - schema
+  - snippet
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/types/physics/ComplexNumber.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/snippets/types/physics/ComplexNumber.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/types/physics/ComplexNumber.v1.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: snippets-consolidation-level
+  title: Consolidation Level
+  description: A canonical enum for the temporal consolidation level of a Motif or
+    Filament.
+  tags:
+  - auto-generated
+  - schema
+  - snippet
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/types/system/ConsolidationLevel.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/snippets/types/system/ConsolidationLevel.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/types/system/ConsolidationLevel.v1.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
   name: snippets-consolidation-rate
   title: Consolidation Rate Field
   description: The base rate of memory consolidation for an entity, before multipliers
@@ -1941,6 +2379,7 @@ metadata:
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/fields/CreatedAt.json
     backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/snippets/fields/CreatedAt.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/fields/CreatedAt.v1.json
 spec:
   type: library
   lifecycle: production
@@ -1975,12 +2414,36 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: snippets-description
-  title: Description Field
-  description: A detailed description of the entity.
+  name: snippets-density-matrix
+  title: Density Matrix
+  description: A 2x2 matrix of complex numbers representing a quantum state.
   tags:
   - auto-generated
-  - entity
+  - physics
+  - schema
+  - snippet
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/types/physics/DensityMatrix.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/snippets/types/physics/DensityMatrix.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/types/physics/DensityMatrix.v1.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+  dependsOn:
+  - component:default/snippets-complex-number
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: snippets-description
+  title: Description Field
+  description: A canonical, reusable definition for a human-readable description field.
+  tags:
+  - auto-generated
   - schema
   - snippet
   annotations:
@@ -1988,6 +2451,7 @@ metadata:
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/fields/Description.json
     backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/snippets/fields/Description.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/fields/Description.v1.json
 spec:
   type: library
   lifecycle: production
@@ -2010,6 +2474,28 @@ metadata:
     backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/snippets/fields/DueDate.json
     familiar.dev/schema-id: https://familiar.dev/schemas/fields/DueDate.v1.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: snippets-effective-at
+  title: Effective At Field
+  description: A reusable definition for an immutable effective timestamp.
+  tags:
+  - auto-generated
+  - schema
+  - snippet
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/fields/EffectiveAt.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/snippets/fields/EffectiveAt.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/fields/EffectiveAt.v1.json
 spec:
   type: library
   lifecycle: production
@@ -2065,6 +2551,30 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
+  name: snippets-entanglement-map
+  title: Entanglement Map
+  description: A map of entity UUIDs to a float value, such as entanglement strength
+    or evidence weight.
+  tags:
+  - auto-generated
+  - entity
+  - schema
+  - snippet
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/types/physics/EntanglementMap.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/snippets/types/physics/EntanglementMap.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/types/physics/EntanglementMap.v1.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
   name: snippets-entanglement-strength
   title: Snippets Entanglement Strength
   description: The overall entanglement strength of this entity with others. Null
@@ -2101,6 +2611,54 @@ metadata:
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/fields/EntityId.json
     backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/snippets/fields/EntityId.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/fields/EntityId.v1.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: snippets-entity-id-list
+  title: Entity ID List
+  description: A canonical definition for a list of unique entity identifiers (UUIDs).
+  tags:
+  - auto-generated
+  - entity
+  - schema
+  - snippet
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/fields/EntityIdList.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/snippets/fields/EntityIdList.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/types/primitives/EntityIdList.v1.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: snippets-entity-type
+  title: Entity Type
+  description: A canonical enum of all 7 cognitive entity types.
+  tags:
+  - auto-generated
+  - cognitive
+  - entity
+  - schema
+  - snippet
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/types/classification/EntityType.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/snippets/types/classification/EntityType.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/types/classification/EntityType.v1.json
 spec:
   type: library
   lifecycle: production
@@ -2125,6 +2683,77 @@ metadata:
     backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/snippets/types/config/FeatureFlagMap.json
     familiar.dev/schema-id: https://familiar.dev/schemas/types/config/FeatureFlagMap.v1.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: snippets-filament-type
+  title: Filament Type
+  description: A canonical enum of the types of high-level narratives a Filament can
+    represent.
+  tags:
+  - auto-generated
+  - schema
+  - snippet
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/types/physics/FilamentType.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/snippets/types/physics/FilamentType.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/types/physics/FilamentType.v1.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: snippets-key-value
+  title: Key-Value Metadata
+  description: A flexible but structured key-value map for attaching arbitrary, namespaced
+    metadata to an entity or component.
+  tags:
+  - auto-generated
+  - ecs
+  - entity
+  - schema
+  - snippet
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/types/primitives/KeyValue.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/snippets/types/primitives/KeyValue.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/types/primitives/KeyValueMetadata.v1.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: snippets-link-status
+  title: Link Status
+  description: A canonical enum for the status of a cross-tenant link.
+  tags:
+  - auto-generated
+  - schema
+  - snippet
+  - tenant
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/types/system/LinkStatus.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/snippets/types/system/LinkStatus.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/types/system/LinkStatus.v1.json
 spec:
   type: library
   lifecycle: production
@@ -2160,6 +2789,52 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
+  name: snippets-moment-type
+  title: Moment Type
+  description: A canonical enum for the classification of a Moment entity's content.
+  tags:
+  - auto-generated
+  - entity
+  - schema
+  - snippet
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/types/classification/MomentType.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/snippets/types/classification/MomentType.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/types/classification/MomentType.v1.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: snippets-motif-type
+  title: Motif Type
+  description: A canonical enum of the types of recurring themes or motifs in memory.
+  tags:
+  - auto-generated
+  - cognitive
+  - schema
+  - snippet
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/types/physics/MotifType.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/snippets/types/physics/MotifType.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/types/physics/MotifType.v1.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
   name: snippets-name
   title: Name Field
   description: The primary, human-readable name of an entity.
@@ -2173,6 +2848,28 @@ metadata:
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/fields/Name.json
     backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/snippets/fields/Name.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: snippets-nullable-timestamp
+  title: Nullable Timestamp
+  description: A canonical definition for an optional ISO 8601 timestamp with timezone.
+  tags:
+  - auto-generated
+  - schema
+  - snippet
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/types/primitives/NullableTimestamp.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/snippets/types/primitives/NullableTimestamp.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/types/primitives/NullableTimestamp.v1.json
 spec:
   type: library
   lifecycle: production
@@ -2252,6 +2949,29 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
+  name: snippets-reconciliation-task-type
+  title: Reconciliation Task Type
+  description: A canonical enum for the types of reconciliation tasks performed by
+    the Heddle engine.
+  tags:
+  - auto-generated
+  - schema
+  - snippet
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/types/classification/ReconciliationTaskType.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/snippets/types/classification/ReconciliationTaskType.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/types/classification/ReconciliationTaskType.v1.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
   name: snippets-relationship-type
   title: Relationship Type
   description: A canonical enum of all possible relationship types between Threads.
@@ -2294,6 +3014,33 @@ spec:
   lifecycle: production
   owner: user:default/phaiel
   system: familiar-schema-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: snippets-source-thread-and-bonds
+  title: Source Threads and Bonds Field
+  description: A list of Thread and Bond entity IDs that are the source for a derived
+    cognitive entity like a Filament.
+  tags:
+  - auto-generated
+  - cognitive
+  - entity
+  - schema
+  - snippet
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/fields/SourceThreadAndBonds.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/snippets/fields/SourceThreadAndBonds.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/fields/SourceThreadsAndBonds.v1.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+  dependsOn:
+  - component:default/snippets-entity-id
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
@@ -2363,6 +3110,29 @@ spec:
   system: familiar-schema-system
   dependsOn:
   - component:default/snippets-any-value
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: snippets-subscription-plan
+  title: Subscription Plan
+  description: A canonical enum of all available subscription plans for a Tenant.
+  tags:
+  - auto-generated
+  - schema
+  - snippet
+  - tenant
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/types/system/SubscriptionPlan.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/snippets/types/system/SubscriptionPlan.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/types/system/SubscriptionPlan.v1.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
@@ -2448,6 +3218,30 @@ metadata:
     backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/fields/TenantId.json
     backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/snippets/fields/TenantId.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/fields/TenantId.v1.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: snippets-tentant-permission
+  title: Tenant Permission
+  description: A canonical enum of permissions a user can have within a Tenant.
+  tags:
+  - auto-generated
+  - schema
+  - snippet
+  - tenant
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/types/security/TentantPermission.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/snippets/types/security/TentantPermission.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/types/security/TenantPermission.v1.json
 spec:
   type: library
   lifecycle: production
@@ -2470,6 +3264,77 @@ metadata:
     backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/snippets/fields/Theme.json
     familiar.dev/schema-id: https://familiar.dev/schemas/fields/Theme.v1.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: snippets-thread-state
+  title: Thread State
+  description: A canonical enum of all possible lifecycle states for a Thread entity.
+  tags:
+  - auto-generated
+  - entity
+  - schema
+  - snippet
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/types/lifecycles/ThreadState.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/snippets/types/lifecycles/ThreadState.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/types/lifecycles/ThreadState.v1.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: snippets-thread-state-reason
+  title: Thread State Reason
+  description: A canonical enum of the machine-readable reasons for a Thread state
+    change.
+  tags:
+  - auto-generated
+  - entity
+  - schema
+  - snippet
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/types/lifecycles/ThreadStateReason.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/snippets/types/lifecycles/ThreadStateReason.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/types/lifecycles/ThreadStateReason.v1.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: snippets-thread-state-response
+  title: Thread State Reason
+  description: A canonical enum of the machine-readable reasons for a Thread state
+    change.
+  tags:
+  - auto-generated
+  - entity
+  - schema
+  - snippet
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/types/lifecycles/ThreadStateResponse.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/snippets/types/lifecycles/ThreadStateResponse.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/types/lifecycles/ThreadStateReason.v1.json
 spec:
   type: library
   lifecycle: production
@@ -2514,6 +3379,30 @@ metadata:
     backstage.io/techdocs-ref: dir:.
     familiar.dev/schema-file: schemas/snippets/types/primitives/Timestamp.json
     familiar.dev/schema-id: https://familiar.dev/schemas/types/primitives/Timestamp.v1.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: snippets-user-id
+  title: User ID Field
+  description: A reusable definition for a unique user identifier, typically corresponding
+    to the user's ID in the authentication system.
+  tags:
+  - auto-generated
+  - schema
+  - snippet
+  - tenant
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/fields/UserId.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/snippets/fields/UserId.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/fields/UserId.v1.json
 spec:
   type: library
   lifecycle: production
@@ -2593,6 +3482,28 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
+  name: snippets-workflow-state
+  title: Workflow State
+  description: Represents the state of a long-running, orchestrated workflow.
+  tags:
+  - auto-generated
+  - schema
+  - snippet
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/snippets/types/workflow/WorkflowState.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/snippets/types/workflow/WorkflowState.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/types/workflow/WorkflowState.v1.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
   name: tables-bond_state_log.table
   title: Bond State Log Table
   description: Defines the schema for the 'bond_state_log' database table, which stores
@@ -2621,8 +3532,7 @@ kind: Component
 metadata:
   name: tables-thread_state_log
   title: Thread State Log Table
-  description: Defines the schema for the 'thread_state_log' database table, which
-    stores an append-only history of a Thread's lifecycle state.
+  description: Defines the schema for the 'thread_state_log' database table...
   tags:
   - auto-generated
   - entity
@@ -2710,6 +3620,33 @@ spec:
   lifecycle: production
   owner: user:default/phaiel
   system: familiar-schema-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: workflows-ingestion-workflow
+  title: Ingestion Workflow
+  description: The canonical DAG for processing a user's Weave, performing reconciliation,
+    and producing a Draft entity ready for creation.
+  tags:
+  - auto-generated
+  - entity
+  - schema
+  - tenant
+  annotations:
+    github.com/project-slug: phaiel/familiar-schema
+    backstage.io/source-location: url:https://github.com/phaiel/familiar-schema/blob/main/schemas/workflows/IngestionWorkflow.schema.json
+    backstage.io/techdocs-ref: dir:.
+    familiar.dev/schema-file: schemas/workflows/IngestionWorkflow.schema.json
+    familiar.dev/schema-id: https://familiar.dev/schemas/workflows/IngestionWorkflow.v1.schema.json
+spec:
+  type: library
+  lifecycle: production
+  owner: user:default/phaiel
+  system: familiar-schema-system
+  partOf: component:default/base-workflow
+  dependsOn:
+  - component:default/base-workflow
 ---
 apiVersion: backstage.io/v1alpha1
 kind: User

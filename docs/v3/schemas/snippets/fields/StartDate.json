@@ -2,5 +2,5 @@
   "$id": "https://familiar.dev/schemas/fields/StartDate.v1.json",
   "title": "Start Date Field",
   "description": "The timestamp when an event, task, or focus becomes active.",
-  "type": "date-time"
+  "$ref": "../types/primitives/Timestamp.json"
 }

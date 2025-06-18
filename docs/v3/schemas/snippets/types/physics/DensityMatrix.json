@@ -1,0 +1,14 @@
+{
+  "$id": "https://familiar.dev/schemas/types/physics/DensityMatrix.v1.json",
+  "title": "Density Matrix",
+  "description": "A 2x2 matrix of complex numbers representing a quantum state.",
+  "type": "array",
+  "items": {
+    "type": "array",
+    "items": { "$ref": "./ComplexNumber.json" },
+    "minItems": 2,
+    "maxItems": 2
+  },
+  "minItems": 2,
+  "maxItems": 2
+}

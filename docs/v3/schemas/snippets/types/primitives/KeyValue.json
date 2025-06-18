@@ -1,0 +1,17 @@
+{
+  "$id": "https://familiar.dev/schemas/types/primitives/KeyValueMetadata.v1.json",
+  "title": "Key-Value Metadata",
+  "description": "A flexible but structured key-value map for attaching arbitrary, namespaced metadata to an entity or component.",
+  "type": "object",
+  "patternProperties": {
+    "^[a-z_]+$": {
+      "type": "object",
+      "patternProperties": {
+        "^[a-z_]+$": {
+          "type": ["string", "number", "boolean"]
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

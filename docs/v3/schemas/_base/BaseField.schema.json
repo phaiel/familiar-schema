@@ -5,9 +5,9 @@
   "description": "Defines the structure for a single, inline field definition within a component.",
   "type": "object",
   "properties": {
-    "description": { "type": "string" },
+    "description": { "$ref": "../snippets/fields/Description.json" },
     "type": { "$ref": "./BaseTypeSystem.schema.json" },
-    "default": { "$ref": "../snippets/types/primitives/AnyValue.json" },
+    "default_value": { "$ref": "../snippets/types/primitives/AnyValue.json" },
     "constraints": { "$ref": "../snippets/types/validation/ConstraintDefinition.json" },
     "ui_label": { "type": "string" }
   },

@@ -20,12 +20,7 @@
     },
     "user_evidence_weights": {
       "description": "A map of User ID to an evidence weight (0.0-1.0), used to decide if an entity should be deleted or just recomputed upon user erasure.",
-      "type": "object",
-      "patternProperties": {
-        "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$": {
-          "type": "number", "minimum": 0.0, "maximum": 1.0
-        }
-      }
+      "$ref": "../snippets/types/physics/EntanglementMap.json"
     }
   }
 }

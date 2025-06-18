@@ -105,7 +105,9 @@
         "moment_id": { "$snippet": "fields/EntityId.json" },
         "perspective_superposition": {
           "description": "Quantum state representing the Thread's subjective perspective of the Moment.",
-          "type": { "$ref": "../_base/SharedDefinitions.schema.json#/$defs/types/DensityMatrix" }
+            "type": {
+              "$ref": "../snippets/types/physics/DensityMatrix.json"
+              } 
         },
         "instance_details": {
           "description": "Specific instance details of any objects involved in the experience.",

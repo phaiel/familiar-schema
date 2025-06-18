@@ -1,0 +1,7 @@
+{
+  "$id": "https://familiar.dev/schemas/types/system/ConsolidationLevel.v1.json",
+  "title": "Consolidation Level",
+  "description": "A canonical enum for the temporal consolidation level of a Motif or Filament.",
+  "type": "string",
+  "enum": ["Daily", "Weekly", "Monthly", "Yearly", "Archived"]
+}

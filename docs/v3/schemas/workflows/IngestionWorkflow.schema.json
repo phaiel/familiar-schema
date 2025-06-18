@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://familiar.dev/schemas/workflows/IngestionWorkflow.v1.schema.json",
+  "title": "Ingestion Workflow",
+  "description": "The canonical DAG for processing a user's Weave, performing reconciliation, and producing a Draft entity ready for creation.",
+  "allOf": [{ "$ref": "../_base/BaseWorkflow.schema.json" }],
+  "schema_version": "1.0.0",
+  "tasks": [
+    {
+      "id": "penates_spooling",
+      "type": "script",
+      "path": "cognitive/penates_spooler.py",
+      "description": "Task for the Penates agent. Deconstructs a raw WeavePayload into one or more WeaveUnitPayloads.",
+      "input_schema": "https://familiar.dev/schemas/payloads/WeavePayload.v1.schema.json",
+      "output_schema": "https://familiar.dev/schemas/payloads/WeaveUnitPayload.v1.schema.json"
+    },
+    {
+      "id": "parallel_reconciliation",
+      "type": "parallel",
+      "description": "The Heddle engine. Runs the three reconciliation tasks simultaneously for a given WeaveUnit.",
+      "depends_on": ["penates_spooling"],
+      "tasks": [
+        {
+          "id": "structural_reconciliation",
+          "type": "script",
+          "path": "cognitive/heddle_reconciliation.py",
+          "args": { "config_path": "config/reconciliation/structural_reconciliation.yaml" }
+        },
+        {
+          "id": "emotional_reconciliation",
+          "type": "script",
+          "path": "cognitive/heddle_reconciliation.py",
+          "args": { "config_path": "config/reconciliation/emotional_reconciliation.yaml" }
+        },
+        {
+          "id": "identity_reconciliation",
+          "type": "script",
+          "path": "cognitive/heddle_reconciliation.py",
+          "args": { "config_path": "config/reconciliation/identity_reconciliation.yaml" }
+        }
+      ]
+    },
+    {
+      "id": "decima_beater",
+      "type": "script",
+      "path": "cognitive/decima_beater.py",
+      "description": "Task for the Decima agent. Takes a fully reconciled ShuttlePayload and produces a final DraftPayload.",
+      "depends_on": ["parallel_reconciliation"],
+      "input_schema": "https://familiar.dev/schemas/payloads/ShuttlePayload.v1.schema.json",
+      "output_schema": "https://familiar.dev/schemas/payloads/DraftPayload.v1.schema.json"
+    },
+    {
+      "id": "commit_to_ecs",
+      "type": "script",
+      "path": "physics/commit_draft.rs",
+      "description": "The final step. A system (non-agent) task that takes a DraftPayload and performs the database writes to create the entity in the ECS.",
+      "depends_on": ["decima_beater"],
+      "input_schema": "https://familiar.dev/schemas/payloads/DraftPayload.v1.schema.json"
+    }
+  ]
+}

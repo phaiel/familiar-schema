@@ -10,12 +10,10 @@
     "properties": {
       "bond_id": { "$ref": "../snippets/fields/EntityId.json" },
       "new_state": {
-        "type": "string",
-        "enum": ["Active", "Strained", "Dissolved", "Rekindled"]
+        "$ref": "../snippets/types/lifecycles/BondState.json"
       },
       "reason": {
-        "type": "string",
-        "enum": ["UserInitiated", "SystemDetectedStrain", "PartnerAccountErased", "RelationshipEnded"]
+        "$ref": "../snippets/types/lifecycles/BondStateReason.json"
       }
     },
     "required": ["bond_id", "new_state"]

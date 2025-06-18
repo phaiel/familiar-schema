@@ -89,11 +89,14 @@ def resolve_ref_references(obj, snippets, schemas_dir, visited=None):
             if '../snippets/' in ref_path:
                 # Convert relative path to snippet key
                 snippet_key = ref_path.replace('../snippets/', '')
-            elif ref_path.startswith('../') and any(snip_dir in ref_path for snip_dir in ['workflow/', 'database/', 'primitives/', 'physics/', 'validation/']):
-                # Handle references within snippets like "../workflow/TaskDefinition.json"
+            elif ref_path.startswith('../') and any(snip_dir in ref_path for snip_dir in ['fields/', 'types/', 'workflow/', 'database/', 'primitives/', 'physics/', 'validation/', 'security/', 'social/']):
+                # Handle references within snippets like "../fields/CompletedAt.json" or "../types/primitives/NullableTimestamp.json"
                 snippet_key = ref_path.replace('../', '')
-                if not snippet_key.startswith('types/'):
-                    snippet_key = f"types/{snippet_key}"
+                # Ensure proper path structure for types
+                if not snippet_key.startswith(('fields/', 'types/')):
+                    # If it starts with a subdirectory name, it's likely a types reference
+                    if any(snippet_key.startswith(subdir) for subdir in ['workflow/', 'database/', 'primitives/', 'physics/', 'validation/', 'security/', 'social/']):
+                        snippet_key = f"types/{snippet_key}"
             
             # If this is not a snippet reference, leave the $ref as-is
             if snippet_key is None:
@@ -129,6 +132,26 @@ def resolve_ref_references(obj, snippets, schemas_dir, visited=None):
     else:
         return obj
 
+def resolve_ref_references_multipass(obj, snippets, schemas_dir, max_passes=5):
+    """Resolve $ref references with multiple passes to handle nested snippet chains."""
+    current_obj = obj
+    
+    for pass_num in range(max_passes):
+        # Convert to JSON and back to ensure we can detect changes
+        before_json = json.dumps(current_obj, sort_keys=True)
+        
+        # Apply one pass of reference resolution
+        current_obj = resolve_ref_references(current_obj, snippets, schemas_dir)
+        
+        # Check if anything changed
+        after_json = json.dumps(current_obj, sort_keys=True)
+        
+        if before_json == after_json:
+            # No changes made, we're done
+            break
+    
+    return current_obj
+
 def copy_base_schemas(schemas_dir, assembled_dir, snippets):
     """Copy and process base schemas to assembled directory."""
     base_dir = schemas_dir / '_base'
@@ -143,8 +166,8 @@ def copy_base_schemas(schemas_dir, assembled_dir, snippets):
             # Load the schema
             schema_data = load_json_file(schema_file)
             if schema_data:
-                # Resolve $ref references to snippets
-                resolved_schema = resolve_ref_references(schema_data, snippets, schemas_dir)
+                # Resolve $ref references to snippets with multi-pass
+                resolved_schema = resolve_ref_references_multipass(schema_data, snippets, schemas_dir)
                 
                 # Write the processed schema
                 dest_file = assembled_base_dir / schema_file.name
@@ -157,7 +180,7 @@ def copy_base_schemas(schemas_dir, assembled_dir, snippets):
                 shutil.copy2(schema_file, dest_file)
                 print(f"✓ Copied base schema {schema_file.name} (no processing)")
 
-def resolve_schema_references(obj, assembled_dir):
+def resolve_schema_references(obj, assembled_dir, current_dir=None):
     """Recursively resolve $ref references to assembled schemas by inlining their content."""
     if isinstance(obj, dict):
         if '$ref' in obj:
@@ -173,9 +196,20 @@ def resolve_schema_references(obj, assembled_dir):
                     clean_path = ref_path.replace('../', '')
                     schema_file = assembled_dir / clean_path
                 elif ref_path.startswith('./'):
-                    # Convert ./ to ../_base/ (most component references are to base schemas)
-                    clean_path = ref_path.replace('./', '_base/')
-                    schema_file = assembled_dir / clean_path
+                    # Handle ./ references - these are relative to current directory
+                    if ref_path.startswith('./_base/'):
+                        # Entity references to ./_base/ should go to assembled _base/
+                        clean_path = ref_path.replace('./_base/', '_base/')
+                        schema_file = assembled_dir / clean_path
+                    else:
+                        # Other ./ references - use current directory context if available
+                        clean_path = ref_path[2:]  # Remove './'
+                        if current_dir:
+                            # Resolve relative to current directory
+                            schema_file = current_dir / clean_path
+                        else:
+                            # Fallback to _base/ assumption
+                            schema_file = assembled_dir / '_base' / clean_path
                     
                 if schema_file and schema_file.exists():
                     # Load and inline the referenced schema
@@ -188,7 +222,7 @@ def resolve_schema_references(obj, assembled_dir):
                             referenced_schema.pop('$schema')
                         
                         # Recursively resolve references in the inlined schema
-                        resolved_schema = resolve_schema_references(referenced_schema, assembled_dir)
+                        resolved_schema = resolve_schema_references(referenced_schema, assembled_dir, schema_file.parent)
                         return resolved_schema
                     else:
                         print(f"⚠️  Warning: Could not load referenced schema: {schema_file}")
@@ -201,13 +235,13 @@ def resolve_schema_references(obj, assembled_dir):
             return obj
         else:
             # Regular object, recursively resolve
-            return {k: resolve_schema_references(v, assembled_dir) for k, v in obj.items()}
+            return {k: resolve_schema_references(v, assembled_dir, current_dir) for k, v in obj.items()}
     elif isinstance(obj, list):
-        return [resolve_schema_references(item, assembled_dir) for item in obj]
+        return [resolve_schema_references(item, assembled_dir, current_dir) for item in obj]
     else:
         return obj
 
-def _resolve_allof(schema: dict, assembled_dir: Path) -> dict:
+def _resolve_allof(schema: dict, assembled_dir: Path, schema_dir: Path = None) -> dict:
     """
     Recursively resolves and inlines `$ref`s within an `allOf` array and other schema references.
     This ensures schemas are fully dereferenced for quicktype.
@@ -237,13 +271,17 @@ def _resolve_allof(schema: dict, assembled_dir: Path) -> dict:
                 elif ref_path_str.startswith('./'):
                     ref_path_str = ref_path_str[2:]  # Remove './'
                 
-                ref_path = (assembled_dir / ref_path_str).resolve()
+                # Resolve path relative to schema directory if provided, otherwise assembled_dir
+                if schema_dir and ref_path_str and not ref_path_str.startswith('_base/'):
+                    ref_path = (schema_dir / ref_path_str).resolve()
+                else:
+                    ref_path = (assembled_dir / ref_path_str).resolve()
 
                 if ref_path.exists():
                     ref_schema = load_json_file(ref_path)
                     if ref_schema:
                         # Recursively resolve the referenced schema first
-                        resolved_ref = _resolve_allof(ref_schema, assembled_dir)
+                        resolved_ref = _resolve_allof(ref_schema, assembled_dir, ref_path.parent)
                         
                         # Merge properties and required fields
                         new_properties.update(resolved_ref.get('properties', {}))
@@ -273,15 +311,24 @@ def _resolve_allof(schema: dict, assembled_dir: Path) -> dict:
                 if isinstance(ref_path_str, str) and ref_path_str.endswith('.schema.json'):
                     # Handle path resolution
                     if ref_path_str.startswith('./'):
-                        ref_path_str = '_base/' + ref_path_str[2:]
+                        # For ./ references, resolve relative to schema directory if available
+                        ref_path_str = ref_path_str[2:]
+                        if schema_dir:
+                            ref_path = (schema_dir / ref_path_str).resolve()
+                        else:
+                            ref_path = (assembled_dir / '_base' / ref_path_str).resolve()
                     elif ref_path_str.startswith('../_base/'):
                         ref_path_str = ref_path_str[3:]
-                    
-                    ref_path = (assembled_dir / ref_path_str).resolve()
+                        ref_path = (assembled_dir / ref_path_str).resolve()
+                    elif ref_path_str.startswith('../'):
+                        ref_path_str = ref_path_str[3:]
+                        ref_path = (assembled_dir / ref_path_str).resolve()
+                    else:
+                        ref_path = (assembled_dir / ref_path_str).resolve()
                     if ref_path.exists():
                         ref_schema = load_json_file(ref_path)
                         if ref_schema:
-                            resolved_ref = _resolve_allof(ref_schema, assembled_dir)
+                            resolved_ref = _resolve_allof(ref_schema, assembled_dir, ref_path.parent)
                             # Remove schema metadata to avoid conflicts
                             if '$id' in resolved_ref:
                                 resolved_ref.pop('$id')
@@ -313,8 +360,8 @@ def copy_entity_base_schemas(schemas_dir, assembled_dir, snippets):
             # Load the schema
             schema_data = load_json_file(schema_file)
             if schema_data:
-                # Resolve $ref references to snippets
-                resolved_schema = resolve_ref_references(schema_data, snippets, schemas_dir)
+                # Resolve $ref references to snippets with multi-pass
+                resolved_schema = resolve_ref_references_multipass(schema_data, snippets, schemas_dir)
                 
                 # Write the processed schema
                 dest_file = assembled_base_dir / schema_file.name
@@ -350,8 +397,8 @@ def copy_static_component_schemas(schemas_dir, assembled_dir, snippets, manifest
             # Load the schema
             schema_data = load_json_file(schema_file)
             if schema_data:
-                # Resolve $ref references to snippets
-                resolved_schema = resolve_ref_references(schema_data, snippets, schemas_dir)
+                # Resolve $ref references to snippets with multi-pass
+                resolved_schema = resolve_ref_references_multipass(schema_data, snippets, schemas_dir)
                 
                 # Write the processed schema
                 dest_file = assembled_components_dir / schema_file.name
@@ -378,11 +425,11 @@ def copy_entity_schemas(schemas_dir, assembled_dir, snippets):
             # Load the schema
             schema_data = load_json_file(schema_file)
             if schema_data:
-                # First resolve snippet references
-                resolved_schema = resolve_ref_references(schema_data, snippets, schemas_dir)
+                # First resolve snippet references with multi-pass
+                resolved_schema = resolve_ref_references_multipass(schema_data, snippets, schemas_dir)
                 
                 # Then resolve schema references by inlining assembled schemas
-                fully_resolved_schema = resolve_schema_references(resolved_schema, assembled_dir)
+                fully_resolved_schema = resolve_schema_references(resolved_schema, assembled_dir, assembled_entities_dir)
                 
                 # Write the fully resolved schema
                 dest_file = assembled_entities_dir / schema_file.name
@@ -409,12 +456,12 @@ def copy_schema_directory(schemas_dir, assembled_dir, snippets, dir_name, full_d
             # Load the schema
             schema_data = load_json_file(schema_file)
             if schema_data:
-                # First resolve snippet references
-                resolved_schema = resolve_ref_references(schema_data, snippets, schemas_dir)
+                # First resolve snippet references with multi-pass
+                resolved_schema = resolve_ref_references_multipass(schema_data, snippets, schemas_dir)
                 
                 # Optionally resolve schema references by inlining (for entities)
                 if full_dereference:
-                    resolved_schema = resolve_schema_references(resolved_schema, assembled_dir)
+                    resolved_schema = resolve_schema_references(resolved_schema, assembled_dir, assembled_target_dir)
                 
                 # Write the processed schema
                 dest_file = assembled_target_dir / schema_file.name
@@ -530,7 +577,7 @@ def main():
             schema_data = load_json_file(schema_file)
             if schema_data and 'allOf' in schema_data:
                 # Resolve the `allOf` references by inlining
-                resolved_schema = _resolve_allof(schema_data, assembled_dir)
+                resolved_schema = _resolve_allof(schema_data, assembled_dir, schema_file.parent)
                 
                 # Write the fully resolved schema back to the same file
                 with open(schema_file, 'w', encoding='utf-8') as f:

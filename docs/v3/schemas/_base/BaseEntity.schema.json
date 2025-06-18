@@ -4,27 +4,12 @@
   "title": "Base Entity",
   "description": "The absolute base schema for any persistent, identifiable object in the system, whether cognitive or systemic. Defines the universal properties shared by all entities.",
   "type": "object",
-  "allOf": [
-    {
-      "$ref": "./BaseMetadata.schema.json"
-    }
-  ],
-  "required": [ "entity_id", "tenant_id", "created_at" ],
+  "allOf": [{ "$ref": "./BaseMetadata.schema.json" }],
+  "schema_version": "1.1.0",
   "properties": {
-    "created_at": {
-      "description": "The immutable timestamp of the entity's creation.",
-      "type": "string",
-      "format": "date-time"
-    },
-    "entity_id": {
-      "description": "The unique, immutable identifier for the entity.",
-      "type": "string",
-      "format": "uuid"
-    },
-    "tenant_id": {
-      "description": "The user tenant this entity belongs to.",
-      "type": "string",
-      "format": "uuid"
-    }
-  }
+    "entity_id": { "$ref": "../snippets/fields/EntityId.json" },
+    "tenant_id": { "$ref": "../snippets/fields/TenantId.json" },
+    "created_at": { "$ref": "../snippets/fields/CreatedAt.json" }
+  },
+  "required": ["entity_id", "tenant_id", "created_at"]
 }

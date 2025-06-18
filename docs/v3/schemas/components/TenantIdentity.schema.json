@@ -4,17 +4,21 @@
   "title": "Tenant Identity Component",
   "description": "Defines the core identity and metadata for a Tenant.",
   "allOf": [{ "$ref": "../_base/BaseComponent.schema.json" }],
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "physics_properties": { "engine": "classical", "is_quantum": false },
-  "fields": {
-    "tenant_name": {
-      "description": "The human-readable name of the tenant, e.g., 'The Smith Family'.",
-      "type": "string"
-    },
-    "subscription_plan": {
-      "description": "The subscription plan associated with this tenant.",
-      "type": "string",
-      "enum": ["Free", "Personal", "FamilyPlus", "Enterprise"]
+  "properties": {
+    "fields": {
+      "type": "object",
+      "properties": {
+        "tenant_name": { "$ref": "../snippets/fields/Name.json" },
+        "subscription_plan": {
+          "description": "The subscription plan associated with this tenant.",
+          "$ref": "../snippets/types/system/SubscriptionPlan.json"
+        
+        }
+      },
+      "required": ["tenant_name", "subscription_plan"],
+      "additionalProperties": false
     }
   }
 }

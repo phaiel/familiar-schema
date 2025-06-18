@@ -6,13 +6,13 @@
   "properties": {
     "user_id": {
       "description": "The global unique identifier for the user.",
-      "$ref": "../primitives/UUID.schema.json"
+      "$ref": "../primitives/UUID.json"
     },
     "role": {
       "$ref": "./Role.json"
     },
     "joined_at": {
-      "$ref": "../primitives/Timestamp.schema.json"
+      "$ref": "../primitives/Timestamp.json"
     }
   },
   "required": ["user_id", "role", "joined_at"]

@@ -4,18 +4,18 @@
   "title": "Bond Content Component",
   "description": "Defines the descriptive content and history of a relationship Bond.",
   "allOf": [{ "$ref": "../_base/BaseComponent.schema.json" }],
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "physics_properties": { "engine": "classical", "is_quantum": false },
-  "fields": {
-    "relationship_type": {
-      "description": "The type of relationship this bond represents.",
-      "type": { "$ref": "../snippets/types/social/RelationshipType.json" }
-    },
-    "description": { "$ref": "../snippets/fields/Description.json" },
-    "history": {
-      "description": "A log of significant events that have impacted this bond over time.",
-      "type": "array",
-      "items": { "$ref": "../snippets/types/social/BondEvent.json" }
+  "properties": {
+    "fields": {
+      "type": "object",
+      "properties": {
+        "relationship_type": { "$ref": "../snippets/types/social/RelationshipType.json" },
+        "description": { "$ref": "../snippets/fields/Description.json" },
+        "history": { "type": "array", "items": { "$ref": "../snippets/types/social/BondEvent.json" } }
+      },
+      "required": ["relationship_type"],
+      "additionalProperties": false
     }
   }
 }

@@ -4,26 +4,26 @@
   "title": "Cross-Tenant Link Component",
   "description": "Manages a link to a Thread in another tenant, enabling federated relationships.",
   "allOf": [{ "$ref": "../_base/BaseComponent.schema.json" }],
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "physics_properties": { "engine": "classical", "is_quantum": false },
-  "fields": {
-    "remote_tenant_id": {
-      "description": "The ID of the tenant where the linked Thread resides.",
-      "$ref": "../snippets/fields/TenantId.json"
-    },
-    "remote_thread_id": {
-      "description": "The ID of the Thread in the remote tenant.",
-      "$ref": "../snippets/fields/EntityId.json"
-    },
-    "link_status": {
-      "description": "The status of the cross-tenant link.",
-      "type": "string",
-      "enum": ["PendingApproval", "Approved", "Revoked", "Declined"]
-    },
-    "permissions_granted": {
-      "description": "A list of permissions granted by the remote user for this link.",
-      "type": "array",
-      "items": { "type": "string", "enum": ["ViewSharedMoments", "ViewBondStrength"] }
+  "properties": {
+    "fields": {
+      "type": "object",
+      "properties": {
+        "remote_tenant_id": { "$ref": "../snippets/fields/TenantId.json" },
+        "remote_thread_id": { "$ref": "../snippets/fields/EntityId.json" },
+        "link_status": {
+          "description": "The status of the cross-tenant link.",
+          "$ref": "../snippets/types/system/LinkStatus.json"
+        },
+        "permissions_granted": {
+          "description": "A list of permissions granted by the remote user for this link.",
+          "type": "array",
+          "items": { "$ref": "../snippets/types/security/BondPermission.json" }
+        }
+      },
+      "required": ["remote_tenant_id", "remote_thread_id", "link_status"],
+      "additionalProperties": false
     }
   }
 }

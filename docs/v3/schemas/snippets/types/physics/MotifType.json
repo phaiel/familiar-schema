@@ -1,0 +1,7 @@
+{
+  "$id": "https://familiar.dev/schemas/types/physics/MotifType.v1.json",
+  "title": "Motif Type",
+  "description": "A canonical enum of the types of recurring themes or motifs in memory.",
+  "type": "string",
+  "enum": ["Behavioral", "Emotional", "Situational", "Temporal"]
+}

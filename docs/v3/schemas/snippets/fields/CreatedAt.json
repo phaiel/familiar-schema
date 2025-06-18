@@ -1,6 +1,6 @@
 {
+  "$id": "https://familiar.dev/schemas/fields/CreatedAt.v1.json",
   "title": "Created At Field",
   "description": "A reusable definition for an immutable creation timestamp.",
-  "type": "string",
-  "format": "date-time"
+  "$ref": "../types/primitives/Timestamp.json"
 }

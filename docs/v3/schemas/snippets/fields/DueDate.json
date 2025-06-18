@@ -2,6 +2,5 @@
   "$id": "https://familiar.dev/schemas/fields/DueDate.v1.json",
   "title": "Due Date Field",
   "description": "An optional due date for a task or goal.",
-  "type": "date-time",
-  "nullable": true
+  "$ref": "../types/primitives/NullableTimestamp.json"
 }

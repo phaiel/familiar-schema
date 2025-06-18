@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://familiar.dev/schemas/payloads/CoursePayload.v1.schema.json",
+  "title": "Course Payload",
+  "description": "Represents a high-level, long-running cognitive analysis task or workflow.",
+  "allOf": [{ "$ref": "../_base/BasePayload.schema.json" }],
+  "schema_version": "1.0.0",
+  "data": {
+    "type": "object",
+    "properties": {
+      "analysis_type": {
+        "description": "The type of deep analysis to be performed.",
+        "type": "string",
+        "enum": ["CorrelationAnalysis", "StructuralResonance", "DensityIntelligence"]
+      },
+      "query": { "type": "string" },
+      "status": { "$ref": "../snippets/fields/Status.json" },
+      "active_shuttle_ids": { "$ref": "../snippets/types/primitives/EntityIdList.json" }
+    },
+    "required": ["analysis_type", "query", "status"]
+  }
+}

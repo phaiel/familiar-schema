@@ -12,7 +12,7 @@
     },
     "workflow_state": {
       "description": "The current state of the entity's workflow.",
-      "$ref": "../../_base/SharedDefinitions.schema.json#/$defs/types/WorkflowState"
+      "$ref": "../snippets/types/workflow/WorkflowState.json"
     }
   },
   "required": ["entity_type"],

@@ -4,39 +4,14 @@
   "title": "Base Event",
   "description": "The base schema for all events published to the Redpanda streaming platform.",
   "type": "object",
-  "allOf": [
-    {
-      "$ref": "./BaseMetadata.schema.json"
-    }
-  ],
-  "required": [
-    "event_id",
-    "trace_id",
-    "timestamp",
-    "source_service",
-    "payload"
-  ],
+  "allOf": [{ "$ref": "./BaseMetadata.schema.json" }],
+  "schema_version": "1.1.0",
   "properties": {
-    "event_id": {
-      "type": "string",
-      "format": "uuid"
-    },
-    "payload": {
-      "description": "The event-specific data payload. The schema for this payload should be defined by the specific event type.",
-      "type": "object"
-    },
-    "source_service": {
-      "description": "The service that published the event.",
-      "type": "string"
-    },
-    "timestamp": {
-      "type": "string",
-      "format": "date-time"
-    },
-    "trace_id": {
-      "description": "Identifier for the entire workflow trace (e.g., Windmill DAG run ID).",
-      "type": "string",
-      "format": "uuid"
-    }
-  }
+    "event_id": { "$ref": "../snippets/fields/EntityId.json" },
+    "trace_id": { "$ref": "../snippets/fields/EntityId.json" },
+    "timestamp": { "$ref": "../snippets/fields/CreatedAt.json" },
+    "source_service": { "type": "string" },
+    "payload": { "type": "object" }
+  },
+  "required": ["event_id", "trace_id", "timestamp", "source_service", "payload"]
 }

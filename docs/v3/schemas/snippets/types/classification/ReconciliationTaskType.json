@@ -1,0 +1,11 @@
+{
+  "$id": "https://familiar.dev/schemas/types/classification/ReconciliationTaskType.v1.json",
+  "title": "Reconciliation Task Type",
+  "description": "A canonical enum for the types of reconciliation tasks performed by the Heddle engine.",
+  "type": "string",
+  "enum": [
+    "Structural",
+    "Emotional",
+    "Identity"
+  ]
+}

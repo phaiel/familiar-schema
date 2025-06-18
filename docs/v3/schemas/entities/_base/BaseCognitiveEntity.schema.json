@@ -23,15 +23,7 @@
     },
     "entity_type": {
       "description": "The canonical type of the cognitive entity.",
-      "enum": [
-        "Focus",
-        "Filament",
-        "Motif",
-        "Intent",
-        "Moment",
-        "Bond",
-        "Thread"
-      ]
+      "$ref": "../../snippets/types/classification/EntityType.json"
     }
   }
 }

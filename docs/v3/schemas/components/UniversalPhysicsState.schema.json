@@ -7,21 +7,19 @@
   "schema_version": "3.0.0",
   "type": "object",
   "properties": {
-    "energy": { "$ref": "../_base/SharedDefinitions.schema.json#/$defs/fields/Energy" },
-    "momentum": { "$ref": "../_base/SharedDefinitions.schema.json#/$defs/types/Vec6" },
-    "cognitive_perspective": { "$ref": "../_base/SharedDefinitions.schema.json#/$defs/types/CognitivePerspective" },
-    "decay_rate": { "$ref": "../_base/SharedDefinitions.schema.json#/$defs/fields/DecayRate" },
-    "consolidation_rate": { "$ref": "../_base/SharedDefinitions.schema.json#/$defs/fields/ConsolidationRate" },
-    "quantum_coherence": { "$ref": "../_base/SharedDefinitions.schema.json#/$defs/fields/QuantumCoherence" },
-    "entanglement_strength": { "$ref": "../_base/SharedDefinitions.schema.json#/$defs/fields/EntanglementStrength" }
-  },
-  "required": [
-    "energy",
-    "momentum",
-    "cognitive_perspective",
-    "decay_rate",
-    "consolidation_rate",
-    "quantum_coherence",
-    "entanglement_strength"
-  ]
+    "fields": {
+      "type": "object",
+      "properties": {
+        "energy": { "$ref": "../snippets/fields/Energy.json" },
+        "momentum": { "type": { "$ref": "../snippets/types/physics/Vec6.json" } },
+        "cognitive_perspective": { "$ref": "../snippets/fields/CognitivePerspective.json" },
+        "decay_rate": { "$ref": "../snippets/fields/DecayRate.json" },
+        "consolidation_rate": { "$ref": "../snippets/fields/ConsolidationRate.json" },
+        "quantum_coherence": { "$ref": "../snippets/fields/QuantumCoherence.json" },
+        "entanglement_strength": { "$ref": "../snippets/fields/EntanglementStrength.json" }
+      },
+      "required": ["energy", "momentum", "cognitive_perspective", "decay_rate", "consolidation_rate", "quantum_coherence", "entanglement_strength"],
+      "additionalProperties": false
+    }
+  }
 }

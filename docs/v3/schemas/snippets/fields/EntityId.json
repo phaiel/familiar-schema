@@ -1,4 +1,5 @@
 {
+  "$id": "https://familiar.dev/schemas/fields/EntityId.v1.json",
   "title": "Entity ID Field",
   "description": "A reusable definition for a unique entity identifier.",
   "type": "string",

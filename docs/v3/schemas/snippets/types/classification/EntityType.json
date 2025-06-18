@@ -1,0 +1,15 @@
+{
+  "$id": "https://familiar.dev/schemas/types/classification/EntityType.v1.json",
+  "title": "Entity Type",
+  "description": "A canonical enum of all 7 cognitive entity types.",
+  "type": "string",
+  "enum": [
+    "Focus",
+    "Filament",
+    "Motif",
+    "Intent",
+    "Moment",
+    "Bond",
+    "Thread"
+  ]
+}

@@ -1,6 +1,7 @@
 {
+  "$id": "https://familiar.dev/schemas/fields/Description.v1.json",
   "title": "Description Field",
-  "description": "A detailed description of the entity.",
+  "description": "A canonical, reusable definition for a human-readable description field.",
   "type": "string",
   "default": ""
-} 
+}

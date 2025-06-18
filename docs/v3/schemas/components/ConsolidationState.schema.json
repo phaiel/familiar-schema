@@ -4,26 +4,22 @@
   "title": "Consolidation State Component",
   "description": "Tracks the temporal consolidation state of a Motif or Filament.",
   "allOf": [{ "$ref": "../_base/BaseComponent.schema.json" }],
-  "schema_version": "1.0.0",
+  "schema_version": "1.2.0",
   "physics_properties": { "engine": "classical", "is_quantum": false },
-  "fields": {
-    "consolidation_level": {
-      "description": "The current level of temporal consolidation.",
-      "type": "string",
-      "enum": ["Daily", "Weekly", "Monthly", "Yearly", "Archived"]
-    },
-    "last_consolidated_at": {
-      "description": "The timestamp of the last consolidation event.",
-      "type": "date-time"
-    },
-    "next_consolidation_due": {
-      "description": "The timestamp when this entity is eligible for the next level of consolidation.",
-      "type": "date-time"
-    },
-    "source_entity_count": {
-      "description": "The number of lower-level entities that were consolidated into this one.",
-      "type": "integer",
-      "minimum": 1
+  "properties": {
+    "fields": {
+      "type": "object",
+      "properties": {
+        "consolidation_level": {
+          "description": "The current level of temporal consolidation.",
+          "$ref": "../snippets/types/system/ConsolidationLevel.json"
+        },
+        "last_consolidated_at": { "$ref": "../snippets/fields/CompletedAt.json" },
+        "next_consolidation_due": { "$ref": "../snippets/fields/DueDate.json" },
+        "source_entity_count": { "type": "integer", "minimum": 1 }
+      },
+      "required": ["consolidation_level", "last_consolidated_at", "next_consolidation_due", "source_entity_count"],
+      "additionalProperties": false
     }
   }
 }

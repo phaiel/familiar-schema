@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://familiar.dev/schemas/events/MomentAccessed.v1.schema.json",
+  "title": "Moment Accessed Event",
+  "description": "Published when a Moment entity is accessed, triggering the MemoryConsolidation law.",
+  "allOf": [{ "$ref": "../_base/BaseEvent.schema.json" }],
+  "schema_version": "1.0.0",
+  "payload": {
+    "type": "object",
+    "properties": {
+      "moment_id": { "$ref": "../snippets/fields/EntityId.json" },
+      "accessed_by_user_id": { "$ref": "../snippets/fields/UserId.json" },
+      "access_type": { "$ref": "../snippets/fields/AccessType.json" },
+      "access_context": {
+        "description": "Optional context about the access, like the search query ID or agent task ID.",
+        "type": "string",
+        "nullable": true
+      }
+    },
+    "required": ["moment_id", "accessed_by_user_id", "access_type"]
+  }
+}

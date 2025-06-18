@@ -1,0 +1,12 @@
+{
+  "$id": "https://familiar.dev/schemas/types/classification/MomentType.v1.json",
+  "title": "Moment Type",
+  "description": "A canonical enum for the classification of a Moment entity's content.",
+  "type": "string",
+  "enum": [
+    "Event",
+    "Experience",
+    "Observation",
+    "Interaction"
+  ]
+}

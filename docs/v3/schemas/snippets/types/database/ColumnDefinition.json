@@ -4,7 +4,7 @@
   "description": "Schema for defining a database table column.",
   "type": "object",
   "properties": {
-    "name": { "type": "string" },
+    "name": { "$ref": "../../fields/Name.json" },
     "type": { "type": "string", "enum": ["string", "integer", "boolean", "timestamp", "uuid"] },
     "nullable": { "type": "boolean", "default": false },
     "primary_key": { "type": "boolean", "default": false },

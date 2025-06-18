@@ -18,7 +18,7 @@
       "description": "The human-readable label (e.g., 'Simple', 'Individual', 'Sleep').",
       "type": "string"
     },
-    "description": { "type": "string" },
+    "description": { "$ref": "../snippets/fields/Description.json" },
     "embedding_context": {
       "description": "OPTIONAL: Rich text fed into a Sentence Transformer to generate the canonical embedding for this concept. Omit for rule-based classifications.",
       "type": "string"

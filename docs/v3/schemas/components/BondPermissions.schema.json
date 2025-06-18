@@ -10,7 +10,7 @@
     "owner_permissions": {
       "description": "Permissions for the owner of the bond (the user in the current tenant).",
       "type": "array",
-      "items": { "type": "string", "enum": ["Read", "Write", "Delete", "Share"] },
+      "items": { "$ref": "../snippets/types/security/BondPermissions.json" },
       "default": ["Read", "Write", "Delete", "Share"]
     },
     "subject_permissions": {

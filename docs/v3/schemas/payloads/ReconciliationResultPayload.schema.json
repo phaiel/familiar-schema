@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://familiar.dev/schemas/payloads/ReconciliationResultPayload.v1.schema.json",
+  "title": "Reconciliation Result Payload",
+  "description": "The structured output from a single Heddle reconciliation task.",
+  "allOf": [{ "$ref": "../_base/BasePayload.schema.json" }],
+  "schema_version": "1.1.0",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "task_type": { "$ref": "../snippets/types/classification/ReconciliationTaskType.json" },
+        "selected_candidate_id": { "type": "string" },
+        "confidence_score": { "type": "number" },
+        "agent_reasoning": { "type": "string" }
+      },
+      "required": ["task_type", "selected_candidate_id", "confidence_score"]
+    }
+  }
+}

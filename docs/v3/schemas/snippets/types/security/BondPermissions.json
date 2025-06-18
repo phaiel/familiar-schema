@@ -1,0 +1,7 @@
+{
+  "$id": "https://familiar.dev/schemas/types/security/BondPermission.v1.json",
+  "title": "Bond Permission",
+  "description": "A canonical enum of permissions related to a Bond.",
+  "type": "string",
+  "enum": ["Read", "Write", "Delete", "Share"]
+}
