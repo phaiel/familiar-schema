@@ -42,6 +42,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
+      - name: "Generate Rust Types"
+        run: make --file docs/v3/Makefile generate-types
+
       - name: "Run Local Validation & Build Pipeline"
         # This runs all the local checks defined in the Makefile.
         # If any of these fail, the entire workflow stops here.
