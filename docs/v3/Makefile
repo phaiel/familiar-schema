@@ -3,10 +3,10 @@
 # ==============================================================================
 
 # --- Configuration ---
-SCHEMA_DIR := ./schemas
+SCHEMA_DIR := docs/v3/schemas
 ASSEMBLED_DIR := $(SCHEMA_DIR)/assembled
-BUNDLED_DIR := ./dist/bundled_schemas
-VISUAL_DIR := ./dist/visual
+BUNDLED_DIR := docs/v3/dist/bundled_schemas
+VISUAL_DIR := docs/v3/dist/visual
 
 # Find assembled schemas (output of the assembly process)
 ASSEMBLED_SCHEMAS := $(shell find $(ASSEMBLED_DIR) -name "*.schema.json" 2>/dev/null)
@@ -24,7 +24,7 @@ ci: all
 # Step 1: Assemble final schemas from templates and snippets using Jinja2
 assemble:
 	@echo "🧩 Assembling final schemas from templates and snippets..."
-	@python3 scripts/assemble_schemas.py
+	@python3 docs/v3/scripts/assemble_schemas.py
 	@echo "✅ Schema assembly complete."
 
 # Step 2: Validate the assembled schemas
@@ -44,7 +44,7 @@ validate: assemble
 generate-types: bundle
 	@echo "Generating Rust types from bundled schemas..."
 	@quicktype --src-lang schema --lang rust \
-		-s $(firstword $(subst /,\,/,$*)) \
+		-s $(firstword $(subst /,\\,/,$*)) \
 		--src docs/v3/dist/bundled_schemas/ \
 		-o src/generated/types/all_generated_types.rs \
 		--top-level-rust-types \
@@ -53,12 +53,12 @@ generate-types: bundle
 # Step 4: Generate Backstage catalog from schemas
 generate-catalog:
 	@echo "Generating Backstage catalog..."
-	@python3 scripts/generate_catalog_info.py --schemas-dir ../schemas --output ../../catalog-info.yaml
+	@python3 docs/v3/scripts/generate_catalog_info.py --schemas-dir docs/v3/schemas --output catalog-info.yaml
 
 # Step 5: Generate comprehensive documentation
 generate-docs: validate
 	@echo "📚 Generating comprehensive documentation from schemas..."
-	@python3 scripts/generate_docs.py
+	@python3 docs/v3/scripts/generate_docs.py
 	@echo "✅ Documentation generated."
 
 # Step 5: Optional bundling for external tool compatibility
@@ -98,15 +98,15 @@ list-assembled:
 analyze-types: generate-types
 	@echo "🔍 Analyzing generated Rust code for type inference issues..."
 	@echo "Looking for HashMap<String, Option<serde_json::Value>> patterns..."
-	@grep -n "HashMap<String, Option<serde_json::Value>>" ../../src/generated/types/familiar_types.rs || echo "✅ No generic HashMaps found"
+	@grep -n "HashMap<String, Option<serde_json::Value>>" src/generated/types/familiar_types.rs || echo "✅ No generic HashMaps found"
 	@echo "Looking for Option<serde_json::Value> patterns..."
-	@grep -n "Option<serde_json::Value>" ../../src/generated/types/familiar_types.rs || echo "✅ No generic Options found"
+	@grep -n "Option<serde_json::Value>" src/generated/types/familiar_types.rs || echo "✅ No generic Options found"
 
 # Quick validation of source templates (before assembly)
 validate-templates:
 	@echo "🔍 Quick validation of source templates..."
-	@find ./schemas/templates -name "*.jinja" -exec echo "Checking template: {}" \;
-	@find ./schemas/snippets -name "*.json" -exec jsonschema metaschema {} \;
+	@find docs/v3/schemas/templates -name "*.jinja" -exec echo "Checking template: {}" \;
+	@find docs/v3/schemas/snippets -name "*.json" -exec jsonschema metaschema {} \;
 	@echo "✅ Template and snippet validation successful."
 
 # Schema Registry targets removed - using simpler assembly approach
@@ -115,6 +115,6 @@ validate-templates:
 clean:
 	@echo "🧹 Cleaning generated artifacts..."
 	@rm -rf $(ASSEMBLED_DIR)
-	@rm -rf ./dist
-	@rm -f ../../src/generated/types/*.rs
+	@rm -rf docs/v3/dist
+	@rm -f src/generated/types/*.rs
 	@echo "✅ Cleanup complete."
