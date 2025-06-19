@@ -345,26 +345,38 @@ class SchemaCatalogGenerator:
         """Generates the static, high-level architecture components for the catalog."""
         core_components = [
             # --------------------------------------------------------------------------
-            # Teams (Groups)
+            # Ownership: Teams (kind: Group)
             # --------------------------------------------------------------------------
             {
                 "apiVersion": "backstage.io/v1alpha1", "kind": "Group",
-                "metadata": {"name": "team-system-architecture", "title": "System Architecture Team"},
+                "metadata": {
+                    "name": "team-system-architecture", "title": "System Architecture Team",
+                    "description": "Owns the overall system design and foundational principles."
+                },
                 "spec": {"type": "team", "children": []}
             },
             {
                 "apiVersion": "backstage.io/v1alpha1", "kind": "Group",
-                "metadata": {"name": "team-platform-infrastructure", "title": "Platform Infrastructure Team"},
+                "metadata": {
+                    "name": "team-platform-infrastructure", "title": "Platform Infrastructure Team",
+                    "description": "Owns the API gateway, databases, and deployment infrastructure."
+                },
                 "spec": {"type": "team", "children": []}
             },
             {
                 "apiVersion": "backstage.io/v1alpha1", "kind": "Group",
-                "metadata": {"name": "team-cognitive-modeling", "title": "Cognitive Modeling Team"},
+                "metadata": {
+                    "name": "team-cognitive-modeling", "title": "Cognitive Modeling Team",
+                    "description": "Owns the agentic framework and high-level cognitive analysis."
+                },
                 "spec": {"type": "team", "children": []}
             },
             {
                 "apiVersion": "backstage.io/v1alpha1", "kind": "Group",
-                "metadata": {"name": "team-physics-core", "title": "Physics Core Team"},
+                "metadata": {
+                    "name": "team-physics-core", "title": "Physics Core Team",
+                    "description": "Owns the implementation of the quantum and classical physics engines."
+                },
                 "spec": {"type": "team", "children": []}
             },
 
@@ -415,6 +427,53 @@ class SchemaCatalogGenerator:
             },
             {
                 "apiVersion": "backstage.io/v1alpha1", "kind": "Component",
+                "metadata": {
+                    "name": "agentic-ingestion-service", "title": "Agentic Ingestion Service (The Loom)",
+                    "description": "A Windmill-orchestrated service that consumes user 'weaves' and uses an agentic pipeline (The Heddle) to create cognitive entities."
+                },
+                "spec": {
+                    "type": "service", "lifecycle": "production", "owner": "team-cognitive-modeling",
+                    "system": "familiar-physics-engine", "subcomponentOf": "physics-engine-core",
+                    "dependsOn": ["resource:default/redpanda-cluster", "resource:default/timescaledb-physics-db", "component:default/quantum-physics-service"]
+                }
+            },
+            {
+                "apiVersion": "backstage.io/v1alpha1", "kind": "Component",
+                "metadata": {
+                    "name": "physics-engine-core", "title": "Core Physics Engine",
+                    "description": "The central ECS world and physics simulation engine, containing both quantum and classical sub-services."
+                },
+                "spec": {
+                    "type": "library", "lifecycle": "production", "owner": "team-physics-core",
+                    "system": "familiar-physics-engine"
+                }
+            },
+            {
+                "apiVersion": "backstage.io/v1alpha1", "kind": "Component",
+                "metadata": {
+                    "name": "quantum-physics-service", "title": "Quantum Physics Service (QuTiP)",
+                    "description": "A Python-based service responsible for all quantum calculations, including superposition, coherence, and collapse, using the QuTiP library."
+                },
+                "spec": {
+                    "type": "service", "lifecycle": "production", "owner": "team-physics-core",
+                    "system": "familiar-physics-engine", "subcomponentOf": "physics-engine-core",
+                    "dependsOn": ["resource:default/redpanda-cluster"]
+                }
+            },
+            {
+                "apiVersion": "backstage.io/v1alpha1", "kind": "Component",
+                "metadata": {
+                    "name": "classical-physics-service", "title": "Classical Physics Service (Particular)",
+                    "description": "A Rust-based service responsible for all classical N-body physics simulations, including bond tension and energy dynamics, using the Particular library."
+                },
+                "spec": {
+                    "type": "service", "lifecycle": "production", "owner": "team-physics-core",
+                    "system": "familiar-physics-engine", "subcomponentOf": "physics-engine-core",
+                    "dependsOn": ["resource:default/redpanda-cluster"]
+                }
+            },
+            {
+                "apiVersion": "backstage.io/v1alpha1", "kind": "Component",
                 "metadata": {"name": "schema-assembly-pipeline", "title": "Schema Assembly Pipeline"},
                 "spec": {
                     "type": "library", "lifecycle": "production", "owner": "team-platform-infrastructure",
@@ -427,12 +486,47 @@ class SchemaCatalogGenerator:
             # --------------------------------------------------------------------------
             {
                 "apiVersion": "backstage.io/v1alpha1", "kind": "API",
-                "metadata": {"name": "physics-engine-public-api", "title": "Familiar Physics Public API"},
+                "metadata": {
+                    "name": "physics-engine-public-api", "title": "Familiar Physics Public API",
+                    "description": "The public-facing API for submitting data and receiving real-time updates from the physics engine."
+                },
                 "spec": {
                     "type": "openapi", "lifecycle": "production", "owner": "team-platform-infrastructure",
                     "system": "familiar-physics-engine",
                     "definition": "$text: ./docs/v3/schemas/api/README.md"
                 }
+            },
+            {
+                "apiVersion": "backstage.io/v1alpha1", "kind": "API",
+                "metadata": {
+                    "name": "quantum-classical-handoff-api", "title": "Quantum-Classical Handoff API",
+                    "description": "The internal event-based API for managing state transitions between the quantum and classical engines, defined by the CollapsePayload schema."
+                },
+                "spec": {
+                    "type": "asyncapi", "lifecycle": "production", "owner": "team-physics-core",
+                    "system": "familiar-physics-engine",
+                    "definition": "$text: ./docs/v3/schemas/payloads/collapse_payload.schema.json"
+                }
+            },
+
+            # --------------------------------------------------------------------------
+            # Resources
+            # --------------------------------------------------------------------------
+            {
+                "apiVersion": "backstage.io/v1alpha1", "kind": "Resource",
+                "metadata": {
+                    "name": "timescaledb-physics-db", "title": "TimescaleDB Physics Database",
+                    "description": "The primary time-series vector database for storing all immutable entity versions and mutable physics states."
+                },
+                "spec": {"type": "database", "owner": "team-platform-infrastructure", "system": "familiar-physics-engine"}
+            },
+            {
+                "apiVersion": "backstage.io/v1alpha1", "kind": "Resource",
+                "metadata": {
+                    "name": "redpanda-cluster", "title": "Redpanda Streaming Cluster",
+                    "description": "The event streaming platform that enables asynchronous, event-driven communication between all system components."
+                },
+                "spec": {"type": "messaging-queue", "owner": "team-platform-infrastructure", "system": "familiar-physics-engine"}
             }
         ]
         return core_components
