@@ -431,6 +431,7 @@ class SchemaCatalogGenerator:
                 "spec": {
                     "type": "service", "lifecycle": "production", "owner": "team-cognitive-modeling",
                     "system": "familiar-physics-engine", "subcomponentOf": "component:default/physics-engine-core",
+                    "consumesApis": ["api:default/quantum-classical-handoff-api"],
                     "dependsOn": ["resource:default/redpanda-cluster", "resource:default/timescaledb-physics-db", "component:default/quantum-physics-service"]
                 }
             },
@@ -456,6 +457,7 @@ class SchemaCatalogGenerator:
                 "spec": {
                     "type": "service", "lifecycle": "production", "owner": "team-physics-core",
                     "system": "familiar-physics-engine", "subcomponentOf": "component:default/physics-engine-core",
+                    "consumesApis": ["api:default/quantum-classical-handoff-api"],
                     "dependsOn": ["resource:default/redpanda-cluster"]
                 }
             },
@@ -468,6 +470,7 @@ class SchemaCatalogGenerator:
                 "spec": {
                     "type": "service", "lifecycle": "production", "owner": "team-physics-core",
                     "system": "familiar-physics-engine", "subcomponentOf": "component:default/physics-engine-core",
+                    "consumesApis": ["api:default/quantum-classical-handoff-api"],
                     "dependsOn": ["resource:default/redpanda-cluster"]
                 }
             },
@@ -482,6 +485,19 @@ class SchemaCatalogGenerator:
                     "system": "familiar-physics-engine",
                     "providesApis": ["api:default/physics-engine-public-api"],
                     "dependsOn": ["resource:default/redpanda-cluster"]
+                }
+            },
+            {
+                "apiVersion": "backstage.io/v1alpha1", "kind": "Component",
+                "metadata": {
+                    "name": "cognitive-management-ui", "title": "Cognitive Management UI",
+                    "description": "User-facing web application for managing ground-truth entities like Threads and Bonds."
+                },
+                "spec": {
+                    "type": "website", "lifecycle": "production", "owner": "team-platform-infrastructure",
+                    "system": "familiar-physics-engine",
+                    "consumesApis": ["api:default/physics-engine-public-api", "api:default/graphql-api"],
+                    "dependsOn": ["component:default/physics-api-gateway"]
                 }
             },
             {
