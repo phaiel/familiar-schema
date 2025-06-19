@@ -25,7 +25,7 @@ jobs:
 
       - name: "Install Schema & Dev Tools"
         run: |
-          npm install -g @sourcemeta/jsonschema-cli
+          npm install -g jsonschema-cli
           npm install -g quicktype-cli
           npm install -g json-dereference-cli
 
