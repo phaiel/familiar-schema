@@ -344,9 +344,9 @@ class SchemaCatalogGenerator:
     def generate_core_architecture_components(self) -> List[Dict]:
         """Generates the static, high-level architecture components for the catalog."""
         core_components = [
-            # --------------------------------------------------------------------------
+            # ==========================================================================
             # Ownership: Teams (kind: Group)
-            # --------------------------------------------------------------------------
+            # ==========================================================================
             {
                 "apiVersion": "backstage.io/v1alpha1", "kind": "Group",
                 "metadata": {
@@ -380,9 +380,17 @@ class SchemaCatalogGenerator:
                 "spec": {"type": "team", "children": []}
             },
 
-            # --------------------------------------------------------------------------
-            # Systems
-            # --------------------------------------------------------------------------
+            # ==========================================================================
+            # Domains & Systems
+            # ==========================================================================
+            {
+                "apiVersion": "backstage.io/v1alpha1", "kind": "Domain",
+                "metadata": {
+                    "name": "cognitive-systems",
+                    "description": "Systems related to cognitive modeling, simulation, and analysis."
+                },
+                "spec": {"owner": "team-system-architecture"}
+            },
             {
                 "apiVersion": "backstage.io/v1alpha1", "kind": "System",
                 "metadata": {
@@ -399,30 +407,19 @@ class SchemaCatalogGenerator:
                 },
                 "spec": {"owner": "team-system-architecture", "domain": "cognitive-systems"}
             },
-            
-            # --------------------------------------------------------------------------
-            # Domains
-            # --------------------------------------------------------------------------
-            {
-                "apiVersion": "backstage.io/v1alpha1", "kind": "Domain",
-                "metadata": {"name": "cognitive-systems", "title": "Cognitive Systems Domain"},
-                "spec": {"owner": "team-system-architecture"}
-            },
-            
-            # --------------------------------------------------------------------------
-            # Core Components (Services, Libraries)
-            # --------------------------------------------------------------------------
+
+            # ==========================================================================
+            # Components: Core Services, Libraries, and Workflows
+            # ==========================================================================
             {
                 "apiVersion": "backstage.io/v1alpha1", "kind": "Component",
                 "metadata": {
-                    "name": "physics-api-gateway", "title": "Physics API Gateway",
-                    "description": "The primary user-facing event gateway. Translates user actions into Redpanda events and streams real-time updates."
+                    "name": "physics-engine-core", "title": "Core Physics Engine Library",
+                    "description": "The central library containing the ECS world, physics laws, and simulation logic. It is not a standalone service but the heart of other services."
                 },
                 "spec": {
-                    "type": "service", "lifecycle": "production", "owner": "team-platform-infrastructure",
-                    "system": "familiar-physics-engine",
-                    "providesApis": ["physics-engine-public-api"],
-                    "dependsOn": ["resource:default/redpanda-cluster"]
+                    "type": "library", "lifecycle": "production", "owner": "team-physics-core",
+                    "system": "familiar-physics-engine"
                 }
             },
             {
@@ -433,19 +430,21 @@ class SchemaCatalogGenerator:
                 },
                 "spec": {
                     "type": "service", "lifecycle": "production", "owner": "team-cognitive-modeling",
-                    "system": "familiar-physics-engine", "subcomponentOf": "physics-engine-core",
+                    "system": "familiar-physics-engine", "subcomponentOf": "component:default/physics-engine-core",
                     "dependsOn": ["resource:default/redpanda-cluster", "resource:default/timescaledb-physics-db", "component:default/quantum-physics-service"]
                 }
             },
             {
                 "apiVersion": "backstage.io/v1alpha1", "kind": "Component",
                 "metadata": {
-                    "name": "physics-engine-core", "title": "Core Physics Engine",
-                    "description": "The central ECS world and physics simulation engine, containing both quantum and classical sub-services."
+                    "name": "cognitive-analysis-engine", "title": "Cognitive Analysis Engine",
+                    "description": "Provides the 5-level cognitive hierarchy for querying the memory manifold and generating scientifically-grounded insights."
                 },
                 "spec": {
-                    "type": "library", "lifecycle": "production", "owner": "team-physics-core",
-                    "system": "familiar-physics-engine"
+                    "type": "service", "lifecycle": "production", "owner": "team-cognitive-modeling",
+                    "system": "familiar-physics-engine", "subcomponentOf": "component:default/physics-engine-core",
+                    "providesApis": ["api:default/graphql-api"],
+                    "dependsOn": ["resource:default/timescaledb-physics-db"]
                 }
             },
             {
@@ -456,7 +455,7 @@ class SchemaCatalogGenerator:
                 },
                 "spec": {
                     "type": "service", "lifecycle": "production", "owner": "team-physics-core",
-                    "system": "familiar-physics-engine", "subcomponentOf": "physics-engine-core",
+                    "system": "familiar-physics-engine", "subcomponentOf": "component:default/physics-engine-core",
                     "dependsOn": ["resource:default/redpanda-cluster"]
                 }
             },
@@ -468,8 +467,43 @@ class SchemaCatalogGenerator:
                 },
                 "spec": {
                     "type": "service", "lifecycle": "production", "owner": "team-physics-core",
-                    "system": "familiar-physics-engine", "subcomponentOf": "physics-engine-core",
+                    "system": "familiar-physics-engine", "subcomponentOf": "component:default/physics-engine-core",
                     "dependsOn": ["resource:default/redpanda-cluster"]
+                }
+            },
+            {
+                "apiVersion": "backstage.io/v1alpha1", "kind": "Component",
+                "metadata": {
+                    "name": "physics-api-gateway", "title": "Physics API Gateway",
+                    "description": "The primary user-facing event gateway. Translates user actions into Redpanda events and streams real-time updates."
+                },
+                "spec": {
+                    "type": "service", "lifecycle": "production", "owner": "team-platform-infrastructure",
+                    "system": "familiar-physics-engine",
+                    "providesApis": ["api:default/physics-engine-public-api"],
+                    "dependsOn": ["resource:default/redpanda-cluster"]
+                }
+            },
+            {
+                "apiVersion": "backstage.io/v1alpha1", "kind": "Component",
+                "metadata": {
+                    "name": "dag-deep-cognitive-synthesis", "title": "DAG: Deep Cognitive Synthesis",
+                    "description": "The core Windmill workflow for answering complex user queries with a <10s SLA."
+                },
+                "spec": {
+                    "type": "service", "lifecycle": "production", "owner": "team-cognitive-modeling",
+                    "system": "familiar-physics-engine", "subcomponentOf": "component:default/agentic-ingestion-service"
+                }
+            },
+            {
+                "apiVersion": "backstage.io/v1alpha1", "kind": "Component",
+                "metadata": {
+                    "name": "dag-memory-consolidation", "title": "DAG: Memory Consolidation",
+                    "description": "The daily background Windmill workflow for consolidating memories and evolving Motifs."
+                },
+                "spec": {
+                    "type": "service", "lifecycle": "production", "owner": "team-physics-core",
+                    "system": "familiar-physics-engine", "subcomponentOf": "component:default/physics-engine-core"
                 }
             },
             {
@@ -481,19 +515,31 @@ class SchemaCatalogGenerator:
                 }
             },
 
-            # --------------------------------------------------------------------------
-            # APIs
-            # --------------------------------------------------------------------------
+            # ==========================================================================
+            # APIs: The Contracts
+            # ==========================================================================
             {
                 "apiVersion": "backstage.io/v1alpha1", "kind": "API",
                 "metadata": {
                     "name": "physics-engine-public-api", "title": "Familiar Physics Public API",
-                    "description": "The public-facing API for submitting data and receiving real-time updates from the physics engine."
+                    "description": "The public-facing REST/event API for submitting data and receiving real-time updates."
                 },
                 "spec": {
                     "type": "openapi", "lifecycle": "production", "owner": "team-platform-infrastructure",
                     "system": "familiar-physics-engine",
                     "definition": "$text: ./docs/v3/schemas/api/README.md"
+                }
+            },
+            {
+                "apiVersion": "backstage.io/v1alpha1", "kind": "API",
+                "metadata": {
+                    "name": "graphql-api", "title": "Cognitive Manifold GraphQL API",
+                    "description": "The GraphQL API for complex, physics-aware queries of the cognitive manifold."
+                },
+                "spec": {
+                    "type": "graphql", "lifecycle": "production", "owner": "team-cognitive-modeling",
+                    "system": "familiar-physics-engine",
+                    "definition": "$text: ./integration/database_data_management.md#complete-graphql-api-for-physics-integration"
                 }
             },
             {
@@ -509,9 +555,9 @@ class SchemaCatalogGenerator:
                 }
             },
 
-            # --------------------------------------------------------------------------
-            # Resources
-            # --------------------------------------------------------------------------
+            # ==========================================================================
+            # Resources: The Infrastructure
+            # ==========================================================================
             {
                 "apiVersion": "backstage.io/v1alpha1", "kind": "Resource",
                 "metadata": {
@@ -527,6 +573,14 @@ class SchemaCatalogGenerator:
                     "description": "The event streaming platform that enables asynchronous, event-driven communication between all system components."
                 },
                 "spec": {"type": "messaging-queue", "owner": "team-platform-infrastructure", "system": "familiar-physics-engine"}
+            },
+            {
+                "apiVersion": "backstage.io/v1alpha1", "kind": "Resource",
+                "metadata": {
+                    "name": "monitoring-stack", "title": "Monitoring & Observability Stack",
+                    "description": "The Prometheus, Grafana, and Jaeger stack for monitoring the health and performance of the physics engine."
+                },
+                "spec": {"type": "monitoring", "owner": "team-platform-infrastructure", "system": "familiar-physics-engine"}
             }
         ]
         return core_components
