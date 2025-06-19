@@ -19,7 +19,10 @@ import argparse
 
 class SchemaCatalogGenerator:
     def __init__(self, schemas_dir: str = "schemas"):
-        self.schemas_dir = Path(schemas_dir)
+        # Resolve schemas_dir relative to this script's location
+        script_dir = Path(__file__).parent
+        self.schemas_dir = (script_dir / schemas_dir).resolve()
+        
         self.schemas: Dict[str, Dict] = {}
         self.schema_files: Dict[str, str] = {}  # component_name -> file_path
         self.dependencies: Dict[str, Set[str]] = {}  # component_name -> set of dependencies
@@ -98,7 +101,8 @@ class SchemaCatalogGenerator:
                 
                 component_name = self.file_path_to_component_name(schema_file)
                 self.schemas[component_name] = schema_data
-                self.schema_files[component_name] = str(schema_file.relative_to(Path(".")))
+                # Use a path relative to the project root for consistency
+                self.schema_files[component_name] = str(schema_file.relative_to(self.schemas_dir.parent.parent))
                 
                 print(f"  Loaded: {component_name} <- {schema_file.relative_to(self.schemas_dir)}")
                 
@@ -337,6 +341,102 @@ class SchemaCatalogGenerator:
         
         return None
 
+    def generate_core_architecture_components(self) -> List[Dict]:
+        """Generates the static, high-level architecture components for the catalog."""
+        core_components = [
+            # --------------------------------------------------------------------------
+            # Teams (Groups)
+            # --------------------------------------------------------------------------
+            {
+                "apiVersion": "backstage.io/v1alpha1", "kind": "Group",
+                "metadata": {"name": "team-system-architecture", "title": "System Architecture Team"},
+                "spec": {"type": "team", "children": []}
+            },
+            {
+                "apiVersion": "backstage.io/v1alpha1", "kind": "Group",
+                "metadata": {"name": "team-platform-infrastructure", "title": "Platform Infrastructure Team"},
+                "spec": {"type": "team", "children": []}
+            },
+            {
+                "apiVersion": "backstage.io/v1alpha1", "kind": "Group",
+                "metadata": {"name": "team-cognitive-modeling", "title": "Cognitive Modeling Team"},
+                "spec": {"type": "team", "children": []}
+            },
+            {
+                "apiVersion": "backstage.io/v1alpha1", "kind": "Group",
+                "metadata": {"name": "team-physics-core", "title": "Physics Core Team"},
+                "spec": {"type": "team", "children": []}
+            },
+
+            # --------------------------------------------------------------------------
+            # Systems
+            # --------------------------------------------------------------------------
+            {
+                "apiVersion": "backstage.io/v1alpha1", "kind": "System",
+                "metadata": {
+                    "name": "familiar-physics-engine", "title": "Familiar Cognitive Physics Engine",
+                    "description": "A quantum-classical hybrid system for simulating cognitive processes, memory, and relationships.",
+                },
+                "spec": {"owner": "team-system-architecture", "domain": "cognitive-systems"}
+            },
+            {
+                "apiVersion": "backstage.io/v1alpha1", "kind": "System",
+                "metadata": {
+                    "name": "familiar-schema-system", "title": "Familiar Schema System",
+                    "description": "The foundational system for defining, generating, and managing all data schemas (the 'nouns')."
+                },
+                "spec": {"owner": "team-system-architecture", "domain": "cognitive-systems"}
+            },
+            
+            # --------------------------------------------------------------------------
+            # Domains
+            # --------------------------------------------------------------------------
+            {
+                "apiVersion": "backstage.io/v1alpha1", "kind": "Domain",
+                "metadata": {"name": "cognitive-systems", "title": "Cognitive Systems Domain"},
+                "spec": {"owner": "team-system-architecture"}
+            },
+            
+            # --------------------------------------------------------------------------
+            # Core Components (Services, Libraries)
+            # --------------------------------------------------------------------------
+            {
+                "apiVersion": "backstage.io/v1alpha1", "kind": "Component",
+                "metadata": {
+                    "name": "physics-api-gateway", "title": "Physics API Gateway",
+                    "description": "The primary user-facing event gateway. Translates user actions into Redpanda events and streams real-time updates."
+                },
+                "spec": {
+                    "type": "service", "lifecycle": "production", "owner": "team-platform-infrastructure",
+                    "system": "familiar-physics-engine",
+                    "providesApis": ["physics-engine-public-api"],
+                    "dependsOn": ["resource:default/redpanda-cluster"]
+                }
+            },
+            {
+                "apiVersion": "backstage.io/v1alpha1", "kind": "Component",
+                "metadata": {"name": "schema-assembly-pipeline", "title": "Schema Assembly Pipeline"},
+                "spec": {
+                    "type": "library", "lifecycle": "production", "owner": "team-platform-infrastructure",
+                    "system": "familiar-schema-system"
+                }
+            },
+
+            # --------------------------------------------------------------------------
+            # APIs
+            # --------------------------------------------------------------------------
+            {
+                "apiVersion": "backstage.io/v1alpha1", "kind": "API",
+                "metadata": {"name": "physics-engine-public-api", "title": "Familiar Physics Public API"},
+                "spec": {
+                    "type": "openapi", "lifecycle": "production", "owner": "team-platform-infrastructure",
+                    "system": "familiar-physics-engine",
+                    "definition": "$text: ./docs/v3/schemas/api/README.md"
+                }
+            }
+        ]
+        return core_components
+
     def generate_component_entry(self, component_name: str) -> Dict:
         """Generate a single Backstage component entry for a schema."""
         schema = self.schemas[component_name]
@@ -421,9 +521,16 @@ class SchemaCatalogGenerator:
 
     def generate_catalog_info(self) -> List[Dict]:
         """Generate a list of all catalog component entries."""
+        self.load_all_schemas()
+        self.analyze_dependencies()
+        
         print("\nGenerating catalog entries...")
         
-        all_components = []
+        all_components = self.generate_core_architecture_components()
+        
+        print(f"Generated {len(all_components)} core architecture components.")
+        print("\nGenerating schema component entries...")
+
         for component_name in sorted(self.schemas.keys()):
             entry = self.generate_component_entry(component_name)
             all_components.append(entry)
@@ -452,8 +559,6 @@ class SchemaCatalogGenerator:
     def run(self, output_file: str):
         """Execute the full catalog generation process."""
         print("=== Familiar Schema Catalog Generator ===")
-        self.load_all_schemas()
-        self.analyze_dependencies()
         self.write_catalog_info(output_file)
         print("=======================================")
 
@@ -462,8 +567,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate Backstage catalog-info.yaml from JSON schemas.")
     parser.add_argument(
         "--schemas-dir",
-        default="docs/v3/schemas",
-        help="Path to the directory containing JSON schemas."
+        default="schemas",
+        help="Path to the directory containing JSON schemas, relative to the script's location."
     )
     parser.add_argument(
         "--output",

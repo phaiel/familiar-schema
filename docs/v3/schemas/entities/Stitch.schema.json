@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://familiar.dev/schemas/entities/Stitch.v1.schema.json",
+  "title": "Stitch Entity",
+  "description": "A system entity that represents a cognitive dissonance or ambiguity that requires resolution, often through a Human-in-the-Loop workflow.",
+  "allOf": [{ "$ref": "./_base/BaseSystemEntity.schema.json" }],
+  "properties": {
+    "entity_type": { "const": "Stitch" },
+    "components": {
+      "type": "object",
+      "properties": {
+        "dissonance_details": {
+          "description": "Details about the cognitive conflict.",
+          "type": "object",
+          "properties": {
+            "dissonance_type": {
+              "description": "The type of cognitive conflict detected.",
+              "$ref": "../snippets/types/system/DissonanceType.json"
+            },
+            "source_entities": {
+              "description": "A list of entity IDs involved in the dissonance.",
+              "$ref": "../snippets/fields/EntityIdList.json"
+            },
+            "severity": {
+              "description": "The calculated severity of the conflict, from 0.0 (minor) to 1.0 (critical).",
+              "type": "number",
+              "minimum": 0.0,
+              "maximum": 1.0
+            }
+          },
+          "required": ["dissonance_type", "source_entities", "severity"]
+        },
+        "resolution_request": {
+          "description": "The structured request for human input, if escalation is needed.",
+          "$ref": "../payloads/StitchInteractionRequest.schema.json",
+          "nullable": true
+        }
+      },
+      "required": ["dissonance_details"]
+    }
+  },
+  "required": ["components"]
+}

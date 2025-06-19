@@ -1,0 +1,12 @@
+{
+  "$id": "https://familiar.dev/schemas/types/system/DissonanceType.v1.json",
+  "title": "Dissonance Type",
+  "description": "A canonical enum for the types of cognitive dissonance the system can detect.",
+  "type": "string",
+  "enum": [
+    "TemporalOverlap",
+    "LogicalContradiction",
+    "LowConfidencePattern",
+    "UnresolvedEntity"
+  ]
+}

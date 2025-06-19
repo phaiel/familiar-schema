@@ -41,22 +41,19 @@ validate: assemble
 	@echo "✅ Schema validation successful."
 
 # Step 3: Generate Rust types from assembled schemas  
-generate-types: assemble
-	@echo "🏗️ Generating pure Rust data structs from assembled schemas..."
-	@if [ -z "$(ASSEMBLED_SCHEMAS)" ]; then \
-		echo "❌ No assembled schemas found. Run 'make assemble' first."; \
-		exit 1; \
-	fi
-	@mkdir -p ../../src/generated/types
-	@quicktype --src-lang schema --lang rust --src $(ASSEMBLED_SCHEMAS) -o ../../src/generated/types/familiar_types.rs
-	@echo "✅ Rust code generated."
+generate-types: bundle
+	@echo "Generating Rust types from bundled schemas..."
+	@quicktype --src-lang schema --lang rust \
+		-s $(firstword $(subst /,\,/,$*)) \
+		--src docs/v3/dist/bundled_schemas/ \
+		-o src/generated/types/all_generated_types.rs \
+		--top-level-rust-types \
+		--derives "PartialEq, Clone, Debug, Serialize, Deserialize"
 
 # Step 4: Generate Backstage catalog from schemas
-generate-catalog: validate
-	@echo "📋 Generating Backstage catalog from schemas..."
-	@python3 scripts/generate_catalog_info.py
-	@cp catalog-info.yaml ../../catalog-info.yaml
-	@echo "✅ Backstage catalog generated."
+generate-catalog:
+	@echo "Generating Backstage catalog..."
+	@python3 scripts/generate_catalog_info.py --schemas-dir ../schemas --output ../../catalog-info.yaml
 
 # Step 5: Generate comprehensive documentation
 generate-docs: validate
@@ -79,8 +76,8 @@ bundle: assemble
 	@echo "✅ Schema bundling complete."
 
 # Step 6: Generate visualization files for JSON Crack
-visualize: assemble
-	@echo "🎨 Generating visualization files..."
+visualize: bundle
+	@echo "Copying bundled schema for visualization..."
 	@mkdir -p $(VISUAL_DIR)
 	@for schema_file in $(ASSEMBLED_SCHEMAS); do \
 		base_name=$$(basename $$schema_file .schema.json); \
@@ -119,5 +116,5 @@ clean:
 	@echo "🧹 Cleaning generated artifacts..."
 	@rm -rf $(ASSEMBLED_DIR)
 	@rm -rf ./dist
-	@rm -f ../../src/generated/types/*.rs  
+	@rm -f ../../src/generated/types/*.rs
 	@echo "✅ Cleanup complete."

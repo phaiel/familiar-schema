@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://familiar.dev/schemas/payloads/StitchInteractionResponse.schema.json",
+  "title": "StitchInteractionResponse",
+  "description": "Schema for the Redpanda event carrying the user's response back to the system to resolve a cognitive dissonance.",
+  "type": "object",
+  "properties": {
+    "stitch_id": {
+      "description": "The ID of the StitchEntity this response is for.",
+      "$ref": "../snippets/types/primitives/UUID.json"
+    },
+    "interaction_id": {
+      "description": "The ID of the specific interaction being responded to.",
+      "$ref": "../snippets/types/primitives/UUID.json"
+    },
+    "user_id": {
+      "description": "The ID of the user who provided the response.",
+      "$ref": "../snippets/fields/UserId.json"
+    },
+    "response_payload": {
+      "$ref": "#/$defs/StitchResponsePayload",
+      "description": "The user's chosen response payload."
+    },
+    "timestamp": {
+      "description": "The timestamp when the user submitted the response.",
+      "$ref": "../snippets/types/primitives/Timestamp.json"
+    }
+  },
+  "required": [
+    "stitch_id",
+    "interaction_id",
+    "user_id",
+    "response_payload",
+    "timestamp"
+  ],
+  "$defs": {
+    "StitchResponsePayload": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": { "Choice": { "type": "string", "description": "The ID of the chosen option from a MultipleChoice request." } },
+          "required": ["Choice"]
+        },
+        {
+          "type": "object",
+          "properties": { "Confirmed": { "type": "boolean", "description": "The boolean result of a Confirmation request." } },
+          "required": ["Confirmed"]
+        },
+        { "type": "object", "properties": { "Text": { "type": "string", "description": "The text provided in a FreeText request." } }, "required": ["Text"] }
+      ]
+    }
+  }
+}

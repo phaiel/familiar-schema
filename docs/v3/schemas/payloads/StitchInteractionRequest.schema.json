@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://familiar.dev/schemas/payloads/StitchInteractionRequest.schema.json",
+  "title": "StitchInteractionRequest",
+  "description": "The structured request for human input, embedded within a StitchEntity, used when the system requires user collaboration to resolve a cognitive dissonance.",
+  "type": "object",
+  "properties": {
+    "interaction_id": {
+      "description": "A unique identifier for this specific interaction request.",
+      "$ref": "../snippets/types/primitives/UUID.json"
+    },
+    "prompt_title": {
+      "description": "A short, user-facing title for the prompt (e.g., 'Duplicate Sleep Event Detected').",
+      "$ref": "../snippets/fields/Label.json"
+    },
+    "prompt_details": {
+      "description": "A user-facing explanation of the conflict and what information is needed (e.g., 'I found two logs for the same nap...').",
+      "$ref": "../snippets/fields/Description.json"
+    },
+    "interaction_type": {
+      "$ref": "#/$defs/StitchInteractionType",
+      "description": "The type of UI to present to the user for their response."
+    },
+    "agent_context": {
+      "description": "The agent's low-confidence analysis or reasoning for why it needs help, providing transparency to the user.",
+      "$ref": "../snippets/fields/Description.json"
+    }
+  },
+  "required": [
+    "interaction_id",
+    "prompt_title",
+    "prompt_details",
+    "interaction_type"
+  ],
+  "$defs": {
+    "StitchInteractionType": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": { "const": "MultipleChoice" },
+            "options": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": { "type": "string" },
+                  "label": { "$ref": "../snippets/fields/Label.json" },
+                  "description": { "$ref": "../snippets/fields/Description.json", "nullable": true }
+                },
+                "required": ["id", "label"]
+              }
+            }
+          },
+          "required": ["type", "options"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": { "const": "Confirmation" },
+            "confirm_text": { "$ref": "../snippets/fields/Label.json" },
+            "deny_text": { "$ref": "../snippets/fields/Label.json" }
+          },
+          "required": ["type"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": { "const": "FreeText" },
+            "placeholder": { "$ref": "../snippets/fields/Label.json" },
+            "submit_text": { "$ref": "../snippets/fields/Label.json" }
+          },
+          "required": ["type"]
+        }
+      ]
+    }
+  }
+}
