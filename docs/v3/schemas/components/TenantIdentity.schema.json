@@ -3,22 +3,34 @@
   "$id": "https://familiar.dev/schemas/components/TenantIdentity.v1.schema.json",
   "title": "Tenant Identity Component",
   "description": "Defines the core identity and metadata for a Tenant.",
-  "allOf": [{ "$ref": "../_base/BaseComponent.schema.json" }],
+  "allOf": [
+    {
+      "$ref": "../_base/BaseComponent.schema.json"
+    }
+  ],
   "schema_version": "1.1.0",
-  "physics_properties": { "engine": "classical", "is_quantum": false },
+  "physics_properties": {
+    "engine": "classical",
+    "is_quantum": false
+  },
   "properties": {
     "fields": {
       "type": "object",
       "properties": {
-        "tenant_name": { "$ref": "../snippets/fields/Name.json" },
+        "tenant_name": {
+          "$ref": "../snippets/fields/Name.json"
+        },
         "subscription_plan": {
           "description": "The subscription plan associated with this tenant.",
           "$ref": "../snippets/types/system/SubscriptionPlan.json"
-        
         }
       },
-      "required": ["tenant_name", "subscription_plan"],
-      "additionalProperties": false
+      "required": [
+        "tenant_name",
+        "subscription_plan"
+      ],
+      "additionalProperties": false,
+      "title": "TenantIdentityFields"
     }
   }
 }

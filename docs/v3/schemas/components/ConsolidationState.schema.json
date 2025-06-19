@@ -3,9 +3,16 @@
   "$id": "https://familiar.dev/schemas/components/ConsolidationState.v1.schema.json",
   "title": "Consolidation State Component",
   "description": "Tracks the temporal consolidation state of a Motif or Filament.",
-  "allOf": [{ "$ref": "../_base/BaseComponent.schema.json" }],
+  "allOf": [
+    {
+      "$ref": "../_base/BaseComponent.schema.json"
+    }
+  ],
   "schema_version": "1.2.0",
-  "physics_properties": { "engine": "classical", "is_quantum": false },
+  "physics_properties": {
+    "engine": "classical",
+    "is_quantum": false
+  },
   "properties": {
     "fields": {
       "type": "object",
@@ -14,12 +21,25 @@
           "description": "The current level of temporal consolidation.",
           "$ref": "../snippets/types/system/ConsolidationLevel.json"
         },
-        "last_consolidated_at": { "$ref": "../snippets/fields/CompletedAt.json" },
-        "next_consolidation_due": { "$ref": "../snippets/fields/DueDate.json" },
-        "source_entity_count": { "type": "integer", "minimum": 1 }
+        "last_consolidated_at": {
+          "$ref": "../snippets/fields/CompletedAt.json"
+        },
+        "next_consolidation_due": {
+          "$ref": "../snippets/fields/DueDate.json"
+        },
+        "source_entity_count": {
+          "type": "integer",
+          "minimum": 1
+        }
       },
-      "required": ["consolidation_level", "last_consolidated_at", "next_consolidation_due", "source_entity_count"],
-      "additionalProperties": false
+      "required": [
+        "consolidation_level",
+        "last_consolidated_at",
+        "next_consolidation_due",
+        "source_entity_count"
+      ],
+      "additionalProperties": false,
+      "title": "ConsolidationStateFields"
     }
   }
 }

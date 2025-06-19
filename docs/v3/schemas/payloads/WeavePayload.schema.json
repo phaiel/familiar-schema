@@ -3,16 +3,28 @@
   "$id": "https://familiar.dev/schemas/payloads/WeavePayload.v1.schema.json",
   "title": "Weave Payload",
   "description": "Represents a complete, raw text input from a user, ready for ingestion.",
-  "allOf": [{ "$ref": "../_base/BasePayload.schema.json" }],
+  "allOf": [
+    {
+      "$ref": "../_base/BasePayload.schema.json"
+    }
+  ],
   "schema_version": "1.0.0",
   "properties": {
     "data": {
       "type": "object",
       "properties": {
-        "text_content": { "type": "string" },
-        "source_type": { "$ref": "../snippets/types/classification/WeaveType.json" }
+        "text_content": {
+          "type": "string"
+        },
+        "source_type": {
+          "$ref": "../snippets/types/classification/WeaveType.json"
+        }
       },
-      "required": ["text_content", "source_type"]
+      "required": [
+        "text_content",
+        "source_type"
+      ],
+      "title": "WeaveData"
     }
   }
 }

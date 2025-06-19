@@ -4,21 +4,39 @@
   "title": "Generic Thread",
   "description": "A Thread representing a Place, Concept, or GenericObject, which MUST NOT have a CognitiveBaseline.",
   "type": "object",
-  "allOf": [{ "$ref": "../_base/BaseEntity.schema.json" }],
+  "allOf": [
+    {
+      "$ref": "../_base/BaseEntity.schema.json"
+    }
+  ],
   "properties": {
     "identity": {
       "$ref": "../components/ThreadContent.schema.json",
       "properties": {
-        "thread_type": { "enum": ["Place", "Concept", "GenericObject"] }
+        "thread_type": {
+          "enum": [
+            "Place",
+            "Concept",
+            "GenericObject"
+          ]
+        }
       }
     },
     "physics_state": {
       "type": "object",
       "properties": {
-        "universal": { "$ref": "../components/UniversalPhysicsState.schema.json" }
+        "universal": {
+          "$ref": "../components/UniversalPhysicsState.schema.json"
+        }
       },
-      "required": ["universal"]
+      "required": [
+        "universal"
+      ],
+      "title": "GenericThreadPhysicsState"
     }
   },
-  "required": ["identity", "physics_state"]
+  "required": [
+    "identity",
+    "physics_state"
+  ]
 }

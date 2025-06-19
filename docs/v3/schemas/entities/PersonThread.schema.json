@@ -4,28 +4,48 @@
   "title": "Person Thread",
   "description": "A Thread representing a person, which MUST have a CognitiveBaseline.",
   "type": "object",
-  "allOf": [{ "$ref": "../_base/BaseEntity.schema.json" }],
+  "allOf": [
+    {
+      "$ref": "../_base/BaseEntity.schema.json"
+    }
+  ],
   "properties": {
     "identity": {
       "$ref": "../components/ThreadContent.schema.json",
       "properties": {
-        "thread_type": { "const": "Person" }
+        "thread_type": {
+          "const": "Person"
+        }
       }
     },
     "components": {
       "type": "object",
       "properties": {
-        "cognitive_baseline": { "$ref": "../components/CognitiveBaseline.schema.json" }
+        "cognitive_baseline": {
+          "$ref": "../components/CognitiveBaseline.schema.json"
+        }
       },
-      "required": ["cognitive_baseline"]
+      "required": [
+        "cognitive_baseline"
+      ],
+      "title": "PersonThreadComponents"
     },
     "physics_state": {
       "type": "object",
       "properties": {
-        "universal": { "$ref": "../components/UniversalPhysicsState.schema.json" }
+        "universal": {
+          "$ref": "../components/UniversalPhysicsState.schema.json"
+        }
       },
-      "required": ["universal"]
+      "required": [
+        "universal"
+      ],
+      "title": "PersonThreadPhysicsState"
     }
   },
-  "required": ["identity", "components", "physics_state"]
+  "required": [
+    "identity",
+    "components",
+    "physics_state"
+  ]
 }

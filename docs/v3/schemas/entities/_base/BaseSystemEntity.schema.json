@@ -4,32 +4,58 @@
   "title": "Base System Entity",
   "description": "The base for system-level entities (e.g., Stitch, Tenant) that manage workflows. Inherits from BaseEntity and enforces the absence of physics components (Rules 17 & 18).",
   "type": "object",
-  "allOf": [{ "$ref": "../../_base/BaseEntity.schema.json" }],
+  "allOf": [
+    {
+      "$ref": "../../_base/BaseEntity.schema.json"
+    }
+  ],
   "properties": {
     "entity_type": {
       "description": "The canonical type of the system entity.",
-      "enum": ["Stitch", "WorkflowTask", "Tenant"]
+      "enum": [
+        "Stitch",
+        "WorkflowTask",
+        "Tenant"
+      ]
     },
     "workflow_state": {
       "description": "The current state of the entity's workflow.",
       "$ref": "../../snippets/types/workflow/WorkflowState.json"
     }
   },
-  "required": ["entity_type"],
+  "required": [
+    "entity_type"
+  ],
   "not": {
     "description": "Rule 17.2: System entities MUST NOT have physics components.",
     "properties": {
       "components": {
         "properties": {
-          "manifold_position": { "type": "object" },
-          "universal_physics_state": { "type": "object" }
+          "manifold_position": {
+            "type": "object",
+            "title": "BaseSystemManifoldPosition"
+          },
+          "universal_physics_state": {
+            "type": "object",
+            "title": "BaseSystemUniversalPhysicsState"
+          }
         },
         "anyOf": [
-          { "required": ["manifold_position"] },
-          { "required": ["universal_physics_state"] }
+          {
+            "required": [
+              "manifold_position"
+            ]
+          },
+          {
+            "required": [
+              "universal_physics_state"
+            ]
+          }
         ]
       }
     },
-    "required": ["components"]
+    "required": [
+      "components"
+    ]
   }
 }

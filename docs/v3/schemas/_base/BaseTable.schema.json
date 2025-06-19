@@ -4,7 +4,11 @@
   "title": "Base Database Table",
   "description": "The base schema for defining a database table.",
   "type": "object",
-  "allOf": [{ "$ref": "./BaseMetadata.schema.json" }],
+  "allOf": [
+    {
+      "$ref": "./BaseMetadata.schema.json"
+    }
+  ],
   "properties": {
     "tableName": {
       "description": "The physical name of the table in the database.",
@@ -16,8 +20,12 @@
       "type": "object",
       "additionalProperties": {
         "$ref": "../snippets/types/database/ColumnDefinition.json"
-      }
+      },
+      "title": "BaseDatabaseColumns"
     }
   },
-  "required": ["tableName", "columns"]
+  "required": [
+    "tableName",
+    "columns"
+  ]
 }

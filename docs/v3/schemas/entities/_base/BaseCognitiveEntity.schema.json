@@ -9,7 +9,10 @@
       "$ref": "../../_base/BaseEntity.schema.json"
     }
   ],
-  "required": [ "entity_type", "components" ],
+  "required": [
+    "entity_type",
+    "components"
+  ],
   "properties": {
     "components": {
       "type": "object",
@@ -19,7 +22,8 @@
           "type": "string",
           "description": "TODO: Re-enable component references when component schemas are available"
         }
-      }
+      },
+      "title": "BaseCognitiveComponents"
     },
     "entity_type": {
       "description": "The canonical type of the cognitive entity.",

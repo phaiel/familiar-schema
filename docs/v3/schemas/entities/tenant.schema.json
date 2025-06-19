@@ -4,7 +4,11 @@
   "title": "Tenant Entity",
   "description": "Canonical schema for a Tenant, the root container for all user data and configuration. This is a System Entity and does not participate in physics simulations.",
   "type": "object",
-  "allOf": [{ "$ref": "./_base/BaseSystemEntity.schema.json" }],
+  "allOf": [
+    {
+      "$ref": "./_base/BaseSystemEntity.schema.json"
+    }
+  ],
   "properties": {
     "entity_type": {
       "const": "Tenant"
@@ -12,12 +16,25 @@
     "components": {
       "type": "object",
       "properties": {
-        "identity": { "$ref": "../components/TenantIdentity.schema.json" },
-        "members": { "$ref": "../components/TenantMembers.schema.json" },
-        "config": { "$ref": "../components/TenantConfig.schema.json" }
+        "identity": {
+          "$ref": "../components/TenantIdentity.schema.json"
+        },
+        "members": {
+          "$ref": "../components/TenantMembers.schema.json"
+        },
+        "config": {
+          "$ref": "../components/TenantConfig.schema.json"
+        }
       },
-      "required": ["identity", "members", "config"]
+      "required": [
+        "identity",
+        "members",
+        "config"
+      ],
+      "title": "TenantComponents"
     }
   },
-  "required": ["components"]
+  "required": [
+    "components"
+  ]
 }

@@ -3,9 +3,16 @@
   "$id": "https://familiar.dev/schemas/components/TenantConfig.v1.schema.json",
   "title": "Tenant Configuration Component",
   "description": "Stores tenant-specific settings and feature flag overrides.",
-  "allOf": [{ "$ref": "../_base/BaseComponent.schema.json" }],
+  "allOf": [
+    {
+      "$ref": "../_base/BaseComponent.schema.json"
+    }
+  ],
   "schema_version": "1.0.0",
-  "physics_properties": { "engine": "classical", "is_quantum": false },
+  "physics_properties": {
+    "engine": "classical",
+    "is_quantum": false
+  },
   "fields": {
     "feature_flags": {
       "description": "A map of feature flags and their enabled status for this tenant.",
@@ -15,9 +22,16 @@
       "description": "Tenant-level privacy controls.",
       "type": "object",
       "properties": {
-        "data_retention_days": { "type": "integer", "default": 3650 },
-        "allow_social_weather": { "type": "boolean", "default": false }
-      }
+        "data_retention_days": {
+          "type": "integer",
+          "default": 3650
+        },
+        "allow_social_weather": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "title": "TenantConfigurationPrivacySettings"
     }
   }
 }

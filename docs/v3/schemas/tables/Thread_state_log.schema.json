@@ -3,7 +3,11 @@
   "$id": "https://familiar.dev/schemas/tables/thread_state_log.v1.schema.json",
   "title": "Thread State Log Table",
   "description": "Defines the schema for the 'thread_state_log' database table...",
-  "allOf": [{ "$ref": "../_base/BaseTable.schema.json" }],
+  "allOf": [
+    {
+      "$ref": "../_base/BaseTable.schema.json"
+    }
+  ],
   "schema_version": "1.2.0",
   "tableName": "thread_state_log",
   "properties": {
@@ -11,7 +15,7 @@
       "type": "object",
       "properties": {
         "thread_id": {
-          "name": "thread_id", 
+          "name": "thread_id",
           "$ref": "../snippets/fields/EntityId.json",
           "description": "The ID of the Thread whose state is being logged.",
           "primary_key": true
@@ -22,16 +26,41 @@
           "description": "The immutable timestamp at which this state became effective.",
           "primary_key": true
         },
-        "state": { "$ref": "../snippets/types/lifecycles/ThreadState.json" },
+        "state": {
+          "$ref": "../snippets/types/lifecycles/ThreadState.json"
+        },
         "reason": {
-          "allOf": [{ "$ref": "../snippets/types/lifecycles/ThreadStateReason.json" }],
+          "allOf": [
+            {
+              "$ref": "../snippets/types/lifecycles/ThreadStateReason.json"
+            }
+          ],
           "nullable": true
         },
-        "metadata": { "$ref": "../snippets/types/primitives/KeyValue.json", "nullable": true }
+        "metadata": {
+          "$ref": "../snippets/types/primitives/KeyValue.json",
+          "nullable": true
+        }
       },
-      "required": ["thread_id", "effective_at", "state"]
+      "required": [
+        "thread_id",
+        "effective_at",
+        "state"
+      ],
+      "title": "ThreadStateLogColumns"
     }
   },
-  "indexes": [{ "name": "idx_thread_state_log_latest", "columns": ["thread_id", "effective_at DESC"] }],
-  "timescale": { "is_hypertable": true, "time_column_name": "effective_at" }
+  "indexes": [
+    {
+      "name": "idx_thread_state_log_latest",
+      "columns": [
+        "thread_id",
+        "effective_at DESC"
+      ]
+    }
+  ],
+  "timescale": {
+    "is_hypertable": true,
+    "time_column_name": "effective_at"
+  }
 }

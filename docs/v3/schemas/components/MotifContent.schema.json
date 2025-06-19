@@ -3,7 +3,11 @@
   "$id": "https://familiar.dev/schemas/components/MotifContent.v1.schema.json",
   "title": "Motif Content Component",
   "description": "Defines the emergent pattern content of a Motif entity. This is a quantum component.",
-  "allOf": [{ "$ref": "../_base/BaseComponent.schema.json" }],
+  "allOf": [
+    {
+      "$ref": "../_base/BaseComponent.schema.json"
+    }
+  ],
   "schema_version": "1.4.0",
   "physics_properties": {
     "engine": "quantum",
@@ -18,17 +22,18 @@
         },
         "motif_type": {
           "$ref": "../snippets/types/physics/MotifType.json"
-          },
+        },
         "source_entanglements": {
           "$ref": "../snippets/fields/EntityIdList.json"
-          }
+        }
       },
       "required": [
         "motif_description",
         "motif_type",
         "source_entanglements"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "title": "MotifContentFields"
     }
   }
 }

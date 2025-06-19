@@ -3,17 +3,31 @@
   "$id": "https://familiar.dev/schemas/events/BondStateChangeRequested.v1.schema.json",
   "title": "Bond State Change Requested Event",
   "description": "An event published to request a change in a Bond's lifecycle state.",
-  "allOf": [{ "$ref": "../_base/BaseEvent.schema.json" }],
+  "allOf": [
+    {
+      "$ref": "../_base/BaseEvent.schema.json"
+    }
+  ],
   "schema_version": "1.0.0",
   "properties": {
     "payload": {
       "type": "object",
       "properties": {
-        "bond_id": { "$ref": "../snippets/fields/EntityId.json" },
-        "new_state": { "$ref": "../snippets/types/lifecycles/BondState.json" },
-        "reason": { "$ref": "../snippets/types/lifecycles/BondStateReason.json" }
+        "bond_id": {
+          "$ref": "../snippets/fields/EntityId.json"
+        },
+        "new_state": {
+          "$ref": "../snippets/types/lifecycles/BondState.json"
+        },
+        "reason": {
+          "$ref": "../snippets/types/lifecycles/BondStateReason.json"
+        }
       },
-      "required": ["bond_id", "new_state"]
+      "required": [
+        "bond_id",
+        "new_state"
+      ],
+      "title": "BondStateChangeRequestedPayload"
     }
   }
 }

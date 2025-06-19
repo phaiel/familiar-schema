@@ -8,9 +8,14 @@
       "type": "object",
       "patternProperties": {
         "^[a-z_]+$": {
-          "type": ["string", "number", "boolean"]
+          "type": [
+            "string",
+            "number",
+            "boolean"
+          ]
         }
-      }
+      },
+      "title": "Key-valueMetadata^[aZ]+$"
     }
   },
   "additionalProperties": false

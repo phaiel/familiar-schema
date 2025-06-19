@@ -8,7 +8,8 @@
     "metadata_for_physics": {
       "description": "The structured, strongly-typed data that will be used deterministically by the physics engine. This data MUST NOT contain any free-form text from the LLM.",
       "type": "object",
-      "additionalProperties": false
+      "additionalProperties": false,
+      "title": "BaseAgentOutputMetadataForPhysics"
     },
     "narrative_for_user": {
       "description": "The human-readable explanation of the agent's reasoning. This field MUST NOT be used for any physics calculations.",
@@ -20,10 +21,22 @@
       "items": {
         "type": "object",
         "properties": {
-          "source_id": { "type": "string" },
-          "source_type": { "enum": ["memory", "knowledge_base", "research_paper"] }
+          "source_id": {
+            "type": "string"
+          },
+          "source_type": {
+            "enum": [
+              "memory",
+              "knowledge_base",
+              "research_paper"
+            ]
+          }
         },
-        "required": ["source_id", "source_type"]
+        "required": [
+          "source_id",
+          "source_type"
+        ],
+        "title": "BaseagentoutputmetadataforphysicsItems"
       }
     },
     "confidence_score": {
@@ -33,5 +46,9 @@
       "maximum": 1
     }
   },
-  "required": ["metadata_for_physics", "narrative_for_user", "confidence_score"]
+  "required": [
+    "metadata_for_physics",
+    "narrative_for_user",
+    "confidence_score"
+  ]
 }

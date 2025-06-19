@@ -4,7 +4,12 @@
   "title": "Base Taxonomy Node",
   "description": "Defines the structure for a single node within any given taxonomy.",
   "type": "object",
-  "required": [ "id", "level", "label", "description" ],
+  "required": [
+    "id",
+    "level",
+    "label",
+    "description"
+  ],
   "properties": {
     "id": {
       "description": "The unique ID for this node within its level (e.g., 'simple', 'individual', 'sleep').",
@@ -18,7 +23,9 @@
       "description": "The human-readable label (e.g., 'Simple', 'Individual', 'Sleep').",
       "type": "string"
     },
-    "description": { "$ref": "../snippets/fields/Description.json" },
+    "description": {
+      "$ref": "../snippets/fields/Description.json"
+    },
     "embedding_context": {
       "description": "OPTIONAL: Rich text fed into a Sentence Transformer to generate the canonical embedding for this concept. Omit for rule-based classifications.",
       "type": "string"
@@ -26,7 +33,8 @@
     "metadata": {
       "description": "Optional key-value metadata for this node, such as a physics profile affinity or rule-based triggers.",
       "type": "object",
-      "additionalProperties": true
+      "additionalProperties": true,
+      "title": "BaseTaxonomyNodeMetadata"
     }
   }
 }

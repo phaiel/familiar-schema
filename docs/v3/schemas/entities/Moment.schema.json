@@ -4,7 +4,11 @@
   "title": "Moment Entity",
   "description": "A classical entity representing a specific, objective event in the past. This is the atomic unit of episodic memory.",
   "type": "object",
-  "allOf": [{ "$ref": "./_base/BaseCognitiveEntity.schema.json" }],
+  "allOf": [
+    {
+      "$ref": "./_base/BaseCognitiveEntity.schema.json"
+    }
+  ],
   "properties": {
     "entity_type": {
       "const": "Moment"
@@ -12,18 +16,34 @@
     "components": {
       "type": "object",
       "properties": {
-        "content": { "$ref": "../components/MomentContent.schema.json" }
+        "content": {
+          "$ref": "../components/MomentContent.schema.json"
+        }
       },
-      "required": ["content"]
+      "required": [
+        "content"
+      ],
+      "title": "MomentComponents"
     },
     "physics_state": {
       "type": "object",
       "properties": {
-        "universal": { "$ref": "../components/UniversalPhysicsState.schema.json" },
-        "manifold_position": { "$ref": "../components/MemoryManifoldPosition.schema.json" }
+        "universal": {
+          "$ref": "../components/UniversalPhysicsState.schema.json"
+        },
+        "manifold_position": {
+          "$ref": "../components/MemoryManifoldPosition.schema.json"
+        }
       },
-      "required": ["universal", "manifold_position"]
+      "required": [
+        "universal",
+        "manifold_position"
+      ],
+      "title": "MomentPhysicsState"
     }
   },
-  "required": ["components", "physics_state"]
+  "required": [
+    "components",
+    "physics_state"
+  ]
 }

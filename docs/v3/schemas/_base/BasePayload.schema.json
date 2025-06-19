@@ -4,17 +4,31 @@
   "title": "Base Event Payload",
   "description": "The base schema for all event payloads, ensuring they contain essential context.",
   "type": "object",
-  "allOf": [{ "$ref": "./BaseMetadata.schema.json" }],
+  "allOf": [
+    {
+      "$ref": "./BaseMetadata.schema.json"
+    }
+  ],
   "schema_version": "1.1.0",
   "properties": {
     "user_context": {
       "type": "object",
       "properties": {
-        "user_id": { "$ref": "../snippets/fields/UserId.json" },
-        "session_id": { "$ref": "../snippets/fields/EntityId.json" }
+        "user_id": {
+          "$ref": "../snippets/fields/UserId.json"
+        },
+        "session_id": {
+          "$ref": "../snippets/fields/EntityId.json"
+        }
       },
-      "required": ["user_id"]
+      "required": [
+        "user_id"
+      ],
+      "title": "BaseUserContext"
     }
   },
-  "required": ["user_context", "data"]
+  "required": [
+    "user_context",
+    "data"
+  ]
 }

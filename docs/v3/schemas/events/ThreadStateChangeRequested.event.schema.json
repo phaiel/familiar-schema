@@ -3,18 +3,39 @@
   "$id": "https://familiar.dev/schemas/events/ThreadStateChangeRequested.v1.schema.json",
   "title": "Thread State Change Requested Event",
   "description": "An event published to request a change in a Thread's lifecycle state.",
-  "allOf": [{ "$ref": "../_base/BaseEvent.schema.json" }],
+  "allOf": [
+    {
+      "$ref": "../_base/BaseEvent.schema.json"
+    }
+  ],
   "schema_version": "1.2.0",
   "properties": {
     "payload": {
       "type": "object",
       "properties": {
-        "thread_id": { "$ref": "../snippets/fields/EntityId.json" },
-        "new_state": { "$ref": "../snippets/types/lifecycles/ThreadState.json" },
-        "reason": { "$ref": "../snippets/types/lifecycles/ThreadStateReason.json" },
-        "source": { "type": "string", "enum": ["User", "System"] }
+        "thread_id": {
+          "$ref": "../snippets/fields/EntityId.json"
+        },
+        "new_state": {
+          "$ref": "../snippets/types/lifecycles/ThreadState.json"
+        },
+        "reason": {
+          "$ref": "../snippets/types/lifecycles/ThreadStateReason.json"
+        },
+        "source": {
+          "type": "string",
+          "enum": [
+            "User",
+            "System"
+          ]
+        }
       },
-      "required": ["thread_id", "new_state", "source"]
+      "required": [
+        "thread_id",
+        "new_state",
+        "source"
+      ],
+      "title": "ThreadStateChangeRequestedPayload"
     }
   }
 }

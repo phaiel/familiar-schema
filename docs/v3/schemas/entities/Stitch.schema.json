@@ -3,9 +3,15 @@
   "$id": "https://familiar.dev/schemas/entities/Stitch.v1.schema.json",
   "title": "Stitch Entity",
   "description": "A system entity that represents a cognitive dissonance or ambiguity that requires resolution, often through a Human-in-the-Loop workflow.",
-  "allOf": [{ "$ref": "./_base/BaseSystemEntity.schema.json" }],
+  "allOf": [
+    {
+      "$ref": "./_base/BaseSystemEntity.schema.json"
+    }
+  ],
   "properties": {
-    "entity_type": { "const": "Stitch" },
+    "entity_type": {
+      "const": "Stitch"
+    },
     "components": {
       "type": "object",
       "properties": {
@@ -28,7 +34,12 @@
               "maximum": 1.0
             }
           },
-          "required": ["dissonance_type", "source_entities", "severity"]
+          "required": [
+            "dissonance_type",
+            "source_entities",
+            "severity"
+          ],
+          "title": "StitchcomponentsDissonanceDetails"
         },
         "resolution_request": {
           "description": "The structured request for human input, if escalation is needed.",
@@ -36,8 +47,13 @@
           "nullable": true
         }
       },
-      "required": ["dissonance_details"]
+      "required": [
+        "dissonance_details"
+      ],
+      "title": "StitchComponents"
     }
   },
-  "required": ["components"]
+  "required": [
+    "components"
+  ]
 }

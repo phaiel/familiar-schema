@@ -9,11 +9,15 @@
       "$ref": "./BaseMetadata.schema.json"
     }
   ],
-  "required": [ "profile_id", "multipliers" ],
+  "required": [
+    "profile_id",
+    "multipliers"
+  ],
   "properties": {
     "multipliers": {
       "description": "A map of constant names to their multiplier values (e.g., 'decay_rate': 0.8).",
-      "type": "object"
+      "type": "object",
+      "title": "BasePhysicsProfileMultipliers"
     },
     "profile_id": {
       "type": "string"

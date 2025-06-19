@@ -38,39 +38,71 @@
         {
           "type": "object",
           "properties": {
-            "type": { "const": "MultipleChoice" },
+            "type": {
+              "const": "MultipleChoice"
+            },
             "options": {
               "type": "array",
               "items": {
                 "type": "object",
                 "properties": {
-                  "id": { "type": "string" },
-                  "label": { "$ref": "../snippets/fields/Label.json" },
-                  "description": { "$ref": "../snippets/fields/Description.json", "nullable": true }
+                  "id": {
+                    "type": "string"
+                  },
+                  "label": {
+                    "$ref": "../snippets/fields/Label.json"
+                  },
+                  "description": {
+                    "$ref": "../snippets/fields/Description.json",
+                    "nullable": true
+                  }
                 },
-                "required": ["id", "label"]
+                "required": [
+                  "id",
+                  "label"
+                ],
+                "title": "StitchInteractionRequestOneofItemItems"
               }
             }
           },
-          "required": ["type", "options"]
+          "required": [
+            "type",
+            "options"
+          ]
         },
         {
           "type": "object",
           "properties": {
-            "type": { "const": "Confirmation" },
-            "confirm_text": { "$ref": "../snippets/fields/Label.json" },
-            "deny_text": { "$ref": "../snippets/fields/Label.json" }
+            "type": {
+              "const": "Confirmation"
+            },
+            "confirm_text": {
+              "$ref": "../snippets/fields/Label.json"
+            },
+            "deny_text": {
+              "$ref": "../snippets/fields/Label.json"
+            }
           },
-          "required": ["type"]
+          "required": [
+            "type"
+          ]
         },
         {
           "type": "object",
           "properties": {
-            "type": { "const": "FreeText" },
-            "placeholder": { "$ref": "../snippets/fields/Label.json" },
-            "submit_text": { "$ref": "../snippets/fields/Label.json" }
+            "type": {
+              "const": "FreeText"
+            },
+            "placeholder": {
+              "$ref": "../snippets/fields/Label.json"
+            },
+            "submit_text": {
+              "$ref": "../snippets/fields/Label.json"
+            }
           },
-          "required": ["type"]
+          "required": [
+            "type"
+          ]
         }
       ]
     }

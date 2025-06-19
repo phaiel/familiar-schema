@@ -4,9 +4,15 @@
   "title": "Base Component",
   "description": "The base schema for all ECS components.",
   "type": "object",
-  "allOf": [{ "$ref": "./BaseMetadata.schema.json" }],
+  "allOf": [
+    {
+      "$ref": "./BaseMetadata.schema.json"
+    }
+  ],
   "properties": {
-    "physics_properties": { "$ref": "./BasePhysics.schema.json" },
+    "physics_properties": {
+      "$ref": "./BasePhysics.schema.json"
+    },
     "fields": {
       "description": "A map of field names to their definitions. Each field can be defined inline or by referencing a shared definition.",
       "type": "object",
@@ -22,7 +28,9 @@
                   "pattern": "^\\.\\./snippets/.*\\.json$"
                 }
               },
-              "required": ["$ref"],
+              "required": [
+                "$ref"
+              ],
               "additionalProperties": false
             },
             {
@@ -32,8 +40,12 @@
           ]
         }
       },
-      "additionalProperties": false
+      "additionalProperties": false,
+      "title": "BaseFields"
     }
   },
-  "required": ["physics_properties", "fields"]
+  "required": [
+    "physics_properties",
+    "fields"
+  ]
 }

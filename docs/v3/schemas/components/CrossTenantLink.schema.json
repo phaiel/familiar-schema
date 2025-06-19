@@ -3,15 +3,26 @@
   "$id": "https://familiar.dev/schemas/components/CrossTenantLink.v1.schema.json",
   "title": "Cross-Tenant Link Component",
   "description": "Manages a link to a Thread in another tenant, enabling federated relationships.",
-  "allOf": [{ "$ref": "../_base/BaseComponent.schema.json" }],
+  "allOf": [
+    {
+      "$ref": "../_base/BaseComponent.schema.json"
+    }
+  ],
   "schema_version": "1.1.0",
-  "physics_properties": { "engine": "classical", "is_quantum": false },
+  "physics_properties": {
+    "engine": "classical",
+    "is_quantum": false
+  },
   "properties": {
     "fields": {
       "type": "object",
       "properties": {
-        "remote_tenant_id": { "$ref": "../snippets/fields/TenantId.json" },
-        "remote_thread_id": { "$ref": "../snippets/fields/EntityId.json" },
+        "remote_tenant_id": {
+          "$ref": "../snippets/fields/TenantId.json"
+        },
+        "remote_thread_id": {
+          "$ref": "../snippets/fields/EntityId.json"
+        },
         "link_status": {
           "description": "The status of the cross-tenant link.",
           "$ref": "../snippets/types/system/LinkStatus.json"
@@ -19,11 +30,18 @@
         "permissions_granted": {
           "description": "A list of permissions granted by the remote user for this link.",
           "type": "array",
-          "items": { "$ref": "../snippets/types/security/BondPermissions.json" }
+          "items": {
+            "$ref": "../snippets/types/security/BondPermissions.json"
+          }
         }
       },
-      "required": ["remote_tenant_id", "remote_thread_id", "link_status"],
-      "additionalProperties": false
+      "required": [
+        "remote_tenant_id",
+        "remote_thread_id",
+        "link_status"
+      ],
+      "additionalProperties": false,
+      "title": "Cross-tenantLinkFields"
     }
   }
 }

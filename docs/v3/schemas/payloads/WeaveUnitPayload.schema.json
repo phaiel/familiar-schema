@@ -3,20 +3,32 @@
   "$id": "https://familiar.dev/schemas/payloads/WeaveUnitPayload.v1.schema.json",
   "title": "Weave Unit Payload",
   "description": "A single, logical strand of information deconstructed from a Weave, enhanced with an entity type hint.",
-  "allOf": [{ "$ref": "../_base/BasePayload.schema.json" }],
+  "allOf": [
+    {
+      "$ref": "../_base/BasePayload.schema.json"
+    }
+  ],
   "schema_version": "1.1.0",
   "properties": {
     "data": {
       "type": "object",
       "properties": {
-        "parent_weave_id": { "$ref": "../snippets/fields/EntityId.json" },
-        "text": { "type": "string" },
+        "parent_weave_id": {
+          "$ref": "../snippets/fields/EntityId.json"
+        },
+        "text": {
+          "type": "string"
+        },
         "suggested_entity_type": {
           "description": "A hint from the Penates agent about what kind of cognitive entity this unit might represent.",
           "$ref": "../snippets/types/classification/EntityType.json"
         }
       },
-      "required": ["parent_weave_id", "text"]
+      "required": [
+        "parent_weave_id",
+        "text"
+      ],
+      "title": "WeaveUnitData"
     }
   }
 }

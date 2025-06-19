@@ -9,16 +9,22 @@
       "$ref": "./BaseMetadata.schema.json"
     }
   ],
-  "required": [ "quantum_physics_constants", "classical_physics_constants" ],
+  "required": [
+    "quantum_physics_constants",
+    "classical_physics_constants"
+  ],
   "properties": {
     "classical_physics_constants": {
-      "type": "object"
+      "type": "object",
+      "title": "BaseConstantsFileClassicalPhysicsConstants"
     },
     "cognitive_enhancement_parameters": {
-      "type": "object"
+      "type": "object",
+      "title": "BaseConstantsFileCognitiveEnhancementParameters"
     },
     "quantum_physics_constants": {
-      "type": "object"
+      "type": "object",
+      "title": "BaseConstantsFileQuantumPhysicsConstants"
     }
   }
 }

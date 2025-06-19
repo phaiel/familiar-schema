@@ -3,7 +3,11 @@
   "$id": "https://familiar.dev/schemas/components/MomentContent.v1.schema.json",
   "title": "Moment Content Component",
   "description": "Defines the objective, factual content of a Moment entity, representing a specific event in time.",
-  "allOf": [{ "$ref": "../_base/BaseComponent.schema.json" }],
+  "allOf": [
+    {
+      "$ref": "../_base/BaseComponent.schema.json"
+    }
+  ],
   "schema_version": "1.3.0",
   "physics_properties": {
     "engine": "classical",
@@ -33,7 +37,8 @@
         "description",
         "moment_type"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "title": "MomentContentFields"
     }
   }
 }

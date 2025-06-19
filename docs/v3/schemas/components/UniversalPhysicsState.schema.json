@@ -1,7 +1,11 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://familiar.dev/schemas/components/UniversalPhysicsState.v1.schema.json",
-  "allOf": [{ "$ref": "../_base/BaseComponent.schema.json" }],
+  "allOf": [
+    {
+      "$ref": "../_base/BaseComponent.schema.json"
+    }
+  ],
   "title": "Universal Physics State Component",
   "description": "The transient, mutable physics state of an entity.",
   "schema_version": "3.0.0",
@@ -34,8 +38,17 @@
           "$ref": "../snippets/fields/EntanglementStrength.json"
         }
       },
-      "required": ["energy", "momentum", "cognitive_perspective", "decay_rate", "consolidation_rate", "quantum_coherence", "entanglement_strength"],
-      "additionalProperties": false
+      "required": [
+        "energy",
+        "momentum",
+        "cognitive_perspective",
+        "decay_rate",
+        "consolidation_rate",
+        "quantum_coherence",
+        "entanglement_strength"
+      ],
+      "additionalProperties": false,
+      "title": "UniversalPhysicsStateFields"
     }
   }
 }

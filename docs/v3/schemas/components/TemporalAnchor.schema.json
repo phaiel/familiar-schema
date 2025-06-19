@@ -3,9 +3,16 @@
   "$id": "https://familiar.dev/schemas/components/TemporalAnchor.v1.schema.json",
   "title": "Temporal Anchor Component",
   "description": "Provides an immutable, fixed position in time for a Moment entity, anchoring it to the Growing Block Universe.",
-  "allOf": [{ "$ref": "../_base/BaseComponent.schema.json" }],
+  "allOf": [
+    {
+      "$ref": "../_base/BaseComponent.schema.json"
+    }
+  ],
   "schema_version": "1.1.0",
-  "physics_properties": { "engine": "classical", "is_quantum": false },
+  "physics_properties": {
+    "engine": "classical",
+    "is_quantum": false
+  },
   "properties": {
     "fields": {
       "type": "object",
@@ -21,8 +28,11 @@
           "default": 0
         }
       },
-      "required": ["event_timestamp"],
-      "additionalProperties": false
+      "required": [
+        "event_timestamp"
+      ],
+      "additionalProperties": false,
+      "title": "TemporalAnchorFields"
     }
   }
 }
