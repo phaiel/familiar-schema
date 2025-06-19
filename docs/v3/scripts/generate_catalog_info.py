@@ -351,7 +351,8 @@ class SchemaCatalogGenerator:
                 "apiVersion": "backstage.io/v1alpha1", "kind": "Group",
                 "metadata": {
                     "name": "team-system-architecture", "title": "System Architecture Team",
-                    "description": "Owns the overall system design and foundational principles."
+                    "description": "Owns the overall system design and foundational principles.",
+                    "members": ["user:default/phaiel"]
                 },
                 "spec": {"type": "team", "children": []}
             },
@@ -359,7 +360,8 @@ class SchemaCatalogGenerator:
                 "apiVersion": "backstage.io/v1alpha1", "kind": "Group",
                 "metadata": {
                     "name": "team-platform-infrastructure", "title": "Platform Infrastructure Team",
-                    "description": "Owns the API gateway, databases, and deployment infrastructure."
+                    "description": "Owns the API gateway, databases, and deployment infrastructure.",
+                    "members": ["user:default/phaiel"]
                 },
                 "spec": {"type": "team", "children": []}
             },
@@ -367,7 +369,8 @@ class SchemaCatalogGenerator:
                 "apiVersion": "backstage.io/v1alpha1", "kind": "Group",
                 "metadata": {
                     "name": "team-cognitive-modeling", "title": "Cognitive Modeling Team",
-                    "description": "Owns the agentic framework and high-level cognitive analysis."
+                    "description": "Owns the agentic framework and high-level cognitive analysis.",
+                    "members": ["user:default/phaiel"]
                 },
                 "spec": {"type": "team", "children": []}
             },
@@ -375,7 +378,8 @@ class SchemaCatalogGenerator:
                 "apiVersion": "backstage.io/v1alpha1", "kind": "Group",
                 "metadata": {
                     "name": "team-physics-core", "title": "Physics Core Team",
-                    "description": "Owns the implementation of the quantum and classical physics engines."
+                    "description": "Owns the implementation of the quantum and classical physics engines.",
+                    "members": ["user:default/phaiel"]
                 },
                 "spec": {"type": "team", "children": []}
             },
