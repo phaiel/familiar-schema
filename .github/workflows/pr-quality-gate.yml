@@ -43,7 +43,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
       - name: "Generate Rust Types"
-        run: make -C docs/v3 generate-types
+        run: make --file docs/v3/Makefile generate-types
 
       - name: "Run Local Validation & Build Pipeline"
         # This runs all the local checks defined in the Makefile.
