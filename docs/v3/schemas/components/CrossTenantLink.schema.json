@@ -19,7 +19,7 @@
         "permissions_granted": {
           "description": "A list of permissions granted by the remote user for this link.",
           "type": "array",
-          "items": { "$ref": "../snippets/types/security/BondPermission.json" }
+          "items": { "$ref": "../snippets/types/security/BondPermissions.json" }
         }
       },
       "required": ["remote_tenant_id", "remote_thread_id", "link_status"],

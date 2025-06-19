@@ -1,0 +1,13 @@
+{
+  "$id": "https://familiar.dev/schemas/types/classification/WeaveType.v1.json",
+  "title": "Weave Type",
+  "description": "Classifies the source format of a user's input 'Weave'.",
+  "type": "string",
+  "enum": [
+    "text",
+    "audio",
+    "image",
+    "document",
+    "system_event"
+  ]
+}

@@ -1,324 +1,199 @@
 #!/usr/bin/env python3
 """
-Schema Assembly Script for Familiar v3
+Familiar v3 Schema Assembly & Dereferencing Pipeline (Robust `allOf` Handling)
 
-This script assembles final schemas from Jinja2 templates and JSON snippets.
-It reads an assembly manifest that defines which templates to use and which
-snippets to include for each schema.
+This script uses the standard `referencing` library to robustly resolve all
+`$ref` and `allOf` directives, creating fully self-contained schemas suitable
+for code generation and other tooling.
 """
-
-import os
 import json
+import os
 import shutil
+import argparse
 from pathlib import Path
-from jinja2 import Environment, FileSystemLoader, Template
+from referencing import Registry, Resource
+from referencing.jsonschema import DRAFT202012
+from referencing.exceptions import Unresolvable
 
-def load_json_file(file_path):
-    """Load and parse a JSON file."""
-    try:
-        with open(file_path, 'r', encoding='utf-8') as f:
-            return json.load(f)
-    except Exception as e:
-        print(f"Error loading {file_path}: {e}")
-        return None
+def deep_merge(d1, d2):
+    """Recursively merges dictionary d2 into d1, handling lists."""
+    for k, v in d2.items():
+        if k in d1 and isinstance(d1[k], dict) and isinstance(v, dict):
+            d1[k] = deep_merge(d1[k], v)
+        elif k in d1 and isinstance(d1[k], list) and isinstance(v, list):
+            d1[k].extend(x for x in v if x not in d1[k])
+        else:
+            d1[k] = v
+    return d1
 
-def load_snippets(snippets_dir):
-    """Load all field and type snippets."""
-    snippets = {}
-    
-    # Load field snippets
-    fields_dir = snippets_dir / 'fields'
-    if fields_dir.exists():
-        for snippet_file in fields_dir.glob('*.json'):
-            snippet_path = f"fields/{snippet_file.name}"
-            snippet_data = load_json_file(snippet_file)
-            if snippet_data:
-                snippets[snippet_path] = snippet_data
-    
-    # Load type snippets (including subdirectories)
-    types_dir = snippets_dir / 'types'
-    if types_dir.exists():
-        for snippet_file in types_dir.rglob('*.json'):
-            # Get relative path from types directory
-            rel_path = snippet_file.relative_to(types_dir)
-            snippet_path = f"types/{rel_path}"
-            snippet_data = load_json_file(snippet_file)
-            if snippet_data:
-                snippets[snippet_path] = snippet_data
-    
-    return snippets
-
-def resolve_references(data, base_dir, cache):
+def _dereference_recursive(node, resolver):
     """
-    Recursively resolve $ref references by inlining content.
-    - data: The data to process (dict or list).
-    - base_dir: The directory context for resolving relative file paths.
-    - cache: A dictionary to cache loaded JSON files to avoid re-reading.
+    Recursively walk a JSON structure, resolve all $ref pointers,
+    and merge allOf directives.
     """
-    if isinstance(data, dict):
-        if '$ref' in data and isinstance(data['$ref'], str):
-            ref_path_str = data['$ref']
-            
-            # Use pathlib to resolve the absolute path
-            # base_dir is the directory of the file containing the $ref
-            ref_path = (base_dir / ref_path_str).resolve()
-
-            if ref_path in cache:
-                return cache[ref_path]
-
-            if not ref_path.is_file():
-                print(f"⚠️ Warning: Referenced file not found: {ref_path}")
-                return data # Return original ref if not found
+    if isinstance(node, dict):
+        if "$ref" in node:
+            ref_value = node["$ref"]
+            if not isinstance(ref_value, str):
+                return node
 
             try:
-                with open(ref_path, 'r', encoding='utf-8') as f:
-                    ref_content = json.load(f)
-                
-                # The new base for nested refs is the directory of the referenced file
-                new_base_dir = ref_path.parent
-                
-                # Recursively resolve references within the loaded content
-                resolved_content = resolve_references(ref_content, new_base_dir, cache)
-                
-                # Cache the fully resolved content
-                cache[ref_path] = resolved_content
-                return resolved_content
-            except json.JSONDecodeError:
-                print(f"⚠️ Warning: Could not decode JSON from {ref_path}")
-                return data # Return original ref on error
+                resolved = resolver.lookup(ref_value)
+                return _dereference_recursive(resolved.contents, resolved.resolver)
+            except Unresolvable as e:
+                print(f"  ↳ ❌ Unresolvable reference: '{ref_value}'. Error: {e}")
+                return None
             except Exception as e:
-                print(f"⚠️ Warning: Error processing $ref {ref_path_str} from {base_dir}: {e}")
-                return data
-        
-        # If no $ref, or $ref is not a string, recurse into dictionary values
-        return {key: resolve_references(value, base_dir, cache) for key, value in data.items()}
-    
-    elif isinstance(data, list):
-        return [resolve_references(item, base_dir, cache) for item in data]
-        
-    else:
-        return data
+                print(f"  ↳ ❌ Unexpected error resolving reference '{ref_value}': {e}")
+                return None
 
+        if "allOf" in node:
+            merged = {}
+            for sub_schema in node["allOf"]:
+                dereferenced_sub = _dereference_recursive(sub_schema, resolver)
+                if dereferenced_sub:
+                    deep_merge(merged, dereferenced_sub)
+            
+            original_node = node.copy()
+            original_node.pop("allOf")
+            
+            dereferenced_original = _dereference_recursive(original_node, resolver)
+            if dereferenced_original:
+                deep_merge(merged, dereferenced_original)
+            return merged
 
-def fully_dereference_schema(schema_path: Path, cache: dict):
-    """
-    Loads a schema and resolves all local and file-based $ref references,
-    including those within allOf, until no more references can be resolved.
-    """
-    if not schema_path.is_file():
-        return None
+        return {k: _dereference_recursive(v, resolver) for k, v in node.items()}
     
-    # The initial base directory is the parent of the schema file itself
-    base_dir = schema_path.parent
-    
-    # Load the initial schema content
+    elif isinstance(node, list):
+        return [_dereference_recursive(item, resolver) for item in node]
+
+    return node
+
+def dereference_schema(schema_path: Path, registry: Registry) -> dict:
+    """
+    Loads a schema and fully dereferences it, including all $ref and allOf.
+    """
     try:
-        with open(schema_path, 'r', encoding='utf-8') as f:
-            current_schema = json.load(f)
+        schema_content = json.loads(schema_path.read_text(encoding="utf-8"))
+        resolver = registry.resolver(schema_path.as_uri())
+        return _dereference_recursive(schema_content, resolver)
     except Exception as e:
-        print(f"Error loading initial schema {schema_path}: {e}")
+        print(f"❌ Error processing {schema_path.name}: {e}")
         return None
 
-    # Multi-pass dereferencing to handle nested references
-    max_passes = 10
-    for i in range(max_passes):
-        # print(f"  -> Dereferencing Pass {i+1} for {schema_path.name}...")
-        previous_state = json.dumps(current_schema, sort_keys=True)
-        
-        # Resolve all $ref pointers (both file and internal)
-        # We pass the file's parent dir as the base for resolving file refs
-        current_schema = resolve_references(current_schema, base_dir, cache)
-        
-        # Custom logic for allOf after general $ref resolution
-        if 'allOf' in current_schema:
-            new_schema = {}
-            new_properties = {}
-            required_properties = []
-
-            for sub_schema in current_schema['allOf']:
-                # The sub_schema should already be resolved by the call above
-                # Merge properties
-                if 'properties' in sub_schema:
-                    new_properties.update(sub_schema['properties'])
-                # Merge required fields
-                if 'required' in sub_schema:
-                    required_properties.extend(sub_schema['required'])
-                # Merge other top-level keys
-                for key, value in sub_schema.items():
-                    if key not in ['properties', 'required', 'allOf', '$id', '$schema', 'title', 'description']:
-                        if key not in new_schema:
-                            new_schema[key] = value
-                        # Note: This is a simple merge. More complex logic may be needed
-                        # for conflicting keys.
-            
-            # Combine with original schema's top-level keys
-            for key, value in current_schema.items():
-                 if key not in ['allOf', 'properties', 'required']:
-                    new_schema[key] = value
-            
-            if new_properties:
-                # If the original schema also had properties, merge them
-                # giving precedence to the original's properties
-                original_properties = current_schema.get('properties', {})
-                original_properties.update(new_properties)
-                new_schema['properties'] = original_properties
-            
-            if required_properties:
-                # Also merge required properties from original schema
-                original_required = current_schema.get('required', [])
-                original_required.extend(required_properties)
-                new_schema['required'] = sorted(list(set(original_required)))
-
-            current_schema = new_schema
-
-
-        current_state = json.dumps(current_schema, sort_keys=True)
-
-        if previous_state == current_state:
-            # print("  -> No more `allOf` references to resolve.")
-            break
-    else:
-        print(f"⚠️ Warning: Max dereferencing passes reached for {schema_path.name}")
-        
-    return current_schema
-
-
-def copy_base_schemas(schemas_dir, assembled_dir, snippets):
-    """Copy and process base schemas to assembled directory."""
-    base_dir = schemas_dir / '_base'
-    # Base schemas don't need assembly, just copying.
-    # The new dereferencing logic handles them when they are referenced.
-    if base_dir.exists():
-        for schema_file in base_dir.glob('*.schema.json'):
-            shutil.copy2(schema_file, assembled_dir / schema_file.name)
-            print(f"✓ Copied base schema {schema_file.name}")
-
-
-def copy_entity_base_schemas(schemas_dir, assembled_dir, snippets):
-    """Copy and process base schemas to assembled directory."""
-    base_dir = schemas_dir / 'entities' / '_base'
-    # Base schemas don't need assembly, just copying.
-    # The new dereferencing logic handles them when they are referenced.
-    if base_dir.exists():
-        for schema_file in base_dir.glob('*.schema.json'):
-            dest_dir = assembled_dir / 'entities' / '_base'
-            dest_dir.mkdir(parents=True, exist_ok=True)
-            shutil.copy2(schema_file, dest_dir / schema_file.name)
-            print(f"✓ Copied entity base schema {schema_file.name}")
-
-
-def assemble_and_dereference(schema_path: Path, assembled_dir: Path, jinja_env: Environment, snippets: dict, cache: dict):
-    """Assemble a schema from a Jinja template, then fully dereference it."""
-    
-    # Step 1: Assemble the schema from its Jinja2 template
-    template_name = str(schema_path.relative_to(schema_path.parent.parent))
-    template = jinja_env.get_template(template_name)
-    # Note: snippets are passed to Jinja context, though the new model prefers $ref
-    assembled_content_str = template.render(snippets=snippets)
-    
-    try:
-        assembled_schema = json.loads(assembled_content_str)
-    except json.JSONDecodeError as e:
-        print(f"❌ Error decoding assembled JSON for {schema_path.name}: {e}")
+def create_assembled_root_schema(source_dir: Path, output_dir: Path):
+    """
+    Creates a new root FamiliarTypes.schema.json in the assembled directory.
+    This new root file will contain the actual content of each assembled schema
+    as properties of the root object, making it compatible with schemafy.
+    """
+    source_root_path = source_dir / "FamiliarTypes.schema.json"
+    if not source_root_path.exists():
+        print(f"  ↳ ⚠️  Source root schema not found at {source_root_path}. Skipping root schema generation.")
         return
 
-    # Step 2: Write the intermediate assembled schema (for debugging)
-    # The path inside 'assembled' should mirror the path inside 'schemas'
-    relative_path = schema_path.relative_to(schemas_dir)
-    assembled_path = assembled_dir / relative_path
-    assembled_path.parent.mkdir(parents=True, exist_ok=True)
-    with open(assembled_path, 'w', encoding='utf-8') as f:
-        json.dump(assembled_schema, f, indent=2)
-
-    # Step 3: Fully dereference the assembled schema
-    # The base_dir for resolving $refs is the directory of the *assembled* file
-    final_schema = fully_dereference_schema(assembled_path, cache)
-
-    # Step 4: Write the final, dereferenced schema back to the same path
-    if final_schema:
-        with open(assembled_path, 'w', encoding='utf-8') as f:
-            json.dump(final_schema, f, indent=2)
-        print(f"✅ Assembled and dereferenced {relative_path}")
-
-
-def main():
-    """Main function to run the schema assembly process."""
-    print("🧩 Assembling final schemas using Jinja2 templates...")
-    # Get project root assuming script is in docs/v3/scripts
-    project_root = Path(__file__).parent.parent.parent.parent
-    schemas_dir = project_root / 'docs/v3/schemas'
-    assembled_dir = schemas_dir / 'assembled'
-    templates_dir = schemas_dir
+    print(f"  -> Generating new root schema in {output_dir}")
+    source_root_schema = json.loads(source_root_path.read_text(encoding="utf-8"))
     
-    # Initialize Jinja2 environment
-    jinja_env = Environment(
-        loader=FileSystemLoader(str(templates_dir)),
-        trim_blocks=True,
-        lstrip_blocks=True
-    )
+    new_root_schema = {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": source_root_schema.get('$id', 'https://familiar.dev/schemas/FamiliarTypes.v1.schema.json'),
+        "title": "FamiliarTypes",
+        "description": "A root schema that defines all top-level types for the Familiar system.",
+        "type": "object",
+        "properties": {}
+    }
 
-    # Clean and recreate the assembled directory
-    if assembled_dir.exists():
-        shutil.rmtree(assembled_dir)
-    assembled_dir.mkdir(parents=True)
-    
-    # --- New Dereferencing Flow ---
-    
-    # A cache to hold resolved file contents
-    resolution_cache = {}
-
-    # 1. Copy all base schemas first, so they are available for referencing
-    copy_base_schemas(schemas_dir, assembled_dir, None)
-    copy_entity_base_schemas(schemas_dir, assembled_dir, None)
-
-    # 2. Iterate through all schema files that are NOT in a _base directory
-    all_schemas = [p for p in schemas_dir.rglob('*.schema.json') if '_base' not in p.parts]
-
-    for schema_path in all_schemas:
-        # The base directory for resolving file references is the schema's original location
-        base_dir = schema_path.parent
-        
-        # Load the raw schema file (it might be a Jinja template or plain JSON)
-        try:
-            with open(schema_path, 'r', encoding='utf-8') as f:
-                content = f.read()
-            # Try to render as a Jinja template. If it's not a template, it will pass through.
-            template = jinja_env.from_string(content)
-            rendered_content_str = template.render()
-            initial_schema = json.loads(rendered_content_str)
-        except Exception as e:
-            print(f"➡️  Skipping non-template or invalid JSON file: {schema_path.name}")
-            # If it's not a template or not a schema, just copy it
-            relative_path = schema_path.relative_to(schemas_dir)
-            dest_path = assembled_dir / relative_path
-            dest_path.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copy2(schema_path, dest_path)
-            continue
+    # For each type in the original root schema, load the assembled version and add it as a property
+    for type_name, ref_obj in source_root_schema.get("$defs", {}).items():
+        ref_path = ref_obj.get("$ref")
+        if ref_path:
+            # Convert the relative path to the assembled file path
+            assembled_file_path = output_dir / ref_path.lstrip("./")
             
-        # Create a temporary file for the initial rendered content to act as a stable base
-        temp_path = assembled_dir / f"_temp_{schema_path.name}"
-        with open(temp_path, 'w', encoding='utf-8') as f:
-            json.dump(initial_schema, f)
+            if assembled_file_path.exists():
+                try:
+                    assembled_content = json.loads(assembled_file_path.read_text(encoding="utf-8"))
+                    # Add the assembled content as a property of the root object
+                    new_root_schema["properties"][type_name] = assembled_content
+                    print(f"    ↳ Added {type_name} as property from {assembled_file_path.relative_to(output_dir)}")
+                except Exception as e:
+                    print(f"    ↳ ⚠️  Failed to add {type_name}: {e}")
+            else:
+                print(f"    ↳ ⚠️  Assembled file not found: {assembled_file_path}")
 
-        # Fully dereference the schema, using the temp file's location as the base
-        final_schema = fully_dereference_schema(temp_path, resolution_cache)
+    output_root_path = output_dir / "FamiliarTypes.schema.json"
+    with open(output_root_path, 'w', encoding='utf-8') as f:
+        json.dump(new_root_schema, f, indent=2, ensure_ascii=False)
+    print(f"  ↳ ✅ New root schema created at {output_root_path.relative_to(output_dir.parent.parent)}")
+
+
+def main(args):
+    """Main execution function."""
+    source_dir = args.source_dir.resolve()
+    output_dir = args.output_dir.resolve()
+    
+    print(f"Source directory: {source_dir}")
+    print(f"Output directory: {output_dir}")
+
+    if output_dir.exists():
+        shutil.rmtree(output_dir)
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    print("\n➡️  Pass 1: Loading all schemas into a registry...")
+    all_schemas = list(source_dir.rglob('*.json'))
+    resources = []
+    for schema_path in all_schemas:
+        try:
+            contents = json.loads(schema_path.read_text(encoding="utf-8"))
+            resource = Resource.from_contents(contents, default_specification=DRAFT202012)
+            resources.append((schema_path.as_uri(), resource))
+        except Exception as e:
+            print(f"  ↳ ⚠️  Could not load {schema_path.name}: {e}")
+
+    registry = Registry().with_resources(resources)
+    print(f"✅ Loaded {len(resources)} schemas into the registry.")
+
+    print("\n➡️  Pass 2: Dereferencing all schema references...")
+    all_source_schemas = [p for p in source_dir.rglob('*.schema.json') if "FamiliarTypes" not in p.name]
+    
+    processed_count = 0
+    for schema_path in all_source_schemas:
+        print(f"  -> Processing {schema_path.relative_to(source_dir)}")
+        final_schema = dereference_schema(schema_path, registry)
         
-        # Remove the temp file
-        os.remove(temp_path)
-
-        # Write the final, fully dereferenced schema to the assembled directory
         if final_schema:
-            relative_path = schema_path.relative_to(schemas_dir)
-            output_path = assembled_dir / relative_path
+            final_schema.pop('$schema', None)
+            final_schema.pop('$id', None)
+            
+            relative_path = schema_path.relative_to(source_dir)
+            output_path = output_dir / relative_path
             output_path.parent.mkdir(parents=True, exist_ok=True)
+            
             with open(output_path, 'w', encoding='utf-8') as f:
-                json.dump(final_schema, f, indent=2)
-            print(f"✅ Assembled {relative_path} (fully dereferenced)")
+                json.dump(final_schema, f, indent=2, ensure_ascii=False)
+            processed_count += 1
+        else:
+            print(f"  ↳ ⚠️  Skipping {schema_path.name} due to processing errors.")
 
-    print("🔄 Resolving `allOf` inheritance for quicktype compatibility...")
-    print("  -> (Handled during initial dereferencing)")
-    print("✅ Schema assembly and dereferencing complete.")
+    print("\n➡️  Pass 3: Generating new root schema...")
+    create_assembled_root_schema(source_dir, output_dir)
 
+    print(f"\n✅ Schema assembly and dereferencing complete. {processed_count} schemas processed.")
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description="Familiar v3 Schema Assembler")
+    parser.add_argument(
+        "--source-dir",
+        type=Path,
+        default=Path(__file__).parent.parent / "schemas",
+        help="The directory containing the source JSON schemas."
+    )
+    parser.add_argument(
+        "--output-dir",
+        type=Path,
+        default=Path(__file__).parent.parent / "schemas" / "assembled",
+        help="The directory where assembled schemas will be written."
+    )
+    args = parser.parse_args()
+    main(args) 

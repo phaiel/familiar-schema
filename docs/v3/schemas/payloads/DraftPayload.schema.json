@@ -5,16 +5,18 @@
   "description": "A fully specified but not-yet-created cognitive entity, ready for the Decima agent to commit to the ECS.",
   "allOf": [{ "$ref": "../_base/BasePayload.schema.json" }],
   "schema_version": "1.0.0",
-  "data": {
-    "description": "This payload's data is a valid, complete entity schema.",
-    "oneOf": [
-      { "$ref": "../entities/Moment.schema.json" },
-      { "$ref": "../entities/Bond.schema.json" },
-      { "$ref": "../entities/Thread.schema.json" },
-      { "$ref": "../entities/Motif.schema.json" },
-      { "$ref": "../entities/Filament.schema.json" },
-      { "$ref": "../entities/Intent.schema.json" },
-      { "$ref": "../entities/Focus.schema.json" }
-    ]
+  "properties": {
+    "data": {
+      "description": "This payload's data is a valid, complete entity schema.",
+      "oneOf": [
+        { "$ref": "../entities/Moment.schema.json" },
+        { "$ref": "../entities/Bond.schema.json" },
+        { "$ref": "../entities/Thread.schema.json" },
+        { "$ref": "../entities/Motif.schema.json" },
+        { "$ref": "../entities/Filament.schema.json" },
+        { "$ref": "../entities/Intent.schema.json" },
+        { "$ref": "../entities/Focus.schema.json" }
+      ]
+    }
   }
 }

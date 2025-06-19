@@ -5,12 +5,14 @@
   "description": "Represents a complete, raw text input from a user, ready for ingestion.",
   "allOf": [{ "$ref": "../_base/BasePayload.schema.json" }],
   "schema_version": "1.0.0",
-  "data": {
-    "type": "object",
-    "properties": {
-      "text_content": { "type": "string" },
-      "source_type": { "$ref": "../taxonomies/WeaveType.schema.json" }
-    },
-    "required": ["text_content", "source_type"]
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "text_content": { "type": "string" },
+        "source_type": { "$ref": "../snippets/types/classification/WeaveType.json" }
+      },
+      "required": ["text_content", "source_type"]
+    }
   }
 }

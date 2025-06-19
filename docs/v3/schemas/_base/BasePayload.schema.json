@@ -14,8 +14,7 @@
         "session_id": { "$ref": "../snippets/fields/EntityId.json" }
       },
       "required": ["user_id"]
-    },
-    "data": { "type": "object" }
+    }
   },
   "required": ["user_context", "data"]
 }

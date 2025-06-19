@@ -2,7 +2,7 @@
   "$schema": "https://familiar.dev/schemas/base/Taxonomy.v1.schema.json",
   "title": "Physics Profile Taxonomy",
   "description": "The 4-level classification system for assigning a physics profile to a cognitive entity based on its semantic content.",
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "taxonomy_id": "physics_profile_v1",
   "levels": [
     "cognitive_complexity",
@@ -80,7 +80,7 @@
       "label": "Sleep",
       "description": "Related to sleep, naps, bedtime, and rest.",
       "embedding_context": "Sleep, napping, bedtime routines, rest, circadian rhythms, waking up, feeling tired or rested. All aspects of sleeping.",
-      "metadata": { "physics_profile_affinity": "gentle_consolidation" }
+      "metadata": { "physics_profile_affinity": "low_energy_classical" }
     },
     {
       "id": "feeding",
@@ -88,7 +88,7 @@
       "label": "Feeding",
       "description": "Related to eating, meals, breastfeeding, bottles.",
       "embedding_context": "Eating, meals, feeding, breastfeeding, bottle feeding, nutrition, food, hunger, being full. All aspects of nourishment.",
-      "metadata": { "physics_profile_affinity": "gentle_consolidation" }
+      "metadata": { "physics_profile_affinity": "moderate_energy_classical" }
     },
     {
       "id": "health",
@@ -96,7 +96,7 @@
       "label": "Health",
       "description": "Related to health, wellness, illness, and medical events.",
       "embedding_context": "Health, wellness, sickness, illness, doctor visits, medication, symptoms, checkups, medical procedures. All aspects of physical health.",
-      "metadata": { "physics_profile_affinity": "health_monitoring" }
+      "metadata": { "physics_profile_affinity": "high_energy_classical" }
     },
     {
       "id": "relationship",
@@ -104,7 +104,7 @@
       "label": "Relationship",
       "description": "Related to social interactions, bonding, and conflicts.",
       "embedding_context": "Social interaction, relationships, bonding, conflict, arguments, playing together, family time, friendship, love. All aspects of interpersonal connection.",
-      "metadata": { "physics_profile_affinity": "volatile_relationship" }
+      "metadata": { "physics_profile_affinity": "high_energy_quantum" }
     },
     {
       "id": "development",
@@ -112,7 +112,7 @@
       "label": "Development",
       "description": "Related to developmental milestones, learning, and achievements.",
       "embedding_context": "Learning, development, milestones, achievements, practicing a skill, crawling, walking, talking, firsts. All aspects of personal growth.",
-      "metadata": { "physics_profile_affinity": "milestone_event" }
+      "metadata": { "physics_profile_affinity": "very_high_energy_quantum" }
     },
     {
       "id": "routine",
@@ -120,7 +120,7 @@
       "label": "Routine",
       "description": "Related to daily routines, habits, and chores.",
       "embedding_context": "Daily routines, habits, chores, schedules, repeated actions, automatic behaviors. All aspects of regular, predictable life.",
-      "metadata": { "physics_profile_affinity": "routine_activity" }
+      "metadata": { "physics_profile_affinity": "low_energy_classical" }
     }
   ]
 }

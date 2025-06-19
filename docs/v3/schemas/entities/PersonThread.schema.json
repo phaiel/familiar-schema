@@ -7,7 +7,7 @@
   "allOf": [{ "$ref": "../_base/BaseEntity.schema.json" }],
   "properties": {
     "identity": {
-      "$ref": "../components/ThreadIdentity.schema.json",
+      "$ref": "../components/ThreadContent.schema.json",
       "properties": {
         "thread_type": { "const": "Person" }
       }

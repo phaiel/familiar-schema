@@ -1,0 +1,290 @@
+# ==============================================================================
+# Root Catalog for the Familiar Physics Engine System
+# Defines the overall system, its component microservices, and their APIs.
+# ==============================================================================
+
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: familiar-physics-engine
+  namespace: default
+  title: "Familiar Cognitive Physics Engine"
+  description: "A quantum-classical hybrid system for simulating cognitive processes, memory, and relationships."
+  tags:
+    - physics-engine
+    - cognitive-modeling
+    - ecs
+    - quantum
+spec:
+  owner: team-system-architecture
+  domain: cognitive-systems
+
+---
+# ==============================================================================
+# System: Schema Infrastructure
+# ==============================================================================
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: familiar-schema-system
+  namespace: default
+  title: "Familiar Schema System"
+  description: "The foundational system for defining, generating, and managing all data schemas (the 'nouns')."
+  tags:
+    - schema
+    - code-generation
+    - system-of-record
+spec:
+  owner: team-system-architecture
+  domain: cognitive-systems
+
+---
+# ==============================================================================
+# Component: Microservices
+# ==============================================================================
+
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: physics-api-gateway
+  namespace: default
+  title: "Physics API Gateway"
+  description: "The primary user-facing event gateway. Translates user actions into Redpanda events and streams real-time updates."
+spec:
+  type: service
+  lifecycle: production
+  owner: team-platform-infrastructure
+  system: familiar-physics-engine
+  providesApis:
+    - physics-engine-public-api
+  dependsOn:
+    - resource:default/redpanda-cluster
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: agentic-ingestion-service
+  namespace: default
+  title: "Agentic Ingestion Service (The Loom)"
+  description: "A Windmill-orchestrated service that consumes user 'weaves' and uses an agentic pipeline (The Heddle) to create cognitive entities."
+spec:
+  type: service
+  lifecycle: production
+  owner: team-cognitive-modeling
+  system: familiar-physics-engine
+  subcomponentOf: physics-engine-core
+  dependsOn:
+    - resource:default/redpanda-cluster
+    - resource:default/timescaledb-physics-db
+    - component:default/quantum-physics-service # For collapse operations
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: physics-engine-core
+  namespace: default
+  title: "Core Physics Engine"
+  description: "The central ECS world and physics simulation engine, containing both quantum and classical sub-services."
+spec:
+  type: library # This is the core logic, not a standalone service itself
+  lifecycle: production
+  owner: team-physics-core
+  system: familiar-physics-engine
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: quantum-physics-service
+  namespace: default
+  title: "Quantum Physics Service (QuTiP)"
+  description: "A Python-based service responsible for all quantum calculations, including superposition, coherence, and collapse, using the QuTiP library."
+spec:
+  type: service
+  lifecycle: production
+  owner: team-physics-core
+  system: familiar-physics-engine
+  subcomponentOf: physics-engine-core
+  dependsOn:
+    - resource:default/redpanda-cluster
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: classical-physics-service
+  namespace: default
+  title: "Classical Physics Service (Particular)"
+  description: "A Rust-based service responsible for all classical N-body physics simulations, including bond tension and energy dynamics, using the Particular library."
+spec:
+  type: service
+  lifecycle: production
+  owner: team-physics-core
+  system: familiar-physics-engine
+  subcomponentOf: physics-engine-core
+  dependsOn:
+    - resource:default/redpanda-cluster
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: schema-assembly-pipeline
+  namespace: default
+  title: "Schema Assembly Pipeline"
+  description: "JSON schema assembly and code generation pipeline using Make, quicktype, and bundling tools."
+spec:
+  type: library
+  lifecycle: production
+  owner: team-platform-infrastructure
+  system: familiar-schema-system
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: generated-rust-types
+  namespace: default
+  title: "Generated Rust Types"
+  description: "Auto-generated Rust data structures from JSON schemas using quicktype."
+spec:
+  type: library
+  lifecycle: production
+  owner: team-platform-infrastructure
+  system: familiar-schema-system
+  dependsOn:
+    - component:default/schema-assembly-pipeline
+
+---
+# ==============================================================================
+# APIs: The Contracts Between Services
+# ==============================================================================
+
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: physics-engine-public-api
+  namespace: default
+  title: "Familiar Physics Public API"
+  description: "The public-facing API for submitting data and receiving real-time updates from the physics engine."
+spec:
+  type: openapi
+  lifecycle: production
+  owner: team-platform-infrastructure
+  system: familiar-physics-engine
+  definition:
+    $text: ./interfaces/frontend_api_specification.md
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: quantum-classical-handoff-api
+  namespace: default
+  title: "Quantum-Classical Handoff API"
+  description: "The internal event-based API for managing state transitions between the quantum and classical engines, defined by the CollapsePayload schema."
+spec:
+  type: asyncapi
+  lifecycle: production
+  owner: team-physics-core
+  system: familiar-physics-engine
+  definition:
+    $text: ./schemas/payloads/collapse_payload.schema.json
+
+---
+# ==============================================================================
+# Resources: The Infrastructure
+# ==============================================================================
+
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: timescaledb-physics-db
+  namespace: default
+  title: "TimescaleDB Physics Database"
+  description: "The primary time-series vector database for storing all immutable entity versions and mutable physics states."
+spec:
+  type: database
+  owner: team-platform-infrastructure
+  system: familiar-physics-engine
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: redpanda-cluster
+  namespace: default
+  title: "Redpanda Streaming Cluster"
+  description: "The event streaming platform that enables asynchronous, event-driven communication between all system components."
+spec:
+  type: messaging-queue
+  owner: team-platform-infrastructure
+  system: familiar-physics-engine
+
+---
+# ==============================================================================
+# Domain
+# ==============================================================================
+apiVersion: backstage.io/v1alpha1
+kind: Domain
+metadata:
+  name: cognitive-systems
+  namespace: default
+  title: "Cognitive Systems Domain"
+  description: "Systems related to cognitive modeling, physics simulation, and agentic frameworks."
+spec:
+  owner: team-system-architecture
+
+---
+# ==============================================================================
+# Ownership: Teams
+# ==============================================================================
+
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: team-system-architecture
+  namespace: default
+  title: "System Architecture Team"
+  description: "Owns the overall system design and foundational principles."
+spec:
+  type: team
+  children: []
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: team-platform-infrastructure
+  namespace: default
+  title: "Platform Infrastructure Team"
+  description: "Owns the API gateway, databases, and deployment infrastructure."
+spec:
+  type: team
+  children: []
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: team-cognitive-modeling
+  namespace: default
+  title: "Cognitive Modeling Team"
+  description: "Owns the agentic framework and high-level cognitive analysis."
+spec:
+  type: team
+  children: []
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: team-physics-core
+  namespace: default
+  title: "Physics Core Team"
+  description: "Owns the implementation of the quantum and classical physics engines."
+spec:
+  type: team
+  children: []

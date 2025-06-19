@@ -10,8 +10,7 @@
     "event_id": { "$ref": "../snippets/fields/EntityId.json" },
     "trace_id": { "$ref": "../snippets/fields/EntityId.json" },
     "timestamp": { "$ref": "../snippets/fields/CreatedAt.json" },
-    "source_service": { "type": "string" },
-    "payload": { "type": "object" }
+    "source_service": { "type": "string" }
   },
   "required": ["event_id", "trace_id", "timestamp", "source_service", "payload"]
 }

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://familiar.dev/schemas/FamiliarTypes.v1.schema.json",
+  "title": "FamiliarTypes",
+  "description": "A root schema that defines all top-level types for the Familiar system, ensuring correct code generation without name collisions.",
+  "type": "object",
+  "properties": {
+    "comment": {
+      "type": "string",
+      "description": "This schema is a container for all other types in the $defs section. This property is for structure and is not meant to be instantiated."
+    }
+  },
+  "$defs": {
+    "Bond": { "$ref": "./entities/Bond.schema.json" },
+    "Filament": { "$ref": "./entities/Filament.schema.json" },
+    "Focus": { "$ref": "./entities/Focus.schema.json" },
+    "Intent": { "$ref": "./entities/Intent.schema.json" },
+    "Moment": { "$ref": "./entities/Moment.schema.json" },
+    "Motif": { "$ref": "./entities/Motif.schema.json" },
+    "Stitch": { "$ref": "./entities/Stitch.schema.json" },
+    "Tenant": { "$ref": "./entities/Tenant.schema.json" },
+    "Thread": { "$ref": "./entities/Thread.schema.json" },
+    "CoursePayload": { "$ref": "./payloads/CoursePayload.schema.json" },
+    "DraftPayload": { "$ref": "./payloads/DraftPayload.schema.json" },
+    "ReconciliationResultPayload": { "$ref": "./payloads/ReconciliationResultPayload.schema.json" },
+    "ShuttlePayload": { "$ref": "./payloads/ShuttlePayload.schema.json" },
+    "StitchInteractionRequest": { "$ref": "./payloads/StitchInteractionRequest.schema.json" },
+    "StitchInteractionResponse": { "$ref": "./payloads/StitchInteractionResponse.schema.json" },
+    "WeavePayload": { "$ref": "./payloads/WeavePayload.schema.json" },
+    "WeaveUnitPayload": { "$ref": "./payloads/WeaveUnitPayload.schema.json" },
+    "BondStateChangeRequestedEvent": { "$ref": "./events/BondStateChangeRequested.event.schema.json" },
+    "MomentAccessedEvent": { "$ref": "./events/MomentAccessed.schema.json" },
+    "ThreadStateChangeRequestedEvent": { "$ref": "./events/ThreadStateChangeRequested.event.schema.json" },
+    "IngestionWorkflow": { "$ref": "./workflows/IngestionWorkflow.schema.json" },
+    "BondStateLogTable": { "$ref": "./tables/Bond_state_log.table.schema.json" },
+    "ThreadStateLogTable": { "$ref": "./tables/Thread_state_log.schema.json" }
+  }
+}

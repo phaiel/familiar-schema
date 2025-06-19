@@ -9,14 +9,15 @@ import yaml
 from pathlib import Path
 from typing import Dict
 from datetime import datetime
+import argparse
 
 
 class SchemaDocGenerator:
     """Generates documentation from JSON schemas."""
     
-    def __init__(self, schemas_dir: str = "schemas", docs_dir: str = "../.."):
-        self.schemas_dir = Path(schemas_dir)
-        self.docs_dir = Path(docs_dir)
+    def __init__(self, schemas_dir: Path, docs_dir: Path):
+        self.schemas_dir = schemas_dir.resolve()
+        self.docs_dir = docs_dir.resolve()
         self.schemas: Dict[str, Dict] = {}
         
     def load_all_schemas(self):
@@ -193,5 +194,20 @@ The schemas are also integrated with Backstage for catalog management and visual
 
 
 if __name__ == "__main__":
-    generator = SchemaDocGenerator()
+    parser = argparse.ArgumentParser(description="Familiar Schema Documentation Generator.")
+    parser.add_argument(
+        "--schemas-dir",
+        type=Path,
+        required=True,
+        help="Absolute path to the source schemas directory."
+    )
+    parser.add_argument(
+        "--docs-dir",
+        type=Path,
+        required=True,
+        help="Absolute path to the root docs directory for output."
+    )
+    args = parser.parse_args()
+    
+    generator = SchemaDocGenerator(schemas_dir=args.schemas_dir, docs_dir=args.docs_dir)
     generator.run()

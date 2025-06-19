@@ -3,118 +3,83 @@
 # ==============================================================================
 
 # --- Configuration ---
-SCHEMA_DIR := docs/v3/schemas
-ASSEMBLED_DIR := $(SCHEMA_DIR)/assembled
-BUNDLED_DIR := docs/v3/dist/bundled_schemas
-VISUAL_DIR := docs/v3/dist/visual
-
-# Find assembled schemas (output of the assembly process)
-ASSEMBLED_SCHEMAS := $(shell find $(ASSEMBLED_DIR) -name "*.schema.json" 2>/dev/null)
+V3_DIR := docs/v3
+SCHEMA_DIR := $(V3_DIR)/schemas
+RUNNER_DIR := $(V3_DIR)/scripts/runner
+RUST_GENERATED_FILE := src/generated/familiar_types.rs
+PYTHON_REQUIREMENTS := $(V3_DIR)/scripts/requirements.txt
 
 # --- Primary Targets ---
-.PHONY: all assemble validate bundle generate-types generate-catalog generate-docs visualize ci clean list-assembled
+.PHONY: all setup assemble validate generate-types generate-catalog generate-docs ci clean
 
-# The full pipeline: assemble, validate, then generate code, catalog, and docs
+# The full pipeline: assemble, validate, then generate code and catalog.
 all: assemble validate generate-types generate-catalog generate-docs
 
-# The CI pipeline runs the same full flow
-ci: all
-	@echo "✅ All CI checks passed."
+# The CI pipeline runs the same full flow.
+ci: setup all
 
-# Step 1: Assemble final schemas from templates and snippets using Jinja2
+# Install Python dependencies and build the Rust codegen tool.
+setup:
+	@echo "🐍 Installing Python dependencies..."
+	@pip install --upgrade pip
+	@pip install -r $(PYTHON_REQUIREMENTS)
+	@echo "✅ Python dependencies installed."
+	@echo "🦀 Building Rust code generation tool (schemafy)..."
+	@cd $(RUNNER_DIR) && cargo build --release
+	@echo "✅ schemafy runner built."
+
+# Step 1: Assemble and dereference schemas using the robust Python script.
 assemble:
-	@echo "🧩 Assembling final schemas from templates and snippets..."
-	@python3 docs/v3/scripts/assemble_schemas.py
+	@echo "🧩 Assembling and dereferencing schemas..."
+	@python3 $(V3_DIR)/scripts/assemble_schemas.py \
+		--source-dir $(SCHEMA_DIR) \
+		--output-dir $(SCHEMA_DIR)/assembled
 	@echo "✅ Schema assembly complete."
 
-# Step 2: Validate the assembled schemas
+# Step 2: Validate the assembled schemas to ensure they are well-formed.
 validate: assemble
-	@echo "🔍 Validating assembled schemas..."
-	@if [ -z "$(ASSEMBLED_SCHEMAS)" ]; then \
-		echo "❌ No assembled schemas found. Run 'make assemble' first."; \
-		exit 1; \
-	fi
-	@for schema in $(ASSEMBLED_SCHEMAS); do \
-		echo "Validating $$schema..."; \
-		jsonschema metaschema $$schema || exit 1; \
-	done
-	@echo "✅ Schema validation successful."
+	@echo "🔍 Validating assembled schemas with check-jsonschema..."
+	@check-jsonschema --check-metaschema $$(find $(SCHEMA_DIR)/assembled -name "*.json")
+	@echo "✅ Schemas validated."
 
-# Step 3: Generate Rust types from assembled schemas  
-generate-types: bundle
-	@echo "Generating Rust types from bundled schemas..."
-	@quicktype --src-lang schema --lang rust \
-		-s $(firstword $(subst /,\\,/,$*)) \
-		--src docs/v3/dist/bundled_schemas/ \
-		-o src/generated/types/all_generated_types.rs \
-		--top-level-rust-types \
-		--derives "PartialEq, Clone, Debug, Serialize, Deserialize"
+# Step 3: Generate pure Rust types from the source schemas using schemafy.
+generate-types: setup assemble
+	@echo "🏗️ Generating Rust types with schemafy..."
+	@mkdir -p $(dir $(RUST_GENERATED_FILE))
+	@cd $(RUNNER_DIR) && cargo run --release -- \
+		-o ../../../../$(RUST_GENERATED_FILE) \
+		../../schemas/assembled/FamiliarTypes.schema.json
+	@echo "✅ Rust types generated in $(RUST_GENERATED_FILE)."
 
-# Step 4: Generate Backstage catalog from schemas
+# Step 4: Generate Backstage catalog from schemas.
 generate-catalog:
-	@echo "Generating Backstage catalog..."
-	@python3 docs/v3/scripts/generate_catalog_info.py --schemas-dir docs/v3/schemas --output catalog-info.yaml
+	@echo "📋 Generating Backstage catalog..."
+	@python3 $(V3_DIR)/scripts/generate_catalog_info.py \
+		--schemas-dir $(SCHEMA_DIR) \
+		--output catalog-info.yaml
+	@echo "✅ Backstage catalog generated."
 
-# Step 5: Generate comprehensive documentation
-generate-docs: validate
-	@echo "📚 Generating comprehensive documentation from schemas..."
-	@python3 docs/v3/scripts/generate_docs.py
+# Step 5: Generate comprehensive documentation.
+generate-docs:
+	@echo "📚 Generating documentation from schemas..."
+	@python3 $(V3_DIR)/scripts/generate_docs.py \
+		--schemas-dir $(abspath $(SCHEMA_DIR)) \
+		--docs-dir $(abspath $(V3_DIR)/../..)
 	@echo "✅ Documentation generated."
 
-# Step 5: Optional bundling for external tool compatibility
-bundle: assemble
-	@echo "📦 Creating bundled schemas for external tools..."
-	@mkdir -p $(BUNDLED_DIR)
-	@for schema_file in $(ASSEMBLED_SCHEMAS); do \
-		relative_path=$$(echo $$schema_file | sed 's|$(ASSEMBLED_DIR)/||'); \
-		output_dir=$(BUNDLED_DIR)/$$(dirname $$relative_path); \
-		output_file=$$output_dir/$$(basename $$schema_file); \
-		mkdir -p $$output_dir; \
-		echo "  -> Bundling $$schema_file to $$output_file"; \
-		json-dereference -s $$schema_file -o $$output_file 2>/dev/null || cp $$schema_file $$output_file; \
-	done
-	@echo "✅ Schema bundling complete."
-
-# Step 6: Generate visualization files for JSON Crack
-visualize: bundle
-	@echo "Copying bundled schema for visualization..."
-	@mkdir -p $(VISUAL_DIR)
-	@for schema_file in $(ASSEMBLED_SCHEMAS); do \
-		base_name=$$(basename $$schema_file .schema.json); \
-		echo "  -> Creating visualization for $$base_name"; \
-		jq . $$schema_file > $(VISUAL_DIR)/$$base_name.json; \
-	done
-	@echo "✅ Visualization files generated in $(VISUAL_DIR)/"
-	@echo "📋 To view in JSON Crack, copy the contents of any file in $(VISUAL_DIR)/ and paste into https://jsoncrack.com/"
-
-# Development helpers
-list-assembled:
-	@echo "📋 Assembled schemas:"
-	@for schema in $(ASSEMBLED_SCHEMAS); do \
-		echo "  $$schema"; \
-	done
-
-# Analyze missing types (helps identify what snippets to create)
-analyze-types: generate-types
-	@echo "🔍 Analyzing generated Rust code for type inference issues..."
-	@echo "Looking for HashMap<String, Option<serde_json::Value>> patterns..."
-	@grep -n "HashMap<String, Option<serde_json::Value>>" src/generated/types/familiar_types.rs || echo "✅ No generic HashMaps found"
-	@echo "Looking for Option<serde_json::Value> patterns..."
-	@grep -n "Option<serde_json::Value>" src/generated/types/familiar_types.rs || echo "✅ No generic Options found"
-
-# Quick validation of source templates (before assembly)
-validate-templates:
-	@echo "🔍 Quick validation of source templates..."
-	@find docs/v3/schemas/templates -name "*.jinja" -exec echo "Checking template: {}" \;
-	@find docs/v3/schemas/snippets -name "*.json" -exec jsonschema metaschema {} \;
-	@echo "✅ Template and snippet validation successful."
-
-# Schema Registry targets removed - using simpler assembly approach
-
-# Utility to clean all generated artifacts
+# Utility to clean all generated artifacts.
 clean:
 	@echo "🧹 Cleaning generated artifacts..."
-	@rm -rf $(ASSEMBLED_DIR)
-	@rm -rf docs/v3/dist
-	@rm -f src/generated/types/*.rs
+	@rm -rf $(SCHEMA_DIR)/assembled
+	@rm -rf $(V3_DIR)/dist
+	@rm -f $(RUST_GENERATED_FILE)
+	@rm -f catalog-info.yaml
+	@rm -f mkdocs.yml
+	@rm -rf docs/index.md
+	@rm -rf $(RUNNER_DIR)/target
+	@rm -f $(RUNNER_DIR)/Cargo.lock
 	@echo "✅ Cleanup complete."
+
+# Docker Compose Target for Schema Registry (if needed)
+# start-registry:
+# ... existing code ... 

@@ -14,10 +14,8 @@
     "columns": {
       "description": "A map of column names to their definitions.",
       "type": "object",
-      "patternProperties": {
-        "^[a-z_]+$": {
-          "$ref": "../snippets/types/database/ColumnDefinition.json"
-        }
+      "additionalProperties": {
+        "$ref": "../snippets/types/database/ColumnDefinition.json"
       }
     }
   },

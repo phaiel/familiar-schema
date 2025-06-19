@@ -18,21 +18,15 @@
         },
         "moment_type": {
           "description": "The classification of the event.",
-          "type": {
-            "$ref": "../snippets/types/classification/MomentType.json"
-          }
+          "$ref": "../snippets/types/classification/MomentType.json"
         },
         "participants": {
           "description": "A list of Thread entities that were involved in this Moment.",
-          "type": {
-            "$ref": "../snippets/types/primitives/EntityIdList.json"
-          }
+          "$ref": "../snippets/fields/EntityIdList.json"
         },
         "objective_facts": {
           "description": "A key-value map of objective, verifiable facts about the Moment.",
-          "type": {
-            "$ref": "../snippets/types/primitives/StringValueMap.json"
-          }
+          "$ref": "../snippets/types/primitives/StringValueMap.json"
         }
       },
       "required": [

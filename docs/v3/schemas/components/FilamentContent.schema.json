@@ -20,7 +20,7 @@
           "$ref": "../snippets/types/physics/AbstractionLevel.json"
           },
         "source_threads_and_bonds": {
-          "$ref": "../snippets/fields/SourceThreadsAndBonds.json"
+          "$ref": "../snippets/fields/SourceThreadAndBonds.json"
           }
       },
       "required": [

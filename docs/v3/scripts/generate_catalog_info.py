@@ -708,42 +708,56 @@ class SchemaCatalogGenerator:
         return all_components
 
     def write_catalog_info(self, output_file: str = "catalog-info.yaml"):
-        """Write the generated catalog entries to a YAML file."""
+        """Generate and write the complete catalog to a YAML file."""
         catalog_items = self.generate_catalog_info()
         
-        # We need to write a multi-document YAML file
-        print(f"\nWriting {len(catalog_items)} components to {output_file}...")
+        # Resolve output path relative to the project root for robustness
+        output_path = self.schemas_dir.parent.parent.parent / output_file
+        
+        print(f"\nWriting {len(catalog_items)} components to {output_path}...")
         try:
-            with open(output_file, 'w') as f:
-                # Write each component as a separate YAML document
-                for i, item in enumerate(catalog_items):
-                    yaml.dump(item, f, sort_keys=False, default_flow_style=False, indent=2)
-                    if i < len(catalog_items) - 1:
-                        f.write('---\n')
-            print("Successfully wrote catalog file.")
-        except Exception as e:
-            print(f"Error writing to {output_file}: {e}")
+            # Use dump_all for a multi-document YAML file
+            with open(output_path, 'w') as f:
+                yaml.dump_all(catalog_items, f, sort_keys=False, default_flow_style=False)
+            print(f"Successfully wrote catalog file.")
+        except IOError as e:
+            print(f"Error writing to {output_path}: {e}")
 
     def run(self, output_file: str):
         """Execute the full catalog generation process."""
         print("=== Familiar Schema Catalog Generator ===")
+        print(f"  Schemas directory: {self.schemas_dir}")
+        
+        self.load_all_schemas()
+        self.analyze_dependencies()
         self.write_catalog_info(output_file)
-        print("=======================================")
+        
+        print("\n=======================================")
 
-
-if __name__ == "__main__":
+def main():
+    """Main function to run the script from the command line."""
+    # The project root is three levels up from this script (scripts/v3/docs/familiar)
+    project_root = Path(__file__).parent.parent.parent.parent
+    
     parser = argparse.ArgumentParser(description="Generate Backstage catalog-info.yaml from JSON schemas.")
     parser.add_argument(
         "--schemas-dir",
-        default="schemas",
-        help="Path to the directory containing JSON schemas, relative to the script's location."
+        type=str,
+        default=str(project_root / "docs/v3/schemas"),
+        help="Path to the root schemas directory."
     )
     parser.add_argument(
         "--output",
+        type=str,
         default="catalog-info.yaml",
-        help="Path to the output catalog-info.yaml file."
+        help="Output file name for the Backstage catalog (e.g., catalog-info.yaml)."
     )
-    args = parser.parse_args()
     
-    generator = SchemaCatalogGenerator(schemas_dir=args.schemas_dir)
-    generator.run(output_file=args.output) 
+    args = parser.parse_args()
+
+    # Instantiate the generator with the absolute path to the schemas directory
+    generator = SchemaCatalogGenerator(schemas_dir=Path(args.schemas_dir))
+    generator.run(output_file=args.output)
+
+if __name__ == "__main__":
+    main() 

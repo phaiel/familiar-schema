@@ -4,17 +4,23 @@
   "title": "Ingestion Shuttle Payload",
   "description": "The state object that carries a WeaveUnit through the Heddle reconciliation pipeline.",
   "allOf": [{ "$ref": "../_base/BasePayload.schema.json" }],
-  "schema_version": "1.0.0",
-  "data": {
-    "type": "object",
-    "properties": {
-      "parent_course_id": { "$ref": "../snippets/fields/EntityId.json" },
-      "active_weave_unit": { "$ref": "./WeaveUnitPayload.schema.json" },
-      "structural_reconciliation": { "$ref": "./ReconciliationResultPayload.schema.json" },
-      "emotional_reconciliation": { "$ref": "./ReconciliationResultPayload.schema.json" },
-      "identity_reconciliation": { "$ref": "./ReconciliationResultPayload.schema.json" },
-      "is_ready_for_creation": { "type": "boolean", "default": false }
-    },
-    "required": ["parent_course_id", "active_weave_unit"]
+  "schema_version": "1.1.0",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "parent_course_id": { "$ref": "../snippets/fields/EntityId.json" },
+        "active_weave_unit": { "$ref": "./WeaveUnitPayload.schema.json" },
+        "reconciliation_results": {
+          "description": "A map of reconciliation task types to their results. This is extensible for new reconciliation steps.",
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "./ReconciliationResultPayload.schema.json"
+          }
+        },
+        "is_ready_for_creation": { "type": "boolean", "default": false }
+      },
+      "required": ["parent_course_id", "active_weave_unit"]
+    }
   }
 }

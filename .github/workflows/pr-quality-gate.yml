@@ -17,6 +17,7 @@ jobs:
         with:
           # SonarQube needs the full git history to track new code vs. old.
           fetch-depth: 0
+      - run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
       - name: "Setup Node.js for Schema Tooling"
         uses: actions/setup-node@v4
@@ -42,13 +43,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-      - name: "Generate Rust Types"
-        run: make --file docs/v3/Makefile generate-types
-
-      - name: "Run Local Validation & Build Pipeline"
-        # This runs all the local checks defined in the Makefile.
-        # If any of these fail, the entire workflow stops here.
-        run: make -C docs/v3 ci
+      - name: Generate types for Sonar
+        run: make --file docs/v3/Makefile ci
 
       - name: "Run SonarQube Scan"
         # This command executes the SonarScanner, which reads the sonar-project.properties
