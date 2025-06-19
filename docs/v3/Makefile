@@ -44,7 +44,7 @@ validate: assemble
 generate-types: bundle
 	@echo "Generating Rust types from bundled schemas..."
 	@quicktype --src-lang schema --lang rust \
-		-s $(firstword $(subst /,\,/,$*)) \
+		-s $(firstword $(subst /,\\,/,$*)) \
 		--src docs/v3/dist/bundled_schemas/ \
 		-o src/generated/types/all_generated_types.rs \
 		--top-level-rust-types \

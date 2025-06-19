@@ -25,8 +25,8 @@ jobs:
 
       - name: "Install Schema & Dev Tools"
         run: |
-          npm install -g @sourcemeta/jsonschema-cli
-          npm install -g quicktype-cli
+          npm install -g jsonschema-cli
+          npm install -g quicktype
           npm install -g json-dereference-cli
 
       - name: "Setup Rust, Clippy & Caching"
@@ -41,6 +41,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+      - name: "Ensure Output Directory Exists"
+        run: mkdir -p src/generated/types
+
+      - name: "Generate Rust Types"
+        run: make --file docs/v3/Makefile generate-types
 
       - name: "Run Local Validation & Build Pipeline"
         # This runs all the local checks defined in the Makefile.
