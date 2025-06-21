@@ -226,7 +226,7 @@ def main():
     parser.add_argument(
         "--output-dir", 
         type=Path,
-        default=Path("../generated/rust-typify"),
+        default=Path("../generated/rust"),
         help="Output directory for generated Rust code"
     )
     

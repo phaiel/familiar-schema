@@ -1,23 +1,20 @@
 //! Payloads module
 //!
 //! Generated Rust structs for payloads schemas.
-//! Generated: 2025-06-20 02:54:12 UTC
 
-pub mod course_payload;
-pub mod draft_payload;
-pub mod reconciliation_result_payload;
-pub mod shuttle_payload;
-pub mod stitch_interaction_request;
-pub mod stitch_interaction_response;
-pub mod weave_payload;
-pub mod weave_unit_payload;
+pub mod coursepayload;
+pub mod draftpayload;
+pub mod reconciliationresultpayload;
+pub mod shuttlepayload;
+pub mod stitchinteractionrequest;
+pub mod stitchinteractionresponse;
+pub mod weavepayload;
+pub mod weaveunitpayload;
 
 // Re-export all types
-pub use course_payload::CoursePayload;
-pub use draft_payload::DraftPayload;
-pub use reconciliation_result_payload::ReconciliationResultPayload;
-pub use shuttle_payload::ShuttlePayload;
-pub use stitch_interaction_request::StitchInteractionRequest;
-pub use stitch_interaction_response::StitchInteractionResponse;
-pub use weave_payload::WeavePayload;
-pub use weave_unit_payload::WeaveUnitPayload;
+pub use coursepayload::{BaseUserContext, ConversionError, CourseData, CourseDataAnalysisType, CoursePayload, StatusField};
+pub use draftpayload::*;
+pub use shuttlepayload::{BaseUserContext, ConversionError, EntityType, IngestionShuttleData, IngestionShuttlePayload, ReconciliationResultData, ReconciliationResultPayload, ReconciliationTaskType, WeaveUnitData, WeaveUnitPayload};
+pub use stitchinteractionrequest::{ConversionError, StitchInteractionRequest, StitchInteractionRequestInteractionType, StitchInteractionRequestOneofItemItems, StitchInteractionType};
+pub use stitchinteractionresponse::{ConversionError, StitchInteractionResponse, StitchInteractionResponseResponsePayload, StitchResponsePayload};
+pub use weavepayload::{BaseUserContext, ConversionError, WeaveData, WeavePayload, WeaveType};
