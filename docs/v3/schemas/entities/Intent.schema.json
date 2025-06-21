@@ -10,8 +10,9 @@
   ],
   "properties": {
     "entity_type": {
-      "const": "Intent"
-    },
+      "type": "string",
+      "enum": ["Intent"]
+      },
     "components": {
       "type": "object",
       "properties": {

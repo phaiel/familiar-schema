@@ -1,0 +1,1025 @@
+[
+  {
+    "classes": [
+      "TaskDefinition",
+      "Type"
+    ],
+    "file": "snippets/TaskDefinition.py",
+    "issue": "Multiple classes found: ['TaskDefinition', 'Type']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "ColumnDefinition",
+      "Type"
+    ],
+    "file": "snippets/ColumnDefinition.py",
+    "issue": "Multiple classes found: ['ColumnDefinition', 'Type']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "Member",
+      "Role"
+    ],
+    "file": "snippets/Member.py",
+    "issue": "Multiple classes found: ['Member', 'Role']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "Status",
+      "WorkflowState"
+    ],
+    "file": "snippets/WorkflowState.py",
+    "issue": "Multiple classes found: ['Status', 'WorkflowState']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "TaskList",
+      "TaskListItem",
+      "Type"
+    ],
+    "file": "snippets/TaskList.py",
+    "issue": "Multiple classes found: ['TaskList', 'TaskListItem', 'Type']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "DensityMatrix",
+      "DensityMatrixItem",
+      "DensityMatrixItemItem"
+    ],
+    "file": "snippets/DensityMatrix.py",
+    "issue": "Multiple classes found: ['DensityMatrix', 'DensityMatrixItem', 'DensityMatrixItemItem']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "Columns",
+      "Reason",
+      "State",
+      "ThreadStateLogTable"
+    ],
+    "file": "tables/Thread_state_log.py",
+    "issue": "Multiple classes found: ['Columns', 'Reason', 'State', 'ThreadStateLogTable']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "BondStateLogTable",
+      "Columns",
+      "Type"
+    ],
+    "file": "tables/Bond_state_log.py",
+    "issue": "Multiple classes found: ['BondStateLogTable', 'Columns', 'Type']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "Engine",
+      "ExecutionEnvelope",
+      "MemoryConsolidationLaw",
+      "PhysicsProperties",
+      "Trigger"
+    ],
+    "file": "laws/MemoryConsolidation.py",
+    "issue": "Multiple classes found: ['Engine', 'ExecutionEnvelope', 'MemoryConsolidationLaw', 'PhysicsProperties', 'Trigger']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "Engine",
+      "ExecutionEnvelope",
+      "MotifCollapseLaw",
+      "PhysicsProperties",
+      "Trigger"
+    ],
+    "file": "laws/MotifCollapse.py",
+    "issue": "Multiple classes found: ['Engine', 'ExecutionEnvelope', 'MotifCollapseLaw', 'PhysicsProperties', 'Trigger']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "BondTensionDynamicsLaw",
+      "Engine",
+      "ExecutionEnvelope",
+      "PhysicsProperties",
+      "Trigger"
+    ],
+    "file": "laws/BondTensionDynamics.py",
+    "issue": "Multiple classes found: ['BondTensionDynamicsLaw', 'Engine', 'ExecutionEnvelope', 'PhysicsProperties', 'Trigger']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "Data",
+      "SourceType",
+      "UserContext",
+      "WeavePayload"
+    ],
+    "file": "payloads/WeavePayload.py",
+    "issue": "Multiple classes found: ['Data', 'SourceType', 'UserContext', 'WeavePayload']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "AbstractionLevel",
+      "CognitiveBaseline",
+      "Components",
+      "Components1",
+      "Components2",
+      "Components3",
+      "Components4",
+      "Components5",
+      "Components6",
+      "Consolidation",
+      "Consolidation1",
+      "ConsolidationLevel",
+      "Constraints",
+      "Content",
+      "Content1",
+      "Content2",
+      "Content3",
+      "Content4",
+      "Content5",
+      "Data",
+      "Data1",
+      "Data2",
+      "Data3",
+      "Data4",
+      "Data5",
+      "Data6",
+      "Data7",
+      "Engine",
+      "EntityDraftPayload",
+      "EntityType",
+      "Fields",
+      "Fields1",
+      "Fields10",
+      "Fields11",
+      "Fields12",
+      "Fields13",
+      "Fields14",
+      "Fields15",
+      "Fields16",
+      "Fields18",
+      "Fields19",
+      "Fields2",
+      "Fields20",
+      "Fields21",
+      "Fields22",
+      "Fields23",
+      "Fields24",
+      "Fields25",
+      "Fields26",
+      "Fields27",
+      "Fields28",
+      "Fields29",
+      "Fields3",
+      "Fields30",
+      "Fields31",
+      "Fields32",
+      "Fields33",
+      "Fields34",
+      "Fields35",
+      "Fields4",
+      "Fields5",
+      "Fields6",
+      "Fields7",
+      "Fields8",
+      "Fields9",
+      "FilamentType",
+      "Gdpr",
+      "HistoryItem",
+      "Identity",
+      "ManifoldPosition",
+      "MomentType",
+      "MotifType",
+      "Permissions",
+      "PhysicsConfig",
+      "PhysicsProperties",
+      "PhysicsProperties1",
+      "PhysicsProperties10",
+      "PhysicsProperties11",
+      "PhysicsProperties12",
+      "PhysicsProperties13",
+      "PhysicsProperties14",
+      "PhysicsProperties15",
+      "PhysicsProperties16",
+      "PhysicsProperties2",
+      "PhysicsProperties3",
+      "PhysicsProperties4",
+      "PhysicsProperties5",
+      "PhysicsProperties6",
+      "PhysicsProperties7",
+      "PhysicsProperties8",
+      "PhysicsProperties9",
+      "PhysicsState",
+      "PhysicsState1",
+      "PhysicsState2",
+      "PhysicsState3",
+      "PhysicsState4",
+      "PhysicsState5",
+      "PhysicsState6",
+      "PhysicsState7",
+      "Quantum",
+      "RelationshipType",
+      "Status",
+      "Tension",
+      "Type",
+      "Type1",
+      "Type10",
+      "Type11",
+      "Type12",
+      "Type13",
+      "Type14",
+      "Type15",
+      "Type16",
+      "Type17",
+      "Type18",
+      "Type19",
+      "Type2",
+      "Type20",
+      "Type21",
+      "Type3",
+      "Type4",
+      "Type5",
+      "Type6",
+      "Type7",
+      "Type8",
+      "Type9",
+      "Universal",
+      "Universal1",
+      "Universal2",
+      "Universal3",
+      "Universal4",
+      "Universal5",
+      "Universal6",
+      "Universal7",
+      "UserContext"
+    ],
+    "file": "payloads/DraftPayload.py",
+    "issue": "Multiple classes found: ['AbstractionLevel', 'CognitiveBaseline', 'Components', 'Components1', 'Components2', 'Components3', 'Components4', 'Components5', 'Components6', 'Consolidation', 'Consolidation1', 'ConsolidationLevel', 'Constraints', 'Content', 'Content1', 'Content2', 'Content3', 'Content4', 'Content5', 'Data', 'Data1', 'Data2', 'Data3', 'Data4', 'Data5', 'Data6', 'Data7', 'Engine', 'EntityDraftPayload', 'EntityType', 'Fields', 'Fields1', 'Fields10', 'Fields11', 'Fields12', 'Fields13', 'Fields14', 'Fields15', 'Fields16', 'Fields18', 'Fields19', 'Fields2', 'Fields20', 'Fields21', 'Fields22', 'Fields23', 'Fields24', 'Fields25', 'Fields26', 'Fields27', 'Fields28', 'Fields29', 'Fields3', 'Fields30', 'Fields31', 'Fields32', 'Fields33', 'Fields34', 'Fields35', 'Fields4', 'Fields5', 'Fields6', 'Fields7', 'Fields8', 'Fields9', 'FilamentType', 'Gdpr', 'HistoryItem', 'Identity', 'ManifoldPosition', 'MomentType', 'MotifType', 'Permissions', 'PhysicsConfig', 'PhysicsProperties', 'PhysicsProperties1', 'PhysicsProperties10', 'PhysicsProperties11', 'PhysicsProperties12', 'PhysicsProperties13', 'PhysicsProperties14', 'PhysicsProperties15', 'PhysicsProperties16', 'PhysicsProperties2', 'PhysicsProperties3', 'PhysicsProperties4', 'PhysicsProperties5', 'PhysicsProperties6', 'PhysicsProperties7', 'PhysicsProperties8', 'PhysicsProperties9', 'PhysicsState', 'PhysicsState1', 'PhysicsState2', 'PhysicsState3', 'PhysicsState4', 'PhysicsState5', 'PhysicsState6', 'PhysicsState7', 'Quantum', 'RelationshipType', 'Status', 'Tension', 'Type', 'Type1', 'Type10', 'Type11', 'Type12', 'Type13', 'Type14', 'Type15', 'Type16', 'Type17', 'Type18', 'Type19', 'Type2', 'Type20', 'Type21', 'Type3', 'Type4', 'Type5', 'Type6', 'Type7', 'Type8', 'Type9', 'Universal', 'Universal1', 'Universal2', 'Universal3', 'Universal4', 'Universal5', 'Universal6', 'Universal7', 'UserContext']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "Data",
+      "ReconciliationResultPayload",
+      "TaskType",
+      "UserContext"
+    ],
+    "file": "payloads/ReconciliationResultPayload.py",
+    "issue": "Multiple classes found: ['Data', 'ReconciliationResultPayload', 'TaskType', 'UserContext']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "ResponsePayload",
+      "ResponsePayload1",
+      "ResponsePayload2",
+      "StitchInteractionResponse",
+      "StitchResponsePayload",
+      "StitchResponsePayload1",
+      "StitchResponsePayload2",
+      "StitchResponsePayload3"
+    ],
+    "file": "payloads/StitchInteractionResponse.py",
+    "issue": "Multiple classes found: ['ResponsePayload', 'ResponsePayload1', 'ResponsePayload2', 'StitchInteractionResponse', 'StitchResponsePayload', 'StitchResponsePayload1', 'StitchResponsePayload2', 'StitchResponsePayload3']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "Data",
+      "SuggestedEntityType",
+      "UserContext",
+      "WeaveUnitPayload"
+    ],
+    "file": "payloads/WeaveUnitPayload.py",
+    "issue": "Multiple classes found: ['Data', 'SuggestedEntityType', 'UserContext', 'WeaveUnitPayload']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "InteractionType",
+      "InteractionType1",
+      "InteractionType2",
+      "Option",
+      "StitchInteractionRequest",
+      "StitchInteractionType",
+      "StitchInteractionType1",
+      "StitchInteractionType2",
+      "StitchInteractionType3"
+    ],
+    "file": "payloads/StitchInteractionRequest.py",
+    "issue": "Multiple classes found: ['InteractionType', 'InteractionType1', 'InteractionType2', 'Option', 'StitchInteractionRequest', 'StitchInteractionType', 'StitchInteractionType1', 'StitchInteractionType2', 'StitchInteractionType3']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "AnalysisType",
+      "CoursePayload",
+      "Data",
+      "Status",
+      "UserContext"
+    ],
+    "file": "payloads/CoursePayload.py",
+    "issue": "Multiple classes found: ['AnalysisType', 'CoursePayload', 'Data', 'Status', 'UserContext']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "ActiveWeaveUnit",
+      "Data",
+      "Data1",
+      "Data2",
+      "IngestionShuttlePayload",
+      "ReconciliationResults",
+      "SuggestedEntityType",
+      "TaskType",
+      "UserContext"
+    ],
+    "file": "payloads/ShuttlePayload.py",
+    "issue": "Multiple classes found: ['ActiveWeaveUnit', 'Data', 'Data1', 'Data2', 'IngestionShuttlePayload', 'ReconciliationResults', 'SuggestedEntityType', 'TaskType', 'UserContext']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "IngestionWorkflow",
+      "Task",
+      "Type"
+    ],
+    "file": "workflows/IngestionWorkflow.py",
+    "issue": "Multiple classes found: ['IngestionWorkflow', 'Task', 'Type']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "Engine",
+      "Fields",
+      "MomentContentComponent",
+      "MomentType",
+      "PhysicsProperties"
+    ],
+    "file": "components/MomentContent.py",
+    "issue": "Multiple classes found: ['Engine', 'Fields', 'MomentContentComponent', 'MomentType', 'PhysicsProperties']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "Constraints",
+      "Engine",
+      "EntanglementStateComponent",
+      "Fields",
+      "Fields1",
+      "PhysicsProperties",
+      "Type",
+      "Type1"
+    ],
+    "file": "components/EntanglementState.py",
+    "issue": "Multiple classes found: ['Constraints', 'Engine', 'EntanglementStateComponent', 'Fields', 'Fields1', 'PhysicsProperties', 'Type', 'Type1']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "Constraints",
+      "Engine",
+      "Fields",
+      "Fields1",
+      "PhysicsProperties",
+      "ThreadContentComponent",
+      "Type",
+      "Type1"
+    ],
+    "file": "components/ThreadContent.py",
+    "issue": "Multiple classes found: ['Constraints', 'Engine', 'Fields', 'Fields1', 'PhysicsProperties', 'ThreadContentComponent', 'Type', 'Type1']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "Constraints",
+      "Engine",
+      "Fields",
+      "Fields1",
+      "PhysicsProperties",
+      "TenantMembersComponent",
+      "Type",
+      "Type1"
+    ],
+    "file": "components/TenantMembers.py",
+    "issue": "Multiple classes found: ['Constraints', 'Engine', 'Fields', 'Fields1', 'PhysicsProperties', 'TenantMembersComponent', 'Type', 'Type1']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "BondContentComponent",
+      "Engine",
+      "Fields",
+      "HistoryItem",
+      "PhysicsProperties",
+      "RelationshipType"
+    ],
+    "file": "components/BondContent.py",
+    "issue": "Multiple classes found: ['BondContentComponent', 'Engine', 'Fields', 'HistoryItem', 'PhysicsProperties', 'RelationshipType']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "Engine",
+      "Fields",
+      "PhysicsProperties",
+      "UniversalPhysicsStateComponent"
+    ],
+    "file": "components/UniversalPhysicsState.py",
+    "issue": "Multiple classes found: ['Engine', 'Fields', 'PhysicsProperties', 'UniversalPhysicsStateComponent']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "AbstractionLevel",
+      "Engine",
+      "Fields",
+      "FilamentContentComponent",
+      "FilamentType",
+      "PhysicsProperties"
+    ],
+    "file": "components/FilamentContent.py",
+    "issue": "Multiple classes found: ['AbstractionLevel', 'Engine', 'Fields', 'FilamentContentComponent', 'FilamentType', 'PhysicsProperties']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "Constraints",
+      "Engine",
+      "Fields",
+      "Fields1",
+      "GdprDependencyComponent",
+      "PhysicsProperties",
+      "Type",
+      "Type1"
+    ],
+    "file": "components/GDPRDependency.py",
+    "issue": "Multiple classes found: ['Constraints', 'Engine', 'Fields', 'Fields1', 'GdprDependencyComponent', 'PhysicsProperties', 'Type', 'Type1']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "BondTensionComponent",
+      "Constraints",
+      "Engine",
+      "Fields",
+      "Fields1",
+      "PhysicsProperties",
+      "Type",
+      "Type1"
+    ],
+    "file": "components/BondTension.py",
+    "issue": "Multiple classes found: ['BondTensionComponent', 'Constraints', 'Engine', 'Fields', 'Fields1', 'PhysicsProperties', 'Type', 'Type1']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "Engine",
+      "Fields",
+      "PhysicsProperties",
+      "TemporalAnchorComponent"
+    ],
+    "file": "components/TemporalAnchor.py",
+    "issue": "Multiple classes found: ['Engine', 'Fields', 'PhysicsProperties', 'TemporalAnchorComponent']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "BondPhysicsConfigComponent",
+      "Constraints",
+      "Engine",
+      "Fields",
+      "Fields1",
+      "PhysicsProperties",
+      "Type",
+      "Type1"
+    ],
+    "file": "components/BondPhysicsConfig.py",
+    "issue": "Multiple classes found: ['BondPhysicsConfigComponent', 'Constraints', 'Engine', 'Fields', 'Fields1', 'PhysicsProperties', 'Type', 'Type1']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "Engine",
+      "Fields",
+      "PhysicsProperties",
+      "SubscriptionPlan",
+      "TenantIdentityComponent"
+    ],
+    "file": "components/TenantIdentity.py",
+    "issue": "Multiple classes found: ['Engine', 'Fields', 'PhysicsProperties', 'SubscriptionPlan', 'TenantIdentityComponent']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "ConsolidationLevel",
+      "ConsolidationStateComponent",
+      "Engine",
+      "Fields",
+      "PhysicsProperties"
+    ],
+    "file": "components/ConsolidationState.py",
+    "issue": "Multiple classes found: ['ConsolidationLevel', 'ConsolidationStateComponent', 'Engine', 'Fields', 'PhysicsProperties']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "Constraints",
+      "Engine",
+      "Fields",
+      "Fields1",
+      "FocusContentComponent",
+      "PhysicsProperties",
+      "Type",
+      "Type1"
+    ],
+    "file": "components/FocusContent.py",
+    "issue": "Multiple classes found: ['Constraints', 'Engine', 'Fields', 'Fields1', 'FocusContentComponent', 'PhysicsProperties', 'Type', 'Type1']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "Constraints",
+      "Engine",
+      "Fields",
+      "Fields1",
+      "MemoryManifoldPositionComponent",
+      "PhysicsProperties",
+      "Type",
+      "Type1"
+    ],
+    "file": "components/MemoryManifoldPosition.py",
+    "issue": "Multiple classes found: ['Constraints', 'Engine', 'Fields', 'Fields1', 'MemoryManifoldPositionComponent', 'PhysicsProperties', 'Type', 'Type1']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "Constraints",
+      "Engine",
+      "Fields",
+      "Fields1",
+      "IntentContentComponent",
+      "PhysicsProperties",
+      "Type",
+      "Type1"
+    ],
+    "file": "components/IntentContent.py",
+    "issue": "Multiple classes found: ['Constraints', 'Engine', 'Fields', 'Fields1', 'IntentContentComponent', 'PhysicsProperties', 'Type', 'Type1']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "Constraints",
+      "Engine",
+      "Fields",
+      "Fields1",
+      "PhysicsProperties",
+      "TaskStatusComponent",
+      "Type",
+      "Type1"
+    ],
+    "file": "components/TaskStatus.py",
+    "issue": "Multiple classes found: ['Constraints', 'Engine', 'Fields', 'Fields1', 'PhysicsProperties', 'TaskStatusComponent', 'Type', 'Type1']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "CrossTenantLinkComponent",
+      "Engine",
+      "Fields",
+      "LinkStatus",
+      "PermissionsGrantedEnum",
+      "PhysicsProperties"
+    ],
+    "file": "components/CrossTenantLink.py",
+    "issue": "Multiple classes found: ['CrossTenantLinkComponent', 'Engine', 'Fields', 'LinkStatus', 'PermissionsGrantedEnum', 'PhysicsProperties']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "Constraints",
+      "Engine",
+      "Fields",
+      "Fields1",
+      "InstanceComponent",
+      "PhysicsProperties",
+      "Type",
+      "Type1"
+    ],
+    "file": "components/InstanceComponent.py",
+    "issue": "Multiple classes found: ['Constraints', 'Engine', 'Fields', 'Fields1', 'InstanceComponent', 'PhysicsProperties', 'Type', 'Type1']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "Constraints",
+      "Engine",
+      "Fields",
+      "Fields1",
+      "PhysicsProperties",
+      "TenantConfigurationComponent",
+      "Type",
+      "Type1"
+    ],
+    "file": "components/TenantConfig.py",
+    "issue": "Multiple classes found: ['Constraints', 'Engine', 'Fields', 'Fields1', 'PhysicsProperties', 'TenantConfigurationComponent', 'Type', 'Type1']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "Engine",
+      "Fields",
+      "MotifContentComponent",
+      "MotifType",
+      "PhysicsProperties"
+    ],
+    "file": "components/MotifContent.py",
+    "issue": "Multiple classes found: ['Engine', 'Fields', 'MotifContentComponent', 'MotifType', 'PhysicsProperties']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "Constraints",
+      "Engine",
+      "Fields",
+      "Fields1",
+      "PhysicsProperties",
+      "QuantumStateComponent",
+      "Type",
+      "Type1"
+    ],
+    "file": "components/QuantumState.py",
+    "issue": "Multiple classes found: ['Constraints', 'Engine', 'Fields', 'Fields1', 'PhysicsProperties', 'QuantumStateComponent', 'Type', 'Type1']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "AccessType",
+      "MomentAccessedEvent",
+      "Payload"
+    ],
+    "file": "events/MomentAccessed.py",
+    "issue": "Multiple classes found: ['AccessType', 'MomentAccessedEvent', 'Payload']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "NewState",
+      "Payload",
+      "Reason",
+      "Source",
+      "ThreadStateChangeRequestedEvent"
+    ],
+    "file": "events/ThreadStateChangeRequested.py",
+    "issue": "Multiple classes found: ['NewState', 'Payload', 'Reason', 'Source', 'ThreadStateChangeRequestedEvent']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "BondStateChangeRequestedEvent",
+      "NewState",
+      "Payload",
+      "Reason"
+    ],
+    "file": "events/BondStateChangeRequested.py",
+    "issue": "Multiple classes found: ['BondStateChangeRequestedEvent', 'NewState', 'Payload', 'Reason']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "BaseTaxonomy",
+      "Node"
+    ],
+    "file": "_base/BaseTaxonomy.py",
+    "issue": "Multiple classes found: ['BaseTaxonomy', 'Node']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "BaseTypeSystem",
+      "BaseTypeSystem1",
+      "BaseTypeSystem2"
+    ],
+    "file": "_base/BaseTypeSystem.py",
+    "issue": "Multiple classes found: ['BaseTypeSystem', 'BaseTypeSystem1', 'BaseTypeSystem2']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "BaseApiEndpoint",
+      "Method"
+    ],
+    "file": "_base/BaseApiEndpoint.py",
+    "issue": "Multiple classes found: ['BaseApiEndpoint', 'Method']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "BaseWorkflowDag",
+      "Task",
+      "Type"
+    ],
+    "file": "_base/BaseWorkflow.py",
+    "issue": "Multiple classes found: ['BaseWorkflowDag', 'Task', 'Type']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "BaseDatabaseTable",
+      "Columns",
+      "Type"
+    ],
+    "file": "_base/BaseTable.py",
+    "issue": "Multiple classes found: ['BaseDatabaseTable', 'Columns', 'Type']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "BasePhysicsProperties",
+      "Engine"
+    ],
+    "file": "_base/BasePhysics.py",
+    "issue": "Multiple classes found: ['BasePhysicsProperties', 'Engine']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "BaseEventPayload",
+      "UserContext"
+    ],
+    "file": "_base/BasePayload.py",
+    "issue": "Multiple classes found: ['BaseEventPayload', 'UserContext']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "BasePhysicsLaw",
+      "Engine",
+      "ExecutionEnvelope",
+      "PhysicsProperties",
+      "Trigger"
+    ],
+    "file": "_base/BaseLaw.py",
+    "issue": "Multiple classes found: ['BasePhysicsLaw', 'Engine', 'ExecutionEnvelope', 'PhysicsProperties', 'Trigger']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "BaseField",
+      "Constraints",
+      "Type",
+      "Type1"
+    ],
+    "file": "_base/BaseField.py",
+    "issue": "Multiple classes found: ['BaseField', 'Constraints', 'Type', 'Type1']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "BaseAgentOutput",
+      "Citation",
+      "SourceType"
+    ],
+    "file": "_base/BaseAgentOutput.py",
+    "issue": "Multiple classes found: ['BaseAgentOutput', 'Citation', 'SourceType']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "BaseComponent",
+      "Constraints",
+      "Engine",
+      "Fields",
+      "Fields1",
+      "PhysicsProperties",
+      "Type",
+      "Type1"
+    ],
+    "file": "_base/BaseComponent.py",
+    "issue": "Multiple classes found: ['BaseComponent', 'Constraints', 'Engine', 'Fields', 'Fields1', 'PhysicsProperties', 'Type', 'Type1']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "BaseTaxonomyLevel",
+      "BaseTaxonomyLevelItem"
+    ],
+    "file": "_base/BaseTaxonomyLevel.py",
+    "issue": "Multiple classes found: ['BaseTaxonomyLevel', 'BaseTaxonomyLevelItem']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "Components",
+      "EntityType",
+      "Fields",
+      "IntentEntity",
+      "PhysicsState",
+      "Universal"
+    ],
+    "file": "entities/Intent.py",
+    "issue": "Multiple classes found: ['Components', 'EntityType', 'Fields', 'IntentEntity', 'PhysicsState', 'Universal']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "Components",
+      "Fields",
+      "PhysicsState",
+      "PhysicsState1",
+      "Thread",
+      "Thread1",
+      "Thread2",
+      "Universal",
+      "Universal1"
+    ],
+    "file": "entities/Thread.py",
+    "issue": "Multiple classes found: ['Components', 'Fields', 'PhysicsState', 'PhysicsState1', 'Thread', 'Thread1', 'Thread2', 'Universal', 'Universal1']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "Components",
+      "Config",
+      "Constraints",
+      "Engine",
+      "EntityType",
+      "Fields",
+      "Fields1",
+      "Fields2",
+      "Fields3",
+      "Fields4",
+      "Identity",
+      "Members",
+      "PhysicsProperties",
+      "PhysicsProperties1",
+      "PhysicsProperties2",
+      "Status",
+      "SubscriptionPlan",
+      "TenantEntity",
+      "Type",
+      "Type1",
+      "Type2",
+      "Type3",
+      "WorkflowState"
+    ],
+    "file": "entities/Tenant.py",
+    "issue": "Multiple classes found: ['Components', 'Config', 'Constraints', 'Engine', 'EntityType', 'Fields', 'Fields1', 'Fields2', 'Fields3', 'Fields4', 'Identity', 'Members', 'PhysicsProperties', 'PhysicsProperties1', 'PhysicsProperties2', 'Status', 'SubscriptionPlan', 'TenantEntity', 'Type', 'Type1', 'Type2', 'Type3', 'WorkflowState']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "Components",
+      "Content",
+      "EntityType",
+      "Fields",
+      "Fields1",
+      "MomentEntity",
+      "MomentType",
+      "PhysicsState",
+      "Universal"
+    ],
+    "file": "entities/Moment.py",
+    "issue": "Multiple classes found: ['Components', 'Content', 'EntityType', 'Fields', 'Fields1', 'MomentEntity', 'MomentType', 'PhysicsState', 'Universal']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "Components",
+      "Consolidation",
+      "ConsolidationLevel",
+      "Content",
+      "EntityType",
+      "Fields",
+      "Fields1",
+      "Fields2",
+      "MotifEntity",
+      "MotifType",
+      "PhysicsState",
+      "Universal"
+    ],
+    "file": "entities/Motif.py",
+    "issue": "Multiple classes found: ['Components', 'Consolidation', 'ConsolidationLevel', 'Content', 'EntityType', 'Fields', 'Fields1', 'Fields2', 'MotifEntity', 'MotifType', 'PhysicsState', 'Universal']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "BaseCognitiveEntity",
+      "Components",
+      "EntityType"
+    ],
+    "file": "entities/BaseCognitiveEntity.py",
+    "issue": "Multiple classes found: ['BaseCognitiveEntity', 'Components', 'EntityType']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "Components",
+      "Fields",
+      "PersonThread",
+      "PhysicsState",
+      "Universal"
+    ],
+    "file": "entities/PersonThread.py",
+    "issue": "Multiple classes found: ['Components', 'Fields', 'PersonThread', 'PhysicsState', 'Universal']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "Components",
+      "DissonanceDetails",
+      "DissonanceType",
+      "EntityType",
+      "InteractionType",
+      "InteractionType1",
+      "InteractionType2",
+      "Option",
+      "ResolutionRequest",
+      "Status",
+      "StitchEntity",
+      "WorkflowState"
+    ],
+    "file": "entities/Stitch.py",
+    "issue": "Multiple classes found: ['Components', 'DissonanceDetails', 'DissonanceType', 'EntityType', 'InteractionType', 'InteractionType1', 'InteractionType2', 'Option', 'ResolutionRequest', 'Status', 'StitchEntity', 'WorkflowState']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "BondEntity",
+      "Components",
+      "Content",
+      "EntityType",
+      "Fields",
+      "Fields1",
+      "HistoryItem",
+      "PhysicsState",
+      "RelationshipType",
+      "Universal"
+    ],
+    "file": "entities/Bond.py",
+    "issue": "Multiple classes found: ['BondEntity', 'Components', 'Content', 'EntityType', 'Fields', 'Fields1', 'HistoryItem', 'PhysicsState', 'RelationshipType', 'Universal']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "BaseSystemEntity",
+      "EntityType",
+      "Status",
+      "WorkflowState"
+    ],
+    "file": "entities/BaseSystemEntity.py",
+    "issue": "Multiple classes found: ['BaseSystemEntity', 'EntityType', 'Status', 'WorkflowState']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "Fields",
+      "GenericThread",
+      "PhysicsState",
+      "Universal"
+    ],
+    "file": "entities/GenericThread.py",
+    "issue": "Multiple classes found: ['Fields', 'GenericThread', 'PhysicsState', 'Universal']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "AbstractionLevel",
+      "Components",
+      "Consolidation",
+      "ConsolidationLevel",
+      "Content",
+      "EntityType",
+      "Fields",
+      "Fields1",
+      "Fields2",
+      "FilamentEntity",
+      "FilamentType",
+      "PhysicsState",
+      "Universal"
+    ],
+    "file": "entities/Filament.py",
+    "issue": "Multiple classes found: ['AbstractionLevel', 'Components', 'Consolidation', 'ConsolidationLevel', 'Content', 'EntityType', 'Fields', 'Fields1', 'Fields2', 'FilamentEntity', 'FilamentType', 'PhysicsState', 'Universal']",
+    "type": "multiple_classes"
+  },
+  {
+    "classes": [
+      "Components",
+      "EntityType",
+      "Fields",
+      "FocusEntity",
+      "PhysicsState",
+      "Universal"
+    ],
+    "file": "entities/Focus.py",
+    "issue": "Multiple classes found: ['Components', 'EntityType', 'Fields', 'FocusEntity', 'PhysicsState', 'Universal']",
+    "type": "multiple_classes"
+  }
+]

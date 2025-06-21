@@ -1,0 +1,1492 @@
+{
+  "categories": {
+    "_base": {
+      "files": {
+        "BaseAgentOutput": {
+          "all_classes": [
+            "SourceType",
+            "Citation",
+            "BaseAgentOutput"
+          ],
+          "class_count": 3,
+          "main_class": "BaseAgentOutput"
+        },
+        "BaseAgentPersona": {
+          "all_classes": [
+            "BaseAgentPersona"
+          ],
+          "class_count": 1,
+          "main_class": "BaseAgentPersona"
+        },
+        "BaseApiEndpoint": {
+          "all_classes": [
+            "Method",
+            "BaseApiEndpoint"
+          ],
+          "class_count": 2,
+          "main_class": "BaseApiEndpoint"
+        },
+        "BaseComponent": {
+          "all_classes": [
+            "Engine",
+            "PhysicsProperties",
+            "Fields",
+            "Type",
+            "Type1",
+            "Constraints",
+            "Fields1",
+            "BaseComponent"
+          ],
+          "class_count": 8,
+          "main_class": "BaseComponent"
+        },
+        "BaseConstantsFile": {
+          "all_classes": [
+            "BaseConstantsFile"
+          ],
+          "class_count": 1,
+          "main_class": "BaseConstantsFile"
+        },
+        "BaseEntity": {
+          "all_classes": [
+            "BaseEntity"
+          ],
+          "class_count": 1,
+          "main_class": "BaseEntity"
+        },
+        "BaseEvent": {
+          "all_classes": [
+            "BaseEvent"
+          ],
+          "class_count": 1,
+          "main_class": "BaseEvent"
+        },
+        "BaseField": {
+          "all_classes": [
+            "Type",
+            "Type1",
+            "Constraints",
+            "BaseField"
+          ],
+          "class_count": 4,
+          "main_class": "BaseField"
+        },
+        "BaseLaw": {
+          "all_classes": [
+            "Engine",
+            "PhysicsProperties",
+            "Trigger",
+            "ExecutionEnvelope",
+            "BasePhysicsLaw"
+          ],
+          "class_count": 5,
+          "main_class": "PhysicsProperties"
+        },
+        "BaseMetadata": {
+          "all_classes": [
+            "BaseMetadata"
+          ],
+          "class_count": 1,
+          "main_class": "BaseMetadata"
+        },
+        "BasePayload": {
+          "all_classes": [
+            "UserContext",
+            "BaseEventPayload"
+          ],
+          "class_count": 2,
+          "main_class": "BaseEventPayload"
+        },
+        "BasePhysics": {
+          "all_classes": [
+            "Engine",
+            "BasePhysicsProperties"
+          ],
+          "class_count": 2,
+          "main_class": "BasePhysicsProperties"
+        },
+        "BasePhysicsProfile": {
+          "all_classes": [
+            "BasePhysicsProfile"
+          ],
+          "class_count": 1,
+          "main_class": "BasePhysicsProfile"
+        },
+        "BaseTable": {
+          "all_classes": [
+            "Type",
+            "Columns",
+            "BaseDatabaseTable"
+          ],
+          "class_count": 3,
+          "main_class": "BaseDatabaseTable"
+        },
+        "BaseTaxonomy": {
+          "all_classes": [
+            "Node",
+            "BaseTaxonomy"
+          ],
+          "class_count": 2,
+          "main_class": "BaseTaxonomy"
+        },
+        "BaseTaxonomyLevel": {
+          "all_classes": [
+            "BaseTaxonomyLevelItem",
+            "BaseTaxonomyLevel"
+          ],
+          "class_count": 2,
+          "main_class": "BaseTaxonomyLevel"
+        },
+        "BaseTaxonomyNode": {
+          "all_classes": [
+            "BaseTaxonomyNode"
+          ],
+          "class_count": 1,
+          "main_class": "BaseTaxonomyNode"
+        },
+        "BaseTool": {
+          "all_classes": [
+            "BaseTool"
+          ],
+          "class_count": 1,
+          "main_class": "BaseTool"
+        },
+        "BaseTypeSystem": {
+          "all_classes": [
+            "BaseTypeSystem1",
+            "BaseTypeSystem2",
+            "BaseTypeSystem"
+          ],
+          "class_count": 3,
+          "main_class": "BaseTypeSystem"
+        },
+        "BaseWorkflow": {
+          "all_classes": [
+            "Type",
+            "Task",
+            "BaseWorkflowDag"
+          ],
+          "class_count": 3,
+          "main_class": "BaseWorkflowDag"
+        }
+      },
+      "files_count": 20,
+      "main_classes_count": 20
+    },
+    "components": {
+      "files": {
+        "BondContent": {
+          "all_classes": [
+            "Engine",
+            "PhysicsProperties",
+            "RelationshipType",
+            "HistoryItem",
+            "Fields",
+            "BondContentComponent"
+          ],
+          "class_count": 6,
+          "main_class": "BondContentComponent"
+        },
+        "BondPhysicsConfig": {
+          "all_classes": [
+            "Engine",
+            "PhysicsProperties",
+            "Fields",
+            "Type",
+            "Type1",
+            "Constraints",
+            "Fields1",
+            "BondPhysicsConfigComponent"
+          ],
+          "class_count": 8,
+          "main_class": "BondPhysicsConfigComponent"
+        },
+        "BondTension": {
+          "all_classes": [
+            "Engine",
+            "PhysicsProperties",
+            "Fields",
+            "Type",
+            "Type1",
+            "Constraints",
+            "Fields1",
+            "BondTensionComponent"
+          ],
+          "class_count": 8,
+          "main_class": "BondTensionComponent"
+        },
+        "ConsolidationState": {
+          "all_classes": [
+            "Engine",
+            "PhysicsProperties",
+            "ConsolidationLevel",
+            "Fields",
+            "ConsolidationStateComponent"
+          ],
+          "class_count": 5,
+          "main_class": "ConsolidationStateComponent"
+        },
+        "CrossTenantLink": {
+          "all_classes": [
+            "Engine",
+            "PhysicsProperties",
+            "LinkStatus",
+            "PermissionsGrantedEnum",
+            "Fields",
+            "CrossTenantLinkComponent"
+          ],
+          "class_count": 6,
+          "main_class": "CrossTenantLinkComponent"
+        },
+        "EntanglementState": {
+          "all_classes": [
+            "Engine",
+            "PhysicsProperties",
+            "Fields",
+            "Type",
+            "Type1",
+            "Constraints",
+            "Fields1",
+            "EntanglementStateComponent"
+          ],
+          "class_count": 8,
+          "main_class": "EntanglementStateComponent"
+        },
+        "FilamentContent": {
+          "all_classes": [
+            "Engine",
+            "PhysicsProperties",
+            "FilamentType",
+            "AbstractionLevel",
+            "Fields",
+            "FilamentContentComponent"
+          ],
+          "class_count": 6,
+          "main_class": "FilamentContentComponent"
+        },
+        "FocusContent": {
+          "all_classes": [
+            "Engine",
+            "PhysicsProperties",
+            "Fields",
+            "Type",
+            "Type1",
+            "Constraints",
+            "Fields1",
+            "FocusContentComponent"
+          ],
+          "class_count": 8,
+          "main_class": "FocusContentComponent"
+        },
+        "GDPRDependency": {
+          "all_classes": [
+            "Engine",
+            "PhysicsProperties",
+            "Fields",
+            "Type",
+            "Type1",
+            "Constraints",
+            "Fields1",
+            "GdprDependencyComponent"
+          ],
+          "class_count": 8,
+          "main_class": "GdprDependencyComponent"
+        },
+        "InstanceComponent": {
+          "all_classes": [
+            "Engine",
+            "PhysicsProperties",
+            "Fields",
+            "Type",
+            "Type1",
+            "Constraints",
+            "Fields1",
+            "InstanceComponent"
+          ],
+          "class_count": 8,
+          "main_class": "InstanceComponent"
+        },
+        "IntentContent": {
+          "all_classes": [
+            "Engine",
+            "PhysicsProperties",
+            "Fields",
+            "Type",
+            "Type1",
+            "Constraints",
+            "Fields1",
+            "IntentContentComponent"
+          ],
+          "class_count": 8,
+          "main_class": "IntentContentComponent"
+        },
+        "MemoryManifoldPosition": {
+          "all_classes": [
+            "Engine",
+            "PhysicsProperties",
+            "Fields",
+            "Type",
+            "Type1",
+            "Constraints",
+            "Fields1",
+            "MemoryManifoldPositionComponent"
+          ],
+          "class_count": 8,
+          "main_class": "MemoryManifoldPositionComponent"
+        },
+        "MomentContent": {
+          "all_classes": [
+            "Engine",
+            "PhysicsProperties",
+            "MomentType",
+            "Fields",
+            "MomentContentComponent"
+          ],
+          "class_count": 5,
+          "main_class": "MomentContentComponent"
+        },
+        "MotifContent": {
+          "all_classes": [
+            "Engine",
+            "PhysicsProperties",
+            "MotifType",
+            "Fields",
+            "MotifContentComponent"
+          ],
+          "class_count": 5,
+          "main_class": "MotifContentComponent"
+        },
+        "QuantumState": {
+          "all_classes": [
+            "Engine",
+            "PhysicsProperties",
+            "Fields",
+            "Type",
+            "Type1",
+            "Constraints",
+            "Fields1",
+            "QuantumStateComponent"
+          ],
+          "class_count": 8,
+          "main_class": "QuantumStateComponent"
+        },
+        "TaskStatus": {
+          "all_classes": [
+            "Engine",
+            "PhysicsProperties",
+            "Fields",
+            "Type",
+            "Type1",
+            "Constraints",
+            "Fields1",
+            "TaskStatusComponent"
+          ],
+          "class_count": 8,
+          "main_class": "TaskStatusComponent"
+        },
+        "TemporalAnchor": {
+          "all_classes": [
+            "Engine",
+            "PhysicsProperties",
+            "Fields",
+            "TemporalAnchorComponent"
+          ],
+          "class_count": 4,
+          "main_class": "TemporalAnchorComponent"
+        },
+        "TenantConfig": {
+          "all_classes": [
+            "Engine",
+            "PhysicsProperties",
+            "Fields",
+            "Type",
+            "Type1",
+            "Constraints",
+            "Fields1",
+            "TenantConfigurationComponent"
+          ],
+          "class_count": 8,
+          "main_class": "TenantConfigurationComponent"
+        },
+        "TenantIdentity": {
+          "all_classes": [
+            "Engine",
+            "PhysicsProperties",
+            "SubscriptionPlan",
+            "Fields",
+            "TenantIdentityComponent"
+          ],
+          "class_count": 5,
+          "main_class": "TenantIdentityComponent"
+        },
+        "TenantMembers": {
+          "all_classes": [
+            "Engine",
+            "PhysicsProperties",
+            "Fields",
+            "Type",
+            "Type1",
+            "Constraints",
+            "Fields1",
+            "TenantMembersComponent"
+          ],
+          "class_count": 8,
+          "main_class": "TenantMembersComponent"
+        },
+        "ThreadContent": {
+          "all_classes": [
+            "Engine",
+            "PhysicsProperties",
+            "Fields",
+            "Type",
+            "Type1",
+            "Constraints",
+            "Fields1",
+            "ThreadContentComponent"
+          ],
+          "class_count": 8,
+          "main_class": "ThreadContentComponent"
+        },
+        "UniversalPhysicsState": {
+          "all_classes": [
+            "Engine",
+            "PhysicsProperties",
+            "Fields",
+            "UniversalPhysicsStateComponent"
+          ],
+          "class_count": 4,
+          "main_class": "UniversalPhysicsStateComponent"
+        }
+      },
+      "files_count": 22,
+      "main_classes_count": 22
+    },
+    "entities": {
+      "files": {
+        "Bond": {
+          "all_classes": [
+            "RelationshipType",
+            "HistoryItem",
+            "Fields",
+            "Content",
+            "Components",
+            "EntityType",
+            "Fields1",
+            "Universal",
+            "PhysicsState",
+            "BondEntity"
+          ],
+          "class_count": 10,
+          "main_class": "BondEntity"
+        },
+        "Filament": {
+          "all_classes": [
+            "FilamentType",
+            "AbstractionLevel",
+            "Fields",
+            "Content",
+            "ConsolidationLevel",
+            "Fields1",
+            "Consolidation",
+            "Components",
+            "EntityType",
+            "Fields2",
+            "Universal",
+            "PhysicsState",
+            "FilamentEntity"
+          ],
+          "class_count": 13,
+          "main_class": "FilamentEntity"
+        },
+        "Focus": {
+          "all_classes": [
+            "Components",
+            "EntityType",
+            "Fields",
+            "Universal",
+            "PhysicsState",
+            "FocusEntity"
+          ],
+          "class_count": 6,
+          "main_class": "FocusEntity"
+        },
+        "Intent": {
+          "all_classes": [
+            "Components",
+            "EntityType",
+            "Fields",
+            "Universal",
+            "PhysicsState",
+            "IntentEntity"
+          ],
+          "class_count": 6,
+          "main_class": "IntentEntity"
+        },
+        "Moment": {
+          "all_classes": [
+            "MomentType",
+            "Fields",
+            "Content",
+            "Components",
+            "EntityType",
+            "Fields1",
+            "Universal",
+            "PhysicsState",
+            "MomentEntity"
+          ],
+          "class_count": 9,
+          "main_class": "MomentEntity"
+        },
+        "Motif": {
+          "all_classes": [
+            "MotifType",
+            "Fields",
+            "Content",
+            "ConsolidationLevel",
+            "Fields1",
+            "Consolidation",
+            "Components",
+            "EntityType",
+            "Fields2",
+            "Universal",
+            "PhysicsState",
+            "MotifEntity"
+          ],
+          "class_count": 12,
+          "main_class": "MotifEntity"
+        },
+        "Stitch": {
+          "all_classes": [
+            "EntityType",
+            "Status",
+            "WorkflowState",
+            "DissonanceType",
+            "DissonanceDetails",
+            "Option",
+            "InteractionType",
+            "InteractionType1",
+            "InteractionType2",
+            "ResolutionRequest",
+            "Components",
+            "StitchEntity"
+          ],
+          "class_count": 12,
+          "main_class": "StitchEntity"
+        },
+        "Tenant": {
+          "all_classes": [
+            "EntityType",
+            "Status",
+            "WorkflowState",
+            "Engine",
+            "PhysicsProperties",
+            "SubscriptionPlan",
+            "Fields",
+            "Identity",
+            "PhysicsProperties1",
+            "Fields1",
+            "Type",
+            "Type1",
+            "Constraints",
+            "Fields2",
+            "Members",
+            "PhysicsProperties2",
+            "Fields3",
+            "Type2",
+            "Type3",
+            "Fields4",
+            "Config",
+            "Components",
+            "TenantEntity"
+          ],
+          "class_count": 23,
+          "main_class": "TenantEntity"
+        },
+        "Thread": {
+          "all_classes": [
+            "Components",
+            "Fields",
+            "Universal",
+            "PhysicsState",
+            "Thread1",
+            "Universal1",
+            "PhysicsState1",
+            "Thread2",
+            "Thread"
+          ],
+          "class_count": 9,
+          "main_class": "Thread"
+        }
+      },
+      "files_count": 9,
+      "main_classes_count": 9
+    },
+    "events": {
+      "files": {
+        "BondStateChangeRequested": {
+          "all_classes": [
+            "NewState",
+            "Reason",
+            "Payload",
+            "BondStateChangeRequestedEvent"
+          ],
+          "class_count": 4,
+          "main_class": "BondStateChangeRequestedEvent"
+        },
+        "MomentAccessed": {
+          "all_classes": [
+            "AccessType",
+            "Payload",
+            "MomentAccessedEvent"
+          ],
+          "class_count": 3,
+          "main_class": "MomentAccessedEvent"
+        },
+        "ThreadStateChangeRequested": {
+          "all_classes": [
+            "NewState",
+            "Reason",
+            "Source",
+            "Payload",
+            "ThreadStateChangeRequestedEvent"
+          ],
+          "class_count": 5,
+          "main_class": "ThreadStateChangeRequestedEvent"
+        }
+      },
+      "files_count": 3,
+      "main_classes_count": 3
+    },
+    "laws": {
+      "files": {
+        "BondTensionDynamics": {
+          "all_classes": [
+            "Engine",
+            "PhysicsProperties",
+            "Trigger",
+            "ExecutionEnvelope",
+            "BondTensionDynamicsLaw"
+          ],
+          "class_count": 5,
+          "main_class": "BondTensionDynamicsLaw"
+        },
+        "MemoryConsolidation": {
+          "all_classes": [
+            "Engine",
+            "PhysicsProperties",
+            "Trigger",
+            "ExecutionEnvelope",
+            "MemoryConsolidationLaw"
+          ],
+          "class_count": 5,
+          "main_class": "MemoryConsolidationLaw"
+        },
+        "MotifCollapse": {
+          "all_classes": [
+            "Engine",
+            "PhysicsProperties",
+            "Trigger",
+            "ExecutionEnvelope",
+            "MotifCollapseLaw"
+          ],
+          "class_count": 5,
+          "main_class": "MotifCollapseLaw"
+        },
+        "ThreadEnergyDecay": {
+          "all_classes": [
+            "ThreadEnergyDecay"
+          ],
+          "class_count": 1,
+          "main_class": "ThreadEnergyDecay"
+        }
+      },
+      "files_count": 4,
+      "main_classes_count": 4
+    },
+    "payloads": {
+      "files": {
+        "CoursePayload": {
+          "all_classes": [
+            "UserContext",
+            "AnalysisType",
+            "Status",
+            "Data",
+            "CoursePayload"
+          ],
+          "class_count": 5,
+          "main_class": "CoursePayload"
+        },
+        "DraftPayload": {
+          "all_classes": [
+            "UserContext",
+            "Engine",
+            "PhysicsProperties",
+            "MomentType",
+            "Fields",
+            "Content",
+            "Components",
+            "EntityType",
+            "PhysicsProperties1",
+            "Fields1",
+            "Universal",
+            "PhysicsProperties2",
+            "Fields2",
+            "Type",
+            "Type1",
+            "Constraints",
+            "Fields3",
+            "ManifoldPosition",
+            "PhysicsState",
+            "Data",
+            "PhysicsProperties3",
+            "RelationshipType",
+            "HistoryItem",
+            "Fields4",
+            "Content1",
+            "PhysicsProperties4",
+            "Fields5",
+            "Type2",
+            "Type3",
+            "Fields6",
+            "Permissions",
+            "PhysicsProperties5",
+            "Fields7",
+            "Type4",
+            "Type5",
+            "Fields8",
+            "PhysicsConfig",
+            "Components1",
+            "Fields9",
+            "Universal1",
+            "PhysicsProperties6",
+            "Fields10",
+            "Type6",
+            "Type7",
+            "Fields11",
+            "Tension",
+            "PhysicsState1",
+            "Data1",
+            "PhysicsProperties7",
+            "Fields12",
+            "Type8",
+            "Type9",
+            "Fields13",
+            "Identity",
+            "PhysicsProperties8",
+            "Fields14",
+            "Type10",
+            "Type11",
+            "Fields15",
+            "CognitiveBaseline",
+            "Components2",
+            "Fields16",
+            "Universal2",
+            "PhysicsState2",
+            "Data2",
+            "Universal3",
+            "PhysicsState3",
+            "Data3",
+            "PhysicsProperties9",
+            "MotifType",
+            "Fields18",
+            "Content2",
+            "PhysicsProperties10",
+            "ConsolidationLevel",
+            "Fields19",
+            "Consolidation",
+            "PhysicsProperties11",
+            "Fields20",
+            "Type12",
+            "Type13",
+            "Fields21",
+            "Gdpr",
+            "Components3",
+            "Fields22",
+            "Universal4",
+            "PhysicsProperties12",
+            "Fields23",
+            "Type14",
+            "Type15",
+            "Fields24",
+            "Quantum",
+            "PhysicsState4",
+            "Data4",
+            "PhysicsProperties13",
+            "FilamentType",
+            "AbstractionLevel",
+            "Fields25",
+            "Content3",
+            "Fields26",
+            "Consolidation1",
+            "Components4",
+            "Fields27",
+            "Universal5",
+            "PhysicsState5",
+            "Data5",
+            "PhysicsProperties14",
+            "Fields28",
+            "Type16",
+            "Type17",
+            "Fields29",
+            "Content4",
+            "PhysicsProperties15",
+            "Fields30",
+            "Type18",
+            "Type19",
+            "Fields31",
+            "Status",
+            "Components5",
+            "Fields32",
+            "Universal6",
+            "PhysicsState6",
+            "Data6",
+            "PhysicsProperties16",
+            "Fields33",
+            "Type20",
+            "Type21",
+            "Fields34",
+            "Content5",
+            "Components6",
+            "Fields35",
+            "Universal7",
+            "PhysicsState7",
+            "Data7",
+            "EntityDraftPayload"
+          ],
+          "class_count": 134,
+          "main_class": "PhysicsProperties10"
+        },
+        "ReconciliationResultPayload": {
+          "all_classes": [
+            "UserContext",
+            "TaskType",
+            "Data",
+            "ReconciliationResultPayload"
+          ],
+          "class_count": 4,
+          "main_class": "ReconciliationResultPayload"
+        },
+        "ShuttlePayload": {
+          "all_classes": [
+            "UserContext",
+            "SuggestedEntityType",
+            "Data1",
+            "ActiveWeaveUnit",
+            "TaskType",
+            "Data2",
+            "ReconciliationResults",
+            "Data",
+            "IngestionShuttlePayload"
+          ],
+          "class_count": 9,
+          "main_class": "IngestionShuttlePayload"
+        },
+        "StitchInteractionRequest": {
+          "all_classes": [
+            "Option",
+            "InteractionType",
+            "InteractionType1",
+            "InteractionType2",
+            "StitchInteractionRequest",
+            "StitchInteractionType1",
+            "StitchInteractionType2",
+            "StitchInteractionType3",
+            "StitchInteractionType"
+          ],
+          "class_count": 9,
+          "main_class": "StitchInteractionRequest"
+        },
+        "StitchInteractionResponse": {
+          "all_classes": [
+            "ResponsePayload",
+            "ResponsePayload1",
+            "ResponsePayload2",
+            "StitchInteractionResponse",
+            "StitchResponsePayload1",
+            "StitchResponsePayload2",
+            "StitchResponsePayload3",
+            "StitchResponsePayload"
+          ],
+          "class_count": 8,
+          "main_class": "StitchInteractionResponse"
+        },
+        "WeavePayload": {
+          "all_classes": [
+            "UserContext",
+            "SourceType",
+            "Data",
+            "WeavePayload"
+          ],
+          "class_count": 4,
+          "main_class": "WeavePayload"
+        },
+        "WeaveUnitPayload": {
+          "all_classes": [
+            "UserContext",
+            "SuggestedEntityType",
+            "Data",
+            "WeaveUnitPayload"
+          ],
+          "class_count": 4,
+          "main_class": "WeaveUnitPayload"
+        }
+      },
+      "files_count": 8,
+      "main_classes_count": 8
+    },
+    "snippets": {
+      "files": {
+        "AbstractionLevel": {
+          "all_classes": [
+            "AbstractionLevel"
+          ],
+          "class_count": 1,
+          "main_class": "AbstractionLevel"
+        },
+        "AccessType": {
+          "all_classes": [
+            "AccessType"
+          ],
+          "class_count": 1,
+          "main_class": "AccessType"
+        },
+        "Aliases": {
+          "all_classes": [
+            "Aliases"
+          ],
+          "class_count": 1,
+          "main_class": "Aliases"
+        },
+        "AnyValue": {
+          "all_classes": [
+            "AnyValue"
+          ],
+          "class_count": 1,
+          "main_class": "AnyValue"
+        },
+        "BondEvent": {
+          "all_classes": [
+            "BondEvent"
+          ],
+          "class_count": 1,
+          "main_class": "BondEvent"
+        },
+        "BondPermissions": {
+          "all_classes": [
+            "BondPermissions"
+          ],
+          "class_count": 1,
+          "main_class": "BondPermissions"
+        },
+        "BondState": {
+          "all_classes": [
+            "BondState"
+          ],
+          "class_count": 1,
+          "main_class": "BondState"
+        },
+        "BondStateReason": {
+          "all_classes": [
+            "BondStateReason"
+          ],
+          "class_count": 1,
+          "main_class": "BondStateReason"
+        },
+        "CognitiveBaseline": {
+          "all_classes": [
+            "CognitiveBaseline"
+          ],
+          "class_count": 1,
+          "main_class": "CognitiveBaseline"
+        },
+        "CognitivePerspective": {
+          "all_classes": [
+            "CognitivePerspective"
+          ],
+          "class_count": 1,
+          "main_class": "CognitivePerspective"
+        },
+        "ColumnDefinition": {
+          "all_classes": [
+            "Type",
+            "ColumnDefinition"
+          ],
+          "class_count": 2,
+          "main_class": "ColumnDefinition"
+        },
+        "CompletedAt": {
+          "all_classes": [
+            "CompletedAt"
+          ],
+          "class_count": 1,
+          "main_class": "CompletedAt"
+        },
+        "ComplexNumber": {
+          "all_classes": [
+            "ComplexNumber"
+          ],
+          "class_count": 1,
+          "main_class": "ComplexNumber"
+        },
+        "ConsolidationLevel": {
+          "all_classes": [
+            "ConsolidationLevel"
+          ],
+          "class_count": 1,
+          "main_class": "ConsolidationLevel"
+        },
+        "ConsolidationRate": {
+          "all_classes": [
+            "ConsolidationRate"
+          ],
+          "class_count": 1,
+          "main_class": "ConsolidationRate"
+        },
+        "ConstraintDefinition": {
+          "all_classes": [
+            "ConstraintDefinition"
+          ],
+          "class_count": 1,
+          "main_class": "ConstraintDefinition"
+        },
+        "CreatedAt": {
+          "all_classes": [
+            "CreatedAt"
+          ],
+          "class_count": 1,
+          "main_class": "CreatedAt"
+        },
+        "DecayRate": {
+          "all_classes": [
+            "DecayRate"
+          ],
+          "class_count": 1,
+          "main_class": "DecayRate"
+        },
+        "DensityMatrix": {
+          "all_classes": [
+            "DensityMatrixItemItem",
+            "DensityMatrixItem",
+            "DensityMatrix"
+          ],
+          "class_count": 3,
+          "main_class": "DensityMatrix"
+        },
+        "Description": {
+          "all_classes": [
+            "Description"
+          ],
+          "class_count": 1,
+          "main_class": "Description"
+        },
+        "DissonanceType": {
+          "all_classes": [
+            "DissonanceType"
+          ],
+          "class_count": 1,
+          "main_class": "DissonanceType"
+        },
+        "DueDate": {
+          "all_classes": [
+            "DueDate"
+          ],
+          "class_count": 1,
+          "main_class": "DueDate"
+        },
+        "EffectiveAt": {
+          "all_classes": [
+            "EffectiveAt"
+          ],
+          "class_count": 1,
+          "main_class": "EffectiveAt"
+        },
+        "EndDate": {
+          "all_classes": [
+            "EndDate"
+          ],
+          "class_count": 1,
+          "main_class": "EndDate"
+        },
+        "Energy": {
+          "all_classes": [
+            "Energy"
+          ],
+          "class_count": 1,
+          "main_class": "Energy"
+        },
+        "EntanglementMap": {
+          "all_classes": [
+            "EntanglementMap"
+          ],
+          "class_count": 1,
+          "main_class": "EntanglementMap"
+        },
+        "EntanglementStrength": {
+          "all_classes": [
+            "EntanglementStrength"
+          ],
+          "class_count": 1,
+          "main_class": "EntanglementStrength"
+        },
+        "EntityId": {
+          "all_classes": [
+            "EntityId"
+          ],
+          "class_count": 1,
+          "main_class": "EntityId"
+        },
+        "EntityIdList": {
+          "all_classes": [
+            "EntityIdList"
+          ],
+          "class_count": 1,
+          "main_class": "EntityIdList"
+        },
+        "EntityType": {
+          "all_classes": [
+            "EntityType"
+          ],
+          "class_count": 1,
+          "main_class": "EntityType"
+        },
+        "FeatureFlagMap": {
+          "all_classes": [
+            "FeatureFlagMap"
+          ],
+          "class_count": 1,
+          "main_class": "FeatureFlagMap"
+        },
+        "FilamentType": {
+          "all_classes": [
+            "FilamentType"
+          ],
+          "class_count": 1,
+          "main_class": "FilamentType"
+        },
+        "KeyValue": {
+          "all_classes": [
+            "KeyValueMetadata"
+          ],
+          "class_count": 1,
+          "main_class": "KeyValueMetadata"
+        },
+        "Label": {
+          "all_classes": [
+            "Label"
+          ],
+          "class_count": 1,
+          "main_class": "Label"
+        },
+        "LinkStatus": {
+          "all_classes": [
+            "LinkStatus"
+          ],
+          "class_count": 1,
+          "main_class": "LinkStatus"
+        },
+        "Member": {
+          "all_classes": [
+            "Role",
+            "Member"
+          ],
+          "class_count": 2,
+          "main_class": "Member"
+        },
+        "MomentType": {
+          "all_classes": [
+            "MomentType"
+          ],
+          "class_count": 1,
+          "main_class": "MomentType"
+        },
+        "MotifType": {
+          "all_classes": [
+            "MotifType"
+          ],
+          "class_count": 1,
+          "main_class": "MotifType"
+        },
+        "Name": {
+          "all_classes": [
+            "Name"
+          ],
+          "class_count": 1,
+          "main_class": "Name"
+        },
+        "NullableTimestamp": {
+          "all_classes": [
+            "NullableTimestamp"
+          ],
+          "class_count": 1,
+          "main_class": "NullableTimestamp"
+        },
+        "PhysicsConstants": {
+          "all_classes": [
+            "PhysicsConstants"
+          ],
+          "class_count": 1,
+          "main_class": "PhysicsConstants"
+        },
+        "Priority": {
+          "all_classes": [
+            "Priority"
+          ],
+          "class_count": 1,
+          "main_class": "Priority"
+        },
+        "QuantumCoherence": {
+          "all_classes": [
+            "QuantumCoherence"
+          ],
+          "class_count": 1,
+          "main_class": "QuantumCoherence"
+        },
+        "ReconciliationTaskType": {
+          "all_classes": [
+            "ReconciliationTaskType"
+          ],
+          "class_count": 1,
+          "main_class": "ReconciliationTaskType"
+        },
+        "RelationshipType": {
+          "all_classes": [
+            "RelationshipType"
+          ],
+          "class_count": 1,
+          "main_class": "RelationshipType"
+        },
+        "Role": {
+          "all_classes": [
+            "Role"
+          ],
+          "class_count": 1,
+          "main_class": "Role"
+        },
+        "SourceThreadAndBonds": {
+          "all_classes": [
+            "SourceThreadAndBonds"
+          ],
+          "class_count": 1,
+          "main_class": "SourceThreadAndBonds"
+        },
+        "StartDate": {
+          "all_classes": [
+            "StartDate"
+          ],
+          "class_count": 1,
+          "main_class": "StartDate"
+        },
+        "Status": {
+          "all_classes": [
+            "Status"
+          ],
+          "class_count": 1,
+          "main_class": "Status"
+        },
+        "StringValueMap": {
+          "all_classes": [
+            "StringValueMap"
+          ],
+          "class_count": 1,
+          "main_class": "StringValueMap"
+        },
+        "SubscriptionPlan": {
+          "all_classes": [
+            "SubscriptionPlan"
+          ],
+          "class_count": 1,
+          "main_class": "SubscriptionPlan"
+        },
+        "TaskDefinition": {
+          "all_classes": [
+            "Type",
+            "TaskDefinition"
+          ],
+          "class_count": 2,
+          "main_class": "TaskDefinition"
+        },
+        "TaskList": {
+          "all_classes": [
+            "Type",
+            "TaskListItem",
+            "TaskList"
+          ],
+          "class_count": 3,
+          "main_class": "TaskList"
+        },
+        "TemporalScope": {
+          "all_classes": [
+            "TemporalScope"
+          ],
+          "class_count": 1,
+          "main_class": "TemporalScope"
+        },
+        "TenantId": {
+          "all_classes": [
+            "TenantId"
+          ],
+          "class_count": 1,
+          "main_class": "TenantId"
+        },
+        "TenantPermission": {
+          "all_classes": [
+            "TenantPermission"
+          ],
+          "class_count": 1,
+          "main_class": "TenantPermission"
+        },
+        "Theme": {
+          "all_classes": [
+            "Theme"
+          ],
+          "class_count": 1,
+          "main_class": "Theme"
+        },
+        "ThreadState": {
+          "all_classes": [
+            "ThreadState"
+          ],
+          "class_count": 1,
+          "main_class": "ThreadState"
+        },
+        "ThreadStateReason": {
+          "all_classes": [
+            "ThreadStateReason"
+          ],
+          "class_count": 1,
+          "main_class": "ThreadStateReason"
+        },
+        "ThreadStateResponse": {
+          "all_classes": [
+            "ThreadStateResponse"
+          ],
+          "class_count": 1,
+          "main_class": "ThreadStateResponse"
+        },
+        "ThreadType": {
+          "all_classes": [
+            "ThreadType"
+          ],
+          "class_count": 1,
+          "main_class": "ThreadType"
+        },
+        "Timestamp": {
+          "all_classes": [
+            "Timestamp"
+          ],
+          "class_count": 1,
+          "main_class": "Timestamp"
+        },
+        "UUID": {
+          "all_classes": [
+            "UUID"
+          ],
+          "class_count": 1,
+          "main_class": "UUID"
+        },
+        "UserId": {
+          "all_classes": [
+            "UserId"
+          ],
+          "class_count": 1,
+          "main_class": "UserId"
+        },
+        "Vec3": {
+          "all_classes": [
+            "Vec3"
+          ],
+          "class_count": 1,
+          "main_class": "Vec3"
+        },
+        "Vec6": {
+          "all_classes": [
+            "Vec6"
+          ],
+          "class_count": 1,
+          "main_class": "Vec6"
+        },
+        "WeaveType": {
+          "all_classes": [
+            "WeaveType"
+          ],
+          "class_count": 1,
+          "main_class": "WeaveType"
+        },
+        "WorkflowState": {
+          "all_classes": [
+            "Status",
+            "WorkflowState"
+          ],
+          "class_count": 2,
+          "main_class": "WorkflowState"
+        }
+      },
+      "files_count": 68,
+      "main_classes_count": 68
+    },
+    "tables": {
+      "files": {
+        "Bond_state_log": {
+          "all_classes": [
+            "Type",
+            "Columns",
+            "BondStateLogTable"
+          ],
+          "class_count": 3,
+          "main_class": "BondStateLogTable"
+        },
+        "Thread_state_log": {
+          "all_classes": [
+            "State",
+            "Reason",
+            "Columns",
+            "ThreadStateLogTable"
+          ],
+          "class_count": 4,
+          "main_class": "ThreadStateLogTable"
+        }
+      },
+      "files_count": 2,
+      "main_classes_count": 2
+    },
+    "taxonomy": {
+      "files": {
+        "EmotionalValence": {
+          "all_classes": [
+            "EmotionalValence"
+          ],
+          "class_count": 1,
+          "main_class": "EmotionalValence"
+        },
+        "PhysicsProfile": {
+          "all_classes": [
+            "PhysicsProfile"
+          ],
+          "class_count": 1,
+          "main_class": "PhysicsProfile"
+        }
+      },
+      "files_count": 2,
+      "main_classes_count": 2
+    },
+    "workflows": {
+      "files": {
+        "IngestionWorkflow": {
+          "all_classes": [
+            "Type",
+            "Task",
+            "IngestionWorkflow"
+          ],
+          "class_count": 3,
+          "main_class": "IngestionWorkflow"
+        }
+      },
+      "files_count": 1,
+      "main_classes_count": 1
+    }
+  },
+  "categories_processed": 10,
+  "repair_timestamp": "2025-06-19T24:00:00Z",
+  "total_files_processed": 139,
+  "total_main_classes": 139
+}

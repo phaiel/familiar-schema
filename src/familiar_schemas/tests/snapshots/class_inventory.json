@@ -1,0 +1,7650 @@
+{
+  "_base": {
+    "BaseAgentOutput": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "metadata_for_physics",
+            "narrative_for_user",
+            "citations",
+            "confidence_score"
+          ],
+          "full_name": "_base.BaseAgentOutput.BaseAgentOutput",
+          "name": "BaseAgentOutput"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "source_id",
+            "source_type"
+          ],
+          "full_name": "_base.BaseAgentOutput.Citation",
+          "name": "Citation"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "_base.BaseAgentOutput.SourceType",
+          "name": "SourceType"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "_base.BaseAgentOutput"
+    },
+    "BaseAgentPersona": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "title",
+            "description",
+            "schema_version",
+            "allowed_tools",
+            "role",
+            "system_prompt"
+          ],
+          "full_name": "_base.BaseAgentPersona.BaseAgentPersona",
+          "name": "BaseAgentPersona"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "_base.BaseAgentPersona"
+    },
+    "BaseApiEndpoint": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "title",
+            "description",
+            "schema_version",
+            "method",
+            "path",
+            "request_schema",
+            "response_schema",
+            "security"
+          ],
+          "full_name": "_base.BaseApiEndpoint.BaseApiEndpoint",
+          "name": "BaseApiEndpoint"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "_base.BaseApiEndpoint.Method",
+          "name": "Method"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "_base.BaseApiEndpoint"
+    },
+    "BaseComponent": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "title",
+            "description",
+            "schema_version",
+            "physics_properties",
+            "fields"
+          ],
+          "full_name": "_base.BaseComponent.BaseComponent",
+          "name": "BaseComponent"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "minimum",
+            "maximum",
+            "min_length",
+            "max_length",
+            "pattern",
+            "enum"
+          ],
+          "full_name": "_base.BaseComponent.Constraints",
+          "name": "Constraints"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "_base.BaseComponent.Engine",
+          "name": "Engine"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "_base.BaseComponent.Fields",
+          "name": "Fields"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "description",
+            "type",
+            "default_value",
+            "constraints",
+            "ui_label"
+          ],
+          "full_name": "_base.BaseComponent.Fields1",
+          "name": "Fields1"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "collapse_sensitive",
+            "engine",
+            "is_quantum"
+          ],
+          "full_name": "_base.BaseComponent.PhysicsProperties",
+          "name": "PhysicsProperties"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "_base.BaseComponent.Type",
+          "name": "Type"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "_base.BaseComponent.Type1",
+          "name": "Type1"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "_base.BaseComponent"
+    },
+    "BaseConstantsFile": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "title",
+            "description",
+            "schema_version",
+            "classical_physics_constants",
+            "cognitive_enhancement_parameters",
+            "quantum_physics_constants"
+          ],
+          "full_name": "_base.BaseConstantsFile.BaseConstantsFile",
+          "name": "BaseConstantsFile"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "_base.BaseConstantsFile"
+    },
+    "BaseEntity": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "title",
+            "description",
+            "schema_version",
+            "entity_id",
+            "tenant_id",
+            "created_at"
+          ],
+          "full_name": "_base.BaseEntity.BaseEntity",
+          "name": "BaseEntity"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "_base.BaseEntity"
+    },
+    "BaseEvent": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "title",
+            "description",
+            "schema_version",
+            "event_id",
+            "trace_id",
+            "timestamp",
+            "source_service"
+          ],
+          "full_name": "_base.BaseEvent.BaseEvent",
+          "name": "BaseEvent"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "_base.BaseEvent"
+    },
+    "BaseField": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "description",
+            "type",
+            "default_value",
+            "constraints",
+            "ui_label"
+          ],
+          "full_name": "_base.BaseField.BaseField",
+          "name": "BaseField"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "minimum",
+            "maximum",
+            "min_length",
+            "max_length",
+            "pattern",
+            "enum"
+          ],
+          "full_name": "_base.BaseField.Constraints",
+          "name": "Constraints"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "_base.BaseField.Type",
+          "name": "Type"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "_base.BaseField.Type1",
+          "name": "Type1"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "_base.BaseField"
+    },
+    "BaseLaw": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "title",
+            "description",
+            "schema_version",
+            "physics_properties",
+            "execution_envelope",
+            "affected_components"
+          ],
+          "full_name": "_base.BaseLaw.BasePhysicsLaw",
+          "name": "BasePhysicsLaw"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "_base.BaseLaw.Engine",
+          "name": "Engine"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "trigger",
+            "priority",
+            "timeout_ms"
+          ],
+          "full_name": "_base.BaseLaw.ExecutionEnvelope",
+          "name": "ExecutionEnvelope"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "collapse_sensitive",
+            "engine",
+            "is_quantum"
+          ],
+          "full_name": "_base.BaseLaw.PhysicsProperties",
+          "name": "PhysicsProperties"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "_base.BaseLaw.Trigger",
+          "name": "Trigger"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "_base.BaseLaw"
+    },
+    "BaseMetadata": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "title",
+            "description",
+            "schema_version"
+          ],
+          "full_name": "_base.BaseMetadata.BaseMetadata",
+          "name": "BaseMetadata"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "_base.BaseMetadata"
+    },
+    "BasePayload": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "title",
+            "description",
+            "schema_version",
+            "user_context"
+          ],
+          "full_name": "_base.BasePayload.BaseEventPayload",
+          "name": "BaseEventPayload"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "user_id",
+            "session_id"
+          ],
+          "full_name": "_base.BasePayload.UserContext",
+          "name": "UserContext"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "_base.BasePayload"
+    },
+    "BasePhysics": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "collapse_sensitive",
+            "engine",
+            "is_quantum"
+          ],
+          "full_name": "_base.BasePhysics.BasePhysicsProperties",
+          "name": "BasePhysicsProperties"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "_base.BasePhysics.Engine",
+          "name": "Engine"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "_base.BasePhysics"
+    },
+    "BasePhysicsProfile": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "title",
+            "description",
+            "schema_version",
+            "multipliers",
+            "profile_id"
+          ],
+          "full_name": "_base.BasePhysicsProfile.BasePhysicsProfile",
+          "name": "BasePhysicsProfile"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "_base.BasePhysicsProfile"
+    },
+    "BaseTable": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "title",
+            "description",
+            "schema_version",
+            "table_name",
+            "columns"
+          ],
+          "full_name": "_base.BaseTable.BaseDatabaseTable",
+          "name": "BaseDatabaseTable"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "name",
+            "type",
+            "nullable",
+            "primary_key",
+            "unique"
+          ],
+          "full_name": "_base.BaseTable.Columns",
+          "name": "Columns"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "_base.BaseTable.Type",
+          "name": "Type"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "_base.BaseTable"
+    },
+    "BaseTaxonomy": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "title",
+            "description",
+            "schema_version",
+            "taxonomy_id",
+            "levels",
+            "nodes"
+          ],
+          "full_name": "_base.BaseTaxonomy.BaseTaxonomy",
+          "name": "BaseTaxonomy"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "id",
+            "level",
+            "label",
+            "description",
+            "embedding_context",
+            "metadata"
+          ],
+          "full_name": "_base.BaseTaxonomy.Node",
+          "name": "Node"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "_base.BaseTaxonomy"
+    },
+    "BaseTaxonomyLevel": {
+      "classes_found": [
+        {
+          "bases": [
+            "RootModel[List[BaseTaxonomyLevelItem]]"
+          ],
+          "fields": [
+            "root"
+          ],
+          "full_name": "_base.BaseTaxonomyLevel.BaseTaxonomyLevel",
+          "name": "BaseTaxonomyLevel"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "id",
+            "level",
+            "label",
+            "description",
+            "embedding_context",
+            "metadata"
+          ],
+          "full_name": "_base.BaseTaxonomyLevel.BaseTaxonomyLevelItem",
+          "name": "BaseTaxonomyLevelItem"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "_base.BaseTaxonomyLevel"
+    },
+    "BaseTaxonomyNode": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "id",
+            "level",
+            "label",
+            "description",
+            "embedding_context",
+            "metadata"
+          ],
+          "full_name": "_base.BaseTaxonomyNode.BaseTaxonomyNode",
+          "name": "BaseTaxonomyNode"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "_base.BaseTaxonomyNode"
+    },
+    "BaseTool": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "title",
+            "description",
+            "schema_version",
+            "tool_name",
+            "input_schema",
+            "output_schema"
+          ],
+          "full_name": "_base.BaseTool.BaseTool",
+          "name": "BaseTool"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "_base.BaseTool"
+    },
+    "BaseTypeSystem": {
+      "classes_found": [
+        {
+          "bases": [
+            "RootModel[Union[BaseTypeSystem1, BaseTypeSystem2]]"
+          ],
+          "fields": [
+            "root"
+          ],
+          "full_name": "_base.BaseTypeSystem.BaseTypeSystem",
+          "name": "BaseTypeSystem"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "_base.BaseTypeSystem.BaseTypeSystem1",
+          "name": "BaseTypeSystem1"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "_base.BaseTypeSystem.BaseTypeSystem2",
+          "name": "BaseTypeSystem2"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "_base.BaseTypeSystem"
+    },
+    "BaseWorkflow": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "title",
+            "description",
+            "schema_version",
+            "tasks"
+          ],
+          "full_name": "_base.BaseWorkflow.BaseWorkflowDag",
+          "name": "BaseWorkflowDag"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "id",
+            "type",
+            "path",
+            "args",
+            "depends_on",
+            "condition"
+          ],
+          "full_name": "_base.BaseWorkflow.Task",
+          "name": "Task"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "_base.BaseWorkflow.Type",
+          "name": "Type"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "_base.BaseWorkflow"
+    }
+  },
+  "components": {
+    "BondContent": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "physics_properties",
+            "fields"
+          ],
+          "full_name": "components.BondContent.BondContentComponent",
+          "name": "BondContentComponent"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "components.BondContent.Engine",
+          "name": "Engine"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "relationship_type",
+            "description",
+            "history"
+          ],
+          "full_name": "components.BondContent.Fields",
+          "name": "Fields"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "moment_id",
+            "impact",
+            "timestamp"
+          ],
+          "full_name": "components.BondContent.HistoryItem",
+          "name": "HistoryItem"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "collapse_sensitive",
+            "engine",
+            "is_quantum"
+          ],
+          "full_name": "components.BondContent.PhysicsProperties",
+          "name": "PhysicsProperties"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "components.BondContent.RelationshipType",
+          "name": "RelationshipType"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "components.BondContent"
+    },
+    "BondPhysicsConfig": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "physics_properties",
+            "fields"
+          ],
+          "full_name": "components.BondPhysicsConfig.BondPhysicsConfigComponent",
+          "name": "BondPhysicsConfigComponent"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "minimum",
+            "maximum",
+            "min_length",
+            "max_length",
+            "pattern",
+            "enum"
+          ],
+          "full_name": "components.BondPhysicsConfig.Constraints",
+          "name": "Constraints"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "components.BondPhysicsConfig.Engine",
+          "name": "Engine"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "components.BondPhysicsConfig.Fields",
+          "name": "Fields"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "description",
+            "type",
+            "default_value",
+            "constraints",
+            "ui_label"
+          ],
+          "full_name": "components.BondPhysicsConfig.Fields1",
+          "name": "Fields1"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "collapse_sensitive",
+            "engine",
+            "is_quantum"
+          ],
+          "full_name": "components.BondPhysicsConfig.PhysicsProperties",
+          "name": "PhysicsProperties"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "components.BondPhysicsConfig.Type",
+          "name": "Type"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "components.BondPhysicsConfig.Type1",
+          "name": "Type1"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "components.BondPhysicsConfig"
+    },
+    "BondTension": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "physics_properties",
+            "fields"
+          ],
+          "full_name": "components.BondTension.BondTensionComponent",
+          "name": "BondTensionComponent"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "minimum",
+            "maximum",
+            "min_length",
+            "max_length",
+            "pattern",
+            "enum"
+          ],
+          "full_name": "components.BondTension.Constraints",
+          "name": "Constraints"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "components.BondTension.Engine",
+          "name": "Engine"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "components.BondTension.Fields",
+          "name": "Fields"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "description",
+            "type",
+            "default_value",
+            "constraints",
+            "ui_label"
+          ],
+          "full_name": "components.BondTension.Fields1",
+          "name": "Fields1"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "collapse_sensitive",
+            "engine",
+            "is_quantum"
+          ],
+          "full_name": "components.BondTension.PhysicsProperties",
+          "name": "PhysicsProperties"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "components.BondTension.Type",
+          "name": "Type"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "components.BondTension.Type1",
+          "name": "Type1"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "components.BondTension"
+    },
+    "ConsolidationState": {
+      "classes_found": [
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "components.ConsolidationState.ConsolidationLevel",
+          "name": "ConsolidationLevel"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "physics_properties",
+            "fields"
+          ],
+          "full_name": "components.ConsolidationState.ConsolidationStateComponent",
+          "name": "ConsolidationStateComponent"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "components.ConsolidationState.Engine",
+          "name": "Engine"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "consolidation_level",
+            "last_consolidated_at",
+            "next_consolidation_due",
+            "source_entity_count"
+          ],
+          "full_name": "components.ConsolidationState.Fields",
+          "name": "Fields"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "collapse_sensitive",
+            "engine",
+            "is_quantum"
+          ],
+          "full_name": "components.ConsolidationState.PhysicsProperties",
+          "name": "PhysicsProperties"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "components.ConsolidationState"
+    },
+    "CrossTenantLink": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "physics_properties",
+            "fields"
+          ],
+          "full_name": "components.CrossTenantLink.CrossTenantLinkComponent",
+          "name": "CrossTenantLinkComponent"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "components.CrossTenantLink.Engine",
+          "name": "Engine"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "remote_tenant_id",
+            "remote_thread_id",
+            "link_status",
+            "permissions_granted"
+          ],
+          "full_name": "components.CrossTenantLink.Fields",
+          "name": "Fields"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "components.CrossTenantLink.LinkStatus",
+          "name": "LinkStatus"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "components.CrossTenantLink.PermissionsGrantedEnum",
+          "name": "PermissionsGrantedEnum"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "collapse_sensitive",
+            "engine",
+            "is_quantum"
+          ],
+          "full_name": "components.CrossTenantLink.PhysicsProperties",
+          "name": "PhysicsProperties"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "components.CrossTenantLink"
+    },
+    "EntanglementState": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "minimum",
+            "maximum",
+            "min_length",
+            "max_length",
+            "pattern",
+            "enum"
+          ],
+          "full_name": "components.EntanglementState.Constraints",
+          "name": "Constraints"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "components.EntanglementState.Engine",
+          "name": "Engine"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "physics_properties",
+            "fields"
+          ],
+          "full_name": "components.EntanglementState.EntanglementStateComponent",
+          "name": "EntanglementStateComponent"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "components.EntanglementState.Fields",
+          "name": "Fields"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "description",
+            "type",
+            "default_value",
+            "constraints",
+            "ui_label"
+          ],
+          "full_name": "components.EntanglementState.Fields1",
+          "name": "Fields1"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "collapse_sensitive",
+            "engine",
+            "is_quantum"
+          ],
+          "full_name": "components.EntanglementState.PhysicsProperties",
+          "name": "PhysicsProperties"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "components.EntanglementState.Type",
+          "name": "Type"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "components.EntanglementState.Type1",
+          "name": "Type1"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "components.EntanglementState"
+    },
+    "FilamentContent": {
+      "classes_found": [
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "components.FilamentContent.AbstractionLevel",
+          "name": "AbstractionLevel"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "components.FilamentContent.Engine",
+          "name": "Engine"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "narrative_description",
+            "filament_type",
+            "abstraction_level",
+            "source_threads_and_bonds"
+          ],
+          "full_name": "components.FilamentContent.Fields",
+          "name": "Fields"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "physics_properties",
+            "fields"
+          ],
+          "full_name": "components.FilamentContent.FilamentContentComponent",
+          "name": "FilamentContentComponent"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "components.FilamentContent.FilamentType",
+          "name": "FilamentType"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "collapse_sensitive",
+            "engine",
+            "is_quantum"
+          ],
+          "full_name": "components.FilamentContent.PhysicsProperties",
+          "name": "PhysicsProperties"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "components.FilamentContent"
+    },
+    "FocusContent": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "minimum",
+            "maximum",
+            "min_length",
+            "max_length",
+            "pattern",
+            "enum"
+          ],
+          "full_name": "components.FocusContent.Constraints",
+          "name": "Constraints"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "components.FocusContent.Engine",
+          "name": "Engine"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "components.FocusContent.Fields",
+          "name": "Fields"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "description",
+            "type",
+            "default_value",
+            "constraints",
+            "ui_label"
+          ],
+          "full_name": "components.FocusContent.Fields1",
+          "name": "Fields1"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "physics_properties",
+            "fields"
+          ],
+          "full_name": "components.FocusContent.FocusContentComponent",
+          "name": "FocusContentComponent"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "collapse_sensitive",
+            "engine",
+            "is_quantum"
+          ],
+          "full_name": "components.FocusContent.PhysicsProperties",
+          "name": "PhysicsProperties"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "components.FocusContent.Type",
+          "name": "Type"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "components.FocusContent.Type1",
+          "name": "Type1"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "components.FocusContent"
+    },
+    "GDPRDependency": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "minimum",
+            "maximum",
+            "min_length",
+            "max_length",
+            "pattern",
+            "enum"
+          ],
+          "full_name": "components.GDPRDependency.Constraints",
+          "name": "Constraints"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "components.GDPRDependency.Engine",
+          "name": "Engine"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "components.GDPRDependency.Fields",
+          "name": "Fields"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "description",
+            "type",
+            "default_value",
+            "constraints",
+            "ui_label"
+          ],
+          "full_name": "components.GDPRDependency.Fields1",
+          "name": "Fields1"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "physics_properties",
+            "fields"
+          ],
+          "full_name": "components.GDPRDependency.GdprDependencyComponent",
+          "name": "GdprDependencyComponent"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "collapse_sensitive",
+            "engine",
+            "is_quantum"
+          ],
+          "full_name": "components.GDPRDependency.PhysicsProperties",
+          "name": "PhysicsProperties"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "components.GDPRDependency.Type",
+          "name": "Type"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "components.GDPRDependency.Type1",
+          "name": "Type1"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "components.GDPRDependency"
+    },
+    "InstanceComponent": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "minimum",
+            "maximum",
+            "min_length",
+            "max_length",
+            "pattern",
+            "enum"
+          ],
+          "full_name": "components.InstanceComponent.Constraints",
+          "name": "Constraints"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "components.InstanceComponent.Engine",
+          "name": "Engine"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "components.InstanceComponent.Fields",
+          "name": "Fields"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "description",
+            "type",
+            "default_value",
+            "constraints",
+            "ui_label"
+          ],
+          "full_name": "components.InstanceComponent.Fields1",
+          "name": "Fields1"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "physics_properties",
+            "fields"
+          ],
+          "full_name": "components.InstanceComponent.InstanceComponent",
+          "name": "InstanceComponent"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "collapse_sensitive",
+            "engine",
+            "is_quantum"
+          ],
+          "full_name": "components.InstanceComponent.PhysicsProperties",
+          "name": "PhysicsProperties"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "components.InstanceComponent.Type",
+          "name": "Type"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "components.InstanceComponent.Type1",
+          "name": "Type1"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "components.InstanceComponent"
+    },
+    "IntentContent": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "minimum",
+            "maximum",
+            "min_length",
+            "max_length",
+            "pattern",
+            "enum"
+          ],
+          "full_name": "components.IntentContent.Constraints",
+          "name": "Constraints"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "components.IntentContent.Engine",
+          "name": "Engine"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "components.IntentContent.Fields",
+          "name": "Fields"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "description",
+            "type",
+            "default_value",
+            "constraints",
+            "ui_label"
+          ],
+          "full_name": "components.IntentContent.Fields1",
+          "name": "Fields1"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "physics_properties",
+            "fields"
+          ],
+          "full_name": "components.IntentContent.IntentContentComponent",
+          "name": "IntentContentComponent"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "collapse_sensitive",
+            "engine",
+            "is_quantum"
+          ],
+          "full_name": "components.IntentContent.PhysicsProperties",
+          "name": "PhysicsProperties"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "components.IntentContent.Type",
+          "name": "Type"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "components.IntentContent.Type1",
+          "name": "Type1"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "components.IntentContent"
+    },
+    "MemoryManifoldPosition": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "minimum",
+            "maximum",
+            "min_length",
+            "max_length",
+            "pattern",
+            "enum"
+          ],
+          "full_name": "components.MemoryManifoldPosition.Constraints",
+          "name": "Constraints"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "components.MemoryManifoldPosition.Engine",
+          "name": "Engine"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "components.MemoryManifoldPosition.Fields",
+          "name": "Fields"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "description",
+            "type",
+            "default_value",
+            "constraints",
+            "ui_label"
+          ],
+          "full_name": "components.MemoryManifoldPosition.Fields1",
+          "name": "Fields1"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "physics_properties",
+            "fields"
+          ],
+          "full_name": "components.MemoryManifoldPosition.MemoryManifoldPositionComponent",
+          "name": "MemoryManifoldPositionComponent"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "collapse_sensitive",
+            "engine",
+            "is_quantum"
+          ],
+          "full_name": "components.MemoryManifoldPosition.PhysicsProperties",
+          "name": "PhysicsProperties"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "components.MemoryManifoldPosition.Type",
+          "name": "Type"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "components.MemoryManifoldPosition.Type1",
+          "name": "Type1"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "components.MemoryManifoldPosition"
+    },
+    "MomentContent": {
+      "classes_found": [
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "components.MomentContent.Engine",
+          "name": "Engine"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "description",
+            "moment_type",
+            "participants",
+            "objective_facts"
+          ],
+          "full_name": "components.MomentContent.Fields",
+          "name": "Fields"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "physics_properties",
+            "fields"
+          ],
+          "full_name": "components.MomentContent.MomentContentComponent",
+          "name": "MomentContentComponent"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "components.MomentContent.MomentType",
+          "name": "MomentType"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "collapse_sensitive",
+            "engine",
+            "is_quantum"
+          ],
+          "full_name": "components.MomentContent.PhysicsProperties",
+          "name": "PhysicsProperties"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "components.MomentContent"
+    },
+    "MotifContent": {
+      "classes_found": [
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "components.MotifContent.Engine",
+          "name": "Engine"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "motif_description",
+            "motif_type",
+            "source_entanglements"
+          ],
+          "full_name": "components.MotifContent.Fields",
+          "name": "Fields"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "physics_properties",
+            "fields"
+          ],
+          "full_name": "components.MotifContent.MotifContentComponent",
+          "name": "MotifContentComponent"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "components.MotifContent.MotifType",
+          "name": "MotifType"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "collapse_sensitive",
+            "engine",
+            "is_quantum"
+          ],
+          "full_name": "components.MotifContent.PhysicsProperties",
+          "name": "PhysicsProperties"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "components.MotifContent"
+    },
+    "QuantumState": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "minimum",
+            "maximum",
+            "min_length",
+            "max_length",
+            "pattern",
+            "enum"
+          ],
+          "full_name": "components.QuantumState.Constraints",
+          "name": "Constraints"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "components.QuantumState.Engine",
+          "name": "Engine"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "components.QuantumState.Fields",
+          "name": "Fields"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "description",
+            "type",
+            "default_value",
+            "constraints",
+            "ui_label"
+          ],
+          "full_name": "components.QuantumState.Fields1",
+          "name": "Fields1"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "collapse_sensitive",
+            "engine",
+            "is_quantum"
+          ],
+          "full_name": "components.QuantumState.PhysicsProperties",
+          "name": "PhysicsProperties"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "physics_properties",
+            "fields"
+          ],
+          "full_name": "components.QuantumState.QuantumStateComponent",
+          "name": "QuantumStateComponent"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "components.QuantumState.Type",
+          "name": "Type"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "components.QuantumState.Type1",
+          "name": "Type1"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "components.QuantumState"
+    },
+    "TaskStatus": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "minimum",
+            "maximum",
+            "min_length",
+            "max_length",
+            "pattern",
+            "enum"
+          ],
+          "full_name": "components.TaskStatus.Constraints",
+          "name": "Constraints"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "components.TaskStatus.Engine",
+          "name": "Engine"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "components.TaskStatus.Fields",
+          "name": "Fields"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "description",
+            "type",
+            "default_value",
+            "constraints",
+            "ui_label"
+          ],
+          "full_name": "components.TaskStatus.Fields1",
+          "name": "Fields1"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "collapse_sensitive",
+            "engine",
+            "is_quantum"
+          ],
+          "full_name": "components.TaskStatus.PhysicsProperties",
+          "name": "PhysicsProperties"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "physics_properties",
+            "fields"
+          ],
+          "full_name": "components.TaskStatus.TaskStatusComponent",
+          "name": "TaskStatusComponent"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "components.TaskStatus.Type",
+          "name": "Type"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "components.TaskStatus.Type1",
+          "name": "Type1"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "components.TaskStatus"
+    },
+    "TemporalAnchor": {
+      "classes_found": [
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "components.TemporalAnchor.Engine",
+          "name": "Engine"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "event_timestamp",
+            "duration_seconds"
+          ],
+          "full_name": "components.TemporalAnchor.Fields",
+          "name": "Fields"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "collapse_sensitive",
+            "engine",
+            "is_quantum"
+          ],
+          "full_name": "components.TemporalAnchor.PhysicsProperties",
+          "name": "PhysicsProperties"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "physics_properties",
+            "fields"
+          ],
+          "full_name": "components.TemporalAnchor.TemporalAnchorComponent",
+          "name": "TemporalAnchorComponent"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "components.TemporalAnchor"
+    },
+    "TenantConfig": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "minimum",
+            "maximum",
+            "min_length",
+            "max_length",
+            "pattern",
+            "enum"
+          ],
+          "full_name": "components.TenantConfig.Constraints",
+          "name": "Constraints"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "components.TenantConfig.Engine",
+          "name": "Engine"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "components.TenantConfig.Fields",
+          "name": "Fields"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "description",
+            "type",
+            "default_value",
+            "constraints",
+            "ui_label"
+          ],
+          "full_name": "components.TenantConfig.Fields1",
+          "name": "Fields1"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "collapse_sensitive",
+            "engine",
+            "is_quantum"
+          ],
+          "full_name": "components.TenantConfig.PhysicsProperties",
+          "name": "PhysicsProperties"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "physics_properties",
+            "fields"
+          ],
+          "full_name": "components.TenantConfig.TenantConfigurationComponent",
+          "name": "TenantConfigurationComponent"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "components.TenantConfig.Type",
+          "name": "Type"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "components.TenantConfig.Type1",
+          "name": "Type1"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "components.TenantConfig"
+    },
+    "TenantIdentity": {
+      "classes_found": [
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "components.TenantIdentity.Engine",
+          "name": "Engine"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "tenant_name",
+            "subscription_plan"
+          ],
+          "full_name": "components.TenantIdentity.Fields",
+          "name": "Fields"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "collapse_sensitive",
+            "engine",
+            "is_quantum"
+          ],
+          "full_name": "components.TenantIdentity.PhysicsProperties",
+          "name": "PhysicsProperties"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "components.TenantIdentity.SubscriptionPlan",
+          "name": "SubscriptionPlan"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "physics_properties",
+            "fields"
+          ],
+          "full_name": "components.TenantIdentity.TenantIdentityComponent",
+          "name": "TenantIdentityComponent"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "components.TenantIdentity"
+    },
+    "TenantMembers": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "minimum",
+            "maximum",
+            "min_length",
+            "max_length",
+            "pattern",
+            "enum"
+          ],
+          "full_name": "components.TenantMembers.Constraints",
+          "name": "Constraints"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "components.TenantMembers.Engine",
+          "name": "Engine"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "components.TenantMembers.Fields",
+          "name": "Fields"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "description",
+            "type",
+            "default_value",
+            "constraints",
+            "ui_label"
+          ],
+          "full_name": "components.TenantMembers.Fields1",
+          "name": "Fields1"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "collapse_sensitive",
+            "engine",
+            "is_quantum"
+          ],
+          "full_name": "components.TenantMembers.PhysicsProperties",
+          "name": "PhysicsProperties"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "physics_properties",
+            "fields"
+          ],
+          "full_name": "components.TenantMembers.TenantMembersComponent",
+          "name": "TenantMembersComponent"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "components.TenantMembers.Type",
+          "name": "Type"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "components.TenantMembers.Type1",
+          "name": "Type1"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "components.TenantMembers"
+    },
+    "ThreadContent": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "minimum",
+            "maximum",
+            "min_length",
+            "max_length",
+            "pattern",
+            "enum"
+          ],
+          "full_name": "components.ThreadContent.Constraints",
+          "name": "Constraints"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "components.ThreadContent.Engine",
+          "name": "Engine"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "components.ThreadContent.Fields",
+          "name": "Fields"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "description",
+            "type",
+            "default_value",
+            "constraints",
+            "ui_label"
+          ],
+          "full_name": "components.ThreadContent.Fields1",
+          "name": "Fields1"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "collapse_sensitive",
+            "engine",
+            "is_quantum"
+          ],
+          "full_name": "components.ThreadContent.PhysicsProperties",
+          "name": "PhysicsProperties"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "physics_properties",
+            "fields"
+          ],
+          "full_name": "components.ThreadContent.ThreadContentComponent",
+          "name": "ThreadContentComponent"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "components.ThreadContent.Type",
+          "name": "Type"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "components.ThreadContent.Type1",
+          "name": "Type1"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "components.ThreadContent"
+    },
+    "UniversalPhysicsState": {
+      "classes_found": [
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "components.UniversalPhysicsState.Engine",
+          "name": "Engine"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "energy",
+            "momentum",
+            "cognitive_perspective",
+            "decay_rate",
+            "consolidation_rate",
+            "quantum_coherence",
+            "entanglement_strength"
+          ],
+          "full_name": "components.UniversalPhysicsState.Fields",
+          "name": "Fields"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "collapse_sensitive",
+            "engine",
+            "is_quantum"
+          ],
+          "full_name": "components.UniversalPhysicsState.PhysicsProperties",
+          "name": "PhysicsProperties"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "physics_properties",
+            "fields"
+          ],
+          "full_name": "components.UniversalPhysicsState.UniversalPhysicsStateComponent",
+          "name": "UniversalPhysicsStateComponent"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "components.UniversalPhysicsState"
+    }
+  },
+  "entities": {
+    "BaseCognitiveEntity": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "entity_id",
+            "tenant_id",
+            "created_at",
+            "components",
+            "entity_type"
+          ],
+          "full_name": "entities.BaseCognitiveEntity.BaseCognitiveEntity",
+          "name": "BaseCognitiveEntity"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_comment"
+          ],
+          "full_name": "entities.BaseCognitiveEntity.Components",
+          "name": "Components"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "entities.BaseCognitiveEntity.EntityType",
+          "name": "EntityType"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "entities.BaseCognitiveEntity"
+    },
+    "BaseSystemEntity": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "entity_id",
+            "tenant_id",
+            "created_at",
+            "entity_type",
+            "workflow_state"
+          ],
+          "full_name": "entities.BaseSystemEntity.BaseSystemEntity",
+          "name": "BaseSystemEntity"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "entities.BaseSystemEntity.EntityType",
+          "name": "EntityType"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "entities.BaseSystemEntity.Status",
+          "name": "Status"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "status",
+            "current_step",
+            "error_message",
+            "last_updated"
+          ],
+          "full_name": "entities.BaseSystemEntity.WorkflowState",
+          "name": "WorkflowState"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "entities.BaseSystemEntity"
+    },
+    "Bond": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "components",
+            "entity_type",
+            "thread_a_id",
+            "thread_b_id",
+            "physics_state"
+          ],
+          "full_name": "entities.Bond.BondEntity",
+          "name": "BondEntity"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_comment",
+            "content",
+            "permissions",
+            "physics_config"
+          ],
+          "full_name": "entities.Bond.Components",
+          "name": "Components"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "fields"
+          ],
+          "full_name": "entities.Bond.Content",
+          "name": "Content"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "entities.Bond.EntityType",
+          "name": "EntityType"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "relationship_type",
+            "description",
+            "history"
+          ],
+          "full_name": "entities.Bond.Fields",
+          "name": "Fields"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "energy",
+            "momentum",
+            "cognitive_perspective",
+            "decay_rate",
+            "consolidation_rate",
+            "quantum_coherence",
+            "entanglement_strength"
+          ],
+          "full_name": "entities.Bond.Fields1",
+          "name": "Fields1"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "moment_id",
+            "impact",
+            "timestamp"
+          ],
+          "full_name": "entities.Bond.HistoryItem",
+          "name": "HistoryItem"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "universal",
+            "tension"
+          ],
+          "full_name": "entities.Bond.PhysicsState",
+          "name": "PhysicsState"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "entities.Bond.RelationshipType",
+          "name": "RelationshipType"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "fields"
+          ],
+          "full_name": "entities.Bond.Universal",
+          "name": "Universal"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "entities.Bond"
+    },
+    "Filament": {
+      "classes_found": [
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "entities.Filament.AbstractionLevel",
+          "name": "AbstractionLevel"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_comment",
+            "content",
+            "consolidation",
+            "gdpr"
+          ],
+          "full_name": "entities.Filament.Components",
+          "name": "Components"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "fields"
+          ],
+          "full_name": "entities.Filament.Consolidation",
+          "name": "Consolidation"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "entities.Filament.ConsolidationLevel",
+          "name": "ConsolidationLevel"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "fields"
+          ],
+          "full_name": "entities.Filament.Content",
+          "name": "Content"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "entities.Filament.EntityType",
+          "name": "EntityType"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "narrative_description",
+            "filament_type",
+            "abstraction_level",
+            "source_threads_and_bonds"
+          ],
+          "full_name": "entities.Filament.Fields",
+          "name": "Fields"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "consolidation_level",
+            "last_consolidated_at",
+            "next_consolidation_due",
+            "source_entity_count"
+          ],
+          "full_name": "entities.Filament.Fields1",
+          "name": "Fields1"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "energy",
+            "momentum",
+            "cognitive_perspective",
+            "decay_rate",
+            "consolidation_rate",
+            "quantum_coherence",
+            "entanglement_strength"
+          ],
+          "full_name": "entities.Filament.Fields2",
+          "name": "Fields2"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "components",
+            "entity_type",
+            "physics_state"
+          ],
+          "full_name": "entities.Filament.FilamentEntity",
+          "name": "FilamentEntity"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "entities.Filament.FilamentType",
+          "name": "FilamentType"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "universal",
+            "quantum"
+          ],
+          "full_name": "entities.Filament.PhysicsState",
+          "name": "PhysicsState"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "fields"
+          ],
+          "full_name": "entities.Filament.Universal",
+          "name": "Universal"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "entities.Filament"
+    },
+    "Focus": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_comment",
+            "content"
+          ],
+          "full_name": "entities.Focus.Components",
+          "name": "Components"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "entities.Focus.EntityType",
+          "name": "EntityType"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "energy",
+            "momentum",
+            "cognitive_perspective",
+            "decay_rate",
+            "consolidation_rate",
+            "quantum_coherence",
+            "entanglement_strength"
+          ],
+          "full_name": "entities.Focus.Fields",
+          "name": "Fields"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "components",
+            "entity_type",
+            "physics_state"
+          ],
+          "full_name": "entities.Focus.FocusEntity",
+          "name": "FocusEntity"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "universal",
+            "quantum"
+          ],
+          "full_name": "entities.Focus.PhysicsState",
+          "name": "PhysicsState"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "fields"
+          ],
+          "full_name": "entities.Focus.Universal",
+          "name": "Universal"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "entities.Focus"
+    },
+    "GenericThread": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "energy",
+            "momentum",
+            "cognitive_perspective",
+            "decay_rate",
+            "consolidation_rate",
+            "quantum_coherence",
+            "entanglement_strength"
+          ],
+          "full_name": "entities.GenericThread.Fields",
+          "name": "Fields"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "entity_id",
+            "tenant_id",
+            "created_at",
+            "identity",
+            "physics_state"
+          ],
+          "full_name": "entities.GenericThread.GenericThread",
+          "name": "GenericThread"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "universal"
+          ],
+          "full_name": "entities.GenericThread.PhysicsState",
+          "name": "PhysicsState"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "fields"
+          ],
+          "full_name": "entities.GenericThread.Universal",
+          "name": "Universal"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "entities.GenericThread"
+    },
+    "Intent": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_comment",
+            "content",
+            "status"
+          ],
+          "full_name": "entities.Intent.Components",
+          "name": "Components"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "entities.Intent.EntityType",
+          "name": "EntityType"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "energy",
+            "momentum",
+            "cognitive_perspective",
+            "decay_rate",
+            "consolidation_rate",
+            "quantum_coherence",
+            "entanglement_strength"
+          ],
+          "full_name": "entities.Intent.Fields",
+          "name": "Fields"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "components",
+            "entity_type",
+            "physics_state"
+          ],
+          "full_name": "entities.Intent.IntentEntity",
+          "name": "IntentEntity"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "universal",
+            "manifold_position"
+          ],
+          "full_name": "entities.Intent.PhysicsState",
+          "name": "PhysicsState"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "fields"
+          ],
+          "full_name": "entities.Intent.Universal",
+          "name": "Universal"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "entities.Intent"
+    },
+    "Moment": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_comment",
+            "content"
+          ],
+          "full_name": "entities.Moment.Components",
+          "name": "Components"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "fields"
+          ],
+          "full_name": "entities.Moment.Content",
+          "name": "Content"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "entities.Moment.EntityType",
+          "name": "EntityType"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "description",
+            "moment_type",
+            "participants",
+            "objective_facts"
+          ],
+          "full_name": "entities.Moment.Fields",
+          "name": "Fields"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "energy",
+            "momentum",
+            "cognitive_perspective",
+            "decay_rate",
+            "consolidation_rate",
+            "quantum_coherence",
+            "entanglement_strength"
+          ],
+          "full_name": "entities.Moment.Fields1",
+          "name": "Fields1"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "components",
+            "entity_type",
+            "physics_state"
+          ],
+          "full_name": "entities.Moment.MomentEntity",
+          "name": "MomentEntity"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "entities.Moment.MomentType",
+          "name": "MomentType"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "universal",
+            "manifold_position"
+          ],
+          "full_name": "entities.Moment.PhysicsState",
+          "name": "PhysicsState"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "fields"
+          ],
+          "full_name": "entities.Moment.Universal",
+          "name": "Universal"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "entities.Moment"
+    },
+    "Motif": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_comment",
+            "content",
+            "consolidation",
+            "gdpr"
+          ],
+          "full_name": "entities.Motif.Components",
+          "name": "Components"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "fields"
+          ],
+          "full_name": "entities.Motif.Consolidation",
+          "name": "Consolidation"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "entities.Motif.ConsolidationLevel",
+          "name": "ConsolidationLevel"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "fields"
+          ],
+          "full_name": "entities.Motif.Content",
+          "name": "Content"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "entities.Motif.EntityType",
+          "name": "EntityType"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "motif_description",
+            "motif_type",
+            "source_entanglements"
+          ],
+          "full_name": "entities.Motif.Fields",
+          "name": "Fields"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "consolidation_level",
+            "last_consolidated_at",
+            "next_consolidation_due",
+            "source_entity_count"
+          ],
+          "full_name": "entities.Motif.Fields1",
+          "name": "Fields1"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "energy",
+            "momentum",
+            "cognitive_perspective",
+            "decay_rate",
+            "consolidation_rate",
+            "quantum_coherence",
+            "entanglement_strength"
+          ],
+          "full_name": "entities.Motif.Fields2",
+          "name": "Fields2"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "components",
+            "entity_type",
+            "physics_state"
+          ],
+          "full_name": "entities.Motif.MotifEntity",
+          "name": "MotifEntity"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "entities.Motif.MotifType",
+          "name": "MotifType"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "universal",
+            "quantum"
+          ],
+          "full_name": "entities.Motif.PhysicsState",
+          "name": "PhysicsState"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "fields"
+          ],
+          "full_name": "entities.Motif.Universal",
+          "name": "Universal"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "entities.Motif"
+    },
+    "PersonThread": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "cognitive_baseline"
+          ],
+          "full_name": "entities.PersonThread.Components",
+          "name": "Components"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "energy",
+            "momentum",
+            "cognitive_perspective",
+            "decay_rate",
+            "consolidation_rate",
+            "quantum_coherence",
+            "entanglement_strength"
+          ],
+          "full_name": "entities.PersonThread.Fields",
+          "name": "Fields"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "entity_id",
+            "tenant_id",
+            "created_at",
+            "identity",
+            "components",
+            "physics_state"
+          ],
+          "full_name": "entities.PersonThread.PersonThread",
+          "name": "PersonThread"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "universal"
+          ],
+          "full_name": "entities.PersonThread.PhysicsState",
+          "name": "PhysicsState"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "fields"
+          ],
+          "full_name": "entities.PersonThread.Universal",
+          "name": "Universal"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "entities.PersonThread"
+    },
+    "Stitch": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "dissonance_details",
+            "resolution_request"
+          ],
+          "full_name": "entities.Stitch.Components",
+          "name": "Components"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "dissonance_type",
+            "source_entities",
+            "severity"
+          ],
+          "full_name": "entities.Stitch.DissonanceDetails",
+          "name": "DissonanceDetails"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "entities.Stitch.DissonanceType",
+          "name": "DissonanceType"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "entities.Stitch.EntityType",
+          "name": "EntityType"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "type",
+            "options"
+          ],
+          "full_name": "entities.Stitch.InteractionType",
+          "name": "InteractionType"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "type",
+            "confirm_text",
+            "deny_text"
+          ],
+          "full_name": "entities.Stitch.InteractionType1",
+          "name": "InteractionType1"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "type",
+            "placeholder",
+            "submit_text"
+          ],
+          "full_name": "entities.Stitch.InteractionType2",
+          "name": "InteractionType2"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "id",
+            "label",
+            "description"
+          ],
+          "full_name": "entities.Stitch.Option",
+          "name": "Option"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "interaction_id",
+            "prompt_title",
+            "prompt_details",
+            "interaction_type",
+            "agent_context"
+          ],
+          "full_name": "entities.Stitch.ResolutionRequest",
+          "name": "ResolutionRequest"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "entities.Stitch.Status",
+          "name": "Status"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "entity_type",
+            "workflow_state",
+            "components"
+          ],
+          "full_name": "entities.Stitch.StitchEntity",
+          "name": "StitchEntity"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "status",
+            "current_step",
+            "error_message",
+            "last_updated"
+          ],
+          "full_name": "entities.Stitch.WorkflowState",
+          "name": "WorkflowState"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "entities.Stitch"
+    },
+    "Tenant": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "identity",
+            "members",
+            "config"
+          ],
+          "full_name": "entities.Tenant.Components",
+          "name": "Components"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "physics_properties",
+            "fields"
+          ],
+          "full_name": "entities.Tenant.Config",
+          "name": "Config"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "minimum",
+            "maximum",
+            "min_length",
+            "max_length",
+            "pattern",
+            "enum"
+          ],
+          "full_name": "entities.Tenant.Constraints",
+          "name": "Constraints"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "entities.Tenant.Engine",
+          "name": "Engine"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "entities.Tenant.EntityType",
+          "name": "EntityType"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "tenant_name",
+            "subscription_plan"
+          ],
+          "full_name": "entities.Tenant.Fields",
+          "name": "Fields"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "entities.Tenant.Fields1",
+          "name": "Fields1"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "description",
+            "type",
+            "default_value",
+            "constraints",
+            "ui_label"
+          ],
+          "full_name": "entities.Tenant.Fields2",
+          "name": "Fields2"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "entities.Tenant.Fields3",
+          "name": "Fields3"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "description",
+            "type",
+            "default_value",
+            "constraints",
+            "ui_label"
+          ],
+          "full_name": "entities.Tenant.Fields4",
+          "name": "Fields4"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "physics_properties",
+            "fields"
+          ],
+          "full_name": "entities.Tenant.Identity",
+          "name": "Identity"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "physics_properties",
+            "fields"
+          ],
+          "full_name": "entities.Tenant.Members",
+          "name": "Members"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "collapse_sensitive",
+            "engine",
+            "is_quantum"
+          ],
+          "full_name": "entities.Tenant.PhysicsProperties",
+          "name": "PhysicsProperties"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "collapse_sensitive",
+            "engine",
+            "is_quantum"
+          ],
+          "full_name": "entities.Tenant.PhysicsProperties1",
+          "name": "PhysicsProperties1"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "collapse_sensitive",
+            "engine",
+            "is_quantum"
+          ],
+          "full_name": "entities.Tenant.PhysicsProperties2",
+          "name": "PhysicsProperties2"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "entities.Tenant.Status",
+          "name": "Status"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "entities.Tenant.SubscriptionPlan",
+          "name": "SubscriptionPlan"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "entity_id",
+            "tenant_id",
+            "created_at",
+            "entity_type",
+            "workflow_state",
+            "components"
+          ],
+          "full_name": "entities.Tenant.TenantEntity",
+          "name": "TenantEntity"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "entities.Tenant.Type",
+          "name": "Type"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "entities.Tenant.Type1",
+          "name": "Type1"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "entities.Tenant.Type2",
+          "name": "Type2"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "entities.Tenant.Type3",
+          "name": "Type3"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "status",
+            "current_step",
+            "error_message",
+            "last_updated"
+          ],
+          "full_name": "entities.Tenant.WorkflowState",
+          "name": "WorkflowState"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "entities.Tenant"
+    },
+    "Thread": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "cognitive_baseline"
+          ],
+          "full_name": "entities.Thread.Components",
+          "name": "Components"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "energy",
+            "momentum",
+            "cognitive_perspective",
+            "decay_rate",
+            "consolidation_rate",
+            "quantum_coherence",
+            "entanglement_strength"
+          ],
+          "full_name": "entities.Thread.Fields",
+          "name": "Fields"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "universal"
+          ],
+          "full_name": "entities.Thread.PhysicsState",
+          "name": "PhysicsState"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "universal"
+          ],
+          "full_name": "entities.Thread.PhysicsState1",
+          "name": "PhysicsState1"
+        },
+        {
+          "bases": [
+            "RootModel[Union[Thread1, Thread2]]"
+          ],
+          "fields": [
+            "root"
+          ],
+          "full_name": "entities.Thread.Thread",
+          "name": "Thread"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "identity",
+            "components",
+            "physics_state"
+          ],
+          "full_name": "entities.Thread.Thread1",
+          "name": "Thread1"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "identity",
+            "physics_state"
+          ],
+          "full_name": "entities.Thread.Thread2",
+          "name": "Thread2"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "fields"
+          ],
+          "full_name": "entities.Thread.Universal",
+          "name": "Universal"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "fields"
+          ],
+          "full_name": "entities.Thread.Universal1",
+          "name": "Universal1"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "entities.Thread"
+    }
+  },
+  "events": {
+    "BondStateChangeRequested": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "event_id",
+            "trace_id",
+            "timestamp",
+            "source_service",
+            "payload"
+          ],
+          "full_name": "events.BondStateChangeRequested.BondStateChangeRequestedEvent",
+          "name": "BondStateChangeRequestedEvent"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "events.BondStateChangeRequested.NewState",
+          "name": "NewState"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "bond_id",
+            "new_state",
+            "reason"
+          ],
+          "full_name": "events.BondStateChangeRequested.Payload",
+          "name": "Payload"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "events.BondStateChangeRequested.Reason",
+          "name": "Reason"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "events.BondStateChangeRequested"
+    },
+    "MomentAccessed": {
+      "classes_found": [
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "events.MomentAccessed.AccessType",
+          "name": "AccessType"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "event_id",
+            "trace_id",
+            "timestamp",
+            "source_service",
+            "payload"
+          ],
+          "full_name": "events.MomentAccessed.MomentAccessedEvent",
+          "name": "MomentAccessedEvent"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "moment_id",
+            "accessed_by_user_id",
+            "access_type",
+            "access_context"
+          ],
+          "full_name": "events.MomentAccessed.Payload",
+          "name": "Payload"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "events.MomentAccessed"
+    },
+    "ThreadStateChangeRequested": {
+      "classes_found": [
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "events.ThreadStateChangeRequested.NewState",
+          "name": "NewState"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "thread_id",
+            "new_state",
+            "reason",
+            "source"
+          ],
+          "full_name": "events.ThreadStateChangeRequested.Payload",
+          "name": "Payload"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "events.ThreadStateChangeRequested.Reason",
+          "name": "Reason"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "events.ThreadStateChangeRequested.Source",
+          "name": "Source"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "title",
+            "description",
+            "schema_version",
+            "event_id",
+            "trace_id",
+            "timestamp",
+            "source_service",
+            "payload"
+          ],
+          "full_name": "events.ThreadStateChangeRequested.ThreadStateChangeRequestedEvent",
+          "name": "ThreadStateChangeRequestedEvent"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "events.ThreadStateChangeRequested"
+    }
+  },
+  "laws": {
+    "BondTensionDynamics": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "physics_properties",
+            "execution_envelope",
+            "affected_components"
+          ],
+          "full_name": "laws.BondTensionDynamics.BondTensionDynamicsLaw",
+          "name": "BondTensionDynamicsLaw"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "laws.BondTensionDynamics.Engine",
+          "name": "Engine"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "trigger",
+            "priority",
+            "timeout_ms"
+          ],
+          "full_name": "laws.BondTensionDynamics.ExecutionEnvelope",
+          "name": "ExecutionEnvelope"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "collapse_sensitive",
+            "engine",
+            "is_quantum"
+          ],
+          "full_name": "laws.BondTensionDynamics.PhysicsProperties",
+          "name": "PhysicsProperties"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "laws.BondTensionDynamics.Trigger",
+          "name": "Trigger"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "laws.BondTensionDynamics"
+    },
+    "MemoryConsolidation": {
+      "classes_found": [
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "laws.MemoryConsolidation.Engine",
+          "name": "Engine"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "trigger",
+            "priority",
+            "timeout_ms"
+          ],
+          "full_name": "laws.MemoryConsolidation.ExecutionEnvelope",
+          "name": "ExecutionEnvelope"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "title",
+            "description",
+            "schema_version",
+            "physics_properties",
+            "execution_envelope",
+            "affected_components"
+          ],
+          "full_name": "laws.MemoryConsolidation.MemoryConsolidationLaw",
+          "name": "MemoryConsolidationLaw"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "collapse_sensitive",
+            "engine",
+            "is_quantum"
+          ],
+          "full_name": "laws.MemoryConsolidation.PhysicsProperties",
+          "name": "PhysicsProperties"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "laws.MemoryConsolidation.Trigger",
+          "name": "Trigger"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "laws.MemoryConsolidation"
+    },
+    "MotifCollapse": {
+      "classes_found": [
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "laws.MotifCollapse.Engine",
+          "name": "Engine"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "trigger",
+            "priority",
+            "timeout_ms"
+          ],
+          "full_name": "laws.MotifCollapse.ExecutionEnvelope",
+          "name": "ExecutionEnvelope"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "physics_properties",
+            "execution_envelope",
+            "affected_components"
+          ],
+          "full_name": "laws.MotifCollapse.MotifCollapseLaw",
+          "name": "MotifCollapseLaw"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "collapse_sensitive",
+            "engine",
+            "is_quantum"
+          ],
+          "full_name": "laws.MotifCollapse.PhysicsProperties",
+          "name": "PhysicsProperties"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "laws.MotifCollapse.Trigger",
+          "name": "Trigger"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "laws.MotifCollapse"
+    },
+    "ThreadEnergyDecay": {
+      "classes_found": [
+        {
+          "bases": [
+            "RootModel[Any]"
+          ],
+          "fields": [
+            "root"
+          ],
+          "full_name": "laws.ThreadEnergyDecay.ThreadEnergyDecay",
+          "name": "ThreadEnergyDecay"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "laws.ThreadEnergyDecay"
+    }
+  },
+  "payloads": {
+    "CoursePayload": {
+      "classes_found": [
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "payloads.CoursePayload.AnalysisType",
+          "name": "AnalysisType"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "user_context",
+            "data"
+          ],
+          "full_name": "payloads.CoursePayload.CoursePayload",
+          "name": "CoursePayload"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "analysis_type",
+            "query",
+            "status",
+            "active_shuttle_ids"
+          ],
+          "full_name": "payloads.CoursePayload.Data",
+          "name": "Data"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "payloads.CoursePayload.Status",
+          "name": "Status"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "user_id",
+            "session_id"
+          ],
+          "full_name": "payloads.CoursePayload.UserContext",
+          "name": "UserContext"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "payloads.CoursePayload"
+    },
+    "DraftPayload": {
+      "classes_found": [
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "payloads.DraftPayload.AbstractionLevel",
+          "name": "AbstractionLevel"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "physics_properties",
+            "fields"
+          ],
+          "full_name": "payloads.DraftPayload.CognitiveBaseline",
+          "name": "CognitiveBaseline"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_comment",
+            "content"
+          ],
+          "full_name": "payloads.DraftPayload.Components",
+          "name": "Components"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_comment",
+            "content",
+            "permissions",
+            "physics_config"
+          ],
+          "full_name": "payloads.DraftPayload.Components1",
+          "name": "Components1"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "cognitive_baseline"
+          ],
+          "full_name": "payloads.DraftPayload.Components2",
+          "name": "Components2"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_comment",
+            "content",
+            "consolidation",
+            "gdpr"
+          ],
+          "full_name": "payloads.DraftPayload.Components3",
+          "name": "Components3"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_comment",
+            "content",
+            "consolidation",
+            "gdpr"
+          ],
+          "full_name": "payloads.DraftPayload.Components4",
+          "name": "Components4"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_comment",
+            "content",
+            "status"
+          ],
+          "full_name": "payloads.DraftPayload.Components5",
+          "name": "Components5"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_comment",
+            "content"
+          ],
+          "full_name": "payloads.DraftPayload.Components6",
+          "name": "Components6"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "physics_properties",
+            "fields"
+          ],
+          "full_name": "payloads.DraftPayload.Consolidation",
+          "name": "Consolidation"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "fields"
+          ],
+          "full_name": "payloads.DraftPayload.Consolidation1",
+          "name": "Consolidation1"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "payloads.DraftPayload.ConsolidationLevel",
+          "name": "ConsolidationLevel"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "minimum",
+            "maximum",
+            "min_length",
+            "max_length",
+            "pattern",
+            "enum"
+          ],
+          "full_name": "payloads.DraftPayload.Constraints",
+          "name": "Constraints"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "title",
+            "description",
+            "schema_version",
+            "physics_properties",
+            "fields"
+          ],
+          "full_name": "payloads.DraftPayload.Content",
+          "name": "Content"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "physics_properties",
+            "fields"
+          ],
+          "full_name": "payloads.DraftPayload.Content1",
+          "name": "Content1"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "physics_properties",
+            "fields"
+          ],
+          "full_name": "payloads.DraftPayload.Content2",
+          "name": "Content2"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "physics_properties",
+            "fields"
+          ],
+          "full_name": "payloads.DraftPayload.Content3",
+          "name": "Content3"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "physics_properties",
+            "fields"
+          ],
+          "full_name": "payloads.DraftPayload.Content4",
+          "name": "Content4"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "physics_properties",
+            "fields"
+          ],
+          "full_name": "payloads.DraftPayload.Content5",
+          "name": "Content5"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "title",
+            "description",
+            "schema_version",
+            "entity_id",
+            "tenant_id",
+            "created_at",
+            "components",
+            "entity_type",
+            "physics_state"
+          ],
+          "full_name": "payloads.DraftPayload.Data",
+          "name": "Data"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "components",
+            "entity_type",
+            "thread_a_id",
+            "thread_b_id",
+            "physics_state"
+          ],
+          "full_name": "payloads.DraftPayload.Data1",
+          "name": "Data1"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "entity_id",
+            "tenant_id",
+            "created_at",
+            "identity",
+            "components",
+            "physics_state"
+          ],
+          "full_name": "payloads.DraftPayload.Data2",
+          "name": "Data2"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "entity_id",
+            "tenant_id",
+            "created_at",
+            "identity",
+            "physics_state"
+          ],
+          "full_name": "payloads.DraftPayload.Data3",
+          "name": "Data3"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "components",
+            "entity_type",
+            "physics_state"
+          ],
+          "full_name": "payloads.DraftPayload.Data4",
+          "name": "Data4"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "components",
+            "entity_type",
+            "physics_state"
+          ],
+          "full_name": "payloads.DraftPayload.Data5",
+          "name": "Data5"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "components",
+            "entity_type",
+            "physics_state"
+          ],
+          "full_name": "payloads.DraftPayload.Data6",
+          "name": "Data6"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "components",
+            "entity_type",
+            "physics_state"
+          ],
+          "full_name": "payloads.DraftPayload.Data7",
+          "name": "Data7"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "payloads.DraftPayload.Engine",
+          "name": "Engine"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "title",
+            "description",
+            "schema_version",
+            "user_context",
+            "data"
+          ],
+          "full_name": "payloads.DraftPayload.EntityDraftPayload",
+          "name": "EntityDraftPayload"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "payloads.DraftPayload.EntityType",
+          "name": "EntityType"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "description",
+            "moment_type",
+            "participants",
+            "objective_facts"
+          ],
+          "full_name": "payloads.DraftPayload.Fields",
+          "name": "Fields"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "energy",
+            "momentum",
+            "cognitive_perspective",
+            "decay_rate",
+            "consolidation_rate",
+            "quantum_coherence",
+            "entanglement_strength"
+          ],
+          "full_name": "payloads.DraftPayload.Fields1",
+          "name": "Fields1"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "payloads.DraftPayload.Fields10",
+          "name": "Fields10"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "description",
+            "type",
+            "default_value",
+            "constraints",
+            "ui_label"
+          ],
+          "full_name": "payloads.DraftPayload.Fields11",
+          "name": "Fields11"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "payloads.DraftPayload.Fields12",
+          "name": "Fields12"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "description",
+            "type",
+            "default_value",
+            "constraints",
+            "ui_label"
+          ],
+          "full_name": "payloads.DraftPayload.Fields13",
+          "name": "Fields13"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "payloads.DraftPayload.Fields14",
+          "name": "Fields14"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "description",
+            "type",
+            "default_value",
+            "constraints",
+            "ui_label"
+          ],
+          "full_name": "payloads.DraftPayload.Fields15",
+          "name": "Fields15"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "energy",
+            "momentum",
+            "cognitive_perspective",
+            "decay_rate",
+            "consolidation_rate",
+            "quantum_coherence",
+            "entanglement_strength"
+          ],
+          "full_name": "payloads.DraftPayload.Fields16",
+          "name": "Fields16"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "motif_description",
+            "motif_type",
+            "source_entanglements"
+          ],
+          "full_name": "payloads.DraftPayload.Fields18",
+          "name": "Fields18"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "consolidation_level",
+            "last_consolidated_at",
+            "next_consolidation_due",
+            "source_entity_count"
+          ],
+          "full_name": "payloads.DraftPayload.Fields19",
+          "name": "Fields19"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "payloads.DraftPayload.Fields2",
+          "name": "Fields2"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "payloads.DraftPayload.Fields20",
+          "name": "Fields20"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "description",
+            "type",
+            "default_value",
+            "constraints",
+            "ui_label"
+          ],
+          "full_name": "payloads.DraftPayload.Fields21",
+          "name": "Fields21"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "energy",
+            "momentum",
+            "cognitive_perspective",
+            "decay_rate",
+            "consolidation_rate",
+            "quantum_coherence",
+            "entanglement_strength"
+          ],
+          "full_name": "payloads.DraftPayload.Fields22",
+          "name": "Fields22"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "payloads.DraftPayload.Fields23",
+          "name": "Fields23"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "description",
+            "type",
+            "default_value",
+            "constraints",
+            "ui_label"
+          ],
+          "full_name": "payloads.DraftPayload.Fields24",
+          "name": "Fields24"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "narrative_description",
+            "filament_type",
+            "abstraction_level",
+            "source_threads_and_bonds"
+          ],
+          "full_name": "payloads.DraftPayload.Fields25",
+          "name": "Fields25"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "consolidation_level",
+            "last_consolidated_at",
+            "next_consolidation_due",
+            "source_entity_count"
+          ],
+          "full_name": "payloads.DraftPayload.Fields26",
+          "name": "Fields26"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "energy",
+            "momentum",
+            "cognitive_perspective",
+            "decay_rate",
+            "consolidation_rate",
+            "quantum_coherence",
+            "entanglement_strength"
+          ],
+          "full_name": "payloads.DraftPayload.Fields27",
+          "name": "Fields27"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "payloads.DraftPayload.Fields28",
+          "name": "Fields28"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "description",
+            "type",
+            "default_value",
+            "constraints",
+            "ui_label"
+          ],
+          "full_name": "payloads.DraftPayload.Fields29",
+          "name": "Fields29"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "description",
+            "type",
+            "default_value",
+            "constraints",
+            "ui_label"
+          ],
+          "full_name": "payloads.DraftPayload.Fields3",
+          "name": "Fields3"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "payloads.DraftPayload.Fields30",
+          "name": "Fields30"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "description",
+            "type",
+            "default_value",
+            "constraints",
+            "ui_label"
+          ],
+          "full_name": "payloads.DraftPayload.Fields31",
+          "name": "Fields31"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "energy",
+            "momentum",
+            "cognitive_perspective",
+            "decay_rate",
+            "consolidation_rate",
+            "quantum_coherence",
+            "entanglement_strength"
+          ],
+          "full_name": "payloads.DraftPayload.Fields32",
+          "name": "Fields32"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "payloads.DraftPayload.Fields33",
+          "name": "Fields33"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "description",
+            "type",
+            "default_value",
+            "constraints",
+            "ui_label"
+          ],
+          "full_name": "payloads.DraftPayload.Fields34",
+          "name": "Fields34"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "energy",
+            "momentum",
+            "cognitive_perspective",
+            "decay_rate",
+            "consolidation_rate",
+            "quantum_coherence",
+            "entanglement_strength"
+          ],
+          "full_name": "payloads.DraftPayload.Fields35",
+          "name": "Fields35"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "relationship_type",
+            "description",
+            "history"
+          ],
+          "full_name": "payloads.DraftPayload.Fields4",
+          "name": "Fields4"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "payloads.DraftPayload.Fields5",
+          "name": "Fields5"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "description",
+            "type",
+            "default_value",
+            "constraints",
+            "ui_label"
+          ],
+          "full_name": "payloads.DraftPayload.Fields6",
+          "name": "Fields6"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "payloads.DraftPayload.Fields7",
+          "name": "Fields7"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "description",
+            "type",
+            "default_value",
+            "constraints",
+            "ui_label"
+          ],
+          "full_name": "payloads.DraftPayload.Fields8",
+          "name": "Fields8"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "energy",
+            "momentum",
+            "cognitive_perspective",
+            "decay_rate",
+            "consolidation_rate",
+            "quantum_coherence",
+            "entanglement_strength"
+          ],
+          "full_name": "payloads.DraftPayload.Fields9",
+          "name": "Fields9"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "payloads.DraftPayload.FilamentType",
+          "name": "FilamentType"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "physics_properties",
+            "fields"
+          ],
+          "full_name": "payloads.DraftPayload.Gdpr",
+          "name": "Gdpr"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "moment_id",
+            "impact",
+            "timestamp"
+          ],
+          "full_name": "payloads.DraftPayload.HistoryItem",
+          "name": "HistoryItem"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "physics_properties",
+            "fields"
+          ],
+          "full_name": "payloads.DraftPayload.Identity",
+          "name": "Identity"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "physics_properties",
+            "fields"
+          ],
+          "full_name": "payloads.DraftPayload.ManifoldPosition",
+          "name": "ManifoldPosition"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "payloads.DraftPayload.MomentType",
+          "name": "MomentType"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "payloads.DraftPayload.MotifType",
+          "name": "MotifType"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "physics_properties",
+            "fields"
+          ],
+          "full_name": "payloads.DraftPayload.Permissions",
+          "name": "Permissions"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "physics_properties",
+            "fields"
+          ],
+          "full_name": "payloads.DraftPayload.PhysicsConfig",
+          "name": "PhysicsConfig"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "collapse_sensitive",
+            "engine",
+            "is_quantum"
+          ],
+          "full_name": "payloads.DraftPayload.PhysicsProperties",
+          "name": "PhysicsProperties"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "collapse_sensitive",
+            "engine",
+            "is_quantum"
+          ],
+          "full_name": "payloads.DraftPayload.PhysicsProperties1",
+          "name": "PhysicsProperties1"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "collapse_sensitive",
+            "engine",
+            "is_quantum"
+          ],
+          "full_name": "payloads.DraftPayload.PhysicsProperties10",
+          "name": "PhysicsProperties10"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "collapse_sensitive",
+            "engine",
+            "is_quantum"
+          ],
+          "full_name": "payloads.DraftPayload.PhysicsProperties11",
+          "name": "PhysicsProperties11"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "collapse_sensitive",
+            "engine",
+            "is_quantum"
+          ],
+          "full_name": "payloads.DraftPayload.PhysicsProperties12",
+          "name": "PhysicsProperties12"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "collapse_sensitive",
+            "engine",
+            "is_quantum"
+          ],
+          "full_name": "payloads.DraftPayload.PhysicsProperties13",
+          "name": "PhysicsProperties13"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "collapse_sensitive",
+            "engine",
+            "is_quantum"
+          ],
+          "full_name": "payloads.DraftPayload.PhysicsProperties14",
+          "name": "PhysicsProperties14"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "collapse_sensitive",
+            "engine",
+            "is_quantum"
+          ],
+          "full_name": "payloads.DraftPayload.PhysicsProperties15",
+          "name": "PhysicsProperties15"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "collapse_sensitive",
+            "engine",
+            "is_quantum"
+          ],
+          "full_name": "payloads.DraftPayload.PhysicsProperties16",
+          "name": "PhysicsProperties16"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "collapse_sensitive",
+            "engine",
+            "is_quantum"
+          ],
+          "full_name": "payloads.DraftPayload.PhysicsProperties2",
+          "name": "PhysicsProperties2"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "collapse_sensitive",
+            "engine",
+            "is_quantum"
+          ],
+          "full_name": "payloads.DraftPayload.PhysicsProperties3",
+          "name": "PhysicsProperties3"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "collapse_sensitive",
+            "engine",
+            "is_quantum"
+          ],
+          "full_name": "payloads.DraftPayload.PhysicsProperties4",
+          "name": "PhysicsProperties4"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "collapse_sensitive",
+            "engine",
+            "is_quantum"
+          ],
+          "full_name": "payloads.DraftPayload.PhysicsProperties5",
+          "name": "PhysicsProperties5"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "collapse_sensitive",
+            "engine",
+            "is_quantum"
+          ],
+          "full_name": "payloads.DraftPayload.PhysicsProperties6",
+          "name": "PhysicsProperties6"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "collapse_sensitive",
+            "engine",
+            "is_quantum"
+          ],
+          "full_name": "payloads.DraftPayload.PhysicsProperties7",
+          "name": "PhysicsProperties7"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "collapse_sensitive",
+            "engine",
+            "is_quantum"
+          ],
+          "full_name": "payloads.DraftPayload.PhysicsProperties8",
+          "name": "PhysicsProperties8"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "collapse_sensitive",
+            "engine",
+            "is_quantum"
+          ],
+          "full_name": "payloads.DraftPayload.PhysicsProperties9",
+          "name": "PhysicsProperties9"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "universal",
+            "manifold_position"
+          ],
+          "full_name": "payloads.DraftPayload.PhysicsState",
+          "name": "PhysicsState"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "universal",
+            "tension"
+          ],
+          "full_name": "payloads.DraftPayload.PhysicsState1",
+          "name": "PhysicsState1"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "universal"
+          ],
+          "full_name": "payloads.DraftPayload.PhysicsState2",
+          "name": "PhysicsState2"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "universal"
+          ],
+          "full_name": "payloads.DraftPayload.PhysicsState3",
+          "name": "PhysicsState3"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "universal",
+            "quantum"
+          ],
+          "full_name": "payloads.DraftPayload.PhysicsState4",
+          "name": "PhysicsState4"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "universal",
+            "quantum"
+          ],
+          "full_name": "payloads.DraftPayload.PhysicsState5",
+          "name": "PhysicsState5"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "universal",
+            "manifold_position"
+          ],
+          "full_name": "payloads.DraftPayload.PhysicsState6",
+          "name": "PhysicsState6"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "universal",
+            "quantum"
+          ],
+          "full_name": "payloads.DraftPayload.PhysicsState7",
+          "name": "PhysicsState7"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "physics_properties",
+            "fields"
+          ],
+          "full_name": "payloads.DraftPayload.Quantum",
+          "name": "Quantum"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "payloads.DraftPayload.RelationshipType",
+          "name": "RelationshipType"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "physics_properties",
+            "fields"
+          ],
+          "full_name": "payloads.DraftPayload.Status",
+          "name": "Status"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "physics_properties",
+            "fields"
+          ],
+          "full_name": "payloads.DraftPayload.Tension",
+          "name": "Tension"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "payloads.DraftPayload.Type",
+          "name": "Type"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "payloads.DraftPayload.Type1",
+          "name": "Type1"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "payloads.DraftPayload.Type10",
+          "name": "Type10"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "payloads.DraftPayload.Type11",
+          "name": "Type11"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "payloads.DraftPayload.Type12",
+          "name": "Type12"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "payloads.DraftPayload.Type13",
+          "name": "Type13"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "payloads.DraftPayload.Type14",
+          "name": "Type14"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "payloads.DraftPayload.Type15",
+          "name": "Type15"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "payloads.DraftPayload.Type16",
+          "name": "Type16"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "payloads.DraftPayload.Type17",
+          "name": "Type17"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "payloads.DraftPayload.Type18",
+          "name": "Type18"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "payloads.DraftPayload.Type19",
+          "name": "Type19"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "payloads.DraftPayload.Type2",
+          "name": "Type2"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "payloads.DraftPayload.Type20",
+          "name": "Type20"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "payloads.DraftPayload.Type21",
+          "name": "Type21"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "payloads.DraftPayload.Type3",
+          "name": "Type3"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "payloads.DraftPayload.Type4",
+          "name": "Type4"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "payloads.DraftPayload.Type5",
+          "name": "Type5"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "payloads.DraftPayload.Type6",
+          "name": "Type6"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "payloads.DraftPayload.Type7",
+          "name": "Type7"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "payloads.DraftPayload.Type8",
+          "name": "Type8"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "field_ref"
+          ],
+          "full_name": "payloads.DraftPayload.Type9",
+          "name": "Type9"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "physics_properties",
+            "fields"
+          ],
+          "full_name": "payloads.DraftPayload.Universal",
+          "name": "Universal"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "fields"
+          ],
+          "full_name": "payloads.DraftPayload.Universal1",
+          "name": "Universal1"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "fields"
+          ],
+          "full_name": "payloads.DraftPayload.Universal2",
+          "name": "Universal2"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "fields"
+          ],
+          "full_name": "payloads.DraftPayload.Universal3",
+          "name": "Universal3"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "fields"
+          ],
+          "full_name": "payloads.DraftPayload.Universal4",
+          "name": "Universal4"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "fields"
+          ],
+          "full_name": "payloads.DraftPayload.Universal5",
+          "name": "Universal5"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "fields"
+          ],
+          "full_name": "payloads.DraftPayload.Universal6",
+          "name": "Universal6"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "fields"
+          ],
+          "full_name": "payloads.DraftPayload.Universal7",
+          "name": "Universal7"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "user_id",
+            "session_id"
+          ],
+          "full_name": "payloads.DraftPayload.UserContext",
+          "name": "UserContext"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "payloads.DraftPayload"
+    },
+    "ReconciliationResultPayload": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "task_type",
+            "selected_candidate_id",
+            "confidence_score",
+            "agent_reasoning"
+          ],
+          "full_name": "payloads.ReconciliationResultPayload.Data",
+          "name": "Data"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "user_context",
+            "data"
+          ],
+          "full_name": "payloads.ReconciliationResultPayload.ReconciliationResultPayload",
+          "name": "ReconciliationResultPayload"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "payloads.ReconciliationResultPayload.TaskType",
+          "name": "TaskType"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "user_id",
+            "session_id"
+          ],
+          "full_name": "payloads.ReconciliationResultPayload.UserContext",
+          "name": "UserContext"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "payloads.ReconciliationResultPayload"
+    },
+    "ShuttlePayload": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "user_context",
+            "data"
+          ],
+          "full_name": "payloads.ShuttlePayload.ActiveWeaveUnit",
+          "name": "ActiveWeaveUnit"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "parent_course_id",
+            "active_weave_unit",
+            "reconciliation_results",
+            "is_ready_for_creation"
+          ],
+          "full_name": "payloads.ShuttlePayload.Data",
+          "name": "Data"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "parent_weave_id",
+            "text",
+            "suggested_entity_type"
+          ],
+          "full_name": "payloads.ShuttlePayload.Data1",
+          "name": "Data1"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "task_type",
+            "selected_candidate_id",
+            "confidence_score",
+            "agent_reasoning"
+          ],
+          "full_name": "payloads.ShuttlePayload.Data2",
+          "name": "Data2"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "user_context",
+            "data"
+          ],
+          "full_name": "payloads.ShuttlePayload.IngestionShuttlePayload",
+          "name": "IngestionShuttlePayload"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "user_context",
+            "data"
+          ],
+          "full_name": "payloads.ShuttlePayload.ReconciliationResults",
+          "name": "ReconciliationResults"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "payloads.ShuttlePayload.SuggestedEntityType",
+          "name": "SuggestedEntityType"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "payloads.ShuttlePayload.TaskType",
+          "name": "TaskType"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "user_id",
+            "session_id"
+          ],
+          "full_name": "payloads.ShuttlePayload.UserContext",
+          "name": "UserContext"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "payloads.ShuttlePayload"
+    },
+    "StitchInteractionRequest": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "type",
+            "options"
+          ],
+          "full_name": "payloads.StitchInteractionRequest.InteractionType",
+          "name": "InteractionType"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "type",
+            "confirm_text",
+            "deny_text"
+          ],
+          "full_name": "payloads.StitchInteractionRequest.InteractionType1",
+          "name": "InteractionType1"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "type",
+            "placeholder",
+            "submit_text"
+          ],
+          "full_name": "payloads.StitchInteractionRequest.InteractionType2",
+          "name": "InteractionType2"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "id",
+            "label",
+            "description"
+          ],
+          "full_name": "payloads.StitchInteractionRequest.Option",
+          "name": "Option"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "interaction_id",
+            "prompt_title",
+            "prompt_details",
+            "interaction_type",
+            "agent_context"
+          ],
+          "full_name": "payloads.StitchInteractionRequest.StitchInteractionRequest",
+          "name": "StitchInteractionRequest"
+        },
+        {
+          "bases": [
+            "RootModel[Union[StitchInteractionType1, StitchInteractionType2, StitchInteractionType3]]"
+          ],
+          "fields": [
+            "root"
+          ],
+          "full_name": "payloads.StitchInteractionRequest.StitchInteractionType",
+          "name": "StitchInteractionType"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "type",
+            "options"
+          ],
+          "full_name": "payloads.StitchInteractionRequest.StitchInteractionType1",
+          "name": "StitchInteractionType1"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "type",
+            "confirm_text",
+            "deny_text"
+          ],
+          "full_name": "payloads.StitchInteractionRequest.StitchInteractionType2",
+          "name": "StitchInteractionType2"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "type",
+            "placeholder",
+            "submit_text"
+          ],
+          "full_name": "payloads.StitchInteractionRequest.StitchInteractionType3",
+          "name": "StitchInteractionType3"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "payloads.StitchInteractionRequest"
+    },
+    "StitchInteractionResponse": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "choice"
+          ],
+          "full_name": "payloads.StitchInteractionResponse.ResponsePayload",
+          "name": "ResponsePayload"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "confirmed"
+          ],
+          "full_name": "payloads.StitchInteractionResponse.ResponsePayload1",
+          "name": "ResponsePayload1"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "text"
+          ],
+          "full_name": "payloads.StitchInteractionResponse.ResponsePayload2",
+          "name": "ResponsePayload2"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "stitch_id",
+            "interaction_id",
+            "user_id",
+            "response_payload",
+            "timestamp"
+          ],
+          "full_name": "payloads.StitchInteractionResponse.StitchInteractionResponse",
+          "name": "StitchInteractionResponse"
+        },
+        {
+          "bases": [
+            "RootModel[Union[StitchResponsePayload1, StitchResponsePayload2, StitchResponsePayload3]]"
+          ],
+          "fields": [
+            "root"
+          ],
+          "full_name": "payloads.StitchInteractionResponse.StitchResponsePayload",
+          "name": "StitchResponsePayload"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "choice"
+          ],
+          "full_name": "payloads.StitchInteractionResponse.StitchResponsePayload1",
+          "name": "StitchResponsePayload1"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "confirmed"
+          ],
+          "full_name": "payloads.StitchInteractionResponse.StitchResponsePayload2",
+          "name": "StitchResponsePayload2"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "text"
+          ],
+          "full_name": "payloads.StitchInteractionResponse.StitchResponsePayload3",
+          "name": "StitchResponsePayload3"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "payloads.StitchInteractionResponse"
+    },
+    "WeavePayload": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "text_content",
+            "source_type"
+          ],
+          "full_name": "payloads.WeavePayload.Data",
+          "name": "Data"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "payloads.WeavePayload.SourceType",
+          "name": "SourceType"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "user_id",
+            "session_id"
+          ],
+          "full_name": "payloads.WeavePayload.UserContext",
+          "name": "UserContext"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "user_context",
+            "data"
+          ],
+          "full_name": "payloads.WeavePayload.WeavePayload",
+          "name": "WeavePayload"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "payloads.WeavePayload"
+    },
+    "WeaveUnitPayload": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "parent_weave_id",
+            "text",
+            "suggested_entity_type"
+          ],
+          "full_name": "payloads.WeaveUnitPayload.Data",
+          "name": "Data"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "payloads.WeaveUnitPayload.SuggestedEntityType",
+          "name": "SuggestedEntityType"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "user_id",
+            "session_id"
+          ],
+          "full_name": "payloads.WeaveUnitPayload.UserContext",
+          "name": "UserContext"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "user_context",
+            "data"
+          ],
+          "full_name": "payloads.WeaveUnitPayload.WeaveUnitPayload",
+          "name": "WeaveUnitPayload"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "payloads.WeaveUnitPayload"
+    }
+  },
+  "snippets": {
+    "AbstractionLevel": {
+      "classes_found": [
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "snippets.AbstractionLevel.AbstractionLevel",
+          "name": "AbstractionLevel"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.AbstractionLevel"
+    },
+    "AccessType": {
+      "classes_found": [
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "snippets.AccessType.AccessType",
+          "name": "AccessType"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.AccessType"
+    },
+    "Aliases": {
+      "classes_found": [
+        {
+          "bases": [
+            "RootModel[List[str]]"
+          ],
+          "fields": [
+            "root"
+          ],
+          "full_name": "snippets.Aliases.Aliases",
+          "name": "Aliases"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.Aliases"
+    },
+    "AnyValue": {
+      "classes_found": [
+        {
+          "bases": [
+            "RootModel[Union[str, float, int, bool, Dict[str, Any], List[Any], NoneType]]"
+          ],
+          "fields": [
+            "root"
+          ],
+          "full_name": "snippets.AnyValue.AnyValue",
+          "name": "AnyValue"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.AnyValue"
+    },
+    "BondEvent": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "moment_id",
+            "impact",
+            "timestamp"
+          ],
+          "full_name": "snippets.BondEvent.BondEvent",
+          "name": "BondEvent"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.BondEvent"
+    },
+    "BondPermissions": {
+      "classes_found": [
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "snippets.BondPermissions.BondPermissions",
+          "name": "BondPermissions"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.BondPermissions"
+    },
+    "BondState": {
+      "classes_found": [
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "snippets.BondState.BondState",
+          "name": "BondState"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.BondState"
+    },
+    "BondStateReason": {
+      "classes_found": [
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "snippets.BondStateReason.BondStateReason",
+          "name": "BondStateReason"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.BondStateReason"
+    },
+    "CognitiveBaseline": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "emotional_volatility",
+            "social_energy_factor",
+            "consolidation_rate_modifier",
+            "bond_damping_factor",
+            "exploration_bias"
+          ],
+          "full_name": "snippets.CognitiveBaseline.CognitiveBaseline",
+          "name": "CognitiveBaseline"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.CognitiveBaseline"
+    },
+    "CognitivePerspective": {
+      "classes_found": [
+        {
+          "bases": [
+            "RootModel[List[float]]"
+          ],
+          "fields": [
+            "root"
+          ],
+          "full_name": "snippets.CognitivePerspective.CognitivePerspective",
+          "name": "CognitivePerspective"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.CognitivePerspective"
+    },
+    "ColumnDefinition": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "name",
+            "type",
+            "nullable",
+            "primary_key",
+            "unique"
+          ],
+          "full_name": "snippets.ColumnDefinition.ColumnDefinition",
+          "name": "ColumnDefinition"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "snippets.ColumnDefinition.Type",
+          "name": "Type"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.ColumnDefinition"
+    },
+    "CompletedAt": {
+      "classes_found": [
+        {
+          "bases": [
+            "RootModel[Union[str, NoneType]]"
+          ],
+          "fields": [
+            "root"
+          ],
+          "full_name": "snippets.CompletedAt.CompletedAt",
+          "name": "CompletedAt"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.CompletedAt"
+    },
+    "ComplexNumber": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "real",
+            "imaginary"
+          ],
+          "full_name": "snippets.ComplexNumber.ComplexNumber",
+          "name": "ComplexNumber"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.ComplexNumber"
+    },
+    "ConsolidationLevel": {
+      "classes_found": [
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "snippets.ConsolidationLevel.ConsolidationLevel",
+          "name": "ConsolidationLevel"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.ConsolidationLevel"
+    },
+    "ConsolidationRate": {
+      "classes_found": [
+        {
+          "bases": [
+            "RootModel[Union[float, NoneType]]"
+          ],
+          "fields": [
+            "root"
+          ],
+          "full_name": "snippets.ConsolidationRate.ConsolidationRate",
+          "name": "ConsolidationRate"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.ConsolidationRate"
+    },
+    "ConstraintDefinition": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "minimum",
+            "maximum",
+            "min_length",
+            "max_length",
+            "pattern",
+            "enum"
+          ],
+          "full_name": "snippets.ConstraintDefinition.ConstraintDefinition",
+          "name": "ConstraintDefinition"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.ConstraintDefinition"
+    },
+    "CreatedAt": {
+      "classes_found": [
+        {
+          "bases": [
+            "RootModel[str]"
+          ],
+          "fields": [
+            "root"
+          ],
+          "full_name": "snippets.CreatedAt.CreatedAt",
+          "name": "CreatedAt"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.CreatedAt"
+    },
+    "DecayRate": {
+      "classes_found": [
+        {
+          "bases": [
+            "RootModel[Union[float, NoneType]]"
+          ],
+          "fields": [
+            "root"
+          ],
+          "full_name": "snippets.DecayRate.DecayRate",
+          "name": "DecayRate"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.DecayRate"
+    },
+    "DensityMatrix": {
+      "classes_found": [
+        {
+          "bases": [
+            "RootModel[List[DensityMatrixItem]]"
+          ],
+          "fields": [
+            "root"
+          ],
+          "full_name": "snippets.DensityMatrix.DensityMatrix",
+          "name": "DensityMatrix"
+        },
+        {
+          "bases": [
+            "RootModel[List[DensityMatrixItemItem]]"
+          ],
+          "fields": [
+            "root"
+          ],
+          "full_name": "snippets.DensityMatrix.DensityMatrixItem",
+          "name": "DensityMatrixItem"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "real",
+            "imaginary"
+          ],
+          "full_name": "snippets.DensityMatrix.DensityMatrixItemItem",
+          "name": "DensityMatrixItemItem"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.DensityMatrix"
+    },
+    "Description": {
+      "classes_found": [
+        {
+          "bases": [
+            "RootModel[Union[str, NoneType]]"
+          ],
+          "fields": [
+            "root"
+          ],
+          "full_name": "snippets.Description.Description",
+          "name": "Description"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.Description"
+    },
+    "DissonanceType": {
+      "classes_found": [
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "snippets.DissonanceType.DissonanceType",
+          "name": "DissonanceType"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.DissonanceType"
+    },
+    "DueDate": {
+      "classes_found": [
+        {
+          "bases": [
+            "RootModel[Union[str, NoneType]]"
+          ],
+          "fields": [
+            "root"
+          ],
+          "full_name": "snippets.DueDate.DueDate",
+          "name": "DueDate"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.DueDate"
+    },
+    "EffectiveAt": {
+      "classes_found": [
+        {
+          "bases": [
+            "RootModel[str]"
+          ],
+          "fields": [
+            "root"
+          ],
+          "full_name": "snippets.EffectiveAt.EffectiveAt",
+          "name": "EffectiveAt"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.EffectiveAt"
+    },
+    "EndDate": {
+      "classes_found": [
+        {
+          "bases": [
+            "RootModel[Union[str, NoneType]]"
+          ],
+          "fields": [
+            "root"
+          ],
+          "full_name": "snippets.EndDate.EndDate",
+          "name": "EndDate"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.EndDate"
+    },
+    "Energy": {
+      "classes_found": [
+        {
+          "bases": [
+            "RootModel[Union[Any, NoneType]]"
+          ],
+          "fields": [
+            "root"
+          ],
+          "full_name": "snippets.Energy.Energy",
+          "name": "Energy"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.Energy"
+    },
+    "EntanglementMap": {
+      "classes_found": [
+        {
+          "bases": [
+            "RootModel[Dict[str, float]]"
+          ],
+          "fields": [
+            "root"
+          ],
+          "full_name": "snippets.EntanglementMap.EntanglementMap",
+          "name": "EntanglementMap"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.EntanglementMap"
+    },
+    "EntanglementStrength": {
+      "classes_found": [
+        {
+          "bases": [
+            "RootModel[Union[float, NoneType]]"
+          ],
+          "fields": [
+            "root"
+          ],
+          "full_name": "snippets.EntanglementStrength.EntanglementStrength",
+          "name": "EntanglementStrength"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.EntanglementStrength"
+    },
+    "EntityId": {
+      "classes_found": [
+        {
+          "bases": [
+            "RootModel[str]"
+          ],
+          "fields": [
+            "root"
+          ],
+          "full_name": "snippets.EntityId.EntityId",
+          "name": "EntityId"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.EntityId"
+    },
+    "EntityIdList": {
+      "classes_found": [
+        {
+          "bases": [
+            "RootModel[List[str]]"
+          ],
+          "fields": [
+            "root"
+          ],
+          "full_name": "snippets.EntityIdList.EntityIdList",
+          "name": "EntityIdList"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.EntityIdList"
+    },
+    "EntityType": {
+      "classes_found": [
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "snippets.EntityType.EntityType",
+          "name": "EntityType"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.EntityType"
+    },
+    "FeatureFlagMap": {
+      "classes_found": [
+        {
+          "bases": [
+            "RootModel[Dict[str, bool]]"
+          ],
+          "fields": [
+            "root"
+          ],
+          "full_name": "snippets.FeatureFlagMap.FeatureFlagMap",
+          "name": "FeatureFlagMap"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.FeatureFlagMap"
+    },
+    "FilamentType": {
+      "classes_found": [
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "snippets.FilamentType.FilamentType",
+          "name": "FilamentType"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.FilamentType"
+    },
+    "KeyValue": {
+      "classes_found": [
+        {
+          "bases": [
+            "RootModel[Dict[str, Dict[str, Union[str, float, bool]]]]"
+          ],
+          "fields": [
+            "root"
+          ],
+          "full_name": "snippets.KeyValue.KeyValueMetadata",
+          "name": "KeyValueMetadata"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.KeyValue"
+    },
+    "Label": {
+      "classes_found": [
+        {
+          "bases": [
+            "RootModel[str]"
+          ],
+          "fields": [
+            "root"
+          ],
+          "full_name": "snippets.Label.Label",
+          "name": "Label"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.Label"
+    },
+    "LinkStatus": {
+      "classes_found": [
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "snippets.LinkStatus.LinkStatus",
+          "name": "LinkStatus"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.LinkStatus"
+    },
+    "Member": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "user_id",
+            "role",
+            "joined_at"
+          ],
+          "full_name": "snippets.Member.Member",
+          "name": "Member"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "snippets.Member.Role",
+          "name": "Role"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.Member"
+    },
+    "MomentType": {
+      "classes_found": [
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "snippets.MomentType.MomentType",
+          "name": "MomentType"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.MomentType"
+    },
+    "MotifType": {
+      "classes_found": [
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "snippets.MotifType.MotifType",
+          "name": "MotifType"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.MotifType"
+    },
+    "Name": {
+      "classes_found": [
+        {
+          "bases": [
+            "RootModel[str]"
+          ],
+          "fields": [
+            "root"
+          ],
+          "full_name": "snippets.Name.Name",
+          "name": "Name"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.Name"
+    },
+    "NullableTimestamp": {
+      "classes_found": [
+        {
+          "bases": [
+            "RootModel[Union[str, NoneType]]"
+          ],
+          "fields": [
+            "root"
+          ],
+          "full_name": "snippets.NullableTimestamp.NullableTimestamp",
+          "name": "NullableTimestamp"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.NullableTimestamp"
+    },
+    "PhysicsConstants": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "decay_rate",
+            "spring_constant",
+            "max_tension"
+          ],
+          "full_name": "snippets.PhysicsConstants.PhysicsConstants",
+          "name": "PhysicsConstants"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.PhysicsConstants"
+    },
+    "Priority": {
+      "classes_found": [
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "snippets.Priority.Priority",
+          "name": "Priority"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.Priority"
+    },
+    "QuantumCoherence": {
+      "classes_found": [
+        {
+          "bases": [
+            "RootModel[Union[float, NoneType]]"
+          ],
+          "fields": [
+            "root"
+          ],
+          "full_name": "snippets.QuantumCoherence.QuantumCoherence",
+          "name": "QuantumCoherence"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.QuantumCoherence"
+    },
+    "ReconciliationTaskType": {
+      "classes_found": [
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "snippets.ReconciliationTaskType.ReconciliationTaskType",
+          "name": "ReconciliationTaskType"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.ReconciliationTaskType"
+    },
+    "RelationshipType": {
+      "classes_found": [
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "snippets.RelationshipType.RelationshipType",
+          "name": "RelationshipType"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.RelationshipType"
+    },
+    "Role": {
+      "classes_found": [
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "snippets.Role.Role",
+          "name": "Role"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.Role"
+    },
+    "SourceThreadAndBonds": {
+      "classes_found": [
+        {
+          "bases": [
+            "RootModel[List[str]]"
+          ],
+          "fields": [
+            "root"
+          ],
+          "full_name": "snippets.SourceThreadAndBonds.SourceThreadAndBonds",
+          "name": "SourceThreadAndBonds"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.SourceThreadAndBonds"
+    },
+    "StartDate": {
+      "classes_found": [
+        {
+          "bases": [
+            "RootModel[str]"
+          ],
+          "fields": [
+            "root"
+          ],
+          "full_name": "snippets.StartDate.StartDate",
+          "name": "StartDate"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.StartDate"
+    },
+    "Status": {
+      "classes_found": [
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "snippets.Status.Status",
+          "name": "Status"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.Status"
+    },
+    "StringValueMap": {
+      "classes_found": [
+        {
+          "bases": [
+            "RootModel[Dict[str, Union[str, float, int, bool, Dict[str, Any], List[Any], NoneType]]]"
+          ],
+          "fields": [
+            "root"
+          ],
+          "full_name": "snippets.StringValueMap.StringValueMap",
+          "name": "StringValueMap"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.StringValueMap"
+    },
+    "SubscriptionPlan": {
+      "classes_found": [
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "snippets.SubscriptionPlan.SubscriptionPlan",
+          "name": "SubscriptionPlan"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.SubscriptionPlan"
+    },
+    "TaskDefinition": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "id",
+            "type",
+            "path",
+            "args",
+            "depends_on",
+            "condition"
+          ],
+          "full_name": "snippets.TaskDefinition.TaskDefinition",
+          "name": "TaskDefinition"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "snippets.TaskDefinition.Type",
+          "name": "Type"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.TaskDefinition"
+    },
+    "TaskList": {
+      "classes_found": [
+        {
+          "bases": [
+            "RootModel[List[TaskListItem]]"
+          ],
+          "fields": [
+            "root"
+          ],
+          "full_name": "snippets.TaskList.TaskList",
+          "name": "TaskList"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "id",
+            "type",
+            "path",
+            "args",
+            "depends_on",
+            "condition"
+          ],
+          "full_name": "snippets.TaskList.TaskListItem",
+          "name": "TaskListItem"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "snippets.TaskList.Type",
+          "name": "Type"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.TaskList"
+    },
+    "TemporalScope": {
+      "classes_found": [
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "snippets.TemporalScope.TemporalScope",
+          "name": "TemporalScope"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.TemporalScope"
+    },
+    "TenantId": {
+      "classes_found": [
+        {
+          "bases": [
+            "RootModel[str]"
+          ],
+          "fields": [
+            "root"
+          ],
+          "full_name": "snippets.TenantId.TenantId",
+          "name": "TenantId"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.TenantId"
+    },
+    "TenantPermission": {
+      "classes_found": [
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "snippets.TenantPermission.TenantPermission",
+          "name": "TenantPermission"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.TenantPermission"
+    },
+    "Theme": {
+      "classes_found": [
+        {
+          "bases": [
+            "RootModel[str]"
+          ],
+          "fields": [
+            "root"
+          ],
+          "full_name": "snippets.Theme.Theme",
+          "name": "Theme"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.Theme"
+    },
+    "ThreadState": {
+      "classes_found": [
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "snippets.ThreadState.ThreadState",
+          "name": "ThreadState"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.ThreadState"
+    },
+    "ThreadStateReason": {
+      "classes_found": [
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "snippets.ThreadStateReason.ThreadStateReason",
+          "name": "ThreadStateReason"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.ThreadStateReason"
+    },
+    "ThreadStateResponse": {
+      "classes_found": [
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "snippets.ThreadStateResponse.ThreadStateResponse",
+          "name": "ThreadStateResponse"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.ThreadStateResponse"
+    },
+    "ThreadType": {
+      "classes_found": [
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "snippets.ThreadType.ThreadType",
+          "name": "ThreadType"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.ThreadType"
+    },
+    "Timestamp": {
+      "classes_found": [
+        {
+          "bases": [
+            "RootModel[str]"
+          ],
+          "fields": [
+            "root"
+          ],
+          "full_name": "snippets.Timestamp.Timestamp",
+          "name": "Timestamp"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.Timestamp"
+    },
+    "UUID": {
+      "classes_found": [
+        {
+          "bases": [
+            "RootModel[str]"
+          ],
+          "fields": [
+            "root"
+          ],
+          "full_name": "snippets.UUID.UUID",
+          "name": "UUID"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.UUID"
+    },
+    "UserId": {
+      "classes_found": [
+        {
+          "bases": [
+            "RootModel[str]"
+          ],
+          "fields": [
+            "root"
+          ],
+          "full_name": "snippets.UserId.UserId",
+          "name": "UserId"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.UserId"
+    },
+    "Vec3": {
+      "classes_found": [
+        {
+          "bases": [
+            "RootModel[List[float]]"
+          ],
+          "fields": [
+            "root"
+          ],
+          "full_name": "snippets.Vec3.Vec3",
+          "name": "Vec3"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.Vec3"
+    },
+    "Vec6": {
+      "classes_found": [
+        {
+          "bases": [
+            "RootModel[List[float]]"
+          ],
+          "fields": [
+            "root"
+          ],
+          "full_name": "snippets.Vec6.Vec6",
+          "name": "Vec6"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.Vec6"
+    },
+    "WeaveType": {
+      "classes_found": [
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "snippets.WeaveType.WeaveType",
+          "name": "WeaveType"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.WeaveType"
+    },
+    "WorkflowState": {
+      "classes_found": [
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "snippets.WorkflowState.Status",
+          "name": "Status"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "status",
+            "current_step",
+            "error_message",
+            "last_updated"
+          ],
+          "full_name": "snippets.WorkflowState.WorkflowState",
+          "name": "WorkflowState"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "snippets.WorkflowState"
+    }
+  },
+  "tables": {
+    "Bond_state_log": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "table_name",
+            "columns"
+          ],
+          "full_name": "tables.Bond_state_log.BondStateLogTable",
+          "name": "BondStateLogTable"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "name",
+            "type",
+            "nullable",
+            "primary_key",
+            "unique"
+          ],
+          "full_name": "tables.Bond_state_log.Columns",
+          "name": "Columns"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "tables.Bond_state_log.Type",
+          "name": "Type"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "tables.Bond_state_log"
+    },
+    "Thread_state_log": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "thread_id",
+            "effective_at",
+            "state",
+            "reason",
+            "metadata"
+          ],
+          "full_name": "tables.Thread_state_log.Columns",
+          "name": "Columns"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "tables.Thread_state_log.Reason",
+          "name": "Reason"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "tables.Thread_state_log.State",
+          "name": "State"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "title",
+            "description",
+            "schema_version",
+            "table_name",
+            "columns"
+          ],
+          "full_name": "tables.Thread_state_log.ThreadStateLogTable",
+          "name": "ThreadStateLogTable"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "tables.Thread_state_log"
+    }
+  },
+  "taxonomy": {
+    "EmotionalValence": {
+      "classes_found": [
+        {
+          "bases": [
+            "RootModel[Any]"
+          ],
+          "fields": [
+            "root"
+          ],
+          "full_name": "taxonomy.EmotionalValence.EmotionalValence",
+          "name": "EmotionalValence"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "taxonomy.EmotionalValence"
+    },
+    "PhysicsProfile": {
+      "classes_found": [
+        {
+          "bases": [
+            "RootModel[Any]"
+          ],
+          "fields": [
+            "root"
+          ],
+          "full_name": "taxonomy.PhysicsProfile.PhysicsProfile",
+          "name": "PhysicsProfile"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "taxonomy.PhysicsProfile"
+    }
+  },
+  "workflows": {
+    "IngestionWorkflow": {
+      "classes_found": [
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "title",
+            "description",
+            "schema_version",
+            "tasks"
+          ],
+          "full_name": "workflows.IngestionWorkflow.IngestionWorkflow",
+          "name": "IngestionWorkflow"
+        },
+        {
+          "bases": [
+            "BaseModel"
+          ],
+          "fields": [
+            "id",
+            "type",
+            "path",
+            "args",
+            "depends_on",
+            "condition"
+          ],
+          "full_name": "workflows.IngestionWorkflow.Task",
+          "name": "Task"
+        },
+        {
+          "bases": [
+            "Enum"
+          ],
+          "fields": [],
+          "full_name": "workflows.IngestionWorkflow.Type",
+          "name": "Type"
+        }
+      ],
+      "error": null,
+      "import_success": true,
+      "module_path": "workflows.IngestionWorkflow"
+    }
+  }
+}

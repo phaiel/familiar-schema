@@ -10,7 +10,8 @@
   ],
   "properties": {
     "entity_type": {
-      "const": "Bond"
+      "type": "string",
+      "enum": ["Bond"]
     },
     "thread_a_id": {
       "$ref": "../snippets/fields/EntityId.json"

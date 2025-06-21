@@ -11,8 +11,9 @@
   ],
   "properties": {
     "entity_type": {
-      "const": "Moment"
-    },
+      "type": "string",
+      "enum": ["Moment"]
+      },
     "components": {
       "type": "object",
       "properties": {

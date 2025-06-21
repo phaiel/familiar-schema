@@ -1,0 +1,165 @@
+{
+  "timestamp": 1750386907.4244611,
+  "comprehensive_results": {
+    "total_schemas": 119,
+    "validated": 119,
+    "passed": 119,
+    "failed": 0,
+    "by_type": {
+      "pydantic": 94,
+      "enum": 25,
+      "unknown": 0
+    },
+    "failures": [],
+    "success_rate": 100.0
+  },
+  "critical_enums": {
+    "ThreadState": {
+      "valid": true,
+      "type": "enum",
+      "issues": [],
+      "source_enum": [
+        "Active",
+        "Inactive",
+        "Fading",
+        "Archived"
+      ],
+      "python_enum": [
+        "Active",
+        "Inactive",
+        "Fading",
+        "Archived"
+      ],
+      "source_hash": "2e04bc6de14f"
+    },
+    "BondState": {
+      "valid": true,
+      "type": "enum",
+      "issues": [],
+      "source_enum": [
+        "Active",
+        "Strained",
+        "Dissolved",
+        "Rekindled"
+      ],
+      "python_enum": [
+        "Active",
+        "Strained",
+        "Dissolved",
+        "Rekindled"
+      ],
+      "source_hash": "ad4efe92fa6b"
+    },
+    "Priority": {
+      "valid": true,
+      "type": "enum",
+      "issues": [],
+      "source_enum": [
+        "Low",
+        "Medium",
+        "High",
+        "Urgent"
+      ],
+      "python_enum": [
+        "Low",
+        "Medium",
+        "High",
+        "Urgent"
+      ],
+      "source_hash": "390cec2994c1"
+    },
+    "EntityType": {
+      "valid": true,
+      "type": "enum",
+      "issues": [],
+      "source_enum": [
+        "Focus",
+        "Filament",
+        "Motif",
+        "Intent",
+        "Moment",
+        "Bond",
+        "Thread"
+      ],
+      "python_enum": [
+        "Focus",
+        "Filament",
+        "Motif",
+        "Intent",
+        "Moment",
+        "Bond",
+        "Thread"
+      ],
+      "source_hash": "b29aeb37c063"
+    },
+    "AccessType": {
+      "valid": true,
+      "type": "enum",
+      "issues": [],
+      "source_enum": [
+        "DirectQuery",
+        "SearchResult",
+        "ConsolidationProcess",
+        "AgentAnalysis",
+        "UserInteraction"
+      ],
+      "python_enum": [
+        "DirectQuery",
+        "SearchResult",
+        "ConsolidationProcess",
+        "AgentAnalysis",
+        "UserInteraction"
+      ],
+      "source_hash": "c26b2274ebf1"
+    }
+  },
+  "critical_entities": {
+    "Bond": {
+      "valid": true,
+      "type": "pydantic",
+      "structural_issues": [],
+      "error": null,
+      "source_hash": "6d2a71bade83",
+      "pydantic_hash": "e216b31fe9a1"
+    },
+    "Thread": {
+      "valid": true,
+      "type": "pydantic",
+      "structural_issues": [],
+      "error": null,
+      "source_hash": "c263ae68340a",
+      "pydantic_hash": "8bd8ed29242e"
+    },
+    "Moment": {
+      "valid": true,
+      "type": "pydantic",
+      "structural_issues": [],
+      "error": null,
+      "source_hash": "6a932d7c5faf",
+      "pydantic_hash": "0587548a9afa"
+    },
+    "Filament": {
+      "valid": true,
+      "type": "pydantic",
+      "structural_issues": [],
+      "error": null,
+      "source_hash": "16ab3c9e0f25",
+      "pydantic_hash": "4ea12d53880d"
+    },
+    "Focus": {
+      "valid": true,
+      "type": "pydantic",
+      "structural_issues": [],
+      "error": null,
+      "source_hash": "86ad5ef36429",
+      "pydantic_hash": "9a9b43fd0206"
+    }
+  },
+  "quality_metrics": {
+    "total_schemas": 119,
+    "success_rate": 100.0,
+    "enum_coverage": 25,
+    "pydantic_coverage": 94,
+    "failure_rate": 0.0
+  }
+}

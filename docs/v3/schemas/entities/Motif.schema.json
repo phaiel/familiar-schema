@@ -10,8 +10,9 @@
   ],
   "properties": {
     "entity_type": {
-      "const": "Motif"
-    },
+      "type": "string",
+      "enum": ["Motif"]
+        },
     "components": {
       "type": "object",
       "properties": {

@@ -1,12 +1,6 @@
 {
-  "$id": "https://familiar.dev/schemas/types/config/FeatureFlagMap.v1.json",
-  "title": "Feature Flag Map",
-  "description": "A key-value map of feature flags and their enabled status for a specific scope (e.g., a tenant).",
   "type": "object",
-  "patternProperties": {
-    "^[A-Z_]+$": {
-      "type": "boolean"
-    }
-  },
-  "additionalProperties": false
+  "additionalProperties": {
+    "type": "boolean"
+  }
 }

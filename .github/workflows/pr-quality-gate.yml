@@ -44,7 +44,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
       - name: Generate types for Sonar
-        run: make --file docs/v3/Makefile ci
+        run: make --file docs/v3/Makefile generate-types
 
       - name: "Run SonarQube Scan"
         # This command executes the SonarScanner, which reads the sonar-project.properties

@@ -26,6 +26,18 @@ class SchemaCatalogGenerator:
         self.schemas: Dict[str, Dict] = {}
         self.schema_files: Dict[str, str] = {}  # component_name -> file_path
         self.dependencies: Dict[str, Set[str]] = {}  # component_name -> set of dependencies
+        
+        # The 23 production-ready schemas that generate Rust code
+        self.production_schemas = {
+            'Bond.schema.json', 'BondStateChangeRequestedEvent.schema.json', 'BondStateLogTable.schema.json',
+            'CoursePayload.schema.json', 'DraftPayload.schema.json', 'Filament.schema.json',
+            'Focus.schema.json', 'IngestionWorkflow.schema.json', 'Intent.schema.json',
+            'Moment.schema.json', 'MomentAccessedEvent.schema.json', 'Motif.schema.json',
+            'ReconciliationResultPayload.schema.json', 'ShuttlePayload.schema.json', 'Stitch.schema.json',
+            'StitchInteractionRequest.schema.json', 'StitchInteractionResponse.schema.json',
+            'Tenant.schema.json', 'Thread.schema.json', 'ThreadStateChangeRequestedEvent.schema.json',
+            'ThreadStateLogTable.schema.json', 'WeavePayload.schema.json', 'WeaveUnitPayload.schema.json'
+        }
         self.system_mapping = {
             'api': {
                 'system': 'familiar-physics-engine',
@@ -271,6 +283,11 @@ class SchemaCatalogGenerator:
         # Default to production if no other clear stage is specified
         return 'production'
     
+    def is_production_schema(self, file_path: str) -> bool:
+        """Check if this schema is one of the 23 production-ready schemas for code generation."""
+        filename = Path(file_path).name
+        return filename in self.production_schemas
+    
     def get_tags_for_schema(self, schema: Dict, file_path: str) -> List[str]:
         """Generate appropriate tags for a schema."""
         tags = ['schema', 'auto-generated']
@@ -278,6 +295,12 @@ class SchemaCatalogGenerator:
         # Add category-based tags
         category = self.get_schema_category(file_path)
         tags.append(category)
+        
+        # Special tagging for production schemas
+        if self.is_production_schema(file_path):
+            tags.extend(['production-ready', 'code-generation', 'rust-target'])
+        else:
+            tags.append('assembly-schema')
         
         # Add tags based on schema content
         title = schema.get('title', '').lower()
@@ -655,6 +678,17 @@ class SchemaCatalogGenerator:
             "familiar.ai/schema-category": category,
             "familiar.ai/schema-title": schema.get("title", "N/A"),
         }
+        
+        # Add special annotations for production schemas
+        if self.is_production_schema(file_path):
+            annotations.update({
+                "familiar.ai/production-schema": "true",
+                "familiar.ai/code-generation-target": "rust",
+                "familiar.ai/backstage-action": "scaffold-rust-struct",
+                "familiar.ai/assembled-schema-path": f"docs/v3/schemas/assembled/{Path(file_path).name}"
+            })
+        else:
+            annotations["familiar.ai/production-schema"] = "false"
 
         # Links
         links = [
@@ -669,6 +703,22 @@ class SchemaCatalogGenerator:
                 "icon": "visibility"
             }
         ]
+        
+        # Add special links for production schemas
+        if self.is_production_schema(file_path):
+            links.extend([
+                {
+                    "title": "Generate Rust Struct",
+                    "url": f"{repo_url}/blob/main/docs/v3/templates/rust-entity/",
+                    "icon": "code",
+                    "type": "backstage-action"
+                },
+                {
+                    "title": "View Assembled Schema",
+                    "url": f"{repo_url}/blob/main/docs/v3/schemas/assembled/{Path(file_path).name}",
+                    "icon": "build"
+                }
+            ])
 
         # Final Entry
         entry = {

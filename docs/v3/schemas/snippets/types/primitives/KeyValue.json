@@ -1,22 +1,18 @@
 {
-  "$id": "https://familiar.dev/schemas/types/primitives/KeyValueMetadata.v1.json",
-  "title": "Key-Value Metadata",
-  "description": "A flexible but structured key-value map for attaching arbitrary, namespaced metadata to an entity or component.",
+  "title": "Key Value",
+  "description": "A generic nested key-value map structure where outer keys map to objects, and inner keys map to string, number, or boolean values.",
   "type": "object",
-  "patternProperties": {
-    "^[a-z_]+$": {
+  "properties": {
+    "value": {
       "type": "object",
-      "patternProperties": {
-        "^[a-z_]+$": {
-          "type": [
-            "string",
-            "number",
-            "boolean"
-          ]
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": {
+          "type": ["string", "number", "boolean"]
         }
-      },
-      "title": "Key-valueMetadata^[aZ]+$"
+      }
     }
   },
+  "required": ["value"],
   "additionalProperties": false
 }

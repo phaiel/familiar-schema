@@ -1,0 +1,19 @@
+{
+  "categories": {
+    "_base": 20,
+    "components": 22,
+    "entities": 13,
+    "events": 3,
+    "laws": 4,
+    "payloads": 8,
+    "snippets": 68,
+    "tables": 2,
+    "taxonomy": 2,
+    "workflows": 1
+  },
+  "failed_imports": 0,
+  "generation_timestamp": "2025-06-19T23:55:00Z",
+  "success_rate": "100.0%",
+  "successful_imports": 143,
+  "total_files_processed": 143
+}

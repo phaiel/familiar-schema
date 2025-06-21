@@ -1,0 +1,29 @@
+[package]
+name = "familiar-schemas-rust"
+version = "0.1.0"
+edition = "2021"
+description = "Generated Rust structs for Familiar schema system"
+license = "MIT"
+
+# Generated from 0 schemas across 0 categories
+# Generated: 2025-06-21 02:03:01 UTC
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+uuid = { version = "1.0", features = ["v4", "serde"], optional = true }
+chrono = { version = "0.4", features = ["serde"], optional = true }
+
+[features]
+default = ["uuid", "chrono"]
+uuid = ["dep:uuid"]
+chrono = ["dep:chrono"]
+
+[dev-dependencies]
+tokio-test = "0.4"
+
+[lints.rust]
+# Suppress warnings that are common in generated code
+ambiguous_glob_reexports = "allow"
+unused_imports = "allow"
+irrefutable_let_patterns = "allow"

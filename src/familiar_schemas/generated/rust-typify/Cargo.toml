@@ -1,0 +1,20 @@
+[package]
+name = "familiar-schemas-rust"
+version = "0.1.0"
+edition = "2021"
+description = "Generated Rust structs for Familiar schema system"
+license = "MIT"
+
+# Generated from 121 schemas across 9 categories
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+uuid = { version = "1.0", features = ["v4", "serde"], optional = true }
+chrono = { version = "0.4", features = ["serde"], optional = true }
+regress = "0.10"
+
+[features]
+default = ["uuid", "chrono"]
+uuid = ["dep:uuid"]
+chrono = ["dep:chrono"]

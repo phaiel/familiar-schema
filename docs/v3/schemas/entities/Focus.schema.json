@@ -10,8 +10,9 @@
   ],
   "properties": {
     "entity_type": {
-      "const": "Focus"
-    },
+      "type": "string",
+      "enum": ["Focus"]
+      },
     "components": {
       "type": "object",
       "properties": {
