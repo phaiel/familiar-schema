@@ -463,7 +463,7 @@ def main() -> int:
     if success:
         print(f"\n✨ Generation complete! Models written to: {args.output_dir}")
         print(f"   Next steps:")
-        print(f"   1. Test models: python tests/test_final_contracts.py")
+        print(f"   1. Test models: python tests/test_contracts.py")
         return 0
     else:
         print(f"\n❌ Generation completed with errors")

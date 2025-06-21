@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-Final Rigorous Contract Testing - The Definitive Test Suite
+Schema Contract Testing
 
-This is the ONLY contract test file we need. It validates:
+This validates:
 1. Pydantic models against source JSON schemas
 2. Enums against source enum definitions  
 3. Import success for all 143 generated models
@@ -27,7 +27,7 @@ ASSEMBLED_DIR = SCHEMAS_DIR / "assembled"
 COMPREHENSIVE_PATH = Path(__file__).parent.parent / "familiar_schemas"
 sys.path.insert(0, str(COMPREHENSIVE_PATH))
 
-class FinalContractValidator:
+class ContractValidator:
     """The definitive validator that cannot be gamed."""
     
     def __init__(self):
@@ -236,8 +236,8 @@ class FinalContractValidator:
         schema_str = json.dumps(schema, sort_keys=True, separators=(',', ':'))
         return hashlib.sha256(schema_str.encode()).hexdigest()[:12]
     
-    def run_comprehensive_validation(self) -> Dict[str, Any]:
-        """Run validation on all schemas and return comprehensive results."""
+    def run_validation(self) -> Dict[str, Any]:
+        """Run validation on all schemas and return results."""
         results = {
             "total_schemas": len(self.source_schemas),
             "validated": 0,
@@ -274,13 +274,13 @@ class FinalContractValidator:
 
 
 # Pytest test class
-class TestFinalContracts:
-    """The final, definitive contract tests."""
+class TestContracts:
+    """Schema contract tests."""
     
     @classmethod
     def setup_class(cls):
         """Set up validator once."""
-        cls.validator = FinalContractValidator()
+        cls.validator = ContractValidator()
     
     def test_source_schemas_available(self):
         """Ensure we have the source schemas to validate against."""
@@ -305,11 +305,11 @@ class TestFinalContracts:
         assert result["valid"], f"Critical entity {schema_name} failed: {result.get('error')}"
         assert result.get("type") == "pydantic", f"{schema_name} should be a Pydantic model"
     
-    def test_comprehensive_validation(self):
-        """Test ALL schemas comprehensively."""
-        results = self.validator.run_comprehensive_validation()
+    def test_validation(self):
+        """Test ALL schemas."""
+        results = self.validator.run_validation()
         
-        print(f"\n📊 FINAL CONTRACT TEST RESULTS:")
+        print(f"\n📊 CONTRACT TEST RESULTS:")
         print(f"   Total schemas: {results['total_schemas']}")
         print(f"   Validated: {results['validated']}")
         print(f"   Passed: {results['passed']}")
@@ -334,7 +334,7 @@ class TestFinalContracts:
 
 if __name__ == "__main__":
     # Direct execution for debugging
-    validator = FinalContractValidator()
+    validator = ContractValidator()
     print(f"🔍 Loaded {len(validator.source_schemas)} source schemas")
     
     # Test specific schemas
@@ -348,7 +348,7 @@ if __name__ == "__main__":
         if not result['valid']:
             print(f"   Error: {result.get('error', 'Unknown')}")
     
-    # Run comprehensive test
-    print(f"\n🚀 Running comprehensive validation...")
-    results = validator.run_comprehensive_validation()
+    # Run validation test
+    print(f"\n🚀 Running validation...")
+    results = validator.run_validation()
     print(f"📊 Results: {results['passed']}/{results['validated']} passed ({results['success_rate']:.1f}%)") 

@@ -146,7 +146,7 @@ levels = [AbstractionLevel.low, AbstractionLevel.medium,
 Ensure all models import and work correctly:
 
 ```bash
-python tests/test_comprehensive_contracts.py
+python tests/test_contracts.py
 ```
 
 Contract tests validate:
@@ -168,13 +168,13 @@ make assemble
 
 # Regenerate Pydantic models
 cd /path/to/src/familiar_schemas
-python scripts/generate_comprehensive_pydantic.py --clean
+python scripts/generate_pydantic.py --clean
 
 # Repair import system
 python scripts/repair_comprehensive_imports.py
 
 # Validate
-python tests/test_comprehensive_contracts.py
+python tests/test_contracts.py
 ```
 
 ## 🔄 Development Workflow
@@ -182,9 +182,9 @@ python tests/test_comprehensive_contracts.py
 ### Schema Updates
 1. **Edit JSON schemas** in `docs/v3/schemas/`
 2. **Reassemble schemas**: `make assemble` (preserves enums)
-3. **Regenerate models**: `python scripts/generate_comprehensive_pydantic.py --clean`
+3. **Regenerate models**: `python scripts/generate_pydantic.py --clean`
 4. **Fix imports**: `python scripts/repair_comprehensive_imports.py`
-5. **Test**: `python tests/test_comprehensive_contracts.py`
+5. **Test**: `python tests/test_contracts.py`
 
 ### Adding New Schemas
 New schemas added to `docs/v3/schemas/` are automatically:

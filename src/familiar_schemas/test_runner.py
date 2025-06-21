@@ -3,22 +3,22 @@
 Contract Test Runner - SonarQube Compatible
 
 Runs our rigorous contract tests and generates reports compatible with SonarQube.
-This bypasses pytest compatibility issues while providing comprehensive validation.
+This bypasses pytest compatibility issues while providing validation.
 """
 
 import json
 import time
 from pathlib import Path
-from tests.test_final_contracts import FinalContractValidator
+from tests.test_contracts import ContractValidator
 
 def run_all_contract_tests():
-    """Run all contract tests and generate comprehensive reports."""
+    """Run all contract tests and generate reports."""
     
     print("🚀 Starting Rigorous Contract Testing Suite")
     print("=" * 60)
     
     start_time = time.time()
-    validator = FinalContractValidator()
+    validator = ContractValidator()
     
     # Basic validation
     print(f"📊 Loaded {len(validator.source_schemas)} concrete schemas (base schemas excluded)")
@@ -60,66 +60,66 @@ def run_all_contract_tests():
         assert result["valid"], f"Critical entity {entity_name} failed: {result.get('error')}"
         assert result.get("type") == "pydantic", f"{entity_name} should be a Pydantic model"
     
-    # Comprehensive validation
-    print("\n🔍 Running Comprehensive Validation...")
-    comprehensive_results = validator.run_comprehensive_validation()
+    # Schema validation
+    print("\n🔍 Running Validation...")
+    validation_results = validator.run_validation()
+
+    print(f"\n📊 CONTRACT TEST RESULTS:")
+    print(f"   Total schemas: {validation_results['total_schemas']}")
+    print(f"   Validated: {validation_results['validated']}")
+    print(f"   Passed: {validation_results['passed']}")
+    print(f"   Failed: {validation_results['failed']}")
+    print(f"   Success rate: {validation_results['success_rate']:.1f}%")
+    print(f"   By type: {validation_results['by_type']}")
     
-    print(f"\n📊 FINAL CONTRACT TEST RESULTS:")
-    print(f"   Total schemas: {comprehensive_results['total_schemas']}")
-    print(f"   Validated: {comprehensive_results['validated']}")
-    print(f"   Passed: {comprehensive_results['passed']}")
-    print(f"   Failed: {comprehensive_results['failed']}")
-    print(f"   Success rate: {comprehensive_results['success_rate']:.1f}%")
-    print(f"   By type: {comprehensive_results['by_type']}")
-    
-    if comprehensive_results['failures']:
-        print(f"\n❌ FAILURES ({len(comprehensive_results['failures'])}):")
-        for i, failure in enumerate(comprehensive_results['failures'][:10], 1):
+    if validation_results['failures']:
+        print(f"\n❌ FAILURES ({len(validation_results['failures'])}):")
+        for i, failure in enumerate(validation_results['failures'][:10], 1):
             print(f"   {i:2d}. {failure['schema']:25} → {failure['error']}")
-        if len(comprehensive_results['failures']) > 10:
-            print(f"   ... and {len(comprehensive_results['failures']) - 10} more")
+        if len(validation_results['failures']) > 10:
+            print(f"   ... and {len(validation_results['failures']) - 10} more")
     
     # Generate SonarQube-compatible reports
-    generate_sonarqube_reports(comprehensive_results, enum_results, entity_results)
+    generate_sonarqube_reports(validation_results, enum_results, entity_results)
     
     # Validation requirements
-    assert comprehensive_results['success_rate'] >= 85.0, f"Success rate too low: {comprehensive_results['success_rate']:.1f}%"
-    assert comprehensive_results['by_type']['pydantic'] > 0, "No Pydantic models found"
-    assert comprehensive_results['by_type']['enum'] > 0, "No Enums found"
+    assert validation_results['success_rate'] >= 85.0, f"Success rate too low: {validation_results['success_rate']:.1f}%"
+    assert validation_results['by_type']['pydantic'] > 0, "No Pydantic models found"
+    assert validation_results['by_type']['enum'] > 0, "No Enums found"
     
     end_time = time.time()
     duration = end_time - start_time
     
     print(f"\n🎉 CONTRACT TESTING COMPLETE!")
     print(f"   Duration: {duration:.2f} seconds")
-    print(f"   Success Rate: {comprehensive_results['success_rate']:.1f}%")
-    print(f"   Quality: {'EXCELLENT' if comprehensive_results['success_rate'] >= 95 else 'GOOD' if comprehensive_results['success_rate'] >= 85 else 'NEEDS IMPROVEMENT'}")
+    print(f"   Success Rate: {validation_results['success_rate']:.1f}%")
+    print(f"   Quality: {'EXCELLENT' if validation_results['success_rate'] >= 95 else 'GOOD' if validation_results['success_rate'] >= 85 else 'NEEDS IMPROVEMENT'}")
     
-    return comprehensive_results
+    return validation_results
 
-def generate_sonarqube_reports(comprehensive_results, enum_results, entity_results):
+def generate_sonarqube_reports(validation_results, enum_results, entity_results):
     """Generate SonarQube-compatible test reports."""
     
     reports_dir = Path("test-reports")
     reports_dir.mkdir(exist_ok=True)
     
     # JUnit XML format for SonarQube
-    junit_xml = generate_junit_xml(comprehensive_results, enum_results, entity_results)
+    junit_xml = generate_junit_xml(validation_results, enum_results, entity_results)
     with open(reports_dir / "contract-tests.xml", "w") as f:
         f.write(junit_xml)
     
     # JSON summary for detailed analysis
     summary_report = {
         "timestamp": time.time(),
-        "comprehensive_results": comprehensive_results,
+        "validation_results": validation_results,
         "critical_enums": enum_results,
         "critical_entities": entity_results,
         "quality_metrics": {
-            "total_schemas": comprehensive_results['total_schemas'],
-            "success_rate": comprehensive_results['success_rate'],
-            "enum_coverage": comprehensive_results['by_type']['enum'],
-            "pydantic_coverage": comprehensive_results['by_type']['pydantic'],
-            "failure_rate": (comprehensive_results['failed'] / comprehensive_results['validated']) * 100
+            "total_schemas": validation_results['total_schemas'],
+            "success_rate": validation_results['success_rate'],
+            "enum_coverage": validation_results['by_type']['enum'],
+            "pydantic_coverage": validation_results['by_type']['pydantic'],
+            "failure_rate": (validation_results['failed'] / validation_results['validated']) * 100
         }
     }
     
@@ -128,14 +128,14 @@ def generate_sonarqube_reports(comprehensive_results, enum_results, entity_resul
     
     print(f"📄 Generated SonarQube reports in {reports_dir}/")
 
-def generate_junit_xml(comprehensive_results, enum_results, entity_results):
+def generate_junit_xml(validation_results, enum_results, entity_results):
     """Generate JUnit XML format for SonarQube integration."""
     
-    total_tests = len(enum_results) + len(entity_results) + 1  # +1 for comprehensive test
+    total_tests = len(enum_results) + len(entity_results) + 1  # +1 for validation test
     failures = len([r for r in enum_results.values() if not r['valid']]) + \
                len([r for r in entity_results.values() if not r['valid']])
     
-    if comprehensive_results['success_rate'] < 85.0:
+    if validation_results['success_rate'] < 85.0:
         failures += 1
     
     xml = f'''<?xml version="1.0" encoding="UTF-8"?>
@@ -145,27 +145,27 @@ def generate_junit_xml(comprehensive_results, enum_results, entity_results):
     # Enum tests
     for name, result in enum_results.items():
         if result['valid']:
-            xml += f'  <testcase name="test_critical_enum_{name}" classname="TestFinalContracts" time="0"/>\n'
+            xml += f'  <testcase name="test_critical_enum_{name}" classname="TestContracts" time="0"/>\n'
         else:
-            xml += f'  <testcase name="test_critical_enum_{name}" classname="TestFinalContracts" time="0">\n'
+            xml += f'  <testcase name="test_critical_enum_{name}" classname="TestContracts" time="0">\n'
             xml += f'    <failure message="{result.get("error", "Unknown error")}">{result.get("error", "Unknown error")}</failure>\n'
             xml += f'  </testcase>\n'
     
     # Entity tests
     for name, result in entity_results.items():
         if result['valid']:
-            xml += f'  <testcase name="test_critical_entity_{name}" classname="TestFinalContracts" time="0"/>\n'
+            xml += f'  <testcase name="test_critical_entity_{name}" classname="TestContracts" time="0"/>\n'
         else:
-            xml += f'  <testcase name="test_critical_entity_{name}" classname="TestFinalContracts" time="0">\n'
+            xml += f'  <testcase name="test_critical_entity_{name}" classname="TestContracts" time="0">\n'
             xml += f'    <failure message="{result.get("error", "Unknown error")}">{result.get("error", "Unknown error")}</failure>\n'
             xml += f'  </testcase>\n'
     
-    # Comprehensive test
-    if comprehensive_results['success_rate'] >= 85.0:
-        xml += f'  <testcase name="test_comprehensive_validation" classname="TestFinalContracts" time="0"/>\n'
+    # Validation test
+    if validation_results['success_rate'] >= 85.0:
+        xml += f'  <testcase name="test_validation" classname="TestContracts" time="0"/>\n'
     else:
-        xml += f'  <testcase name="test_comprehensive_validation" classname="TestFinalContracts" time="0">\n'
-        xml += f'    <failure message="Success rate too low: {comprehensive_results["success_rate"]:.1f}%">Success rate {comprehensive_results["success_rate"]:.1f}% below required 85%</failure>\n'
+        xml += f'  <testcase name="test_validation" classname="TestContracts" time="0">\n'
+        xml += f'    <failure message="Success rate too low: {validation_results["success_rate"]:.1f}%">Success rate {validation_results["success_rate"]:.1f}% below required 85%</failure>\n'
         xml += f'  </testcase>\n'
     
     xml += '</testsuite>\n'
