@@ -72,6 +72,5 @@ logs/
 *.temp
 .cache/
 
-# Backstage specific
-familiar_backstage/dist/
-familiar_backstage/node_modules/ 
+# Backstage - exclude entire directory
+familiar_backstage/ 
