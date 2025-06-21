@@ -13,8 +13,8 @@ from .Moment import *
 from .Motif import *
 from .PersonThread import *
 from .Stitch import *
-from .Tenant import *
 from .Thread import *
+from .tenant import *
 
 # Category registry
 ENTITIES_MODELS = [

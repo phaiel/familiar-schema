@@ -140,6 +140,11 @@ class ContractValidator:
                             score = 100  # Exact match
                         elif attr_name.lower() == schema_name.lower():
                             score = 90   # Case insensitive match
+                        # NEW: Handle PascalCase vs snake_case conversion
+                        elif self._pascal_to_snake(attr_name) == schema_name:
+                            score = 95   # PascalCase to snake_case match
+                        elif self._snake_to_pascal(schema_name) == attr_name:
+                            score = 95   # snake_case to PascalCase match
                         # High priority for expected naming patterns
                         elif attr_name.endswith('Table') and 'state_log' in schema_name:
                             score = 80   # Table pattern
@@ -165,6 +170,19 @@ class ContractValidator:
             except ImportError:
                 continue
         return None
+    
+    def _pascal_to_snake(self, name: str) -> str:
+        """Convert PascalCase to snake_case."""
+        import re
+        # Insert underscore before uppercase letters (except first)
+        s1 = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', name)
+        # Insert underscore before uppercase letters that follow lowercase
+        return re.sub('([a-z0-9])([A-Z])', r'\1_\2', s1).lower()
+    
+    def _snake_to_pascal(self, name: str) -> str:
+        """Convert snake_case to PascalCase."""
+        components = name.split('_')
+        return ''.join(word.capitalize() for word in components)
     
     def _validate_pydantic_model(self, name: str, source: Dict, model) -> Dict:
         """Validate a Pydantic model against source schema."""

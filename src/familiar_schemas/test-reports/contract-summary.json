@@ -1,6 +1,6 @@
 {
-  "timestamp": 1750386907.4244611,
-  "comprehensive_results": {
+  "timestamp": 1750525025.205183,
+  "validation_results": {
     "total_schemas": 119,
     "validated": 119,
     "passed": 119,
@@ -119,40 +119,40 @@
       "type": "pydantic",
       "structural_issues": [],
       "error": null,
-      "source_hash": "6d2a71bade83",
-      "pydantic_hash": "e216b31fe9a1"
+      "source_hash": "e1ed5de38381",
+      "pydantic_hash": "33fcf795c0e0"
     },
     "Thread": {
       "valid": true,
       "type": "pydantic",
       "structural_issues": [],
       "error": null,
-      "source_hash": "c263ae68340a",
-      "pydantic_hash": "8bd8ed29242e"
+      "source_hash": "0cc723f1a54d",
+      "pydantic_hash": "2a94968a0baf"
     },
     "Moment": {
       "valid": true,
       "type": "pydantic",
       "structural_issues": [],
       "error": null,
-      "source_hash": "6a932d7c5faf",
-      "pydantic_hash": "0587548a9afa"
+      "source_hash": "a79ef8375a1d",
+      "pydantic_hash": "62f48fdedc41"
     },
     "Filament": {
       "valid": true,
       "type": "pydantic",
       "structural_issues": [],
       "error": null,
-      "source_hash": "16ab3c9e0f25",
-      "pydantic_hash": "4ea12d53880d"
+      "source_hash": "de2db17af746",
+      "pydantic_hash": "746d305af8de"
     },
     "Focus": {
       "valid": true,
       "type": "pydantic",
       "structural_issues": [],
       "error": null,
-      "source_hash": "86ad5ef36429",
-      "pydantic_hash": "9a9b43fd0206"
+      "source_hash": "12174f36837f",
+      "pydantic_hash": "5d3133ff9164"
     }
   },
   "quality_metrics": {

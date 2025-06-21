@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://familiar.dev/schemas/tables/thread_state_log.v1.schema.json",
   "title": "Thread State Log Table",
-  "description": "Defines the schema for the 'thread_state_log' database table...",
+  "description": "Defines the schema for the 'thread_state_log' database table, which stores an append-only history of a Thread's lifecycle state.",
   "allOf": [
     {
       "$ref": "../_base/BaseTable.schema.json"
@@ -10,44 +10,30 @@
   ],
   "schema_version": "1.2.0",
   "tableName": "thread_state_log",
-  "properties": {
-    "columns": {
-      "type": "object",
-      "properties": {
-        "thread_id": {
-          "name": "thread_id",
-          "$ref": "../snippets/fields/EntityId.json",
-          "description": "The ID of the Thread whose state is being logged.",
-          "primary_key": true
-        },
-        "effective_at": {
-          "name": "effective_at",
-          "$ref": "../snippets/fields/EffectiveAt.json",
-          "description": "The immutable timestamp at which this state became effective.",
-          "primary_key": true
-        },
-        "state": {
-          "$ref": "../snippets/types/lifecycles/ThreadState.json"
-        },
-        "reason": {
-          "allOf": [
-            {
-              "$ref": "../snippets/types/lifecycles/ThreadStateReason.json"
-            }
-          ],
-          "nullable": true
-        },
-        "metadata": {
-          "$ref": "../snippets/types/primitives/KeyValue.json",
-          "nullable": true
-        }
-      },
-      "required": [
-        "thread_id",
-        "effective_at",
-        "state"
-      ],
-      "title": "ThreadStateLogColumns"
+  "columns": {
+    "thread_id": {
+      "type": "uuid",
+      "description": "The ID of the Thread whose state is being logged.",
+      "primary_key": true
+    },
+    "effective_at": {
+      "type": "date-time",
+      "description": "The immutable timestamp at which this state became effective.",
+      "primary_key": true
+    },
+    "state": {
+      "description": "The new state of the Thread.",
+      "$ref": "../snippets/types/lifecycles/ThreadState.json"
+    },
+    "reason": {
+      "description": "The machine-readable reason for the state change.",
+      "$ref": "../snippets/types/lifecycles/ThreadStateReason.json",
+      "nullable": true
+    },
+    "metadata": {
+      "description": "Additional metadata for the state change.",
+      "$ref": "../snippets/types/primitives/KeyValue.json",
+      "nullable": true
     }
   },
   "indexes": [
